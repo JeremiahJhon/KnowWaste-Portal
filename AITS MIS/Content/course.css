@@ -1,0 +1,38 @@
+﻿.lcontainer {
+    padding-right: 15px;    
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.c-content-media-2 {
+    
+    min-height:400px;
+}
+
+.c-bg-grey-2 {
+    background-color: #f7f7f7 !important;
+    height:156px;
+}
+
+.c-desc .c-author{
+    padding:7px;
+}
+
+.c-content-blog-post-1 .c-title {
+    font-size: 20px;
+    color: #3f444a;
+    font-weight: 300;
+    margin: 0px;
+}
+
+h3.c-header{
+    font-size: 22px;
+    color: #3f444a;    
+    font-weight:bold;
+    margin-bottom: 20px;
+}
+
+.panel-body{
+    padding-bottom:0px;
+}
+

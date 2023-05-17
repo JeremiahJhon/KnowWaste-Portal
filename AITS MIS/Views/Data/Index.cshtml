@@ -1,0 +1,117 @@
+﻿
+@{
+    Layout = "~/Views/Shared/Shared.cshtml";
+}
+
+<link href="~/Content/data.css" rel="stylesheet" />
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="~/Scripts/data.js"></script>
+
+<div class="c-layout-page">
+    <div class="c-layout-breadcrumbs-1 c-fonts-uppercase c-fonts-bold">
+        <div class="container">
+            <div class="c-page-title c-pull-left">
+                <h3 class="c-font-uppercase c-font-sbold">Waste Generation</h3>
+            </div>
+            <ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
+                <li>
+                    <a href="#">Knowledge Repository</a>
+                </li>
+                <li>/</li>
+                <li class="c-state_active">Data & Trends</li>
+            </ul>
+        </div>
+    </div>
+    <div class="c-content-box c-size-md c-bg-white">
+        <div class="container">
+            <div id="country-filter"><div style="display:none;"><span>Region:</span> @Html.Raw(ViewBag.Region)</div><div><span>Sub Region:</span> @Html.Raw(ViewBag.SubRegion)</div><div><span>Country:</span> @Html.Raw(ViewBag.Country)</div><div><span>Year:</span> @Html.Raw(ViewBag.Year)</div></div>
+            <div id="charts">
+                <div class="progressicon"><img src="~/Content/Images/misc/progress.gif" /></div>
+                <div id="mapcontainer" class="hidden">
+                    <div class="chart-filter filter-waste">
+                        <select>
+                            <option value="0">All</option>
+                            <option value="1">Municipal Waste</option>
+                            <option value="2">Agricultural Waste</option>
+                            <option value="3">Construction & Demolition Waste</option>
+                            <option value="4">E-Waste</option>
+                            <option value="5">Industrial Waste</option>
+                            <option value="6">Mining Waste</option>
+                            <option value="7">Healthcare Waste</option>
+                        </select>
+                    </div>
+                    <div class="chart-filter filter-type">
+                        <select>
+                            <option value="Generated">Generated</option>
+                            <option value="Hazardous">Hazardous</option>
+                            <option value="Collected">Collected</option>
+                            <option value="Recycled">Recycled</option>
+                            <option value="Recovered">Recovered</option>
+                            <option value="Disposal">Disposal</option>
+                            <option value="Treatment">Treatment</option>
+                            <option value="Reuse">Reuse</option>
+                            <option value="Sludge">Sludge</option>
+                        </select>
+                    </div>
+                    <div id="mapchart">
+                    </div>
+                </div>
+                <div id="combochartcontainer" class="hidden">
+                    <div class="chart-filter">
+                        <select>
+                            <option value="1">Solid Waste</option>
+                            <option value="2">Waste Water</option>
+                            <option value="3">Gaseous Emissions</option>
+                        </select>
+                    </div>
+                    <div id="combochart"></div>
+                </div>
+                <div id="piecontainer">
+                    <div id="piechartcontainer" class="hidden">
+                        <div class="chart-filter">
+                            <select>
+                                <option value="1">Municipal Waste</option>
+                                <option value="2">Agricultural Waste</option>
+                                <option value="3">Construction & Demolition Waste</option>
+                                <option value="4">E-Waste</option>
+                                <option value="5">Industrial Waste</option>
+                                <option value="6">Mining Waste</option>
+                                <option value="7">Healthcare Waste</option>
+                            </select>
+                        </div>
+                        <div id="piechart">
+                        </div>
+                    </div>
+                    <div id="piechartcontainer2" class="hidden">
+                        <div class="chart-filter">
+                            <select>
+                                <option value="Generated">Generated</option>
+                                <option value="Hazardous">Hazardous</option>
+                                <option value="Collected">Collected</option>
+                                <option value="Recycled">Recycled</option>
+                                <option value="Recovered">Recovered</option>
+                                <option value="Disposal">Disposal</option>
+                                <option value="Treatment">Treatment</option>
+                                <option value="Reuse">Reuse</option>
+                                <option value="Sludge">Sludge</option>
+                            </select>
+                        </div>
+                        <div id="piechart2"></div>
+                    </div>           
+                </div>
+                <div id="combochartallyearcontainer" class="hidden">
+                    <div class="chart-filter">
+                        <select>
+                            <option value="1">Solid Waste</option>
+                            <option value="2">Waste Water</option>
+                            <option value="3">Gaseous Emissions</option>
+                        </select>
+                    </div>
+                    <div id="combochartallyear"></div>
+                </div>
+            </div>
+            @Html.Raw(ViewBag.Body)
+        </div>
+    </div>
+</div>

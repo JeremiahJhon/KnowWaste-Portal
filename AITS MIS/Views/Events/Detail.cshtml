@@ -1,0 +1,176 @@
+﻿@{
+    Layout = "~/Views/Shared/Shared.cshtml";
+}
+
+@using System.Data;
+
+@{
+    DataTable data = (DataTable)ViewBag.Events;
+    DataTable ndata = (DataTable)ViewBag.News;
+}
+
+<div class="c-layout-page">
+    <div class="c-layout-breadcrumbs-1 c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
+        <div class="container">
+            <div class="c-page-title c-pull-left">
+                <h3 class="c-font-uppercase c-font-sbold"></h3>
+            </div>
+            <ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
+                <li>
+                    <a href="#">Knowledge Exchange</a>
+                </li>
+                <li>/</li>
+                <li>
+                    <a href="#">Events Detail</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="c-content-box c-size-md">
+        <div class="container">
+
+            <div class="c-layout-sidebar-menu c-theme ">
+                <div class="c-sidebar-menu-toggler"></div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading c-title c-font-uppercase c-font-bold">Related Events</div>
+
+                    <ul class="c-content-recent-posts-1">
+
+                        @{
+                            foreach (DataRow row in data.Rows)
+                            {
+                                <li>
+                                    <div class="c-image">
+
+                                        @{
+                                            if (@row["Thumbnail"].ToString() == "")
+                                            {
+                                                <img src="../Content/Images/default.png" alt="" class="img-responsive">                                                
+                                            }
+                                            else
+                                            {
+                                                <img src="../Content/Images/@row["Thumbnail"].ToString()" alt="" class="img-responsive">
+                                            }
+                                        }
+
+
+                                    </div>
+                                    <div class="c-post">
+                                        <a href="../Events/Detail?id=@row["id"].ToString()" class="c-font-14">@row["name"].ToString()</a>
+                                        <div class="c-font-12">@row["location"].ToString()</div>
+                                    </div>
+                                </li>
+                            }
+                        }
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="c-layout-sidebar-content">
+
+                <div class="c-content-blog-post-1-list">
+
+                    @{
+
+                        foreach (DataRow row in data.Rows)
+                        {
+                            <div class="c-content-blog-post-1">
+                                <div class="c-media">
+                                    <div class="c-content-media-2-slider" data-slider="owl" data-single-item="true">
+                                        <div class="owl-carousel owl-theme c-theme owl-single">
+                                            <div class="item">
+                                                @{
+                                                    if (row["Thumbnail"].ToString() == "")
+                                                    {
+                                                        <div class="c-content-media-2" style="background-image: url(../Content/Images/default.png); min-height: 460px;"> </div>                                                        
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="c-content-media-2" style="background-image: url(../Content/Images/@row["Thumbnail"].ToString()); min-height: 460px;"> </div>
+                                                    }
+                                                }
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="c-title c-font-bold c-font-uppercase">
+                                    <span>@row["name"].ToString()</span>
+                                </div>
+                                <div class="c-desc">
+                                    @Html.Raw(row["Detail"].ToString())
+                                </div>
+                                @{
+                            if (row["organizer"] != DBNull.Value)
+                            {
+                                <h3 class="c-font-uppercase c-font-bold">Organized By</h3>
+                                    <div class="c-desc">
+                                        @row["organizer"].ToString()
+                                    </div>
+                            }
+
+                                }
+
+                                <div class="c-panel">
+                                    <div class="c-author">
+
+                                        @{
+                            if (row["location"].ToString() != null)
+                            {
+                                <span class="c-font-uppercase">At @row["location"].ToString()</span>
+                            }
+
+                                        }
+                                    </div>
+
+                                    @{
+                            DateTime start = DateTime.Parse(row["Datestart"].ToString());
+                            DateTime end = DateTime.Parse(row["Dateend"].ToString());
+                                    }
+
+                                    <div class="c-comments">
+                                        on
+                                        <span class="c-font-uppercase">@start.ToString("dd MMM yyyy, hh:mm tt") to @end.ToString("dd MMM yyyy, hh:mm tt")</span>
+                                    </div>
+                                </div>
+                                <div class="c-margin-t-20"></div>
+                                <div class="c-author">
+                                    @{
+                                        if (row["Referencelink"].ToString() == "")
+                                        {
+                                            <span class="c-font-uppercase c-font-bold">Reference : </span><span class="c-font-lowercase">There has no Reference.</span>                                            
+                                        }
+                                        else
+                                        {
+                                            <span class="c-font-uppercase c-font-bold">Reference : </span> <span class="c-font-lowercase"><a href="@row["Referencelink"].ToString()" target="_blank">@row["Referencelink"].ToString()</a></span>
+                                        }
+                                    }
+                                </div>
+
+                            </div>
+                        }
+                    }
+
+                </div>
+
+                <div class="c-content-divider c-divider-sm"></div>
+                <div class="c-title c-font-uppercase c-font-bold c-font-green">View More Events..</div>
+
+                @{
+                    foreach (DataRow row in data.Rows)
+                    {
+                        <div class="c-title">
+                            <h3 class="c-title c-font-bold c-font-20 c-font-dark"><a href="../Events/Detail?id=@row["id"].ToString()">@row["Name"].ToString()</a></h3>
+                        </div>
+                        <div class="c-product-short-desc">@Html.Raw(row["Description"].ToString())</div>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

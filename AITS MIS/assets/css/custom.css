@@ -1,0 +1,45 @@
+body {
+    font-family: 'Roboto Condensed', sans-serif !important;
+}
+
+.landing-header .menu .menu-link.active {
+    color: #009ef7;
+}
+
+.policy-yes {
+    padding: 2px 40px;
+    margin: 0px;
+    background-color: #50cd89;
+    color: white;
+    border-radius: 20px;
+}
+
+.policy-no {
+    padding: 2px 40px;
+    margin: 0px;
+    background-color: #e4e6ef;
+    color: #777;
+    border-radius: 20px;
+}
+
+.row {
+    --bs-gutter-x: 0rem;
+}
+
+#kt_landing_hero_text {
+    background: white/*linear-gradient(to right, #507938 0%, #9FC232 100%)*/;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.landing-dark-color {
+    color: #2577BC;
+}
+
+.landing-dark-bg {
+    background-color: #2577BC;
+}
+
+.text-dark {
+    color: #535551!important;
+}

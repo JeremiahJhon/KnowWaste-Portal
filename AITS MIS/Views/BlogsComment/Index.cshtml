@@ -1,0 +1,19 @@
+﻿
+@{
+    Layout = "~/Views/Shared/Shared.cshtml";
+}
+
+@using System.Data;
+
+@{
+    DataTable data = (DataTable)ViewBag.BlogsComment;
+    <table>
+        @{
+
+            foreach (DataRow row in data.Rows)
+            {
+                <tr><td>@row["comment"].ToString()</td></tr>                                        
+            }
+        }
+    </table>
+}

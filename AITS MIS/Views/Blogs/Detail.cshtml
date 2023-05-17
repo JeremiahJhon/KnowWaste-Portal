@@ -1,0 +1,144 @@
+﻿
+@{
+    Layout = "~/Views/Shared/Shared.cshtml";
+}
+
+@using System.Data;
+
+<div class="c-layout-page">
+    <div class="c-layout-breadcrumbs-1 c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
+        <div class="container">
+            <div class="c-page-title c-pull-left">
+                <h3 class="c-font-uppercase c-font-sbold"> </h3>
+            </div>
+            <ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
+                <li>
+                    <a href="#">Knowledge Exchange</a>
+                </li>
+                <li>/</li>
+                <li>
+                    <a href="#">Blog Detail</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="c-content-box c-size-md">
+        <div class="container">
+            <div class="row">
+
+                <div class="c-content-blog-post-1-list">
+
+                    @{
+                        DataTable data = (DataTable)ViewBag.Blogs;
+                        
+                        foreach (DataRow row in data.Rows)
+                        {
+                            string image = @row["Thumbnail"].ToString();
+                            string[] imglist = image.Split('|');
+
+                            <div class="c-content-blog-post-1">
+                                <div class="c-media">
+                                    <div class="c-content-media-2-slider" data-slider="owl" data-single-item="true" data-auto-play="4000">
+                                        <div class="owl-carousel owl-theme c-theme owl-single">
+                                            <div class="item">
+                                                @{
+                                                    if (row["Thumbnail"].ToString() == "")
+                                                    {
+                                                        <div class="c-content-media-2" style="background-image: url(../Documents/blog.jpg); min-height: 460px;"></div>                                                        
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="c-content-media-2" style="background-image: url(../Documents/@row["Thumbnail"].ToString()); min-height: 460px;"></div>
+                                                    }
+                                                }
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="c-title c-font-bold c-font-uppercase">
+                                    <span>@row["title"].ToString()</span>
+                                </div>
+
+                                <div class="c-panel c-margin-b-30">
+
+                                    <div class="c-author">
+
+                                        @{
+                                            if (row["author"].ToString() != null)
+                                            {
+                                                <a href="#"><span class="c-font-uppercase">By @row["author"].ToString()</span></a>
+                                            }
+
+                                        }
+                                    </div>
+
+                                    @{
+                                        DateTime posted = DateTime.Parse(row["blogsdate"].ToString());
+                                    }
+                                    <div class="c-date">
+                                        <span class="c-font-uppercase">On @posted.ToString("dd MMM yyyy, hh:mm tt")</span>
+                                    </div>
+                                    <div class="c-comments">
+                                        <a href="#">
+                                            <i class="icon-speech"></i> Comments
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="c-desc">
+                                    @Html.Raw(row["Detail"].ToString())
+                                </div>
+                                <div class="c-comments">
+                                    <div class="c-content-title-1">
+                                        <h3 class="c-font-uppercase c-font-bold">Comments</h3>
+                                        <div class="c-line-left"></div>
+                                    </div>
+                                    <div class="c-comment-list">
+
+                                        @{
+                                            DataTable comment = (DataTable)ViewBag.BlogsComment;
+
+
+                                            foreach (DataRow crow in comment.Rows)
+                                            {
+                                                foreach (DataRow brow in data.Rows)
+                                                {
+                                                    if (crow["blogs_id"].ToString() == brow["id"].ToString())
+                                                    {
+                                                        DateTime bdate = DateTime.Parse(crow["dateentered"].ToString());
+                                                        <div class="media">
+                                                            <div class="media-left">
+                                                                <a href="#">
+                                                                    <img class="media-object" alt="" src="../Content/Images/blogs/blogscontact/@crow["contactphoto"].ToString()" />
+                                                                </a>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <h4 class="media-heading">
+                                                                    <a href="#" class="c-font-bold">@crow["blogscontact"].ToString()</a> on
+                                                                    <span class="c-date">@bdate.ToString("dd MMMM yyyy, hh:mm tt")</span>
+                                                                </h4>@crow["comment"].ToString()
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                }
+
+                                            }
+
+                                        }
+                                        
+                                        </div>
+                                    </div>
+                            </div>
+                                            }
+                    }
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

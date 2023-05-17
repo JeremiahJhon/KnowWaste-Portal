@@ -1,0 +1,21 @@
+﻿
+@{
+    Layout = "~/Views/Shared/Shared.cshtml";
+}
+
+@using System.Data;
+
+@{
+    DataTable data = (DataTable)ViewBag.BlogsContact;
+    <table>
+        @{
+
+            foreach (DataRow row in data.Rows)
+            {
+                <tr><td>@row["name"].ToString()</td>
+                    <td>@row["thumbnail"].ToString()</td>
+                </tr>                                        
+            }
+        }
+    </table>
+}

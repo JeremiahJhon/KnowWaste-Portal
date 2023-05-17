@@ -1,0 +1,312 @@
+﻿@{
+    Layout = "~/Views/Shared/Shared.cshtml";
+}
+
+<link href="~/Content/seminar.css" rel="stylesheet" />
+@using System.Data;
+
+<div class="c-layout-page">
+    <div class="c-layout-breadcrumbs-1 c-subtitle c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
+        <div class="container">
+            <div class="c-page-title c-pull-left">
+                <h3 class="c-font-uppercase c-font-sbold">Conferences</h3>
+            </div>
+            <ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
+                <li>
+                    <a href="#">Knowledge Exchange</a>
+                </li>
+                <li>/</li>
+                <li>
+                    <a href="../Conferences">Conferences</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="c-margin-t-20"></div>
+
+    @{
+        DataTable data = (DataTable)ViewBag.Conferences;
+    }
+
+    <div class="c-content-box c-size-md c-bg-white">
+        <div class="container">
+
+            <div class="c-content-blog-post-1">
+                <div class="c-content-media-2-slider" data-slider="owl" data-single-item="true" data-auto-play="4000">
+                    <div class="c-content-label c-font-uppercase c-font-bold">Upcoming</div>
+                    <div class="owl-carousel owl-theme c-theme owl-single">
+                        @{
+                            bool hascurrent = false;
+
+                            foreach (DataRow row in data.Rows)
+                            {
+                                DateTime start = DateTime.Parse(row["datestart"].ToString());
+                                DateTime end = DateTime.Parse(row["dateend"].ToString());
+                                DateTime current = DateTime.Now;
+
+                                if (start <= current && end >= current)
+                                {
+                                    hascurrent = true;
+
+                                    <div class="item">
+                                        <div class="c-content-label c-font-uppercase c-font-bold">Ongoing</div>
+
+                                        @{
+                                                if (row["Thumbnail"].ToString() == "")
+                                                {
+                                                    <div class="c-content-media-2 c-bg-img-center" style="background-image: url(../Documents/conference.png); min-height: 400px;">
+                                                        <div class="c-panel">
+                                                            <div class="c-fav">
+                                                                <h3 class="c-title c-font-slim c-font-22 c-font-dark">@start.ToString("dd MMMM yyyy ") to @end.ToString("dd MMMM yyyy") | @row["Location"].ToString()</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>                                                                                                        
+                                                }
+                                                else
+                                                {
+                                                    <div class="c-content-media-2 c-bg-img-center" style="background-image: url(../Documents/@row["Thumbnail"].ToString());min-height:400px;">
+                                                        <div class="c-panel">
+                                                            <div class="c-fav">
+                                                                <h3 class="c-title c-font-slim c-font-22 c-font-dark">@start.ToString("dd MMMM yyyy ") to @end.ToString("dd MMMM yyyy") | @row["Location"].ToString()</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                        }
+                                    </div>
+                                }
+                            }
+
+                            if (!hascurrent)
+                            {
+                                foreach (DataRow row in data.Rows)
+                                {
+                                    DateTime start = DateTime.Parse(row["datestart"].ToString());
+                                    DateTime end = DateTime.Parse(row["dateend"].ToString());
+                                    DateTime current = DateTime.Now;
+
+                                    if (start > current)
+                                    {
+                                        hascurrent = true;
+
+                                        <div class="item">
+                                            <div class="c-content-label c-font-uppercase c-font-bold">Upcoming</div>
+
+                                            @{
+                                                if (row["Thumbnail"].ToString() == "")
+                                                {
+                                                    <div class="c-content-media-2 c-bg-img-center" style="background-image: url(../Documents/conference.png);min-height:400px;">
+                                                        <div class="c-panel">
+                                                            <div class="c-fav">
+                                                                <h3 class="c-title c-font-slim c-font-22 c-font-white">@start.ToString("dd MMMM yyyy ") to @end.ToString("dd MMMM yyyy") | @row["Location"].ToString()</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>                                                                                                    
+                                                }
+                                                else
+                                                {
+                                                    <div class="c-content-media-2 c-bg-img-center" style="background-image: url(../Documents/@row["Thumbnail"].ToString());min-height:400px;">
+                                                        <div class="c-panel">
+                                                            <div class="c-fav">
+                                                                <h3 class="c-title c-font-slim c-font-22 c-font-white">@start.ToString("dd MMMM yyyy ") to @end.ToString("dd MMMM yyyy") | @row["Location"].ToString()</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+
+
+                                        </div>
+                                    }
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="c-margin-t-20"></div>
+
+            <div class="c-layout-sidebar-menu c-theme ">
+                <!-- BEGIN: LAYOUT/SIDEBARS/SHOP-SIDEBAR-MENU-2 -->
+                <div class="c-sidebar-menu-toggler">
+                </div>
+                <!-- BEGIN: CONTENT/SHOPS/SHOP-FILTER-SEARCH-1 -->
+
+                <div class="panel panel-default">
+                    <div class="panel-heading c-title c-font-uppercase c-font-bold">Sectors</div>
+                    <div class="panel-body">
+                        <ul class="c-shop-filter-search-1 list-unstyled">
+                            <li>
+                                <select class="form-control c-square c-theme">
+                                    <option value="0">All Sectors</option>
+                                    <option value="1">Energy</option>
+                                    <option value="2">Finance & Retail</option>
+                                    <option value="3">Water</option>
+                                    <option value="4">Policy</option>
+                                    <option value="5">Manufacturing</option>
+                                    <option value="6">Agriculture</option>
+                                    <option value="7">Transport</option>
+                                    <option value="8">Tourism</option>
+                                    <option value="9">Forestry</option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="panel-heading c-title c-font-uppercase c-font-bold">Country</div>
+                    <div class="panel-body">
+                        <ul class="c-shop-filter-search-1 list-unstyled">
+                            <li>
+                                <select class="form-control c-square c-theme">
+                                    <option value="0">China</option>
+                                    <option value="1">Japan</option>
+                                    <option value="2">Korea (DPR)</option>
+                                    <option value="3">Korea (Republic Of)</option>
+                                    <option value="4">Mongolia</option>
+                                    <option value="5">Afghanistan</option>
+                                    <option value="6">Bangladesh</option>
+                                    <option value="7">Bhutan</option>
+                                    <option value="8">India</option>
+                                    <option value="9">Iran</option>
+                                    <option value="10">Maldives</option>
+                                    <option value="11">Nepal</option>
+                                    <option value="12">Kathmandu</option>
+                                    <option value="13">Pakistan</option>
+                                    <option value="14">Sri Lanka</option>
+                                    <option value="15">Brunei Darussalam</option>
+                                    <option value="16">Cambodia</option>
+                                    <option value="17">Indonesia</option>
+                                    <option value="18">Lao PDR</option>
+                                    <option value="19">Malaysia</option>
+                                    <option value="20">Myanmar</option>
+                                    <option value="21">Philippines</option>
+                                    <option value="22">Singapore</option>
+                                    <option value="23">Thiland</option>
+                                    <option value="24">Timor-Leste</option>
+                                    <option value="25">Viet Nam</option>
+                                    <option value="26">Iraq</option>
+                                    <option value="26">Australia</option>
+                                    <option value="26">Cook Islands</option>
+                                    <option value="26">Fiji</option>
+                                    <option value="26">Guam</option>
+                                    <option value="26">Kiribati</option>
+                                    <option value="26">Marshall Islands</option>
+                                    <option value="26">Micronesia</option>
+                                    <option value="26">Nauru</option>
+                                    <option value="26">New Zealand</option>
+                                    <option value="26">Niue</option>
+                                    <option value="26">Palau (Republic of)</option>
+                                    <option value="26">Papua New Guinea</option>
+                                    <option value="26">Samoa</option>
+                                    <option value="26">Solomon Islands</option>
+                                    <option value="26">Tonga</option>
+                                    <option value="26">Tuvalu</option>
+                                    <option value="26">Vanuatu</option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- END: CONTENT/SHOPS/SHOP-FILTER-SEARCH-1 -->
+                <!-- END: LAYOUT/SIDEBARS/SHOP-SIDEBAR-MENU-2 -->
+            </div>
+
+            <div class="c-layout-sidebar-content ">
+                @{
+                    foreach (DataRow row in data.Rows)
+                    {
+                        <div class="row c-margin-b-40">
+                            <div class="c-content-product-2 c-bg-white">
+                                <div class="col-md-4">
+                                    <div class="c-content-overlay">
+
+                                        @{
+                                            if (row["Thumbnail"].ToString() == "")
+                                            {
+                                                <div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 230px; background-image: url(../Documents/conference.png);"></div>                                                                                            
+                                            }
+                                            else
+                                            {
+                                                <div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 230px; background-image: url(../Documents/@row["Thumbnail"].ToString());"></div>
+                                            }
+                                        }
+
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="c-info-list">
+                                        <h3 class="c-title c-font-bold c-font-22 c-font-dark">
+                                            <a class="c-theme-link" href="../Conferences/Detail?id=@row["id"].ToString()">@row["Title"].ToString()</a>
+                                        </h3>
+
+                                        @{
+                                            DateTime start = DateTime.Parse(row["datestart"].ToString());
+                                            DateTime end = DateTime.Parse(row["dateend"].ToString());
+                                        }
+
+                                        <p class="c-order-date c-font-14 c-font-thin c-theme-font">@start.ToString("dd MMM yyyy") to @end.ToString("dd MMM yyyy") | @row["Location"].ToString()</p>
+                                        <p class="c-font-17 c-margin-b-20 c-margin-t-20 c-font-thin ">
+                                            @Html.Raw(row["Description"].ToString())
+                                        </p>
+                                        <a class="btn btn-sm c-theme-btn c-btn-square c-btn-bold" href="../Conferences/Detail?id=@row["id"].ToString()" style="color:white;"> EXPLORE </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+
+                @{
+                    DataTable page = (DataTable)ViewBag.ConferencesPage;
+
+                    foreach (DataRow row in page.Rows)
+                    {
+
+                        string backward = row["Backward"].ToString();
+                        string forward = row["Forward"].ToString();
+
+                        int start = Convert.ToInt32(@row["Start"].ToString());
+                        int end = Convert.ToInt32(@row["End"].ToString());
+                        int currpage = Convert.ToInt32(@row["Page"].ToString());
+
+                        <div class="c-margin-t-20"></div>
+
+                        <ul class="c-content-pagination c-square c-theme pull-right">
+                            <li class="c-prev">
+                                <a href="../Conferences?p=@backward">
+                                    <i class="fa fa-angle-left"></i>
+                                </a>
+                            </li>
+
+                            @{
+                        for (int i = start; i <= end; i++)
+                        {
+                            if (i == currpage)
+                            {
+                                <li class="c-active">
+                                    <a href="../Conferences?p=@i">@i</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a href="../Conferences?p=@i">@i</a>
+                                </li>
+                            }
+                        }
+                            }
+
+                            <li class="c-next">
+                                <a href="../Conferences?p=@forward">
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    }
+                }
+            </div>
+            <div class="c-margin-t-20"></div>
+        </div>
+    </div>
+</div>

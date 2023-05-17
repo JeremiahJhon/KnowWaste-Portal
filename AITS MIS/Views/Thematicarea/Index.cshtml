@@ -1,0 +1,89 @@
+﻿
+@{
+    Layout = "~/Views/Shared/Shared.cshtml";
+}
+
+<link href="~/Content/thematic.css" rel="stylesheet" />
+
+@using System.Data;
+
+<div class="c-layout-page">
+    <div class="c-layout-breadcrumbs-1 c-fonts-uppercase c-fonts-bold">
+        <div class="container">
+            <div class="c-page-title c-pull-left">
+                <h3 class="c-font-uppercase c-font-sbold">@Html.Raw(ViewBag.Thematicheader)</h3>
+                <span style="position: absolute; float: left; margin-top: -20px; margin-left: 70px; font-size: 14px;">@Html.Raw(ViewBag.ThematicDescription)</span>
+            </div>
+            <ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
+                <li>
+                    <a href="#">Knowledge Repository</a>
+                </li>
+                <li>/</li>
+                <li class="c-state_active">Thematic Areas</li>
+            </ul>
+        </div>
+        <div class="container">
+            
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="c-layout-sidebar-menu c-theme">
+            <div class="panel panel-default">
+                <div class="panel-heading c-title c-font-uppercase c-font-bold">Thematic Areas</div>
+                <div class="panel-body">
+                    <ul class="c-shop-filter-search-1 list-unstyled">
+                        @Html.Raw(ViewBag.Thematicmenu)
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="c-layout-sidebar-content">
+            <div class="c-content-box c-bg-white">
+                @Html.Raw(ViewBag.Document)
+
+                @{
+                    if (ViewBag.LawPolicy != null && ViewBag.LawPolicy != "")
+                    {
+                        <div class="block">
+                            <div class="c-content-title-1">
+                                <h3 class="c-font-uppercase c-font-bold">
+                                    Law / Policy
+                                </h3>
+                            </div>
+                            @Html.Raw(ViewBag.LawPolicy)
+                        </div>                        
+                    }
+                }
+
+                @{
+                    if (ViewBag.CaseStudy != null && ViewBag.CaseStudy != "")
+                    {
+                        <div class="block">
+                            <div class="c-content-title-1">
+                                <h3 class="c-font-uppercase c-font-bold">
+                                    Case Studies
+                                </h3>
+                            </div>
+                            @Html.Raw(ViewBag.CaseStudy)
+                        </div>                        
+                    }
+                }
+
+                @{
+                    if (ViewBag.Reports != null && ViewBag.Reports != "")
+                    {
+                        <div class="block">
+                            <div class="c-content-title-1">
+                                <h3 class="c-font-uppercase c-font-bold">
+                                    Reports
+                                </h3>
+                            </div>
+                            @Html.Raw(ViewBag.Reports)
+                        </div>                        
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

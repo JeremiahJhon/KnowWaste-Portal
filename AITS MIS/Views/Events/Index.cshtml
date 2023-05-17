@@ -1,0 +1,253 @@
+﻿@{
+    Layout = "~/Views/Shared/Shared.cshtml";
+}
+
+<link href="~/Content/events.css" rel="stylesheet" />
+
+@using System.Data;
+
+@{
+    DataTable data = (DataTable)ViewBag.Events;
+    DataTable ndata = (DataTable)ViewBag.News;
+}
+
+<div class="c-layout-page">
+    <div class="c-layout-breadcrumbs-1 c-subtitle c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
+        <div class="container">
+            <div class="c-page-title c-pull-left">
+                <h3 class="c-font-uppercase c-font-sbold">Upcoming Events</h3>
+            </div>
+            <ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
+                <li>
+                    <a href="#">Knowledge Exchange</a>
+                </li>
+                <li>/</li>
+                <li>
+                    <a href="events.html">Events</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="c-layout-sidebar-menu c-theme">
+            <div class="c-sidebar-menu-toggler"></div>
+
+            @*<div class="panel panel-default">
+                <div class="panel-heading c-title c-font-uppercase c-font-bold">Sectors</div>
+                <div class="panel-body">
+                    <ul class="c-shop-filter-search-1 list-unstyled">
+                        <li>
+                            <select class="form-control c-square c-theme">
+                                <option value="0">All Sectors</option>
+                                <option value="1">Energy</option>
+                                <option value="2">Finance & Retail</option>
+                                <option value="3">Water</option>
+                                <option value="4">Policy</option>
+                                <option value="5">Manufacturing</option>
+                                <option value="6">Agriculture</option>
+                                <option value="7">Transport</option>
+                                <option value="8">Tourism</option>
+                                <option value="9">Forestry</option>
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="panel-heading c-title c-font-uppercase c-font-bold">Country</div>
+                <div class="panel-body">
+                    <ul class="c-shop-filter-search-1 list-unstyled">
+                        <li>
+                            <select class="form-control c-square c-theme">
+                                <option value="0">China</option>
+                                <option value="1">Japan</option>
+                                <option value="2">Korea (DPR)</option>
+                                <option value="3">Korea (Republic Of)</option>
+                                <option value="4">Mongolia</option>
+                                <option value="5">Afghanistan</option>
+                                <option value="6">Bangladesh</option>
+                                <option value="7">Bhutan</option>
+                                <option value="8">India</option>
+                                <option value="9">Iran</option>
+                                <option value="10">Maldives</option>
+                                <option value="11">Nepal</option>
+                                <option value="12">Kathmandu</option>
+                                <option value="13">Pakistan</option>
+                                <option value="14">Sri Lanka</option>
+                                <option value="15">Brunei Darussalam</option>
+                                <option value="16">Cambodia</option>
+                                <option value="17">Indonesia</option>
+                                <option value="18">Lao PDR</option>
+                                <option value="19">Malaysia</option>
+                                <option value="20">Myanmar</option>
+                                <option value="21">Philippines</option>
+                                <option value="22">Singapore</option>
+                                <option value="23">Thiland</option>
+                                <option value="24">Timor-Leste</option>
+                                <option value="25">Viet Nam</option>
+                                <option value="26">Iraq</option>
+                                <option value="26">Australia</option>
+                                <option value="26">Cook Islands</option>
+                                <option value="26">Fiji</option>
+                                <option value="26">Guam</option>
+                                <option value="26">Kiribati</option>
+                                <option value="26">Marshall Islands</option>
+                                <option value="26">Micronesia</option>
+                                <option value="26">Nauru</option>
+                                <option value="26">New Zealand</option>
+                                <option value="26">Niue</option>
+                                <option value="26">Palau (Republic of)</option>
+                                <option value="26">Papua New Guinea</option>
+                                <option value="26">Samoa</option>
+                                <option value="26">Solomon Islands</option>
+                                <option value="26">Tonga</option>
+                                <option value="26">Tuvalu</option>
+                                <option value="26">Vanuatu</option>
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+            </div>*@
+
+            <div class="panel panel-default">
+                <div class="panel-heading c-title c-font-uppercase c-font-bold">Related Events</div>
+
+                <ul class="c-content-recent-posts-1">
+
+                    @{
+                        foreach (DataRow row in data.Rows)
+                        {
+                            <li>
+                                <div class="c-image">
+                                    @{
+                                        if (row["Thumbnail"].ToString() == "")
+                                        {
+                                            <img src="../Documents/default.png" alt="" class="img-responsive">                                            
+                                        }
+                                        else
+                                        {
+                                            <img src="../Documents/@row["Thumbnail"].ToString()" alt="" class="img-responsive">
+                                        }
+                                    }
+
+                                </div>
+                                <div class="c-post">
+                                    <a href="../Events/Detail?id=@row["id"].ToString()" class="c-font-14">@row["name"].ToString()</a>
+                                    <div class="c-font-12">@row["location"].ToString()</div>
+                                </div>
+                            </li>
+                                        }
+                    }
+
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="c-layout-sidebar-content ">
+            <div class="c-content-title-1">
+                <h3 class="c-font-uppercase c-font-bold">Upcoming Events</h3>
+                <div class="c-line-left"></div>
+            </div>
+
+            @{
+
+                foreach (DataRow row in data.Rows)
+                {
+                    <div class="row c-margin-b-40">
+                        <div class="c-content-product-2 c-bg-white">
+                            <div class="col-md-4">
+                                <div class="c-content-overlay">
+                                    @{
+                                        if (row["Thumbnail"].ToString() == "")
+                                        {
+                                            <div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 240px; background-image: url(../Documents/default.png);"></div>                                               
+                                        }
+                                        else
+                                        {
+                                            <div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 240px; background-image: url(../Documents/@row["thumbnail"].ToString());"></div>
+                                        }
+                                    }
+
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="c-info-list">
+                                    <h3 class="c-title c-font-bold c-font-22 c-font-dark">
+                                        <a class="c-theme-link" href="../Events/Detail?id=@row["id"].ToString()">@row["name"].ToString()</a>
+                                    </h3>
+                                    <p class="c-order-date c-font-14 c-font-thin c-theme-font">@row["datestart"].ToString() to @row["dateend"].ToString()</p>
+                                    <p class="c-order-date c-font-14 c-font-thin c-theme-font">@row["location"].ToString()</p>
+                                    @Html.Raw(row["description"].ToString())
+                                    <a href="../Events/Detail?id=@row["id"].ToString()" class="btn c-btn-uppercase btn-md c-btn-bold c-btn-square c-theme-btn wow animate fadeIn">Detail</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                        }
+            }
+
+            @{
+                DataTable page = (DataTable)ViewBag.EventsPage;
+
+                foreach (DataRow row in page.Rows)
+                {
+
+                    string backward = row["Backward"].ToString();
+                    string forward = row["Forward"].ToString();
+
+                    int start = Convert.ToInt32(@row["Start"].ToString());
+                    int end = Convert.ToInt32(@row["End"].ToString());
+                    int currpage = Convert.ToInt32(@row["Page"].ToString());
+
+                    <div class="c-margin-t-20"></div>
+
+                    <ul class="c-content-pagination c-square c-theme pull-right">
+                        <li class="c-prev">
+                            <a href="../Events?p=@backward">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        </li>
+
+                        @{
+                    for (int i = start; i <= end; i++)
+                    {
+                        if (i == currpage)
+                        {
+                        <li class="c-active">
+                            <a href="../Events?p=@i">@i</a>
+                        </li>
+                        }
+                        else
+                        {
+                        <li>
+                            <a href="../Events?p=@i">@i</a>
+                        </li>
+                        }
+                    }
+                        }
+
+                        <li class="c-next">
+                            <a href="../Events?p=@forward">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                            }
+            }
+
+            <div class="col-tweets">
+                <div class="c-content-title-1">
+                    <h3 class="c-font-uppercase c-font-bold">News (Twitter)</h3>
+                    <div class="c-line-left"></div>
+                </div>
+
+                <div class="col-md-12">
+                    <a class="twitter-timeline" href="https://twitter.com/unep_ietc" data-widget-id="708284667619876864">Tweets by unep_ietc</a>
+                    <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+                    @Html.Raw(ViewBag.Tweets)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

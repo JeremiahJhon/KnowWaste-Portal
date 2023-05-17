@@ -1,0 +1,640 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <title>@ViewBag.Title</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700&amp;subset=all' rel='stylesheet' type='text/css'>
+    <link href="~/Content/socicon/socicon.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-social/bootstrap-social.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" />
+    <link href="~/Content/animate/animate.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="~/Content/revo-slider/css/settings.css" rel="stylesheet" />
+    <link href="~/Content/revo-slider/css/layers.css" rel="stylesheet" />
+    <link href="~/Content/revo-slider/css/navigation.css" rel="stylesheet" />
+    <link href="~/Content/cubeportfolio/css/cubeportfolio.min.css" rel="stylesheet" />
+    <link href="~/Content/owl-carousel/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/owl-carousel/owl.theme.css" rel="stylesheet" />
+    <link href="~/Content/owl-carousel/owl.transitions.css" rel="stylesheet" />
+    <link href="~/Content/fancybox/jquery.fancybox.css" rel="stylesheet" />
+    <link href="~/Content/slider-for-bootstrap/css/slider.css" rel="stylesheet" />
+
+    <link href="~/Content/base/css/plugins.css" rel="stylesheet" />
+    <link href="~/Content/base/css/components.css" rel="stylesheet" />
+    <link href="~/Content/base/css/themes/default.css" rel="stylesheet" />
+    <link href="~/Content/base/css/custom.css" rel="stylesheet" />
+
+    <link href="~/Content/style.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <!-- BEGIN: Metronic
+    <link href="~/Content/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    END: Metronic -->
+</head>
+<body class="c-layout-header-fixed c-layout-header-mobile-fixed c-layout-header-topbar c-layout-header-topbar-collapse">
+    <!-- BEGIN: LAYOUT/HEADERS/HEADER-1 -->
+    <!-- BEGIN: HEADER -->
+    <header class="c-layout-header c-layout-header-4 c-layout-header-default-mobile" data-minimize-offset="80">
+        <div class="c-topbar c-topbar-light c-solid-bg">
+            <div class="container">
+                <!-- BEGIN: INLINE NAV -->
+                <nav class="c-top-menu c-pull-left">
+                    <ul class="c-icons c-theme-ul">
+                        <!--<li>
+                            <a href="#">
+                                <i class="icon-social-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="icon-social-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="icon-social-dribbble"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <span>Phone: (254-20) 7621234</span>
+                        </li>-->
+                    </ul>
+                </nav>
+                <!-- END: INLINE NAV -->
+                <!-- BEGIN: INLINE NAV -->
+                <nav class="c-top-menu c-pull-right">
+                    <ul class="c-links c-theme-ul">
+                        <li>
+                            <a href="~/Contact">Contact</a>
+                        </li>
+                        <li class="c-divider">|</li>
+                        <li class="search-field">
+                            <script>
+                                (function () {
+                                    var cx = '003366087466855040359:7y-p87ccjws';
+                                    var gcse = document.createElement('script');
+                                    gcse.type = 'text/javascript';
+                                    gcse.async = true;
+                                    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                                    var s = document.getElementsByTagName('script')[0];
+                                    s.parentNode.insertBefore(gcse, s);
+                                })();
+                            </script>
+                            <gcse:search></gcse:search>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- END: INLINE NAV -->
+            </div>
+        </div>
+        <div class="c-navbar">
+            <div class="container">
+                <!-- BEGIN: BRAND -->
+                <div class="c-navbar-wrapper clearfix">
+                    <div class="c-brand c-pull-left">
+                        <a href="../" class="c-logo"><img src="~/Content/Images/logo/Knowwaste.png" alt="KNOWASTE" class="applogo c-desktop-logo" /></a>
+                        <a href="../" class="c-logo"><img src="~/Content/Images/logo/Knowwaste.png" alt="KNOWASTE" class="applogo c-desktop-logo-inverse" /></a>
+                        <a href="../" class="c-logo"><img src="~/Content/Images/logo/Knowwaste.png" alt="KNOWASTE" class="applogo c-mobile-logo" /></a>
+
+                        <button class="c-hor-nav-toggler" type="button" data-target=".c-mega-menu">
+                            <span class="c-line"></span>
+                            <span class="c-line"></span>
+                            <span class="c-line"></span>
+                        </button>
+                        @*<button class="c-topbar-toggler" type="button">
+                                <i class="fa fa-ellipsis-v"></i>
+                            </button>
+                            <button class="c-search-toggler" type="button">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            <button class="c-cart-toggler" type="button">
+                                <i class="icon-user"></i> &nbsp; &nbsp;
+                                <span class="icon-flag"></span>
+                            </button>*@
+                    </div>
+                    <!-- END: BRAND -->
+                    <!-- BEGIN: QUICK SEARCH -->
+                    <form class="c-quick-search" action="#">
+                        <input type="text" name="query" placeholder="Type to search..." value="" class="form-control" autocomplete="off">
+                        <span class="c-theme-link">&times;</span>
+                    </form>
+                    <!-- END: QUICK SEARCH -->
+                    <!-- BEGIN: HOR NAV -->
+                    <!-- BEGIN: LAYOUT/HEADERS/MEGA-MENU -->
+                    <!-- BEGIN: MEGA MENU -->
+                    <!-- Dropdown menu toggle on mobile: c-toggler class can be applied to the link arrow or link itself depending on toggle mode -->
+                    <nav class="c-mega-menu c-pull-right c-mega-menu-dark c-mega-menu-dark-mobile c-fonts-uppercase c-fonts-bold">
+                        <ul class="nav navbar-nav c-theme-nav">
+
+                            <li>
+                                <a href="javascript:;" class="c-link dropdown-toggle">
+                                    Knowledge Repository
+                                    <span class="c-arrow c-toggler"></span>
+                                </a>
+
+                                <ul class="first-menu dropdown-menu c-menu-type-classic c-pull-left">
+                                    <li class="category">
+                                        Waste Data & Trends
+                                    </li>
+                                    <li>
+                                        <a href="~/Data">Waste Data</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.d-waste.com/" target="_blank">D-Waste</a>
+                                    </li>
+                                    <li class="category">
+                                        Thematic Areas
+                                    </li>
+                                    <li>
+                                        <a href="~/Thematicarea?gid=1">E-Waste Management</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/Thematicarea?gid=2">Greenhouse Gas</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/Thematicarea?gid=3">Hazardous Waste Management</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/Thematicarea?gid=4">Integrated Solid Waste Management</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/MarineDebris">Marine Debris</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/Thematicarea?gid=7">Waste Agriculatural Biomass</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/Thematicarea?gid=8">Waste Minimization</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/Thematicarea?gid=9">Waste Water</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="c-menu-type-classic">
+                                <a href="javascript:;" class="c-link dropdown-toggle">
+                                    Knowledge Transfer
+                                    <span class="c-arrow c-toggler"></span>
+                                </a>
+                                <ul class="dropdown-menu c-menu-type-classic c-pull-left">
+                                    <!--<li>
+                                        <h3>Page Samples 1</h3>
+                                    </li>-->
+                                    <li class="dropdown-submenu">
+                                        <a href="~/Courses">E-learning / Curriculum</a>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a href="~/Seminars">Seminars</a>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a href="~/Conferences">Conferences</a>
+                                    </li>
+                                    <!--<li class="dropdown-submenu">
+                                        <a href="~/Faqs">FAQs</a>
+                                    </li>-->
+                                </ul>
+                            </li>
+                            <li class="c-menu-type-classic">
+                                <a href="javascript:;" class="c-link dropdown-toggle">
+                                    Knowledge Exchange
+                                    <span class="c-arrow c-toggler"></span>
+                                </a>
+                                <ul class="dropdown-menu c-menu-type-classic c-pull-left">
+                                    <!--<li>
+                                        <h3>Page Samples 1</h3>
+                                    </li>-->
+                                    <li class="dropdown-submenu">
+                                        <a href="~/Events">News(Twitters)</a>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a href="~/Experts">Experts In The Field</a>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a href="~/Forums">Forums</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+
+                            @*<li class="c-search-toggler-wrapper">
+                                    <a href="#" class="c-btn-icon c-search-toggler">
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </li>
+                                <li class="c-cart-toggler-wrapper">
+                                    <a href="#" class="c-btn-icon c-cart-toggler">
+                                        <i class="icon-user c-cart-icon"></i>
+                                        &nbsp; &nbsp; <span class="icon-flag"></span>
+                                    </a>
+                                </li>
+                                <li class="c-quick-sidebar-toggler-wrapper">
+                                    <a href="#" class="c-quick-sidebar-toggler">
+                                        <span class="c-line"></span>
+                                        <span class="c-line"></span>
+                                        <span class="c-line"></span>
+                                    </a>
+                                </li>*@
+                        </ul>
+                    </nav>
+
+                    <nav class="menu-thematic c-pull-right c-mega-menu-dark c-mega-menu-dark-mobile c-fonts-uppercase c-fonts-bold">
+                        <ul class="nav navbar-nav c-theme-nav">
+                            @Html.Raw(ViewBag.ThematicmenuHome)
+                            @*<li class="c-menu-type-classic">
+                                <img src="../Content/Images/Logo/e_Waste.png"><a href="~/Thematicarea?gid=1" class="c-link dropdown-toggle">
+                                    E-Waste<br />Management
+                                    <span class="c-arrow c-toggler"></span>
+                                </a></img>
+                            </li>
+                            <li class="c-menu-type-classic">
+                                <a href="~/Thematicarea?gid=3" class="c-link dropdown-toggle">
+                                    Hazardous Waste<br />Management
+                                    <span class="c-arrow c-toggler"></span>
+                                </a>
+                            </li>
+                            <li class="c-menu-type-classic">
+                                <a href="~/Thematicarea?gid=4" class="c-link dropdown-toggle">
+                                    Integrated Solid<br />Waste Management
+                                    <span class="c-arrow c-toggler"></span>
+                                </a>
+                            </li>
+                            <li class="c-menu-type-classic">
+                                <a href="~/Thematicarea?gid=7" class="c-link dropdown-toggle">
+                                    Marine<br />Litter
+                                    <span class="c-arrow c-toggler"></span>
+                                </a>
+                            </li>
+                            <li class="c-menu-type-classic">
+                                <a href="~/Thematicarea?gid=10" class="c-link dropdown-toggle">
+                                    Mercury<br />Waste Management
+                                    <span class="c-arrow c-toggler"></span>
+                                </a>
+                            </li>
+                            <li class="c-menu-type-classic">
+                                <a href="~/Thematicarea?gid=11" class="c-link dropdown-toggle">
+                                    Metal<br />Recycling
+                                    <span class="c-arrow c-toggler"></span>
+                                </a>
+                            </li>
+                            <li class="c-menu-type-classic">
+                                <a href="~/Thematicarea?gid=8" class="c-link dropdown-toggle">
+                                    Waste Agricultural<br />Biomass
+                                    <span class="c-arrow c-toggler"></span>
+                                </a>
+                            </li>
+                            <li class="c-menu-type-classic">
+                                <a href="~/Thematicarea?gid=2" class="c-link dropdown-toggle">
+                                    Waste and <br />Climate Change
+                                    <span class="c-arrow c-toggler"></span>
+                                </a>
+                            </li>
+                            <li class="c-menu-type-classic">
+                                <a href="~/Thematicarea?gid=8" class="c-link dropdown-toggle">
+                                    Waste<br />Minimization
+                                    <span class="c-arrow c-toggler"></span>
+                                </a>
+                            </li>*@
+                        </ul>
+                    </nav>
+                    <!-- END: MEGA MENU -->
+                    <!-- END: LAYOUT/HEADERS/MEGA-MENU -->
+                    <!-- END: HOR NAV -->
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- END: HEADER -->
+    <!-- END: LAYOUT/HEADERS/HEADER-1 -->
+    <!-- BEGIN: CONTENT/USER/FORGET-PASSWORD-FORM -->
+    <div class="modal fade c-content-login-form" id="forget-password-form" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content c-square">
+                <div class="modal-header c-no-border">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3 class="c-font-24 c-font-sbold">Password Recovery</h3>
+                    <p>To recover your password please fill in your email address</p>
+                    <form>
+                        <div class="form-group">
+                            <label for="forget-email" class="hide">Email</label>
+                            <input type="email" class="form-control input-lg c-square" id="forget-email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">Submit</button>
+                            <a href="javascript:;" class="c-btn-forgot" data-toggle="modal" data-target="#login-form" data-dismiss="modal">Back To Login</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer c-no-border">
+                    <span class="c-text-account">Don't Have An Account Yet ?</span>
+                    <a href="javascript:;" data-toggle="modal" data-target="#signup-form" data-dismiss="modal" class="btn c-btn-dark-1 btn c-btn-uppercase c-btn-bold c-btn-slim c-btn-border-2x c-btn-square c-btn-signup">Signup!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: CONTENT/USER/FORGET-PASSWORD-FORM -->
+    <!-- BEGIN: CONTENT/USER/SIGNUP-FORM -->
+    <div class="modal fade c-content-login-form" id="signup-form" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content c-square">
+                <div class="modal-header c-no-border">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3 class="c-font-24 c-font-sbold">Create An Account</h3>
+                    <p>Please fill in below form to create an account with us</p>
+                    <form>
+                        <div class="form-group">
+                            <label for="signup-email" class="hide">Email</label>
+                            <input type="email" class="form-control input-lg c-square" id="signup-email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-username" class="hide">Username</label>
+                            <input type="email" class="form-control input-lg c-square" id="signup-username" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-fullname" class="hide">Fullname</label>
+                            <input type="email" class="form-control input-lg c-square" id="signup-fullname" placeholder="Fullname">
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-country" class="hide">Country</label>
+                            <select class="form-control input-lg c-square" id="signup-country">
+                                <option value="1">Country</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">Signup</button>
+                            <a href="javascript:;" class="c-btn-forgot" data-toggle="modal" data-target="#login-form" data-dismiss="modal">Back To Login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: CONTENT/USER/SIGNUP-FORM -->
+    <!-- BEGIN: CONTENT/USER/LOGIN-FORM -->
+    <div class="modal fade c-content-login-form" id="login-form" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content c-square">
+                <div class="modal-header c-no-border">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3 class="c-font-24 c-font-sbold">Good Afternoon!</h3>
+                    <p>Let's make today a great day!</p>
+                    <form>
+                        <div class="form-group">
+                            <label for="login-email" class="hide">Email</label>
+                            <input type="email" class="form-control input-lg c-square" id="login-email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password" class="hide">Password</label>
+                            <input type="password" class="form-control input-lg c-square" id="login-password" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <div class="c-checkbox">
+                                <input type="checkbox" id="login-rememberme" class="c-check">
+                                <label for="login-rememberme" class="c-font-thin c-font-17">
+                                    <span></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span> Remember Me
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">Login</button>
+                            <a href="javascript:;" data-toggle="modal" data-target="#forget-password-form" data-dismiss="modal" class="c-btn-forgot">Forgot Your Password ?</a>
+                        </div>
+                        <div class="clearfix">
+                            <div class="c-content-divider c-divider-sm c-icon-bg c-bg-grey c-margin-b-20">
+                                <span>or signup with</span>
+                            </div>
+                            <ul class="c-content-list-adjusted">
+                                <li>
+                                    <a class="btn btn-block c-btn-square btn-social btn-twitter">
+                                        <i class="fa fa-twitter"></i> Twitter
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="btn btn-block c-btn-square btn-social btn-facebook">
+                                        <i class="fa fa-facebook"></i> Facebook
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="btn btn-block c-btn-square btn-social btn-google">
+                                        <i class="fa fa-google"></i> Google
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer c-no-border">
+                    <span class="c-text-account">Don't Have An Account Yet ?</span>
+                    <a href="javascript:;" data-toggle="modal" data-target="#signup-form" data-dismiss="modal" class="btn c-btn-dark-1 btn c-btn-uppercase c-btn-bold c-btn-slim c-btn-border-2x c-btn-square c-btn-signup">Signup!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: CONTENT/USER/LOGIN-FORM -->
+    <!-- BEGIN: LAYOUT/SIDEBARS/QUICK-SIDEBAR -->
+    <nav class="c-layout-quick-sidebar">
+        <div class="c-header">
+            <button type="button" class="c-link c-close">
+                <i class="icon-login"></i>
+            </button>
+        </div>
+        <div class="c-content">
+            <div class="c-section">
+                <h3>Theme Colors</h3>
+                <div class="c-settings">
+                    <span class="c-color c-default c-active" data-color="default"></span>
+                    <span class="c-color c-green1" data-color="green1"></span>
+                    <span class="c-color c-green2" data-color="green2"></span>
+                    <span class="c-color c-green3" data-color="green3"></span>
+                    <span class="c-color c-yellow1" data-color="yellow1"></span>
+                    <span class="c-color c-yellow2" data-color="yellow2"></span>
+                    <span class="c-color c-yellow3" data-color="yellow3"></span>
+                    <span class="c-color c-red1" data-color="red1"></span>
+                    <span class="c-color c-red2" data-color="red2"></span>
+                    <span class="c-color c-red3" data-color="red3"></span>
+                    <span class="c-color c-purple1" data-color="purple1"></span>
+                    <span class="c-color c-purple2" data-color="purple2"></span>
+                    <span class="c-color c-purple3" data-color="purple3"></span>
+                    <span class="c-color c-blue1" data-color="blue1"></span>
+                    <span class="c-color c-blue2" data-color="blue2"></span>
+                    <span class="c-color c-blue3" data-color="blue3"></span>
+                    <span class="c-color c-brown1" data-color="brown1"></span>
+                    <span class="c-color c-brown2" data-color="brown2"></span>
+                    <span class="c-color c-brown3" data-color="brown3"></span>
+                    <span class="c-color c-dark1" data-color="dark1"></span>
+                    <span class="c-color c-dark2" data-color="dark2"></span>
+                    <span class="c-color c-dark3" data-color="dark3"></span>
+                </div>
+            </div>
+            <div class="c-section">
+                <h3>Header Type</h3>
+                <div class="c-settings">
+                    <input type="button" class="c-setting_header-type btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase active" data-value="boxed" value="boxed" />
+                    <input type="button" class="c-setting_header-type btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase" data-value="fluid" value="fluid" />
+                </div>
+            </div>
+            <div class="c-section">
+                <h3>Header Mode</h3>
+                <div class="c-settings">
+                    <input type="button" class="c-setting_header-mode btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase active" data-value="fixed" value="fixed" />
+                    <input type="button" class="c-setting_header-mode btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase" data-value="static" value="static" />
+                </div>
+            </div>
+            <div class="c-section">
+                <h3>Mega Menu Style</h3>
+                <div class="c-settings">
+                    <input type="button" class="c-setting_megamenu-style btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase active" data-value="dark" value="dark" />
+                    <input type="button" class="c-setting_megamenu-style btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase" data-value="light" value="light" />
+                </div>
+            </div>
+            <div class="c-section">
+                <h3>Font Style</h3>
+                <div class="c-settings">
+                    <input type="button" class="c-setting_font-style btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase active" data-value="default" value="default" />
+                    <input type="button" class="c-setting_font-style btn btn-sm c-btn-square c-btn-border-1x c-btn-white c-btn-sbold c-btn-uppercase" data-value="light" value="light" />
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- END: LAYOUT/SIDEBARS/QUICK-SIDEBAR -->
+    <!-- BEGIN: PAGE CONTAINER -->
+    @RenderBody()
+
+    <!-- END: PAGE CONTAINER -->
+    <!-- BEGIN: LAYOUT/FOOTERS/FOOTER-6 -->
+    <a name="footer"></a>
+    <footer class="c-layout-footer c-layout-footer-6 c-bg-grey-1">
+        <div class="container">
+            <div class="c-prefooter c-bg-white">
+                <div class="c-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-6 col-xs-12">
+                            <div class="logo-padding-bottom">
+                                <a href="http://www.rrcap.ait.ac.th" target="_blank">
+                                    <img class="c-content-isotope-image" src="~/Content/Images/logo/RRCAP-logo-green-80H.png" alt="rrcap-logo">                           
+                                </a>
+                            </div>
+                        </div>
+                   
+                        <div class="col-md-12 col-sm-6 col-xs-12">
+                            <p class="c-address c-font-16">
+                                The kNOwWaste Knowledge Platform was developed through a Project Cooperation Agreement funding by UNEP on 2016. The platform provides data and information on holistic waste management to stakeholders in Asia and the Pacific region. The platform was developed with the following aims: generate and consolidate data or information on holistic waste management, transform data into easily comprehensible outputs for use by key stakeholders, map out and disseminate information on international waste management projects under the GPWM and UNEP projects as well as other international partners, and provide capacity building support through dissemination of data or information support for relevant stakeholders on holistic waste and waste management system.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="c-postfooter c-bg-dark-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 c-col">
+                        <p class="c-copyright c-font-grey">
+                            2017 &copy; Regional Resource Centre for Asia and the Pacific(RRC.AP). All Rights Reserved.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END: LAYOUT/FOOTERS/FOOTER-6 -->
+    <!-- BEGIN: LAYOUT/FOOTERS/GO2TOP -->
+    <div class="c-layout-go2top">
+        <i class="icon-arrow-up"></i>
+    </div>
+    <!-- END: LAYOUT/FOOTERS/GO2TOP -->
+    <!-- BEGIN: LAYOUT/BASE/BOTTOM -->
+    <!-- BEGIN: CORE PLUGINS -->
+    <!--[if lt IE 9]>
+    <script src="../assets/global/plugins/excanvas.min.js"></script>
+    <![endif]-->
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/jquery-migrate.min.js"></script>
+    <script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.easing.min.js"></script>
+    <script src="~/Scripts/reveal-animate/wow.js"></script>
+    <script src="~/Scripts/reveal-animate/reveal-animate.js"></script>
+    <!-- END: CORE PLUGINS -->
+    <!-- BEGIN: LAYOUT PLUGINS -->
+    <script src="~/Content/revo-slider/js/jquery.themepunch.tools.min.js"></script>
+    <script src="~/Content/revo-slider/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="~/Content/revo-slider/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script src="~/Content/revo-slider/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script src="~/Content/revo-slider/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script src="~/Content/revo-slider/js/extensions/revolution.extension.video.min.js"></script>
+
+    <script src="~/Content/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
+    <script src="~/Content/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/Content/counterup/jquery.waypoints.min.js"></script>
+    <script src="~/Content/counterup/jquery.counterup.min.js"></script>
+    <script src="~/Content/fancybox/jquery.fancybox.pack.js"></script>
+    <script src="~/Content/slider-for-bootstrap/js/bootstrap-slider.js"></script>
+    <!-- END: LAYOUT PLUGINS -->
+    <!-- BEGIN: THEME SCRIPTS -->
+    <script src="~/Scripts/components.js"></script>
+    <script src="~/Content/base/js/components-shop.js"></script>
+    <script src="~/Scripts/app.js"></script>
+    <script>
+        $(document).ready(function () {
+            App.init(); // init core
+        });
+    </script>
+    <!-- END: THEME SCRIPTS -->
+    <!-- BEGIN: PAGE SCRIPTS -->
+
+
+    <script src="~/Content/base/js/scripts/revo-slider/slider-4.js"></script>
+    <script src="~/Scripts/isotope/isotope.pkgd.min.js"></script>
+    <script src="~/Scripts/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="~/Scripts/isotope/packery-mode.pkgd.min.js"></script>
+    <script src="~/Content/ilightbox/js/jquery.requestAnimationFrame.js"></script>
+    <script src="~/Content/ilightbox/js/jquery.mousewheel.js"></script>
+    <script src="~/Content/ilightbox/js/ilightbox.packed.js"></script>
+    <script src="~/Scripts/pages/isotope-gallery.js"></script>
+    <!-- END: PAGE SCRIPTS -->
+    <!-- END: LAYOUT/BASE/BOTTOM -->
+
+    <!--begin::Metronic
+    <script src="~/Content/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="~/Content/assets/js/scripts.bundle.js"></script>
+    end::Metronic-->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-90610491-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+﻿@{
+    Layout = "~/Views/MarineDebris/Shared.cshtml";
+}
+@using System.Data;
+
+@{
+    DataTable videos = (DataTable)ViewBag.Videos;
+}
+<div class="row">
+    <div class="landing-dark-bg h-100px">
+        <div class="text-center py-lg-5">
+            <!--begin::Title-->
+            <!--begin::Title-->
+            <h1 class="text-white lh-base fw-bolder fs-2x fs-lg-3x">
+                <span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
+                    <span id="kt_landing_hero_text">Marine Debris</span>
+                </span>
+            </h1>
+            <!--end::Title-->
+        </div>
+    </div>
+
+    <!--begin::Curve bottom-->
+    <div id="pb_line" class="landing-curve landing-dark-color">
+        <svg viewBox="15 12 1470 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 11C3.93573 11.3356 7.85984 11.6689 11.7725 12H1488.16C1492.1 11.6689 1496.04 11.3356 1500 11V12H1488.16C913.668 60.3476 586.282 60.6117 11.7725 12H0V11Z" fill="currentColor"></path>
+        </svg>
+    </div>
+    <!--end::Curve bottom-->
+</div>
+<div class="mt-lg-n15 mb-lg-n20 position-relative z-index-2">
+    <!--begin::Container-->
+    <div class="container">
+        <!--begin::Card-->
+        <div class="card" style="filter: drop-shadow(0px 0px 10px rgba(68, 81, 96, 0.08))">
+            <div class="card-header p-lg-20">
+                <!--begin::Heading-->
+                <div class="w-100 text-center">
+                    <!--begin::Title-->
+                    <h3 class="fs-2hx text-dark mb-5" id="portfolio" data-kt-scroll-offset="{default: 100, lg: 150}" style="color: #2577BC!important; ">@ViewBag.Title</h3>
+                    <!--end::Title-->
+                </div>
+                <!--end::Heading-->
+            </div>
+            <!--begin::Card body-->
+            <div class="card-body pt-5">
+                @foreach (DataRow row in videos.Rows)
+                {
+                    <!--begin::Item-->
+                    <div class="d-flex align-items-sm-center mb-7">
+                        <!--begin::Symbol-->
+                        <div class="col-md-3 symbol symbol-50px me-5">
+                            @Html.Raw(row["Link"].ToString())
+                        </div>
+                        <!--end::Symbol-->
+                        <!--begin::Section-->
+                        <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+                            <div class="flex-grow-1 me-2">
+                                <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">@Html.Raw(row["Title"].ToString())</a>
+                                <span class="text-muted fw-bold d-block fs-7">@Html.Raw(row["Description"].ToString())</span>
+                            </div>
+                            <span class="badge badge-light fw-bolder my-2">+82$</span>
+                        </div>
+                        <!--end::Section-->
+                    </div>
+                    <!--end::Item-->
+                }
+                <!--begin::Item-->
+                <div class="d-flex align-items-sm-center mb-7">
+                    <!--begin::Symbol-->
+                    <div class="col-md-3 symbol symbol-50px me-5">
+                        <span class="symbol-label">
+                            <img src="assets/media/svg/brand-logos/plurk.svg" class="h-100 align-self-center" alt="">
+                        </span>
+                    </div>
+                    <!--end::Symbol-->
+                    <!--begin::Section-->
+                    <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+                        <div class="flex-grow-1 me-2">
+                            <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">Top Authors</a>
+                            <span class="text-muted fw-bold d-block fs-7">Mark, Rowling, Esther</span>
+                        </div>
+                        <span class="badge badge-light fw-bolder my-2">+82$</span>
+                    </div>
+                    <!--end::Section-->
+                </div>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <div class="d-flex align-items-sm-center mb-7">
+                    <!--begin::Symbol-->
+                    <div class="col-md-3 symbol symbol-50px me-5">
+                        <span class="symbol-label">
+                            <img src="assets/media/svg/brand-logos/telegram.svg" class="h-100 align-self-center" alt="">
+                        </span>
+                    </div>
+                    <!--end::Symbol-->
+                    <!--begin::Section-->
+                    <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+                        <div class="flex-grow-1 me-2">
+                            <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">Popular Authors</a>
+                            <span class="text-muted fw-bold d-block fs-7">Randy, Steve, Mike</span>
+                        </div>
+                        <span class="badge badge-light fw-bolder my-2">+280$</span>
+                    </div>
+                    <!--end::Section-->
+                </div>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <div class="d-flex align-items-sm-center mb-7">
+                    <!--begin::Symbol-->
+                    <div class="col-md-3 symbol symbol-50px me-5">
+                        <span class="symbol-label">
+                            <img src="assets/media/svg/brand-logos/vimeo.svg" class="h-100 align-self-center" alt="">
+                        </span>
+                    </div>
+                    <!--end::Symbol-->
+                    <!--begin::Section-->
+                    <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+                        <div class="flex-grow-1 me-2">
+                            <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">New Users</a>
+                            <span class="text-muted fw-bold d-block fs-7">John, Pat, Jimmy</span>
+                        </div>
+                        <span class="badge badge-light fw-bolder my-2">+4500$</span>
+                    </div>
+                    <!--end::Section-->
+                </div>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <div class="d-flex align-items-sm-center mb-7">
+                    <!--begin::Symbol-->
+                    <div class="col-md-3 symbol symbol-50px me-5">
+                        <span class="symbol-label">
+                            <img src="assets/media/svg/brand-logos/bebo.svg" class="h-100 align-self-center" alt="">
+                        </span>
+                    </div>
+                    <!--end::Symbol-->
+                    <!--begin::Section-->
+                    <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+                        <div class="flex-grow-1 me-2">
+                            <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">Active Customers</a>
+                            <span class="text-muted fw-bold d-block fs-7">Mark, Rowling, Esther</span>
+                        </div>
+                        <span class="badge badge-light fw-bolder my-2">+686$</span>
+                    </div>
+                    <!--end::Section-->
+                </div>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <div class="d-flex align-items-sm-center mb-7">
+                    <!--begin::Symbol-->
+                    <div class="col-md-3 symbol symbol-50px me-5">
+                        <span class="symbol-label">
+                            <img src="assets/media/svg/brand-logos/kickstarter.svg" class="h-100 align-self-center" alt="">
+                        </span>
+                    </div>
+                    <!--end::Symbol-->
+                    <!--begin::Section-->
+                    <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+                        <div class="flex-grow-1 me-2">
+                            <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">Bestseller Theme</a>
+                            <span class="text-muted fw-bold d-block fs-7">Disco, Retro, Sports</span>
+                        </div>
+                        <span class="badge badge-light fw-bolder my-2">+726$</span>
+                    </div>
+                    <!--end::Section-->
+                </div>
+                <!--end::Item-->
+            </div>
+            <!--end::Card body-->
+        </div>
+        <!--end::Card-->
+    </div>
+    <!--end::Container-->
+</div>

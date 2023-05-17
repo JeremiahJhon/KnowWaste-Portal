@@ -1,0 +1,328 @@
+﻿body {
+}
+
+ul.no-style {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.search-field {
+    border-color: #CCC;
+    position: relative;
+    width: 250px;
+    max-height: 35px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+    .search-field div {
+        margin: 0px;
+    }
+
+    .search-field > div {
+        display: inline-block;
+        width: 100%;
+        margin-top: -10px
+    }
+   
+    .gsc-search-button {
+        display: none;
+    }
+
+.search-field.gsc-input-box {
+    height: inherit;
+}
+
+
+.applogo {
+    width: 220px;
+    margin-top: -15px;
+}
+
+
+.gpwmlogo {
+    height: 60px;
+    margin-top: -15px;
+}
+
+li.category {
+    background-color: #48515b;
+    padding: 20px 25px;
+    color: #AAA;
+    text-transform: uppercase;
+}
+
+.c-title {
+    text-transform: capitalize;
+}
+
+.c-post a {
+    line-height: 1;
+}
+
+.dropdown-menu {
+    padding: 0px;
+}
+
+.c-content-feature-1 {
+    text-align: center;
+    padding-right: 0px;
+}
+
+.btn-special.btn-md {
+    padding: 0px 10px 0px 0px;
+    margin-bottom: 5px;
+    margin-left: 0px;
+    margin-right: 10px;
+}
+
+    .btn-special.btn-md .fa {
+        background-color: #1565C0;
+        padding: 10px;
+    }
+
+.doc-container {
+    margin-bottom: 50px;
+}
+
+    .doc-container .doc-thumbnail {
+        border: 5px solid #EEE;
+        width: 140px;
+        padding: 5px;
+        text-align: center;
+        float: left;
+        margin-right: 20px;
+    }
+
+        .doc-container .doc-thumbnail img {
+            width: 120px;
+        }
+
+        .doc-container .doc-thumbnail .fa {
+            margin-top: 25px;
+            margin-bottom: 25px;
+            font-size: 72px;
+        }
+
+    .doc-container .doc-item {
+        margin-left: 160px;
+    }
+
+.doc-links {
+}
+
+.footer-logo {
+    height: 100px;
+    width: 120px;
+    display: inline-block;
+}
+
+    .footer-logo a {
+        display: block;
+    }
+
+    .footer-logo img {
+        width: 100px;
+    }
+
+.c-layout-footer-6 .c-body .c-twitter {
+    width: 120px;
+}
+
+.dropdown-menu {
+    top: inherit;
+}
+
+.navbar-nav > li > a {
+    line-height: inherit;
+}
+
+.menu-thematic .navbar-nav > li {
+    text-align: center;
+    border-right: 1px solid #EEE;
+}
+
+    .menu-thematic .navbar-nav > li:last-child {
+        border-right: none;
+    }
+
+menu-thematic.nav li:hover {
+    background-color: #EEE;
+}
+
+.menu-thematic .navbar-nav > li > a {
+    font-size: 13px;
+    line-height: 130%;
+    padding: 0px 5px;
+    vertical-align: middle;
+}
+
+    .menu-thematic .navbar-nav > li > a div {
+        text-align: center;
+    }
+
+.menu-thematic .navbar-nav {
+    width: 100%;
+    display: table;
+    margin-bottom: 5px;
+}
+
+    .menu-thematic .navbar-nav > li {
+        float: none;
+    }
+
+    .menu-thematic .navbar-nav img {
+        margin-bottom: 3px;
+        width: 32px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .menu-thematic .navbar-nav .c-menu-type-classic {
+        display: table-cell;
+        max-width: 100px;
+    }
+
+.twitter-timeline {
+    height: 1040px !important;
+}
+
+.doc-container .c-btn-uppercase.btn-md {
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+    .doc-container .c-btn-uppercase.btn-md .fa {
+        border-radius: 5px 0px 0px 5px;
+    }
+
+.c-layout-sidebar-content .col-tweets {
+    margin-top: 100px;
+}
+
+    .c-layout-sidebar-content .col-tweets .col-md-12 {
+        padding: 0px;
+        border: 1px solid #CCC;
+    }
+
+.otherdocs {
+    border-top: 1px solid #CCC;
+    padding: 20px 0px;
+}
+
+.inline-block {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.margin-bottom-20 {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #CCC;
+}
+
+@media (min-width: 992px) {
+    .c-page-on-scroll.c-layout-header-fixed .c-layout-header .c-brand .c-desktop-logo-inverse {
+        display: inline-block;
+    }
+
+    .c-page-on-scroll.c-layout-header-fixed .c-layout-header .c-brand {
+        transition: margin 0.2s;
+        margin: 16px 0 0px 0;
+    }
+
+    .c-layout-header .c-brand {
+        margin: 35px 0px 15px 0px;
+    }
+}
+
+@media (max-width: 991px) {
+    .c-layout-header .c-navbar .c-mega-menu > .nav.navbar-nav > li > .dropdown-menu.c-menu-type-classic > li > h3, .c-layout-header .c-navbar .c-mega-menu > .nav.navbar-nav > li > .dropdown-menu.c-menu-type-classic > .dropdown-submenu > h3 {
+        background-color: #48515b;
+        padding: 10px 20px 10px 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-us {
+        border-top: 1px solid #CCC;
+        padding-top: 10px;
+    }
+
+    .c-layout-footer .col-sm-6 {
+        width: 33.33%;
+    }
+
+    .c-layout-footer-6 .c-body .c-twitter {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 415px) {
+    .doc-container .doc-item p {
+        max-height: 360px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .doc-container .doc-thumbnail {
+        display: none;
+    }
+
+
+    .c-layout-header-fixed.c-layout-header-mobile-fixed .c-layout-header {
+        width: 100%;
+    }
+
+    .doc-container .doc-item {
+        margin-left: 0px;
+    }
+
+    .menu-thematic {
+        background-color: #FFF;
+    }
+
+        .menu-thematic .nav > li > a {
+        }
+
+        .menu-thematic .navbar-nav .c-menu-type-classic {
+            height: 40px;
+            max-height: 40px;
+            overflow: hidden;
+            padding: 10px 10px;
+        }
+
+    .c-layout-header .c-brand {
+        float: left !important;
+        display: block;
+        margin: 20px 15px 5px 15px;
+    }
+
+    .c-layout-header.c-layout-header-default-mobile .c-brand > .c-hor-nav-toggler {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        display: inline-block;
+        background: #f5f6f8;
+        padding: 5px 8px 6px 8px;
+    }
+
+    .c-layout-header-fixed.c-layout-header-mobile-fixed .c-layout-page {
+        margin-top: 170px;
+    }
+
+    .menu-thematic .navbar-nav .c-menu-type-classic {
+        display: inline-block;
+        max-width: 70px;
+    }
+
+    .menu-thematic .navbar-nav {
+        margin-top: 5px;
+        text-align: center;
+        width: 100%;
+    }
+}

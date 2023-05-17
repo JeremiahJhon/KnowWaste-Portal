@@ -1,0 +1,22 @@
+﻿
+@{
+    Layout = "~/Views/Shared/Shared.cshtml";
+}
+
+@using System.Data;
+
+@{
+    DataTable data = (DataTable)ViewBag.CountryPolicy;
+    <table>
+        @{
+
+            foreach (DataRow row in data.Rows)
+            {
+                <tr><td>@row["legalinstruments"].ToString()</td>
+                    <td>@row["affectedyear"].ToString()</td>
+                    <td>@row["description"].ToString()</td>        
+        </tr>
+            }
+        }
+    </table>
+}

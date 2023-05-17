@@ -1,0 +1,21 @@
+﻿
+@{
+    Layout = "~/Views/Shared/Shared.cshtml";
+}
+
+@using System.Data;
+
+@{
+    DataTable data = (DataTable)ViewBag.CountryReferences;
+    <table>
+        @{
+
+            foreach (DataRow row in data.Rows)
+            {
+                <tr><td>@row["referencenumber"].ToString()</td>
+                    <td>@row["references"].ToString()</td>                    
+                </tr>
+            }
+        }
+    </table>
+}

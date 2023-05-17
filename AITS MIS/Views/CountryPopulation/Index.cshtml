@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = "~/Views/Shared/Shared.cshtml";
+}
+
+@using System.Data;
+
+@{
+    DataTable data = (DataTable)ViewBag.CountryPopulation;
+    <table>
+        @{
+
+            foreach (DataRow row in data.Rows)
+            {
+                <tr><td>@row["population"].ToString()</td>
+                    <td>@row["urbanpopulation"].ToString()</td>
+                    <td>@row["area"].ToString()</td>        
+                    <td>@row["incomelevel"].ToString()</td>        
+        </tr>
+            }
+        }
+    </table>
+}

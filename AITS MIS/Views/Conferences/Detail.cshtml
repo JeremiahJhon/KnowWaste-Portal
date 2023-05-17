@@ -1,0 +1,140 @@
+﻿@{
+    Layout = "~/Views/Shared/Shared.cshtml";
+}
+
+<link href="~/Content/conference.css" rel="stylesheet" />
+
+@using System.Data;
+
+<div class="c-layout-page">
+    <div class="c-layout-breadcrumbs-1 c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
+        <div class="container">
+            <div class="c-page-title c-pull-left">
+                <h3 class="c-font-uppercase c-font-sbold"> </h3>
+            </div>
+            <ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
+                <li>
+                    <a href="#">Knowledge Exchange</a>
+                </li>
+                <li>/</li>
+                <li>
+                    <a href="#">Conferences Detail</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    @{
+        DataTable data = (DataTable)ViewBag.Conferences;
+    }
+
+    <div class="c-content-box c-size-md c-bg-white">
+        <div class="container">
+            @{
+                foreach (DataRow row in data.Rows)
+                {
+                    <div class="c-content-blog-post-1">
+                        <div class="c-media">
+                            <div class="c-content-media-2-slider" data-slider="owl" data-single-item="true">
+                                <div class="owl-carousel owl-theme c-theme owl-single">
+                                    <div class="item">
+
+                                        @{
+                                            if (row["Thumbnail"].ToString() == "")
+                                            {
+                                                <div class="c-content-media-2" style="background-image: url(../Documents/conference.png); min-height: 460px;"></div>                                                
+                                            }
+                                            else
+                                            {
+                                                <div class="c-content-media-2" style="background-image: url(../Documents/@row["Thumbnail"].ToString()); min-height: 460px;"></div>
+                                            }
+                                        }
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="c-margin-t-20"></div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading c-title c-font-uppercase c-font-bold">
+                                    Location and contact Info:
+                                </div>
+                                <div class="panel-body">
+                                    <div class="c-author">
+
+                                        @{
+                                            if (row["Location"].ToString() != null)
+                                            {
+                                                <span class="c-font-uppercase c-font-bold">Location </span><span class="c-font-uppercase">: @row["Location"].ToString()</span>
+                                            }
+                                        }
+                                    </div>
+
+                                    @{
+                                        DateTime start = DateTime.Parse(row["Datestart"].ToString());
+                                        DateTime end = DateTime.Parse(row["Dateend"].ToString());
+                                        DateTime current = DateTime.Now;
+                                    }
+                                    <div class="c-author">
+                                        <span class="c-font-uppercase c-font-bold">Date </span><span class="c-font-uppercase"> : @start.ToString("dd MMM yyyy") to @end.ToString("dd MMM yyyy")</span>
+                                    </div>
+                                    <div class="c-author">
+                                        <span class="c-font-uppercase c-font-bold">Time </span><span class="c-font-uppercase"> : @start.ToString("hh:mm tt") to @end.ToString("hh:mm tt")</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading c-title c-font-uppercase c-font-bold">
+                                    Reference
+                                </div>
+                                <div class="panel-body">
+                                    <div class="c-author">
+
+                                        @{
+                                            if (row["Referencelink"].ToString() == "")
+                                            {
+                                                <span class="c-font-lowercase c-font-bold">There has no Reference. </span>                                                
+                                            }
+                                            else
+                                            {
+                                                <span class="c-font-lowercase c-font-bold"><a href="@row["Referencelink"]" target="_blank">@row["Referencelink"]</a> </span>
+                                            }
+                                        }
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <h3 class="c-header">
+                                @Html.Raw(row["title"].ToString())
+                            </h3>
+
+                            <div class="c-desc">
+                                @Html.Raw(row["Description"].ToString())
+                                @Html.Raw(row["Detail"].ToString())
+                            </div>
+
+                        </div>
+                    </div>
+
+                    if (start > current)
+                    {
+                        <div>
+                            <button type="submit" class="btn c-theme-btn c-btn-uppercase btn-lg c-btn-bold c-btn-square">Register</button>
+                        </div>
+                    }
+
+
+                }
+            }
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = "~/Views/Shared/Shared.cshtml";
+}
+
+@using System.Data;
+
+@{
+    DataTable data = (DataTable)ViewBag.Backgroundpaper;
+    <table>
+        @{
+
+            foreach (DataRow row in data.Rows)
+            {
+                <tr><td>@row["title"].ToString()</td>
+                    <td>@row["abstract"].ToString()</td>
+                    <td>@row["author"].ToString()</td>
+                    <td>@row["posteddate"].ToString()</td>
+                </tr>
+            }
+        }
+    </table>
+}

@@ -1,0 +1,151 @@
+﻿
+@{
+    Layout = "~/Views/Shared/Shared.cshtml";
+}
+
+@using System.Data;
+
+@{
+    DataTable data = (DataTable)ViewBag.News;
+    DataTable events = (DataTable)ViewBag.Events;
+}
+
+<div class="c-layout-page">
+    <div class="c-layout-breadcrumbs-1 c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
+        <div class="container">
+            <div class="c-page-title c-pull-left">
+                <h3 class="c-font-uppercase c-font-sbold"> </h3>
+            </div>
+            <ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
+                <li>
+                    <a href="#">Knowledge Exchange</a>
+                </li>
+                <li>/</li>
+                <li>
+                    <a href="#">News Detail</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="c-layout-sidebar-menu c-theme ">
+            <div class="c-sidebar-menu-toggler">
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading c-title c-font-uppercase c-font-bold">Related News</div>
+
+                <ul class="c-content-recent-posts-1">
+
+                    @{
+                        foreach (DataRow row in data.Rows)
+                        {
+                            DateTime ndate = DateTime.Parse(row["newsdate"].ToString());
+                            <li>
+                                <div class="c-image">
+                                    <img src="../Content/Images/news/@row["Thumbnail"].ToString()" alt="" class="img-responsive">
+                                </div>
+                                <div class="c-post">
+                                    <a href="../News/Detail?id=@row["id"].ToString()" class="c-font-14">@row["Title"].ToString()</a>
+                                    <div class="c-font-12">@ndate.ToString("dd MMMM yyyy")</div>
+                                </div>
+                            </li>
+                        }
+                    }
+
+                </ul>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading c-title c-font-uppercase c-font-bold">Related Events</div>
+
+                <ul class="c-content-recent-posts-1">
+
+                    @{
+                        if (events != null)
+                        {
+                            foreach (DataRow row in events.Rows)
+                            {
+                                <li>
+                                    <div class="c-image">
+                                        <img src="../Content/Images/events/@row["Thumbnail"].ToString()" alt="" class="img-responsive">
+                                    </div>
+                                    <div class="c-post">
+                                        <a href="../Events/Detail?id=@row["id"].ToString()" class="c-font-14">@row["name"].ToString()</a>
+                                        <div class="c-font-12">@row["location"].ToString()</div>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    }
+
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="c-layout-sidebar-content">
+
+            <div class="c-content-blog-post-1-list">
+
+                @{
+                    foreach (DataRow row in data.Rows)
+                    {
+
+                        <div class="c-content-blog-post-1">
+                            <div class="c-media">
+                                <div class="c-content-media-2-slider" data-slider="owl" data-single-item="true">
+                                    <div class="owl-carousel owl-theme c-theme owl-single">
+                                        <div class="item">
+                                            <div class="c-content-media-2" style="background-image: url(../Content/Images/news/@row["Thumbnail"].ToString()); min-height: 460px;"> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="c-title c-font-bold c-font-uppercase">
+                                <span>@row["title"].ToString()</span>
+                            </div>
+                            <div class="c-desc">
+                                @Html.Raw(row["Detail"].ToString())
+                            </div>
+                            <div class="c-panel">
+                                <div class="c-author">
+
+                                    @{
+                                        if (row["author"] != DBNull.Value)
+                                        {
+                                            <span class="c-font-uppercase">By @row["Author"].ToString()</span>
+                                        }
+
+                                    }
+                                </div>
+                                <div class="c-comments">
+                                    on
+                                    <span class="c-font-uppercase">@row["NewsDate"].ToString()</span>
+                                </div>
+                            </div>
+                        </div>
+
+                                        }
+                }
+
+                <div class="c-content-divider c-divider-sm"></div>
+                <div class="c-title c-font-uppercase c-font-bold c-font-green">Read More News..</div>
+
+                @{
+                    foreach (DataRow row in data.Rows)
+                    {
+                        <div class="c-title">
+                            <h3 class="c-title c-font-bold c-font-20 c-font-dark"><a href="../News/Detail?id=@row["id"].ToString()">@row["Title"].ToString()</a></h3>
+                        </div>
+                            <div class="c-product-short-desc">@Html.Raw(row["Description"].ToString())</div>
+                    }
+                }
+
+            </div>
+
+        </div>
+    </div>
+</div>

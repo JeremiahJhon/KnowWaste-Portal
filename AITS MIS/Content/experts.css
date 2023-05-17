@@ -1,0 +1,27 @@
+﻿
+.c-content-person-1.c-option-2 .c-body {
+    padding: 0px;
+    margin-top: 20px;    
+}
+
+.c-content-person-1.c-option-2 .c-body .c-position{
+    max-height: 20px;    
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.c-content-person-1.c-option-2 .c-body .c-description{
+     max-height: 190px;
+     overflow:hidden;          
+}
+
+.c-content-person-1 .c-body .c-position {
+    display: block;
+    float: none;
+}
+
+.experts .c-position {
+    border-bottom: 1px solid #CCC;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}

@@ -1,0 +1,21 @@
+﻿.c-content-blog-post-1 .c-title {
+    font-size: 22px;
+    color: #3f444a;
+    font-weight: 300;
+    margin: 0px;
+}
+
+.c-theme-btn.btn{
+    color: #ffffff;
+    background: #32c5d2;
+    border-color: #32c5d2;    
+    margin-right:20px;
+    float:right;
+}
+
+h3.c-header{
+    font-size: 22px;
+    color: #3f444a;    
+    font-weight:bold;
+    margin-bottom: 20px;
+}

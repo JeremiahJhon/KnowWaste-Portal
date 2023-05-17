@@ -1,0 +1,371 @@
+﻿.panel {
+    box-shadow: none;
+    max-width: 1024px;
+}
+
+    .panel table {
+        width: 100%;
+    }
+
+    .panel .panel-body {
+        padding: 0px;
+    }
+
+    .panel table th {
+        border-bottom: 3px solid #CCC;
+        text-transform: uppercase;
+        padding: 10px;
+        font-size: 80%;
+        font-weight: normal;
+    }
+
+    .panel table td {
+        border-bottom: 1px solid #CCC;
+        padding: 10px;
+        position: relative;
+        font-size: 15px;
+    }
+
+    .panel .panel-footer {
+        background: none;
+        border: none;
+    }
+
+.table-info {
+    background-color: #27a8b4;
+    border-radius: 50%;
+    color: #FFF;
+    position: absolute;
+    font-size: 13px;
+    padding: 3px 9px;
+    top: 10px;
+    right: 0px;
+    cursor: pointer;
+}
+
+/*.waste-table .table-info {
+    left: 0px;
+    right: inherit;
+}*/
+
+.table-info:hover .table-tooltip {
+    display: block;
+}
+
+.table-tooltip {
+    color: #5c6873;
+    display: none;
+    position: absolute;
+    background-color: #FFF;
+    border: 1px solid #CCC;
+    width: 500px;
+    left: 30px;
+    top: 0px;
+    z-index: 10000;
+    padding: 10px;
+}
+
+.table-tooltip-right {
+    left: initial;
+    right: 30px;
+}
+
+.table-tooltip .source {
+    border-top: 1px solid #CCC;
+    display: block;
+    font-style: italic;
+    font-size: 80%;
+    margin-top: 10px;
+}
+
+.page ul.collapse {
+    display: block;
+}
+
+    .page ul.collapse, .page ul.collapse li {
+        list-style: none;
+        margin: 0px 0px 0px 3px;
+        padding: 0px;
+    }
+
+.page {
+    text-align: right;
+}
+
+    .page ul, .page li {
+        margin: 0px;
+        padding: 0px;
+    }
+
+        .page ul li {
+            color: #5c6873;
+            display: inline-block;
+            padding: 10px 5px;
+        }
+
+        .page a, .page li > i, .page span {
+            width: 35px;
+            height: 35px;
+            text-align: center;
+            display: inline-block;
+            font-size: 17px;
+            color: #5c6873;
+            font-weight: 400;
+            padding: 5px 4px 5px 4px;
+            border: 1px solid #eeeeee;
+        }
+
+        .page li > i {
+            padding: 8px 4px 7px 4px;
+        }
+
+    .page span {
+        border-color: #32c5d2;
+        background: #32c5d2;
+        color: #fff;
+    }
+
+.progressicon {
+    margin: 0px auto;
+    width: 64px;
+}
+
+#charts {
+    margin-bottom: 30px;
+    max-width: 1024px;
+    position: relative;
+}
+
+.hidden {
+    display: none;
+}
+
+#mapcontainer {
+    border: 1px solid #CCC;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+#mapchart {
+}
+
+#piechartcontainer {
+    border: 1px solid #CCC;
+    display: inline-block;
+    margin-bottom: 10px;
+    left: 0px;
+    position: relative;
+    width: calc(50% - 7px);
+    height: 340px;
+    overflow: hidden;
+    max-width: 502px;
+}
+
+.chart-filter {
+    position: absolute;
+    z-index: 100;
+    top: 10px;
+    right: 10px;
+}
+
+.filter-waste {
+    right: 120px;
+}
+
+#piecontainer {
+    position: relative;
+}
+
+#piechart {
+    margin-top: 30px;
+    margin-left: 0px;
+    /*margin-right: -60px;*/
+    height: 300px;
+    width: calc(100%);
+}
+
+#piechartcontainer2 {
+    border: 1px solid #CCC;
+    display: inline-block;
+    margin-bottom: 10px;
+    top: 0px;
+    right: 0px;
+    height: 340px;
+    width: calc(50% - 8px);
+    position: absolute;
+    overflow: hidden;
+    max-width: 502px;
+}
+
+#piechart2 {
+    margin-top: 30px;
+    margin-left: 0px;
+    /*margin-right: -60px;*/
+    height: 300px;
+    width: calc(100%);
+}
+
+#combochartcontainer, #combochartallyearcontainer {
+    border: 1px solid #CCC;
+    display: inline-block;
+    height: 400px;
+    width: 100%;
+    right: 0px;
+    position: relative;
+    overflow: hidden;
+    max-width: 1024px;
+    margin-bottom: 10px;
+}
+
+#combochart, #combochartallyear {
+    height: 380px;
+    width: 100%;
+}
+
+#country-filter {
+    background-color: #EEE;
+    border-bottom: 1px solid #CCC;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+    #country-filter div {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    #country-filter span {
+        display: inline-block;
+    }
+
+    #country-filter select, .chart-filter select {
+        border: 1px solid #CCC;
+        padding: 5px 5px;
+    }
+
+.expand-mobile .fa {
+    display: none;
+}
+
+.no-data {
+    margin-top: 60px;
+    margin-left: 80px;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1024px;
+    }
+}
+
+@media (max-width: 415px) {
+    #mapcontainer {
+        width: 100%;
+    }
+
+    #piechartcontainer {
+        width: 100%;
+    }
+
+    #piechartcontainer2 {
+        border: 1px solid #CCC;
+        margin-bottom: 10px;
+        height: 300px;
+        width: 100%;
+        position: inherit;
+        overflow: hidden;
+    }
+
+    #country-filter {
+        padding-bottom: 0px;
+    }
+
+        #country-filter div {
+            margin-bottom: 10px;
+            margin-right: 0px;
+        }
+
+        #country-filter div {
+            margin-bottom: 10px;
+        }
+
+    .page a, .page li > i, .page span {
+        width: 30px;
+    }
+
+    .table-tooltip {
+        width: 240px;
+    }
+
+    .expand-mobile {
+        height: 36px;
+        overflow: hidden;
+        border: 1px solid #CCC;
+        border-radius: 5px;
+        padding: 5px;
+        position: relative;
+    }
+
+        .expand-mobile .fa {
+            display: block;
+            background-color: #CCC;
+            top: 0px;
+            right: 0px;
+            padding: 2px;
+            position: absolute;
+            color: #FFF;
+            cursor: pointer;
+        }
+
+    .c-margin-b-40 {
+        margin-bottom: 20px;
+    }
+
+    p {
+        margin-bottom: 5px;
+    }
+
+    .table-info .table-tooltip {
+        position: absolute;
+    }
+
+    .filter-waste {
+        width: 160px;
+    }
+
+        .filter-waste select {
+            width: 100%;
+        }
+
+    #mapchart {
+        margin-top: 52px;
+    }
+
+    #country-filter div span {
+        display: inline-block;
+        min-width: 80px;
+    }
+
+    #country-filter div select {
+        display: inline-block;
+        width: calc(100% - 100px);
+    }
+
+    #country-filter div select option {
+        width: calc(100% - 100px);
+    }
+}
+
+.waste-table .col-1 {
+    min-width: 200px;
+    padding-left: 30px;
+}
+
+.waste-table th.col-1 {
+    min-width: 200px;
+    padding-left: 0px;
+}
+
+.policy {
+    margin-top: 20px;
+}

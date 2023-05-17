@@ -1,0 +1,246 @@
+﻿@{
+    Layout = "~/Views/MarineDebris/Shared.cshtml";
+}
+@using System.Data;
+
+@{
+    DataTable elearnings = (DataTable)ViewBag.ELearning;
+    DataTable documents = (DataTable)ViewBag.Documents;
+    DataTable blogs = (DataTable)ViewBag.Blogs;
+}
+<div class="row">
+    <div class="landing-dark-bg">
+        <div class="tns mh-400">
+            <!--begin::Slider-->
+            <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="6000" data-tns-controls="false" data-tns-nav="false" data-tns-items="1" data-tns-mouse-drag="true" data-tns-center="false" data-tns-dots="false">
+                <!--begin::Item-->
+                <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-400px min-h-400px" style="background-image: url(Content/marine-debris/md-sample-6.avif); background-repeat: no-repeat; background-size: cover; background-position: 50%">
+                    <div class="min-h-400px px-20 py-20 mw-50" style="background-color: #2577BCcc; float: right;">
+                        <div class="fs-1 fs-lg-2qx fw-bolder text-white mb-2">
+                            Lorem ipsum dolor sit amet,
+                            <span class="fw-normal">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+                        </div>
+                    </div>
+                </div>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-400px min-h-400px" style="background-image: url(Content/marine-debris/md-sample-4.avif); background-repeat: no-repeat; background-size: cover; background-position: 50%">
+                    <div class="min-h-400px px-20 py-20 mw-50" style="background-color: #2577BCcc; float: right;">
+                        <div class="fs-1 fs-lg-2qx fw-bolder text-white mb-2">
+                            Lorem ipsum dolor sit amet,
+                            <span class="fw-normal">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+                        </div>
+                    </div>
+                </div>
+                <!--end::Item-->
+            </div>
+            <!--end::Slider-->
+        </div>
+        <!--<div class="d-flex flex-column flex-center w-100 px-9 mt-5">-->
+        <!--begin::Clients-->
+        <!--<div class="d-flex flex-center flex-wrap position-relative px-5">-->
+        <!--begin::Client-->
+        <!--<div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Fujifilm">
+            <img src="https://ikhapp.org/wp-content/themes/knowledgehub/asstes/images/logo/ikhapp.svg" class="mh-30px mh-lg-40px" alt="" />
+        </div>-->
+        <!--end::Client-->
+        <!--begin::Client-->
+        <!--<div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Vodafone">
+            <img src="https://rkcmpd-eria.org/wp-content/uploads/2022/08/logo-rkc-mpd-high-new.png" class="mh-30px mh-lg-40px" alt="" />
+        </div>-->
+        <!--end::Client-->
+        <!--</div>-->
+        <!--end::Clients-->
+        <!--</div>-->
+    </div>
+</div>
+
+
+<div class="container mt-15">
+    <div class="rounded landing-dark-border p-9" style="background-color: #23A2D7;">
+        <img src="Content/marine-debris/AIT-RRCAP.png" class="h-40px mb-5" alt="" />
+        <!--begin::Text-->
+        <span class="fw-normal fs-5 text-gray-700 d-flex justify-content" style="color: #535551!important;">
+            The kNOwWaste Knowledge Platform was developed through a Project Cooperation Agreement funding by UNEP on 2016. The platform provides data and information on holistic waste management to stakeholders in Asia and the Pacific region. The platform was developed with the following aims: generate and consolidate data or information on holistic waste management, transform data into easily comprehensible outputs for use by key stakeholders, map out and disseminate information on international waste management projects under the GPWM and UNEP projects as well as other international partners, and provide capacity building support through dissemination of data or information support for relevant stakeholders on holistic waste and waste management system.
+        </span>
+        <!--end::Text-->
+    </div>
+</div>
+
+<div class="container d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px px-9">
+    <div class="row w-100 gy-10 mb-md-10 mt-md-5">
+        <div class="col-md-6 px-2">
+            <div class="w-100 h-100 d-flex flex-column rounded-3 bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
+                <div class="mb-7 text-center">
+                    <!--begin::Title-->
+                    <h1 class="text-dark mb-5 fw-boldest" style="color: #2577BC!important; ">E-Learning Courses</h1>
+                    <!--end::Title-->
+                    <!--begin::Description-->
+                    <div class="text-gray-400 fw-bold mb-15">Short description here</div>
+                    <div class="w-100 mb-5">
+                        @foreach (DataRow row in elearnings.Rows)
+                        {
+                            <!--begin::Item-->
+                        <div class="d-flex flex-stack mb-5">
+                            <span class="svg-icon svg-icon-1 svg-icon-success">
+                                <img src="~/Content/icons/pdf-icon.png" />
+                            </span>
+                            <span class="fw-bold fs-6 text-gray-800 text-start pe-3">@row["Title"].ToString()</span>
+                        </div>
+                            <!--end::Item-->
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 px-2">
+            <div class="w-100 h-100 d-flex flex-column rounded-3 bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
+                <div class="mb-7 text-center">
+                    <!--begin::Title-->
+                    <h1 class="text-dark mb-5 fw-boldest" style="color: #2577BC!important; ">Documents</h1>
+                    <!--end::Title-->
+                    <!--begin::Description-->
+                    <div class="text-gray-400 fw-bold mb-15">Short description here</div>
+                    <div class="w-100 mb-5">
+                        @foreach (DataRow row in documents.Rows)
+                        {
+                            <!--begin::Item-->
+                            <div class="d-flex flex-stack mb-5">
+                                <span class="fw-bold fs-6 text-gray-800 text-start pe-3">@row["Title"].ToString()</span>
+                                <!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
+                                <span class="svg-icon svg-icon-1 svg-icon-success">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black"></rect>
+                                        <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black"></path>
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                            </div>
+                            <!--end::Item-->
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!--begin::Curve bottom-->
+    <div id="pb_line" class="h-150px landing-curve landing-dark-color" style="background-repeat: no-repeat; background-image: url(&quot;/Content/static/sunset-sea_1204-517.avif&quot;); background-size: cover;">
+        @*<svg viewBox="15 12 1470 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 11C3.93573 11.3356 7.85984 11.6689 11.7725 12H1488.16C1492.1 11.6689 1496.04 11.3356 1500 11V12H1488.16C913.668 60.3476 586.282 60.6117 11.7725 12H0V11Z" fill="currentColor"></path>
+            </svg>*@
+    </div>
+    <!--end::Curve bottom-->
+    <script>
+        document.addEventListener("scroll", (event) => {
+            var scrollPos = window.scrollY;
+            var elemPos = document.getElementById("pb_line").offsetTop;
+            document.getElementById("pb_line").style.backgroundPosition = "50% -" + String((parseFloat(elemPos) * 0.3) - (parseFloat(scrollPos) * 0.32)) + "px";
+        });
+    </script>
+</div>
+
+<div class="py-10 py-lg-20">
+    <!--begin::Container-->
+    <div class="container">
+        <!--begin::Heading-->
+        <div class="text-center mb-12">
+            <!--begin::Title-->
+            <h3 class="fs-2hx text-dark mb-5" id="team" data-kt-scroll-offset="{default: 100, lg: 150}">Good Practices</h3>
+            <!--end::Title-->
+            <!--begin::Sub-title-->
+            <div class="fs-5 text-muted fw-bold">
+                Description Here - Lorem ipsum dolor sit amet,
+                <br>Details here - consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </div>
+            <!--end::Sub-title=-->
+        </div>
+        <!--end::Heading-->
+        <!--begin::Slider-->
+        <div class="tns tns-default tns-initiazlied">
+            <!--begin::Wrapper-->
+            <div class="tns-outer" id="tns2-ow">
+                <div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">7 to 8</span>  of 7</div><div id="tns2-mw" class="tns-ovh">
+                    <div class="tns-inner" id="tns2-iw">
+                        <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="18000" data-tns-controls="true" data-tns-nav="false" data-tns-items="1" data-tns-center="false" data-tns-dots="false" data-tns-prev-button="#kt_team_slider_prev" data-tns-next-button="#kt_team_slider_next" data-tns-responsive="{1200: {items: 4}, 968: {items: 3}}" class="  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns2" style="transform: translate3d(-40%, 0px, 0px);">
+                            @foreach (DataRow row in blogs.Rows)
+                            {
+                                <div class="text-center tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
+                                    <!--begin::Photo-->
+                                    <div class="mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('Documents/Blogs/@row["Photo"].ToString()'); background-size: cover;"></div>
+                                    <!--end::Photo-->
+                                    <!--begin::Person-->
+                                    <div class="mb-0">
+                                        <!--begin::Name-->
+                                        <a href="#" class="text-dark fw-bolder text-hover-primary fs-3">@row["Title"].ToString()</a>
+                                        <!--end::Name-->
+                                        <!--begin::Position-->
+                                        <div class="text-muted fs-6 fw-bold mt-1">Tagline</div>
+                                        <!--begin::Position-->
+                                    </div>
+                                    <!--end::Person-->
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Wrapper-->
+            <!--begin::Button-->
+            <button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_prev" aria-controls="tns2" tabindex="-1" data-controls="prev">
+                <!--begin::Svg Icon | path: icons/duotune/arrows/arr074.svg-->
+                <span class="svg-icon svg-icon-3x">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M11.2657 11.4343L15.45 7.25C15.8642 6.83579 15.8642 6.16421 15.45 5.75C15.0358 5.33579 14.3642 5.33579 13.95 5.75L8.40712 11.2929C8.01659 11.6834 8.01659 12.3166 8.40712 12.7071L13.95 18.25C14.3642 18.6642 15.0358 18.6642 15.45 18.25C15.8642 17.8358 15.8642 17.1642 15.45 16.75L11.2657 12.5657C10.9533 12.2533 10.9533 11.7467 11.2657 11.4343Z" fill="black"></path>
+                    </svg>
+                </span>
+                <!--end::Svg Icon-->
+            </button>
+            <!--end::Button-->
+            <!--begin::Button-->
+            <button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_next" aria-controls="tns2" tabindex="-1" data-controls="next">
+                <!--begin::Svg Icon | path: icons/duotune/arrows/arr071.svg-->
+                <span class="svg-icon svg-icon-3x">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12.6343 12.5657L8.45001 16.75C8.0358 17.1642 8.0358 17.8358 8.45001 18.25C8.86423 18.6642 9.5358 18.6642 9.95001 18.25L15.4929 12.7071C15.8834 12.3166 15.8834 11.6834 15.4929 11.2929L9.95001 5.75C9.5358 5.33579 8.86423 5.33579 8.45001 5.75C8.0358 6.16421 8.0358 6.83579 8.45001 7.25L12.6343 11.4343C12.9467 11.7467 12.9467 12.2533 12.6343 12.5657Z" fill="black"></path>
+                    </svg>
+                </span>
+                <!--end::Svg Icon-->
+            </button>
+            <!--end::Button-->
+        </div>
+        <!--end::Slider-->
+    </div>
+    <!--end::Container-->
+</div>
+
+<div class="container d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px px-9">
+    <div class="row w-100 gy-10 mb-md-10 mt-md-5">
+        <div class="col-md-6 px-2">
+            <div class="w-100 d-flex flex-column flex-center rounded-3 bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
+                <div class="col-md-10 mb-7 text-center">
+                    <!--begin::Title-->
+                    <h1 class="text-dark mb-5 fw-boldest">Title here</h1>
+                    <!--end::Title-->
+                    <!--begin::Description-->
+                    <div class="text-gray-400 fw-bold mb-15">Short description here</div>
+                    <div id="kt_apexcharts_5" style="height: 350px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 px-2">
+            <div class="w-100 d-flex flex-column flex-center rounded-3 bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
+                <div class="col-md-10 mb-7 text-center">
+                    <!--begin::Title-->
+                    <h1 class="text-dark mb-5 fw-boldest">Title here</h1>
+                    <!--end::Title-->
+                    <!--begin::Description-->
+                    <div class="text-gray-400 fw-bold mb-15">Short description here</div>
+                    <div id="kt_apexcharts_2" style="height: 350px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

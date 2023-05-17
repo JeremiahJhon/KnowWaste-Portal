@@ -1,0 +1,223 @@
+﻿@{
+    Layout = "~/Views/MarineDebris/Shared.cshtml";
+}
+@using System.Data;
+
+@{
+    DataTable countries = (DataTable)ViewBag.Country;
+    DataTable areas = (DataTable)ViewBag.Area;
+    DataTable countryPolicies = (DataTable)ViewBag.CountryPolicy;
+    DataTable template = (DataTable)ViewBag.Template;
+}
+<div class="row">
+    <div class="landing-dark-bg h-100px">
+        <div class="text-center py-lg-5">
+            <!--begin::Title-->
+            <!--begin::Title-->
+            <h1 class="text-white lh-base fw-bolder fs-2x fs-lg-3x">
+                <span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
+                    <span id="kt_landing_hero_text">Marine Debris</span>
+                </span>
+            </h1>
+            <!--end::Title-->
+        </div>
+    </div>
+
+    <!--begin::Curve bottom-->
+    <div id="pb_line" class="landing-curve landing-dark-color">
+        <svg viewBox="15 12 1470 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 11C3.93573 11.3356 7.85984 11.6689 11.7725 12H1488.16C1492.1 11.6689 1496.04 11.3356 1500 11V12H1488.16C913.668 60.3476 586.282 60.6117 11.7725 12H0V11Z" fill="currentColor"></path>
+        </svg>
+    </div>
+    <!--end::Curve bottom-->
+</div>
+<div class="mt-lg-n15 mb-lg-n20 position-relative z-index-2">
+    <!--begin::Container-->
+    <div class="container">
+        <!--begin::Card-->
+        <div class="card" style="filter: drop-shadow(0px 0px 10px rgba(68, 81, 96, 0.08))">
+            <!--begin::Card body-->
+            <div class="card-body p-lg-20">
+                <!--begin::Heading-->
+                <div class="text-center mb-5 mb-lg-10">
+                    <!--begin::Title-->
+                    <h3 class="fs-2hx text-dark mb-5" id="portfolio" data-kt-scroll-offset="{default: 100, lg: 150}" style="color: #2577BC!important; ">@ViewBag.Title</h3>
+                    <!--end::Title-->
+                </div>
+                <!--end::Heading-->
+                <!--begin::Tabs wrapper-->
+                <div class="d-flex flex-center mb-5 mb-lg-15">
+                    <!--begin::Tabs-->
+                    <ul class="nav border-transparent flex-center fs-5 fw-bold">
+                        <li class="nav-item">
+                            <span class="policy-yes">Yes</span>
+                        </li>
+                        <li class="nav-item">
+                            <span class="policy-no">No</span>
+                        </li>
+                    </ul>
+                    <!--end::Tabs-->
+                </div>
+                <!--end::Tabs wrapper-->
+                <!--begin::Tabs content-->
+                <div class="tab-content">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                @foreach (DataRow row in areas.Rows)
+                                {
+                                    <th class="text-center"><h6 style="color: #535551;">@row["Name"].ToString()</h6></th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DataRow country in countries.Rows)
+                            {
+                                <tr>
+                                    <td class="p-1" style="color: #535551;">@country["Name"].ToString()</td>
+                                    @foreach (DataRow area in areas.Rows)
+                                    {
+                                        bool hasRecord = false;
+                                        foreach (DataRow countryPolicy in countryPolicies.Rows)
+                                        {
+                                            if (countryPolicy["Area_ID"].ToString() == area["ID"].ToString() && 
+                                                countryPolicy["Country_ID"].ToString() == country["ID"].ToString())
+                                            {
+                                                hasRecord = true;
+                                                break;
+                                            }
+                                        }
+
+                                        if (hasRecord)
+                                        {
+                                                <td class="p-1 text-center"><span class="policy-yes"></span></td>
+                                            }
+                                            else
+                                            {
+                                                <td class="p-1 text-center"><span class="policy-no"></span></td>
+                                            }
+                                        }
+                                    </tr>
+                            }
+                        </tbody>
+                        </table>
+                </div>
+                <!--end::Tabs content-->
+            </div>
+            <!--end::Card body-->
+        </div>
+        <!--end::Card-->
+    </div>
+    <!--end::Container-->
+</div>
+
+<div class="mb-lg-n20 position-relative z-index-2">
+    <!--begin::Container-->
+    <div class="container">
+        <!--begin::Card-->
+        <div class="card" style="filter: drop-shadow(0px 0px 40px rgba(68, 81, 96, 0.08))">
+            <!--begin::Card body-->
+            <div class="card-body p-lg-20">
+                <!--begin::Heading-->
+                <div class="text-center mb-5 mb-lg-10">
+                    <!--begin::Title-->
+                    <h3 class="fs-2hx text-dark mb-5" id="portfolio" data-kt-scroll-offset="{default: 100, lg: 150}">List</h3>
+                    <!--end::Title-->
+                </div>
+                <!--end::Heading-->
+                <!--begin::Tabs content-->
+                <div class="tab-content">
+                    <div class="toolbar" id="kt_toolbar">
+                        <!--begin::Container-->
+                        <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack" data-select2-id="select2-data-kt_toolbar_container">
+                            <!--begin::Page title-->
+                            <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                                <label>
+                                    <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black"></path>
+                                        </svg>
+                                    </span>
+                                    Filter:
+                                </label>
+                                <div class="col-md-5 d-flex px-5">
+                                    <label class="m-auto px-2">
+                                        Country
+                                    </label>
+                                    <select id="filter-Area" name="Area" class="form-select form-select form-select-solid" data-placeholder="Select an option" style="border-color: #009ef7 !important;" aria-label="Area">
+                                        <option value="0"></option>
+                                        @{
+                                            foreach (DataRow country in countries.Rows)
+                                            {
+                                                <option value="@country["ID"].ToString()">@country["Name"].ToString()</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-6 d-flex px-5">
+                                    <label class="m-auto px-2">
+                                        Area
+                                    </label>
+                                    <select id="filter-Area" name="Area" class="form-select form-select form-select-solid" data-placeholder="Select an option" style="border-color: #009ef7 !important;" aria-label="Area">
+                                        <option value="0"></option>
+                                        @{
+                                            foreach (DataRow area in areas.Rows)
+                                            {
+                                                <option value="@area["ID"].ToString()">@area["Name"].ToString()</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <!--end::Page title-->
+                            </div>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Container-->
+                    </div>
+                <div class="table-responsive">
+                    <table class="table table-striped gy-7 gs-7 table-hover" id="datatable">
+                        <thead>
+                            <tr class="fw-bold fs-6 text-gray-800 border-bottom-2 border-gray-200">
+                                @{
+                                    foreach (DataRow col in template.Rows)
+                                    {
+                                        <th>@col["FieldTitle"].ToString()</th>
+                                    }
+                                }
+                                <th class="header-action">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="">
+                            @{
+                                foreach (DataRow countryPolicy in countryPolicies.Rows)
+                                {
+                                    <tr class="data-row">
+
+                                        @{
+                                            foreach (DataRow col in template.Rows)
+                                            {
+                                                <td>@Html.Raw(countryPolicy[col["FieldName"].ToString()].ToString())</td>
+                                            }
+                                        }
+                                        <td class="data-action" style="padding: 10px;">
+                                            <div class="action-list" style="display: inline-flex;">
+                                                <a href="#" class="btn btn-outline btn-outline-solid btn-outline-primary btn-active-light-primary data-row-action-edit" data-id="@countryPolicy["id"].ToString()">Edit</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+                <!--end::Tabs content-->
+            </div>
+            <!--end::Card body-->
+        </div>
+        <!--end::Card-->
+    </div>
+    <!--end::Container-->
+</div>

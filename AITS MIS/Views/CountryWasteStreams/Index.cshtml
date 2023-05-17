@@ -1,0 +1,73 @@
+﻿
+@{
+    Layout = "~/Views/Shared/Shared.cshtml";
+}
+
+@using System.Data;
+
+<div class="c-layout-page">
+    <div class="c-layout-breadcrumbs-1 c-subtitle c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
+        <div class="container">
+            <div class="c-page-title c-pull-left">
+                <h3 class="c-font-uppercase c-font-sbold">Data and Trends</h3>
+            </div>
+            <ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
+                <li>
+                    <a href="#">Knowledge Repository</a>
+                </li>
+                <li>/</li>
+                <li>
+                    <a href="~/DataTrends">Data and Trends</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="c-layout-sidebar-menu c-theme ">
+            <div class="c-sidebar-menu-toggler">
+                <h3 class="c-title c-font-uppercase c-font-bold">Regions</h3>
+                <a href="javascript:;" class="c-content-toggler" data-toggle="collapse" data-target="#sidebar-menu-1">
+                    <span class="c-line"></span>
+                    <span class="c-line"></span>
+                    <span class="c-line"></span>
+                </a>
+            </div>
+            <ul class="c-sidebar-menu collapse " id="sidebar-menu-1">
+                <li class="c-dropdown c-open">
+                    <a href="javascript:;" class="c-toggler">
+                        Regions
+                        <span class="c-arrow"></span>
+                    </a>
+                    <ul class="c-dropdown-menu">
+                        @{
+                            DataTable cdata = (DataTable)ViewBag.Country;
+
+                            foreach (DataRow row in cdata.Rows)
+                            {                                
+                                    <li class="">
+                                        <a href="#">@row["name"].ToString()</a>
+                                    </li>                                
+                            }
+                        }
+                                               
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="c-layout-sidebar-content ">
+            <div class="container">
+
+
+                @{
+                    DataTable data = (DataTable)ViewBag.CountryWasteStreams;
+
+
+                }
+
+            </div>
+
+        </div>
+    </div>
+</div>
