@@ -5,9 +5,7 @@
 
 @{
     DataTable countries = (DataTable)ViewBag.Country;
-    DataTable areas = (DataTable)ViewBag.Area;
-    DataTable countryPolicies = (DataTable)ViewBag.CountryPolicy;
-    DataTable template = (DataTable)ViewBag.Template;
+    DataTable doctypes = (DataTable)ViewBag.DocType;
 }
 <div class="row">
     <div class="landing-dark-bg h-100px">
@@ -45,7 +43,46 @@
                     <!--end::Title-->
                 </div>
                 <!--end::Heading-->
-                
+                <div class="row d-flex">
+                    <div class="col-md-3 p-2">
+                        <form id="form-filter">
+                            <div class="card shadow-sm mb-10">
+                                <div class="card-header">
+                                    <h4 class="card-title">Country</h4>
+                                </div>
+                                <div class="card-body">
+                                    @foreach (DataRow row in countries.Rows)
+                                    {
+                                        <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                            <input class="form-check-input h-20px w-30px country-filter" name="country" type="checkbox" value="@row["ID"].ToString()" id="country-@row["ID"].ToString()" checked="checked" />
+                                            <label class="form-check-label" for="country-@row["ID"].ToString()">
+                                                @row["Name"].ToString()
+                                            </label>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="card shadow-sm">
+                                <div class="card-header">
+                                    <h4 class="card-title">Document Type</h4>
+                                </div>
+                                <div class="card-body">
+                                    @foreach (DataRow row in doctypes.Rows)
+                                    {
+                                        <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                            <input class="form-check-input h-20px w-30px doctype-filter" name="doctype" type="checkbox" value="@row["ID"].ToString()" id="doctype-@row["ID"].ToString()" checked="checked" />
+                                            <label class="form-check-label" for="doctype-@row["ID"].ToString()">
+                                                @row["Name"].ToString()
+                                            </label>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-9 p-2" id="document-data">
+                    </div>
+                </div>
             </div>
             <!--end::Card body-->
         </div>
@@ -53,3 +90,89 @@
     </div>
     <!--end::Container-->
 </div>
+<script src="\Scripts\jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        getDocumentData();
+
+        $("#datatable-Law_Policy").DataTable({
+            aaSorting: [],
+            language: {
+                "lengthMenu": "Show _MENU_",
+            },
+            dom: "<'row'" +
+                "<'col-sm-8 d-flex align-items-center justify-content-start'f>" +
+                "<'col-sm-4 d-flex align-items-center justify-content-end'l>" +
+                ">B" +
+
+                "<'table-responsive'tr>" +
+
+                "<'row'" +
+                "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                ">",
+        });
+
+        $(".country-filter").change(function () {
+            getDocumentData();
+        });
+        $(".doctype-filter").change(function () {
+            getDocumentData();
+        });
+        function getDocumentData() {
+            const formData = new FormData(document.getElementById("form-filter"));
+            $.ajax({
+                url: '/MarineDebris/getDocumentData',
+                data: $("#form-filter").serialize(),
+                type: 'POST',
+                processData: false,
+                success: function (data) {
+                    var documentsData = JSON.parse(data);
+                    console.log(documentsData);
+                    $("#document-data").html('');
+                    Object.keys(documentsData).forEach(function (key) {
+                        var htmlString = '<div class="accordion" id="parent-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '"><div class="accordion-item"><h2 class="accordion-header" id="header-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '"><button class="accordion-button fs-4 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#body-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '" aria-expanded="false" aria-controls="body-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '">' + key + '</button></h2><div id="body-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '" class="accordion-collapse collapse show" aria-labelledby="header-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '" data-bs-parent="#parent-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '" style=""><div class="accordion-body show">'
+                        console.log(key);
+                        for (var ctr = 0; ctr < documentsData[key].length; ctr++) {
+                            htmlString += '<table id="datatable-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '" class="table table-row-bordered gy-5"><thead></thead><tbody>';
+                            htmlString += '<tr><td><div class="row">';
+                            htmlString += '<div class="fs-3 text-dark fw-bolder text-hover-primary text-dark lh-base">' + documentsData[key][ctr]["Title"] + '</div>';
+
+                            htmlString += '<div class="w-100">';
+                            if (documentsData[key][ctr]["Subtitle"]) {
+                                htmlString += '<span class="badge badge-white fw-bolder my-2" style="white-space: normal; text-align: left;">' + documentsData[key][ctr]["Subtitle"] + '</span></br>';
+                            }
+                            if (documentsData[key][ctr]["Year"].length > 0) {
+                                htmlString += '<span class="badge badge-light-primary fw-bolder my-2" style="white-space: normal; text-align: left;">Year: ' + documentsData[key][ctr]["Year"] + '</span>'; }
+                            if (documentsData[key][ctr]["Publisher"].length > 0) {
+                                htmlString += '<span class="badge badge-light-success fw-bolder my-2" style="white-space: normal; text-align: left;">Publisher: ' + documentsData[key][ctr]["Publisher"] + '</span>'; }
+                            if (documentsData[key][ctr]["Keyword"].length > 0) {
+                                htmlString += '<span class="badge badge-light fw-bolder my-2" style="white-space: normal; text-align: left;">Keyword: ' + documentsData[key][ctr]["Keyword"] + '</span>'; }
+                            htmlString += '</div>';
+
+                            htmlString += '<div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">' + documentsData[key][ctr]["Description"] + '</div>';
+
+                            htmlString += '<div class="w-100">';
+                            if (documentsData[key][ctr]["Attachment"]) {
+                                htmlString += '<a href="Documents/' + documentsData[key][ctr]["Attachment"] + '" class="btn btn-primary m-2" style="float: right;"><i class="bi bi-file-earmark-pdf"></i>Document</a>';
+                            }
+                            if (documentsData[key][ctr]["Datasource"]) {
+                                htmlString += '<a href="' + documentsData[key][ctr]["Datasource"] + '" class="btn btn-light-primary m-2" style="float: right;"><i class="bi bi-link"></i>Source</a>';
+                            }
+                            htmlString += '</div>';
+
+                            htmlString += '</div></td></tr>';
+                        }
+                        htmlString += '</tbody></table></div></div></div></div>'
+
+                        $("#document-data").append(htmlString);
+                    });
+                    
+                },
+                error: function (err) {
+                    console.log(err);
+                },
+            })
+        }
+    });
+</script>

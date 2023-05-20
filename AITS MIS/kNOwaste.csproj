@@ -6283,6 +6283,11 @@
     <Content Include="Scripts\isotope\isotope-gallery.js" />
     <Content Include="Scripts\isotope\isotope.pkgd.min.js" />
     <Content Include="Scripts\isotope\packery-mode.pkgd.min.js" />
+    <None Include="Scripts\jquery-3.6.4.intellisense.js" />
+    <Content Include="Scripts\jquery-3.6.4.js" />
+    <Content Include="Scripts\jquery-3.6.4.min.js" />
+    <Content Include="Scripts\jquery-3.6.4.slim.js" />
+    <Content Include="Scripts\jquery-3.6.4.slim.min.js" />
     <Content Include="Scripts\jquery-migrate.min.js" />
     <Content Include="Scripts\jquery.easing.min.js" />
     <Content Include="Scripts\jquery.min.js" />
@@ -6505,7 +6510,6 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\app.components.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.form.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -7526,6 +7530,8 @@
     <Content Include="Views\MarineDebris\ELearning.cshtml" />
     <Content Include="Views\MarineDebris\Documents.cshtml" />
     <Content Include="Views\MarineDebris\GoodPractices.cshtml" />
+    <Content Include="Scripts\jquery-3.6.4.slim.min.map" />
+    <Content Include="Scripts\jquery-3.6.4.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Web.Framework\Web.Framework.csproj">

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -105,6 +106,18 @@ namespace UCOnline.Controllers
         {
             ViewBag.Title = "Documents";
 
+            ServerBase country = new ServerBase("Country");
+            country.SelectFilter("SubRegion_ID = 3");
+            DataTable countryData = country.SelectQuery();
+
+            ViewBag.Country = countryData;
+
+            ServerBase docType = new ServerBase("documentcategory");
+            //videos.SelectFilter("SubRegion_ID = 3");
+            DataTable docTypeData = docType.SelectQuery();
+
+            ViewBag.DocType = docTypeData;
+
             return View();
         }
 
@@ -128,6 +141,29 @@ namespace UCOnline.Controllers
             db.ExecuteQuery();
 
             return "";
+        }
+
+        [HttpPost]
+        public String getDocumentData(FormCollection formData)
+        {
+            String country = formData["country"];
+            String doctype = formData["doctype"];
+
+            ServerBase doctypes = new ServerBase("documentcategory");
+            doctypes.SelectFilter("ID in (" + doctype + ")");
+            DataTable doctypeData = doctypes.SelectQuery();
+
+            DataSet result = new DataSet();
+
+            foreach(DataRow row in doctypeData.Rows)
+            {
+                ServerBase document = new ServerBase("documents");
+                document.SelectFilter("Country_ID in (" + country + ") and DocumentCategory_ID = " + row["ID"].ToString());
+                result.Tables.Add(document.SelectQuery());
+                result.Tables[result.Tables.Count - 1].TableName = row["Name"].ToString();
+            }
+
+            return JsonConvert.SerializeObject(result);
         }
     }
 }
