@@ -5466,6 +5466,7 @@
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\gmaps\gmaps.js" />
     <Content Include="Content\home.css" />
+    <Content Include="Content\icons\learning.png" />
     <Content Include="Content\icons\pdf-icon.png" />
     <Content Include="Content\ilightbox\css\closedhand.cur" />
     <Content Include="Content\ilightbox\css\ilightbox.css" />
