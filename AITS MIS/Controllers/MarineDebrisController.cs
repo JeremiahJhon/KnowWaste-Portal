@@ -42,6 +42,12 @@ namespace UCOnline.Controllers
 
             ViewBag.Blogs = blogsData;
 
+            ServerBase country = new ServerBase("Country");
+            country.SelectFilter("SubRegion_ID = 3");
+            DataTable countryData = country.SelectQuery();
+
+            ViewBag.Country = countryData;
+
             return View();
         }
 
@@ -128,19 +134,98 @@ namespace UCOnline.Controllers
             return View();
         }
 
-        [HttpGet]
-        public String getGraphData(int category,int filter)
+        [HttpPost]
+        public String getSolidWasteGraphData(FormCollection formData)
         {
-            ServerBase countryWS = new ServerBase("CountryWastestreams");
-            countryWS.SelectOrder("Year", Web.Framework.Enums.EnumOrder.ASCENDING);
-            countryWS.SelectFilter("WasteCategory_ID = " + category.ToString()); //1 = Solid Waste, 15 = Plastic Waste
-            DataTable countryWSData = countryWS.SelectQuery();
+            String country_ = formData["country"];
+            String type_ = formData["type"];
+
+            if (type_ == null) type_ = "";
+
+            string columns = "";
+            if (type_.Contains("Generated"))
+            {
+                if (columns.Length > 0) columns += ",";
+                columns += "SUM(cast(Totalgenerated as decimal(10,2))) as Generated";
+            }
+            if (type_.Contains("Collected"))
+            {
+                if (columns.Length > 0) columns += ",";
+                columns += "SUM(cast(Totalcollected as decimal(10,2))) as Collected";
+            }
+            if (type_.Contains("Recycled"))
+            {
+                if (columns.Length > 0) columns += ",";
+                columns += "SUM(cast(Recycled as decimal(10,2))) as Recycled";
+            }
+            if (type_.Contains("Recovered"))
+            {
+                if (columns.Length > 0) columns += ",";
+                columns += "SUM(cast(Recovered as decimal(10,2))) as Recovered";
+            }
+            if (type_.Contains("Disposal"))
+            {
+                if (columns.Length > 0) columns += ",";
+                columns += "SUM(cast(Disposal as decimal(10,2))) as Disposal";
+            }
+
+
+            DataTable dtResult = new DataTable();
+
+            if(columns.Length == 0) return JsonConvert.SerializeObject(dtResult);
 
             MSSQLServer db = new MSSQLServer();
-            db.Query = "select [Year], Country_ID, TotalGenerated, TotalCollected, Recycled, Recovered, Disposal\r\nfrom countrywastestreams \r\nwhere country_id in (select id from country where subregion_id = 3) \r\nand [YEAR] < 2023 \r\nand [year] > 1\r\nand wastecategory_id = 1\r\norder by [year]";
-            db.ExecuteQuery();
+            db.Query = "select [Year]," + columns + " from countrywastestreams  where country_id in (select id from country where subregion_id = 3) and [YEAR] < 2023 and [year] > 1 and Country_ID in (" + country_ + ") and WasteCategory_ID = 1 group by [year]  order by [year]";
+            dtResult = db.ExecuteQuery();
 
-            return "";
+            return JsonConvert.SerializeObject(dtResult);
+        }
+
+        [HttpPost]
+        public String getPlasticWasteGraphData(FormCollection formData)
+        {
+            String country_ = formData["country"];
+            String type_ = formData["type"];
+
+            if (type_ == null) type_ = "";
+
+            string columns = "";
+            if (type_.Contains("Generated"))
+            {
+                if (columns.Length > 0) columns += ",";
+                columns += "SUM(cast(Totalgenerated as decimal(10,2))) as Generated";
+            }
+            if (type_.Contains("Collected"))
+            {
+                if (columns.Length > 0) columns += ",";
+                columns += "SUM(cast(Totalcollected as decimal(10,2))) as Collected";
+            }
+            if (type_.Contains("Recycled"))
+            {
+                if (columns.Length > 0) columns += ",";
+                columns += "SUM(cast(Recycled as decimal(10,2))) as Recycled";
+            }
+            if (type_.Contains("Recovered"))
+            {
+                if (columns.Length > 0) columns += ",";
+                columns += "SUM(cast(Recovered as decimal(10,2))) as Recovered";
+            }
+            if (type_.Contains("Disposal"))
+            {
+                if (columns.Length > 0) columns += ",";
+                columns += "SUM(cast(Disposal as decimal(10,2))) as Disposal";
+            }
+
+
+            DataTable dtResult = new DataTable();
+
+            if (columns.Length == 0) return JsonConvert.SerializeObject(dtResult);
+
+            MSSQLServer db = new MSSQLServer();
+            db.Query = "select [Year]," + columns + " from countrywastestreams  where country_id in (select id from country where subregion_id = 3) and [YEAR] < 2023 and [year] > 1 and Country_ID in (" + country_ + ") and WasteCategory_ID = 14 group by [year]  order by [year]";
+            dtResult = db.ExecuteQuery();
+
+            return JsonConvert.SerializeObject(dtResult);
         }
 
         [HttpPost]
