@@ -55,18 +55,6 @@
     </div>
 </div>
 
-
-<div class="container mt-15">
-    <div class="rounded landing-dark-border p-9" style="background-color: #23A2D7;">
-        <img src="Content/marine-debris/AIT-RRCAP.png" class="h-40px mb-5" alt="" />
-        <!--begin::Text-->
-        <span class="fw-normal fs-5 text-gray-700 d-flex justify-content" style="color: #535551!important;">
-            The kNOwWaste Knowledge Platform was developed through a Project Cooperation Agreement funding by UNEP on 2016. The platform provides data and information on holistic waste management to stakeholders in Asia and the Pacific region. The platform was developed with the following aims: generate and consolidate data or information on holistic waste management, transform data into easily comprehensible outputs for use by key stakeholders, map out and disseminate information on international waste management projects under the GPWM and UNEP projects as well as other international partners, and provide capacity building support through dissemination of data or information support for relevant stakeholders on holistic waste and waste management system.
-        </span>
-        <!--end::Text-->
-    </div>
-</div>
-
 <div class="container d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px px-9">
     <div class="row w-100 gy-10 mb-md-10 mt-md-5">
         <div class="col-md-6 px-2">
@@ -80,12 +68,10 @@
                     <div class="w-100 mb-5">
                         @foreach (DataRow row in elearnings.Rows)
                         {
-                            <!--begin::Item-->
                             <div class="d-flex mb-5">
-                                <div class="mx-5"><img src="~/Content/icons/pdf-icon.png" height="30" /></div>
+                                <div class="mx-5 my-2"><img src="~/Content/icons/pdf-icon.png" height="30" /></div>
                                 <span class="fw-bold fs-6 text-gray-800 text-start pe-3">@row["Title"].ToString()</span>
                             </div>
-                            <!--end::Item-->
                         }
                     </div>
                 </div>
@@ -102,12 +88,10 @@
                     <div class="w-100 mb-5">
                         @foreach (DataRow row in documents.Rows)
                         {
-                            <!--begin::Item-->
                             <div class="d-flex mb-5">
-                                <div class="mx-5" ><img src="~/Content/icons/pdf-icon.png" height="30" /></div>
+                                <div class="mx-5 my-2"><img src="~/Content/icons/pdf-icon.png" height="30" /></div>
                                 <span class="fw-bold fs-6 text-gray-800 text-start pe-3">@row["Title"].ToString()</span>
                             </div>
-                            <!--end::Item-->
                         }
                     </div>
                 </div>
@@ -118,7 +102,7 @@
 
 <div class="row">
     <!--begin::Curve bottom-->
-    <div id="pb_line" class="h-150px landing-curve landing-dark-color" style="background-repeat: no-repeat; background-image: url(&quot;/Content/static/sunset-sea_1204-517.avif&quot;); background-size: cover;">
+    <div id="pb_line" class="h-150px landing-curve landing-dark-color" style="background-repeat: no-repeat; background-image: url(&quot;/Content/static/AdobeStock_584264594.jpeg&quot;); background-size: cover;">
         @*<svg viewBox="15 12 1470 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 11C3.93573 11.3356 7.85984 11.6689 11.7725 12H1488.16C1492.1 11.6689 1496.04 11.3356 1500 11V12H1488.16C913.668 60.3476 586.282 60.6117 11.7725 12H0V11Z" fill="currentColor"></path>
             </svg>*@
@@ -128,7 +112,7 @@
         document.addEventListener("scroll", (event) => {
             var scrollPos = window.scrollY;
             var elemPos = document.getElementById("pb_line").offsetTop;
-            document.getElementById("pb_line").style.backgroundPosition = "50% -" + String((parseFloat(elemPos) * 0.3) - (parseFloat(scrollPos) * 0.32)) + "px";
+            document.getElementById("pb_line").style.backgroundPosition = "50% -" + String((parseFloat(elemPos) * 0.3) - (parseFloat(scrollPos) * 0.3)) + "px";
         });
     </script>
 </div>
@@ -213,11 +197,49 @@
             <div class="w-100 d-flex flex-column flex-center rounded-3 bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
                 <div class="col-md-10 mb-7 text-center">
                     <!--begin::Title-->
-                    <h1 class="text-dark mb-5 fw-boldest">Title here</h1>
+                    <h1 class="text-dark mb-5 fw-boldest">Solid Waste</h1>
                     <!--end::Title-->
                     <!--begin::Description-->
-                    <div class="text-gray-400 fw-bold mb-15">Short description here</div>
-                    <div id="kt_apexcharts_5" style="height: 350px;"></div>
+                    <div class="text-gray-400 fw-bold mb-5">Short description here</div>
+                    <div class="tab-content d-flex">
+                        <!--begin::Container-->
+                        <div class="col-md-6 d-flex px-2">
+                            <label class="m-auto px-2">
+                                Country
+                            </label>
+                            <select id="filter-Area" name="Area" class="form-select form-select form-select-solid" data-placeholder="Select an option" style="border-color: #009ef7 !important;" aria-label="Area">
+                                <option value="0"></option>
+                                <option value="16">Brunei Darussalam</option>
+                                <option value="17">Cambodia</option>
+                                <option value="18">Indonesia</option>
+                                <option value="19">Lao PDR</option>
+                                <option value="20">Malaysia</option>
+                                <option value="21">Myanmar</option>
+                                <option value="23">Singapore</option>
+                                <option value="24">Thailand</option>
+                                <option value="25">Timor-Leste</option>
+                                <option value="26">Viet Nam</option>
+                                <option value="62">Philippines</option>
+                                <option value="110">China</option>
+
+                            </select>
+                        </div>
+                        <div class="col-md-6 d-flex px-2">
+                            <label class="m-auto px-2">
+                                Area
+                            </label>
+                            <select id="filter-Area" name="Area" class="form-select form-select form-select-solid" data-placeholder="Select an option" style="border-color: #009ef7 !important;" aria-label="Area">
+                                <option>All</option>
+                                <option>Generated</option>
+                                <option>Collected</option>
+                                <option>Recycled</option>
+                                <option>Recovered</option>
+                                <option>Disposed</option>
+                            </select>
+                        </div>
+                        <!--end::Container-->
+                    </div>
+                    <div id="chart-1" style="height: 350px;"></div>
                 </div>
             </div>
         </div>
@@ -225,11 +247,49 @@
             <div class="w-100 d-flex flex-column flex-center rounded-3 bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
                 <div class="col-md-10 mb-7 text-center">
                     <!--begin::Title-->
-                    <h1 class="text-dark mb-5 fw-boldest">Title here</h1>
+                    <h1 class="text-dark mb-5 fw-boldest">Plastic Waste</h1>
                     <!--end::Title-->
                     <!--begin::Description-->
-                    <div class="text-gray-400 fw-bold mb-15">Short description here</div>
-                    <div id="kt_apexcharts_2" style="height: 350px;"></div>
+                    <div class="text-gray-400 fw-bold mb-5">Short description here</div>
+                    <div class="tab-content d-flex">
+                        <!--begin::Container-->
+                        <div class="col-md-6 d-flex px-2">
+                            <label class="m-auto px-2">
+                                Country
+                            </label>
+                            <select id="filter-Area" name="Area" class="form-select form-select form-select-solid" data-placeholder="Select an option" style="border-color: #009ef7 !important;" aria-label="Area">
+                                <option value="0"></option>
+                                <option value="16">Brunei Darussalam</option>
+                                <option value="17">Cambodia</option>
+                                <option value="18">Indonesia</option>
+                                <option value="19">Lao PDR</option>
+                                <option value="20">Malaysia</option>
+                                <option value="21">Myanmar</option>
+                                <option value="23">Singapore</option>
+                                <option value="24">Thailand</option>
+                                <option value="25">Timor-Leste</option>
+                                <option value="26">Viet Nam</option>
+                                <option value="62">Philippines</option>
+                                <option value="110">China</option>
+
+                            </select>
+                        </div>
+                        <div class="col-md-6 d-flex px-2">
+                            <label class="m-auto px-2">
+                                Area
+                            </label>
+                            <select id="filter-Area" name="Area" class="form-select form-select form-select-solid" data-placeholder="Select an option" style="border-color: #009ef7 !important;" aria-label="Area">
+                                <option>All</option>
+                                <option>Generated</option>
+                                <option>Collected</option>
+                                <option>Recycled</option>
+                                <option>Recovered</option>
+                                <option>Disposed</option>
+                            </select>
+                        </div>
+                        <!--end::Container-->
+                    </div>
+                    <div id="chart-2" style="height: 350px;"></div>
                 </div>
             </div>
         </div>

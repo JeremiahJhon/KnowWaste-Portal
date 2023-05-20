@@ -107,5 +107,27 @@ namespace UCOnline.Controllers
 
             return View();
         }
+
+        public ActionResult GoodPractices()
+        {
+            ViewBag.Title = "Good Practices";
+
+            return View();
+        }
+
+        [HttpGet]
+        public String getGraphData(int category,int filter)
+        {
+            ServerBase countryWS = new ServerBase("CountryWastestreams");
+            countryWS.SelectOrder("Year", Web.Framework.Enums.EnumOrder.ASCENDING);
+            countryWS.SelectFilter("WasteCategory_ID = " + category.ToString()); //1 = Solid Waste, 15 = Plastic Waste
+            DataTable countryWSData = countryWS.SelectQuery();
+
+            MSSQLServer db = new MSSQLServer();
+            db.Query = "select [Year], Country_ID, TotalGenerated, TotalCollected, Recycled, Recovered, Disposal\r\nfrom countrywastestreams \r\nwhere country_id in (select id from country where subregion_id = 3) \r\nand [YEAR] < 2023 \r\nand [year] > 1\r\nand wastecategory_id = 1\r\norder by [year]";
+            db.ExecuteQuery();
+
+            return "";
+        }
     }
 }
