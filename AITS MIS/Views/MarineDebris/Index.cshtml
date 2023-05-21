@@ -616,7 +616,12 @@
                                 opacity: 1
                             },
                             tooltip: {
-                                enabled: true
+                                enabled: true,
+                                y: {
+                                    formatter: function (val) {
+                                        return val.toLocaleString('en-US');
+                                    }
+                                }
                             },
                             noData: {
                                 text: 'No Data'
