@@ -5784,6 +5784,8 @@
     <Content Include="Content\Images\banner\banner_Ewaste02.jpg" />
     <Content Include="Content\Images\banner\banner_Ewaste03.jpg" />
     <Content Include="Content\Images\banner\banner_Ewaste04.jpg" />
+    <Content Include="Content\Images\banner\banner_marine.jpg" />
+    <Content Include="Content\Images\banner\banner_marine2.jpg" />
     <Content Include="Content\Images\blog.jpg" />
     <Content Include="Content\Images\blogs\1\1.jpg" />
     <Content Include="Content\Images\blogs\2\2.jpg" />

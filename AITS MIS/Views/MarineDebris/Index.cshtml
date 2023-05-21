@@ -572,8 +572,8 @@
                             series: series,
                             chart: {
                                 type: 'bar',
-                                stacked: true,
-                                height: 350
+                                stacked: false,
+                                height: 400
                             },
                             plotOptions: {
                                 bar: {
@@ -593,18 +593,11 @@
                             xaxis: {
                                 categories: x_axis,
                             },
-                            yaxis: {
-                                logarithmic: false,
-                            },
                             fill: {
                                 opacity: 1
                             },
                             tooltip: {
-                                y: {
-                                    formatter: function (val) {
-                                        return val
-                                    }
-                                }
+                                enabled: true
                             },
                             noData: {
                                 text: 'No Data'
