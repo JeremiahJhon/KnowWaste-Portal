@@ -131,6 +131,12 @@ namespace UCOnline.Controllers
         {
             ViewBag.Title = "Good Practices";
 
+            ServerBase blogs = new ServerBase("blogs");
+            blogs.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
+            DataTable blogsData = blogs.SelectQuery();
+
+            ViewBag.Blogs = blogsData;
+
             return View();
         }
 

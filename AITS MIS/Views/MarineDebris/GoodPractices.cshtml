@@ -4,10 +4,7 @@
 @using System.Data;
 
 @{
-    DataTable countries = (DataTable)ViewBag.Country;
-    DataTable areas = (DataTable)ViewBag.Area;
-    DataTable countryPolicies = (DataTable)ViewBag.CountryPolicy;
-    DataTable template = (DataTable)ViewBag.Template;
+    DataTable blogs = (DataTable)ViewBag.Blogs;
 }
 <div class="row">
     <div class="landing-dark-bg h-100px">
@@ -45,7 +42,48 @@
                     <!--end::Title-->
                 </div>
                 <!--end::Heading-->
-                
+                <div class="row p-5">
+                    @foreach (DataRow row in blogs.Rows)
+                    {
+                        int MaxLength = 300;
+                        ;
+                        if (row["Description"].ToString().Length < MaxLength)
+                        {
+                            MaxLength = row["Description"].ToString().Length;
+                        }
+                        <div class="col-md-3">
+                            <!--begin::Feature post-->
+                            <div class="card-xl-stretch me-md-6 mb-10">
+                                <!--begin::Image-->
+                                <a class="d-block bgi-no-repeat bgi-size-cover bgi-position-center card-rounded position-relative min-h-175px mb-5" style="background-image:url('~/Content/blogs/@row["Photo"].ToString()')" data-fslightbox="lightbox-video-tutorials" href="https://www.youtube.com/embed/ptgwzvvAHy4">
+                                    <img src="~/Content/blogs/@row["Photo"].ToString()" class="position-absolute top-50 start-50 translate-middle" alt="">
+                                </a>
+                                <!--end::Image-->
+                                <!--begin::Body-->
+                                <div class="m-0">
+                                    <!--begin::Title-->
+                                    <a href="../../demo1/dist/pages/profile/overview.html" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">@row["Title"].ToString()</a>
+                                    <!--end::Title-->
+                                    <!--begin::Text-->
+                                    <div class="fw-bold fs-5 text-gray-600 text-dark my-4">@row["Description"].ToString().Substring(0, MaxLength)</div>
+                                    <!--end::Text-->
+                                    <!--begin::Content-->
+                                    <div class="fs-6 fw-bolder">
+                                        <!--begin::Author-->
+                                        <a href="../../demo1/dist/pages/profile/overview.html" class="text-gray-700 text-hover-primary">@row["Author"].ToString()</a>
+                                        <!--end::Author-->
+                                        <!--begin::Date-->
+                                        <span class="text-muted d-none">on Mar 21 2021</span>
+                                        <!--end::Date-->
+                                    </div>
+                                    <!--end::Content-->
+                                </div>
+                                <!--end::Body-->
+                            </div>
+                            <!--end::Feature post-->
+                        </div>
+                    }
+                </div>
             </div>
             <!--end::Card body-->
         </div>

@@ -43,3 +43,8 @@ body {
 .text-dark {
     color: #535551!important;
 }
+
+.menu-link {
+    color: #535551 !important;
+    font-weight: 600;
+}
