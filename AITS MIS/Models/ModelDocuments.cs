@@ -64,8 +64,15 @@ namespace kNOwaste.Models
             ViewSetting.PageLimit = server.PageLimit;
             ViewSetting.Properties = Properties;
 
-            foreach (DataRow row in data.Rows)
+            int page = 1;
+            try { page = Convert.ToInt32(HttpUtility.ParseQueryString(url).Get("p")); } catch (Exception ex) { }
+
+            if (page == 0) page = 1;
+            
+            //foreach (DataRow row in data.Rows)
+            for (int ctr = pagelimit * (page - 1); ctr < (pagelimit * page) && ctr < count; ctr++)
             {
+                DataRow row = data.Rows[ctr];
                 var attachment = "";
                 var icon = "";
 
@@ -172,8 +179,15 @@ namespace kNOwaste.Models
             ViewSetting.PageLimit = server.PageLimit;
             ViewSetting.Properties = Properties;
 
-            foreach (DataRow row in data.Rows)
+            int page = 1;
+            try { page = Convert.ToInt32(HttpUtility.ParseQueryString(url).Get("p")); } catch (Exception ex) { }
+
+            if (page == 0) page = 1;
+
+            //foreach (DataRow row in data.Rows)
+            for (int ctr = pagelimit * (page - 1); ctr < (pagelimit * page) && ctr < count; ctr++)
             {
+                DataRow row = data.Rows[ctr];
                 //var attachment = "";
                 //var icon = "file-o";
 
@@ -262,8 +276,15 @@ namespace kNOwaste.Models
             ViewSetting.PageLimit = server.PageLimit;
             ViewSetting.Properties = Properties;
 
-            foreach (DataRow row in data.Rows)
+            int page = 1;
+            try { page = Convert.ToInt32(HttpUtility.ParseQueryString(url).Get("p")); } catch (Exception ex) { }
+
+            if (page == 0) page = 1;
+
+            //foreach (DataRow row in data.Rows)
+            for (int ctr = pagelimit * (page - 1); ctr < (pagelimit * page) && ctr < count; ctr++)
             {
+                DataRow row = data.Rows[ctr];
                 var attachment = "";
                 var icon = "file-o";
 
