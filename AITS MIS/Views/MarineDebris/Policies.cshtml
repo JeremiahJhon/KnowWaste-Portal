@@ -186,7 +186,7 @@
                                         <th>@col["FieldTitle"].ToString()</th>
                                     }
                                 }
-                                <th class="header-action">Action</th>
+                                <th class="header-action d-none">Action</th>
                             </tr>
                         </thead>
                         <tbody id="">
@@ -201,7 +201,7 @@
                                                 <td>@Html.Raw(countryPolicy[col["FieldName"].ToString()].ToString())</td>
                                             }
                                         }
-                                        <td class="data-action" style="padding: 10px;">
+                                        <td class="data-action d-none" style="padding: 10px;">
                                             <div class="action-list" style="display: inline-flex;">
                                                 <a href="#" class="btn btn-outline btn-outline-solid btn-outline-primary btn-active-light-primary data-row-action-edit" data-id="@countryPolicy["id"].ToString()">Edit</a>
                                             </div>
