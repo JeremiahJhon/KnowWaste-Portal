@@ -146,6 +146,7 @@ namespace UCOnline.Models
             dtResult.Columns.Add("PolicyType", typeof(string));
             dtResult.Columns.Add("Area_ID", typeof(int));
             dtResult.Columns.Add("Area", typeof(string));
+            dtResult.Columns.Add("Link", typeof(string));
 
             if (countryPolicyData.Rows.Count == 0)
             {
@@ -176,7 +177,8 @@ namespace UCOnline.Models
                                 ae == null ? "" : ae.Field<string>("Name"),
                                 ac == null ? "" : ac.Field<string>("Name"),
                                 a.Field<int>("Area_ID"),
-                                ad == null ? "" : ad.Field<string>("Name")
+                                ad == null ? "" : ad.Field<string>("Name"),
+                                a.Field<string>("Link"),
                              }, false);
             JoinResult.CopyToDataTable();
             return dtResult;

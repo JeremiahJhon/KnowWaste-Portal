@@ -84,42 +84,51 @@ License: For each use you must have a valid license purchased only from above li
                                         <!--begin::Menu item-->
                                         <div class="menu-item">
                                             <!--begin::Menu link-->
-                                            <a class="menu-link fs-4 nav-link py-3 px-5" href="/" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">ABOUT</a>
+                                            <a class="menu-link fs-6 nav-link py-3 px-7" href="/" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">ABOUT</a>
                                             <!--end::Menu link-->
                                         </div>
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
                                         <div class="menu-item">
-                                            <div class="menu-link fs-4 py-3 px-5" data-kt-menu-trigger="hover" data-kt-menu-placement="bottom-start">
+                                            <div class="menu-link fs-6 py-3 px-7" data-kt-menu-trigger="hover" data-kt-menu-placement="bottom-start">
                                                 MARINE DEBRIS
                                             </div>
                                             <!--begin::Menu-->
                                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-200px py-4"
                                                  data-kt-menu="true">
-                                                <div data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
-                                                    <span class="menu-link fs-6 px-3">
-                                                        <a href="#" class="menu-title">Data Map</a>
-                                                        <span class="menu-arrow"></span>
-                                                    </span>
-                                                    <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-active-bg py-lg-4 w-lg-225px" style="">
-                                                        <div class="menu-item menu-lg-down-accordion">
-                                                            <a href="#" class="menu-link fs-6 px-3">
-                                                                Detailed View of Data
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                @*<div data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
+            <span class="menu-link fs-6 px-3">
+                <a href="#" class="menu-title">Data Map</a>
+                <span class="menu-arrow"></span>
+            </span>
+            <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-active-bg py-lg-4 w-lg-225px" style="">
+                <div class="menu-item menu-lg-down-accordion">
+                    <a href="#" class="menu-link fs-6 px-3">
+                        Detailed View of Data
+                    </a>
+                </div>
+            </div>
+        </div>*@
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item">
                                                     <div class="menu-item menu-lg-down-accordion">
-                                                        <a href="MarineDebris/GoodPractices" class="menu-link fs-6 px-3">
-                                                            Good Practices
+                                                        <a href="~/MarineDebris/Data" class="menu-link fs-8 px-3">
+                                                            DATA MAP
                                                         </a>
                                                     </div>
                                                 </div>
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
-                                                <div data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
+                                                <div class="menu-item">
+                                                    <div class="menu-item menu-lg-down-accordion">
+                                                        <a href="~/MarineDebris/GoodPractices" class="menu-link fs-8 px-3">
+                                                            GOOD PRACTICES
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <!--end::Menu item-->
+                                                <!--begin::Menu item-->
+                                                @*<div data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
                                                     <span class="menu-link fs-6 px-3">
                                                         <a href="#" class="menu-title">Policies</a>
                                                         <span class="menu-arrow"></span>
@@ -131,13 +140,12 @@ License: For each use you must have a valid license purchased only from above li
                                                             </a>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu item-->
+                                                </div>*@
+                                                <!--end::Menu item--><!--begin::Menu item-->
                                                 <div class="menu-item">
                                                     <div class="menu-item menu-lg-down-accordion">
-                                                        <a href="MarineDebris/ELearning" class="menu-link fs-6 px-3">
-                                                            E-Learning
+                                                        <a href="~/MarineDebris/Policies" class="menu-link fs-8 px-3">
+                                                            POLICIES
                                                         </a>
                                                     </div>
                                                 </div>
@@ -145,8 +153,17 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item">
                                                     <div class="menu-item menu-lg-down-accordion">
-                                                        <a href="MarineDebris/Documents" class="menu-link fs-6 px-3">
-                                                            Strategy Documents
+                                                        <a href="~/MarineDebris/ELearning" class="menu-link fs-8 px-3">
+                                                            E-LEARNING
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <!--end::Menu item-->
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item">
+                                                    <div class="menu-item menu-lg-down-accordion">
+                                                        <a href="~/MarineDebris/Documents" class="menu-link fs-8 px-3">
+                                                            STRATEGY DOCUMENTS
                                                         </a>
                                                     </div>
                                                 </div>
@@ -157,7 +174,7 @@ License: For each use you must have a valid license purchased only from above li
                                         <!--end::Menu item
                                         <!--begin::Menu item-->
                                         <div class="menu-item d-none">
-                                            <div class="menu-link fs-4 py-3 px-5" data-kt-menu-trigger="hover" data-kt-menu-placement="bottom-start">
+                                            <div class="menu-link fs-4 py-3 px-7" data-kt-menu-trigger="hover" data-kt-menu-placement="bottom-start">
                                                 TOPICS
                                             </div>
                                             <!--begin::Menu-->
@@ -212,21 +229,21 @@ License: For each use you must have a valid license purchased only from above li
                                         <!--begin::Menu item-->
                                         <div class="menu-item d-none">
                                             <!--begin::Menu link-->
-                                            <a class="menu-link fs-4 nav-link py-3 px-5" href="#">PROJECTS</a>
+                                            <a class="menu-link fs-6 nav-link py-3 px-7" href="#">PROJECTS</a>
                                             <!--end::Menu link-->
                                         </div>
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
                                         <div class="menu-item">
                                             <!--begin::Menu link-->
-                                            <a class="menu-link fs-4 nav-link py-3 px-5" href="#">PUBLICATIONS</a>
+                                            <a class="menu-link fs-6 nav-link py-3 px-7" href="#">PUBLICATIONS</a>
                                             <!--end::Menu link-->
                                         </div>
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
                                         <div class="menu-item">
                                             <!--begin::Menu link-->
-                                            <a class="menu-link fs-4 nav-link py-3 px-5" href="Contact">CONTACT</a>
+                                            <a class="menu-link fs-6 nav-link py-3 px-7" href="Contact">CONTACT</a>
                                             <!--end::Menu link-->
                                         </div>
                                         <!--end::Menu item-->
@@ -302,8 +319,7 @@ License: For each use you must have a valid license purchased only from above li
                                         Waste and Resource Management<br />
                                         Asian Institute of Technology<br />
                                         P.O Box (4)<br />
-                                        3rd Floor,<br />
-                                        Outreach Building<br />
+                                        3rd Floor, Outreach Building<br />
                                         58 Moo 9 Km 42<br />
                                         Paholyothin Highway<br />
                                         Pathumthani 12120<br />

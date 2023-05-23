@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using UCOnline.Models;
 using Web.Framework.Controllers;
 using Web.Framework.Server;
@@ -108,25 +109,41 @@ namespace UCOnline.Controllers
             return View();
         }
 
-        public ActionResult Documents()
+        public ActionResult Documents(int? id)
         {
             ViewBag.Title = "Documents";
+            if(id == null)
+            {
+                ServerBase country = new ServerBase("Country");
+                country.SelectFilter("SubRegion_ID = 3");
+                DataTable countryData = country.SelectQuery();
 
-            ServerBase country = new ServerBase("Country");
-            country.SelectFilter("SubRegion_ID = 3");
-            DataTable countryData = country.SelectQuery();
+                ViewBag.Country = countryData;
 
-            ViewBag.Country = countryData;
+                ServerBase docType = new ServerBase("documentcategory");
+                DataTable docTypeData = docType.SelectQuery();
 
-            ServerBase docType = new ServerBase("documentcategory");
-            //videos.SelectFilter("SubRegion_ID = 3");
-            DataTable docTypeData = docType.SelectQuery();
+                ViewBag.DocType = docTypeData;
 
-            ViewBag.DocType = docTypeData;
+                return View();
+            }
+            else
+            {
+                ServerBase country = new ServerBase("Country");
+                country.SelectFilter("SubRegion_ID = 3");
+                DataTable countryData = country.SelectQuery();
 
-            return View();
+                ViewBag.Country = countryData;
+
+                ServerBase docType = new ServerBase("documentcategory");
+                DataTable docTypeData = docType.SelectQuery();
+
+                ViewBag.DocType = docTypeData;
+
+                return View("DocumentItem");
+            }
         }
-
+        
         public ActionResult GoodPractices()
         {
             ViewBag.Title = "Good Practices";
@@ -249,7 +266,7 @@ namespace UCOnline.Controllers
             foreach(DataRow row in doctypeData.Rows)
             {
                 ServerBase document = new ServerBase("documents");
-                document.SelectFilter("Country_ID in (" + country + ") and DocumentCategory_ID = " + row["ID"].ToString());
+                document.SelectFilter("Country_ID in (" + country + ") and DocumentCategory_ID = " + row["ID"].ToString() + " and Attachment is not null and Attachment <> ''");
                 result.Tables.Add(document.SelectQuery());
                 result.Tables[result.Tables.Count - 1].TableName = row["Name"].ToString();
             }

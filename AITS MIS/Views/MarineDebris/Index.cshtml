@@ -16,8 +16,8 @@
             <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="6000" data-tns-controls="false" data-tns-nav="false" data-tns-items="1" data-tns-mouse-drag="true" data-tns-center="false" data-tns-dots="false">
                 <!--begin::Item-->
                 <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-400px min-h-400px" style="background-image: url(Content/marine-debris/AdobeStock_388696870.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%">
-                    <div class="min-h-400px px-20 py-20 mw-50" style="background-color: #2577BCcc; float: right;">
-                        <div class="fs-1 fs-lg-2qx fw-bolder text-white mb-2">
+                    <div class="min-h-400px px-20 py-20 mw-50" style="background-color: #2577BC77; float: right; ">
+                        <div class="fs-1 fs-lg-2qx px-20 fw-bolder text-white mb-2">
                             Reduce, Reuse, Recycle to Keep our Ocean Clean
                             <span class="fw-normal"></span>
                         </div>
@@ -26,8 +26,8 @@
                 <!--end::Item-->
                 <!--begin::Item-->
                 <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-400px min-h-400px" style="background-image: url(Content/marine-debris/AdobeStock_578026176.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%">
-                    <div class="min-h-400px px-20 py-20 mw-50" style="background-color: #2577BCcc; float: right;">
-                        <div class="fs-1 fs-lg-2qx fw-bolder text-white mb-2">
+                    <div class="min-h-400px px-20 py-20 mw-50" style="background-color: #2577BC77; float: right; ">
+                        <div class="fs-1 fs-lg-2qx px-20 fw-bolder text-white mb-2">
                             Change starts in us
                             <span class="fw-normal">
                             </span>
@@ -37,8 +37,8 @@
                 <!--end::Item-->
                 <!--begin::Item-->
                 <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-400px min-h-400px" style="background-image: url(Content/marine-debris/AdobeStock_205485738.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%">
-                    <div class="min-h-400px px-20 py-20 mw-50" style="background-color: #2577BCcc; float: right;">
-                        <div class="fs-1 fs-lg-2qx fw-bolder text-white mb-2">
+                    <div class="min-h-400px px-20 py-20 mw-50" style="background-color: #2577BC77; float: right; ">
+                        <div class="fs-1 fs-lg-2qx px-20 fw-bolder text-white mb-2">
                             Marine Debris is a threat to ocean life
                             <span class="fw-normal"></span>
                         </div>
@@ -346,10 +346,16 @@
                 <div class="m-5 mb-10" ">
                     <h3 class="mb-3">Country</h3>
                     <div class="w-100">
+                        <div class="form-check form-switch form-check-custom form-check-solid m-2 mb-5">
+                            <input class="form-check-input h-20px w-30px" name="solid-country-all" type="checkbox" value="All" id="solid-country-all" checked="checked" />
+                            <label class="form-check-label" for="solid-country-all">
+                                All
+                            </label>
+                        </div>
                         @foreach (DataRow row in countries.Rows)
                         {
                             <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                                <input class="form-check-input h-20px w-30px country-filter" name="country" type="checkbox" value="@row["ID"].ToString()" id="country-@row["ID"].ToString()" checked="checked" />
+                                <input class="form-check-input h-20px w-30px solid-country-filter" name="country" type="checkbox" value="@row["ID"].ToString()" id="country-@row["ID"].ToString()" checked="checked" />
                                 <label class="form-check-label" for="country-@row["ID"].ToString()">
                                     @row["Name"].ToString()
                                 </label>
@@ -360,32 +366,38 @@
                 <div class="m-5 mb-10">
                     <h3 class="mb-3">Type</h3>
                     <div class="w-100">
+                        <div class="form-check form-switch form-check-custom form-check-solid m-2 mb-5">
+                            <input class="form-check-input h-20px w-30px" name="solid-type-all" type="checkbox" value="All" id="solid-type-all" checked="checked" />
+                            <label class="form-check-label" for="solid-type-all">
+                                All
+                            </label>
+                        </div>
                         <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                            <input class="form-check-input h-20px w-30px type-filter" name="type" type="checkbox" value="Generated" id="type-generated" checked="checked">
+                            <input class="form-check-input h-20px w-30px solid-type-filter" name="type" type="checkbox" value="Generated" id="type-generated" checked="checked">
                             <label class="form-check-label" for="type-generated">
                                 Generated
                             </label>
                         </div>
                         <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                            <input class="form-check-input h-20px w-30px type-filter" name="type" type="checkbox" value="Collected" id="type-collected" checked="checked">
+                            <input class="form-check-input h-20px w-30px solid-type-filter" name="type" type="checkbox" value="Collected" id="type-collected" checked="checked">
                             <label class="form-check-label" for="type-collected">
                                 Collected
                             </label>
                         </div>
                         <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                            <input class="form-check-input h-20px w-30px type-filter" name="type" type="checkbox" value="Recycled" id="type-recycled" checked="checked">
+                            <input class="form-check-input h-20px w-30px solid-type-filter" name="type" type="checkbox" value="Recycled" id="type-recycled" checked="checked">
                             <label class="form-check-label" for="type-recycled">
                                 Recycled
                             </label>
                         </div>
                         <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                            <input class="form-check-input h-20px w-30px type-filter" name="type" type="checkbox" value="Recovered" id="type-recovered" checked="checked">
+                            <input class="form-check-input h-20px w-30px solid-type-filter" name="type" type="checkbox" value="Recovered" id="type-recovered" checked="checked">
                             <label class="form-check-label" for="type-recovered">
                                 Recovered
                             </label>
                         </div>
                         <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                            <input class="form-check-input h-20px w-30px type-filter" name="type" type="checkbox" value="Disposal" id="type-disposal" checked="checked">
+                            <input class="form-check-input h-20px w-30px solid-type-filter" name="type" type="checkbox" value="Disposal" id="type-disposal" checked="checked">
                             <label class="form-check-label" for="type-disposal">
                                 Disposal
                             </label>
@@ -440,10 +452,16 @@
                 <div class="m-5 mb-10" ">
                     <h3 class="mb-3">Country</h3>
                     <div class="w-100">
+                        <div class="form-check form-switch form-check-custom form-check-solid m-2 mb-5">
+                            <input class="form-check-input h-20px w-30px" name="plastic-country-all" type="checkbox" value="All" id="plastic-country-all" checked="checked" />
+                            <label class="form-check-label" for="plastic-country-all">
+                                All
+                            </label>
+                        </div>
                         @foreach (DataRow row in countries.Rows)
                         {
                             <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                                <input class="form-check-input h-20px w-30px country-filter" name="country" type="checkbox" value="@row["ID"].ToString()" id="country-@row["ID"].ToString()" checked="checked" />
+                                <input class="form-check-input h-20px w-30px plastic-country-filter" name="country" type="checkbox" value="@row["ID"].ToString()" id="country-@row["ID"].ToString()" checked="checked" />
                                 <label class="form-check-label" for="country-@row["ID"].ToString()">
                                     @row["Name"].ToString()
                                 </label>
@@ -454,32 +472,38 @@
                 <div class="m-5 mb-10">
                     <h3 class="mb-3">Type</h3>
                     <div class="w-100">
+                        <div class="form-check form-switch form-check-custom form-check-solid m-2 mb-5">
+                            <input class="form-check-input h-20px w-30px" name="plastic-type-all" type="checkbox" value="All" id="plastic-type-all" checked="checked" />
+                            <label class="form-check-label" for="plastic-type-all">
+                                All
+                            </label>
+                        </div>
                         <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                            <input class="form-check-input h-20px w-30px type-filter" name="type" type="checkbox" value="Generated" id="type-generated" checked="checked">
+                            <input class="form-check-input h-20px w-30px plastic-type-filter" name="type" type="checkbox" value="Generated" id="type-generated" checked="checked">
                             <label class="form-check-label" for="type-generated">
                                 Generated
                             </label>
                         </div>
                         <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                            <input class="form-check-input h-20px w-30px type-filter" name="type" type="checkbox" value="Collected" id="type-collected" checked="checked">
+                            <input class="form-check-input h-20px w-30px plastic-type-filter" name="type" type="checkbox" value="Collected" id="type-collected" checked="checked">
                             <label class="form-check-label" for="type-collected">
                                 Collected
                             </label>
                         </div>
                         <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                            <input class="form-check-input h-20px w-30px type-filter" name="type" type="checkbox" value="Recycled" id="type-recycled" checked="checked">
+                            <input class="form-check-input h-20px w-30px plastic-type-filter" name="type" type="checkbox" value="Recycled" id="type-recycled" checked="checked">
                             <label class="form-check-label" for="type-recycled">
                                 Recycled
                             </label>
                         </div>
                         <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                            <input class="form-check-input h-20px w-30px type-filter" name="type" type="checkbox" value="Recovered" id="type-recovered" checked="checked">
+                            <input class="form-check-input h-20px w-30px plastic-type-filter" name="type" type="checkbox" value="Recovered" id="type-recovered" checked="checked">
                             <label class="form-check-label" for="type-recovered">
                                 Recovered
                             </label>
                         </div>
                         <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                            <input class="form-check-input h-20px w-30px type-filter" name="type" type="checkbox" value="Disposal" id="type-disposal" checked="checked">
+                            <input class="form-check-input h-20px w-30px plastic-type-filter" name="type" type="checkbox" value="Disposal" id="type-disposal" checked="checked">
                             <label class="form-check-label" for="type-disposal">
                                 Disposal
                             </label>
@@ -797,5 +821,43 @@
                 },
             })
         }
+        $("#solid-country-all").change(function () {
+            if (this.checked) {
+                var clist = document.getElementsByClassName("solid-country-filter");
+                for (var i = 0; i < clist.length; ++i) { clist[i].checked = true; }
+            } else {
+                var clist = document.getElementsByClassName("solid-country-filter");
+                for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
+            }
+            getDocumentData();
+        });
+        $("#solid-type-all").change(function () {
+            if (this.checked) {
+                var clist = document.getElementsByClassName("solid-type-filter");
+                for (var i = 0; i < clist.length; ++i) { clist[i].checked = true; }
+            } else {
+                var clist = document.getElementsByClassName("solid-type-filter");
+                for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
+            }
+        });
+        $("#plastic-country-all").change(function () {
+            if (this.checked) {
+                var clist = document.getElementsByClassName("plastic-country-filter");
+                for (var i = 0; i < clist.length; ++i) { clist[i].checked = true; }
+            } else {
+                var clist = document.getElementsByClassName("plastic-country-filter");
+                for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
+            }
+            getDocumentData();
+        });
+        $("#plastic-type-all").change(function () {
+            if (this.checked) {
+                var clist = document.getElementsByClassName("plastic-type-filter");
+                for (var i = 0; i < clist.length; ++i) { clist[i].checked = true; }
+            } else {
+                var clist = document.getElementsByClassName("plastic-type-filter");
+                for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
+            }
+        });
     });
 </script>

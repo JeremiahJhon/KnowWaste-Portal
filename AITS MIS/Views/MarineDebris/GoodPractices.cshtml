@@ -55,17 +55,17 @@
                             <!--begin::Feature post-->
                             <div class="card-xl-stretch me-md-6 mb-10">
                                 <!--begin::Image-->
-                                <a class="d-block bgi-no-repeat bgi-size-cover bgi-position-center card-rounded position-relative min-h-175px mb-5" style="background-image:url('~/Content/blogs/@row["Photo"].ToString()')" data-fslightbox="lightbox-video-tutorials" href="#">
+                                <a class="d-block bgi-no-repeat bgi-size-cover bgi-position-center card-rounded position-relative min-h-175px mb-5" style="background-image:url('~/Content/blogs/@row["Photo"].ToString()')" data-fslightbox="lightbox-video-tutorials" href="MarineDebris/GoodPractices/@row["ID"].ToString()">
                                     <img src="~/Content/blogs/@row["Photo"].ToString()" class="position-absolute top-50 start-50 translate-middle" alt="">
                                 </a>
                                 <!--end::Image-->
                                 <!--begin::Body-->
                                 <div class="m-0">
                                     <!--begin::Title-->
-                                    <a href="#" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">@row["Title"].ToString()</a>
+                                    <a href="MarineDebris/GoodPractices/@row["ID"].ToString()" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">@row["Title"].ToString()</a>
                                     <!--end::Title-->
                                     <!--begin::Text-->
-                                    <div class="fw-bold fs-5 text-gray-600 text-dark my-4">@Html.Raw(row["Description"].ToString().Substring(0, MaxLength))</div>
+                                    <div class="fw-bold fs-5 text-gray-600 text-dark my-4">@Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<a href="MarineDebris/GoodPractices/@row["ID"].ToString()">see more</a></div>
                                     <!--end::Text-->
                                     <!--begin::Content-->
                                     <div class="fs-6 fw-bolder">
