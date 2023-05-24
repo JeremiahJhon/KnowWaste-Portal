@@ -52,6 +52,19 @@ namespace UCOnline.Controllers
             return View();
         }
 
+        public override ActionResult Data()
+        {
+            ViewBag.Title = "Data Map";
+
+            ServerBase country = new ServerBase("Country");
+            country.SelectFilter("SubRegion_ID = 3");
+            DataTable countryData = country.SelectQuery();
+
+            ViewBag.Country = countryData;
+
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.About = "";
