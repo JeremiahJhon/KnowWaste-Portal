@@ -84,9 +84,9 @@
 
 <div class="container d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px px-9">
     <div class="row w-100 gy-10 mb-md-10">
-        <div class="col-md-6 px-2">
-            <div class="w-100 h-100 d-flex flex-column rounded-3 bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
-                <div class="mb-7 text-center">
+        <div class="col-md-12 px-2 mb-10">
+            <div class="w-100 h-100 d-flex flex-column rounded-3 bg-body" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
+                <div class="container mb-7 text-center pt-20" style="padding: 20px 15%;">
                     <!--begin::Title-->
                     <h1 class="text-dark mb-5 fw-boldest" style="color: #2577BC!important; ">E-Learning Courses</h1>
                     <!--end::Title-->
@@ -95,21 +95,23 @@
                     <div class="w-100 mb-5">
                         @foreach (DataRow row in elearnings.Rows)
                         {
-                            <div class="d-flex mb-5">
+                            <a class="d-flex mb-5 text-dark text-hover-primary" href="~/MarineDebris/ELearning/@row["ID"].ToString()">
                                 <div class="mx-5 my-2"><img src="~/Content/icons/learning.png" height="30" /></div>
-                                <span class="fw-bold fs-6 my-auto text-gray-800 text-start pe-3">@row["Title"].ToString()</span>
-                            </div>
+                                <span class="fw-bold fs-5 my-auto text-gray-800 text-start pe-3 text-hover-primary">@row["Title"].ToString()</span>
+                            </a>
                         }
                     </div>
                 </div>
-                <a href="MarineDebris/ELearning" class="menu-link px-3 m-auto">
-                    See more
-                </a>
+                <div class="row">
+                    <a href="MarineDebris/ELearning" class="py-10 text-center see-more-row fs-4 px-3 m-auto">
+                        See more
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="col-md-6 px-2">
-            <div class="w-100 h-100 d-flex flex-column rounded-3 bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
-                <div class="mb-7 text-center">
+        <div class="col-md-12 px-2 mb-10">
+            <div class="w-100 h-100 d-flex flex-column rounded-3 bg-body" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
+                <div class="container mb-7 text-center pt-20" style="padding: 20px 15%;">
                     <!--begin::Title-->
                     <h1 class="text-dark mb-5 fw-boldest" style="color: #2577BC!important; ">Documents</h1>
                     <!--end::Title-->
@@ -118,16 +120,18 @@
                     <div class="w-100 mb-5">
                         @foreach (DataRow row in documents.Rows)
                         {
-                            <div class="d-flex mb-5">
+                            <a class="d-flex mb-5 text-dark text-hover-primary" href="~/MarineDebris/Documents/@row["ID"].ToString()">
                                 <div class="mx-5 my-2"><img src="~/Content/icons/pdf-icon.png" height="30" /></div>
-                                <span class="fw-bold fs-6 my-auto text-gray-800 text-start pe-3">@row["Title"].ToString()</span>
-                            </div>
+                                <span class="fw-bold fs-5 my-auto text-gray-800 text-start pe-3 text-hover-primary">@row["Title"].ToString()</span>
+                            </a>
                         }
                     </div>
                 </div>
-                <a href="MarineDebris/Documents" class="menu-link px-3 m-auto">
-                    See more
-                </a>
+                <div class="row">
+                    <a href="MarineDebris/Documents" class="py-10 text-center see-more-row fs-4 px-3 m-auto">
+                        See more
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -224,7 +228,7 @@
     <!--end::Container-->
 </div>
 
-<div class="container d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px px-9">
+<div class="container d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px px-9 mb-20">
     <div class="row w-100 gy-10 mb-md-10 mt-md-5">
         <div class="col-md-6 px-2">
             <div class="w-100 h-100 d-flex flex-column rounded-3 bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">

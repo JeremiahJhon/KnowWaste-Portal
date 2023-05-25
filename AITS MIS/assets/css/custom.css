@@ -48,3 +48,18 @@ body {
     color: #535551 !important;
     font-weight: 700;
 }
+
+.menu-link:hover {
+    color: #507938 !important;
+    font-weight: 800;
+}
+
+.see-more-row:hover {
+    color: #23A2D7 !important;
+}
+
+.see-more-row:hover {
+    color: #2577BC !important;
+    font-weight: 600;
+    background-color: #2577BC22;
+}

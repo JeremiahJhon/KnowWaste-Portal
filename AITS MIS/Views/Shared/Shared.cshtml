@@ -75,7 +75,7 @@
                 <!-- BEGIN: BRAND -->
                 <div class="c-navbar-wrapper clearfix">
                     <div class="c-brand c-pull-left">
-                        <a href="../" class="c-logo"><img src="~/Content/Images/logo/Knowwaste.png" alt="KNOWASTE" class="applogo c-desktop-logo" /></a>
+                        <a href="../" class="c-logo"><img src="~/Content/Images/logo/Knowwaste.png" style="width: 180px;" alt="KNOWASTE" class="applogo c-desktop-logo" /></a>
                         <a href="../" class="c-logo"><img src="~/Content/Images/logo/Knowwaste.png" alt="KNOWASTE" class="applogo c-desktop-logo-inverse" /></a>
                         <a href="../" class="c-logo"><img src="~/Content/Images/logo/Knowwaste.png" alt="KNOWASTE" class="applogo c-mobile-logo" /></a>
 
@@ -106,6 +106,11 @@
                     <!-- BEGIN: LAYOUT/HEADERS/MEGA-MENU -->
                     <!-- BEGIN: MEGA MENU -->
                     <!-- Dropdown menu toggle on mobile: c-toggler class can be applied to the link arrow or link itself depending on toggle mode -->
+                    <style>
+                        .c-link{
+                           padding: 35px 10px;
+                        }
+                    </style>
                     <nav class="c-mega-menu c-pull-right c-mega-menu-dark c-mega-menu-dark-mobile c-fonts-uppercase c-fonts-bold">
                         <ul class="nav navbar-nav c-theme-nav">
                             <li> <a href="#" class="c-link">About</a>
@@ -117,11 +122,12 @@
                                 </a>
 
                                 <ul class="first-menu dropdown-menu c-menu-type-classic c-pull-left">
-                                    <li><a href="~/MarineDebris/Documents"> Knowledge Products</a></li>
-                                    <li><a href="~/MarineDebris/ELearning">E-Learning Courses</a></li>
-                                    <li><a href="~/MarineDebris/GoodPractices">Good Practices</a></li>
                                     <li><a href="~/MarineDebris/Data">Data</a></li>
-                                    <li><a href="~/MarineDebris/Policies">Policies</a></li>
+                                    <li><a href="~/MarineDebris/GoodPractices">Good Practices</a></li>
+                                    <li><a href="~/MarineDebris/Policies">Policy</a></li>
+                                    <li><a href="~/MarineDebris/ELearning">E-Learning Courses</a></li>
+                                    <li><a href="~/MarineDebris/Documents"> Documents</a></li>
+                                    <li><a href="#"> Strategy Documents</a></li>
                                 </ul>
                             </li>
 
@@ -144,8 +150,9 @@
                             </li>
 
                             <li><a href="#" class="c-link"> Projects </a> </li>
+                            <li><a href="#" class="c-link"> Publications </a> </li>
                             <li><a href="~/Contact" class="c-link">Contact</a> </li>
-                            <li class="search-field c-link">
+                            <li class="search-field c-link" style="position: fixed; right: 0px;">
                                 <script>
                                     (function () {
                                         var cx = '003366087466855040359:7y-p87ccjws';

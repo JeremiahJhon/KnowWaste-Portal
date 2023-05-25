@@ -128,7 +128,7 @@ namespace UCOnline.Controllers
             if(id == null)
             {
                 ServerBase country = new ServerBase("Country");
-                country.SelectFilter("SubRegion_ID = 3");
+                country.SelectFilter("SubRegion_ID = 3 and Geotheme_ID = 6");
                 DataTable countryData = country.SelectQuery();
 
                 ViewBag.Country = countryData;
