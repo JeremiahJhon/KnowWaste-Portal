@@ -128,7 +128,7 @@ namespace UCOnline.Controllers
             if(id == null)
             {
                 ServerBase country = new ServerBase("Country");
-                country.SelectFilter("SubRegion_ID = 3 and Geotheme_ID = 6");
+                country.SelectFilter("SubRegion_ID = 3");
                 DataTable countryData = country.SelectQuery();
 
                 ViewBag.Country = countryData;
@@ -279,7 +279,7 @@ namespace UCOnline.Controllers
             foreach(DataRow row in doctypeData.Rows)
             {
                 ServerBase document = new ServerBase("documents");
-                document.SelectFilter("Country_ID in (" + country + ") and DocumentCategory_ID = " + row["ID"].ToString() + " and Attachment is not null and Attachment <> ''");
+                document.SelectFilter("Country_ID in (" + country + ") and DocumentCategory_ID = " + row["ID"].ToString() + " and Attachment is not null and Attachment <> '' and Geotheme_ID = 6");
                 result.Tables.Add(document.SelectQuery());
                 result.Tables[result.Tables.Count - 1].TableName = row["Name"].ToString();
             }
