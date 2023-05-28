@@ -63,3 +63,7 @@ body {
     font-weight: 600;
     background-color: #2577BC22;
 }
+
+.card{
+    border-radius: 2px;
+}

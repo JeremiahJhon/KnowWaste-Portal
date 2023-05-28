@@ -67,8 +67,8 @@
     </div>
 </div>
 
-<div class="row w-100 my-10 px-9">
-    <div class="d-flex flex-stack flex-wrap flex-md-nowrap card-rounded shadow p-8" style="background-color: #2577BC;">
+<div class="row w-100 my-10 px-9 d-none">
+    <div class="d-flex flex-stack flex-wrap flex-md-nowrap card shadow p-8" style="background-color: #2577BC;">
         <!--begin::Content-->
         <div class="mb-5">
             <!--begin::Description-->
@@ -82,35 +82,44 @@
     </div>
 </div>
 
-<div class="container d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px px-9">
-    <div class="row w-100 gy-10 mb-md-10">
-        <div class="col-md-12 px-2 mb-10">
-            <div class="w-100 h-100 d-flex flex-column rounded-3 bg-body" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
-                <div class="container mb-7 text-center pt-20" style="padding: 20px 15%;">
-                    <!--begin::Title-->
-                    <h1 class="text-dark mb-5 fw-boldest" style="color: #2577BC!important; ">E-Learning Courses</h1>
-                    <!--end::Title-->
-                    <!--begin::Description-->
-                    <div class="text-gray-400 fw-bold mb-15">Short description here</div>
-                    <div class="w-100 mb-5">
-                        @foreach (DataRow row in elearnings.Rows)
-                        {
-                            <a class="d-flex mb-5 text-dark text-hover-primary" href="~/MarineDebris/ELearning/@row["ID"].ToString()">
-                                <div class="mx-5 my-2"><img src="~/Content/icons/learning.png" height="30" /></div>
-                                <span class="fw-bold fs-5 my-auto text-gray-800 text-start pe-3 text-hover-primary">@row["Title"].ToString()</span>
-                            </a>
-                        }
-                    </div>
-                </div>
-                <div class="row">
-                    <a href="MarineDebris/ELearning" class="py-10 text-center see-more-row fs-4 px-3 m-auto">
-                        See more
+<style>
+    .title {
+        color: #2577BC !important;
+        font-size: 36px !important;
+        letter-spacing: 10px;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12 pt-10" style="background-image: url('Content/marine-debris/elearning-1.jpg'); background-repeat: no-repeat; background-position: right; background-size: contain; background-color: white;">
+        <div class="container mb-7 pt-20">
+            <!--begin::Title-->
+            <h1 class="text-dark fs-1 mb-5 fw-boldest title" style="">E-LEARNING</h1>
+            <!--end::Title-->
+            <!--begin::Description-->
+            <div class="text-gray-400 fw-bold mb-15 d-none">Short description here</div>
+            <div class="w-100 mb-5">
+                @foreach (DataRow row in elearnings.Rows)
+                {
+                    <a class="d-flex mb-5 text-dark text-hover-primary fs-1 fw-600" href="~/MarineDebris/ELearning/@row["ID"].ToString()">
+                        <div class="mx-5 my-2 d-none"><img src="~/Content/icons/learning.png" height="30" /></div>
+                        <span class="fw-bold fs-5 my-auto text-gray-800 text-start pe-3 text-hover-primary">@row["Title"].ToString()</span>
                     </a>
-                </div>
+                }
             </div>
         </div>
+        <div class="row">
+            <a href="MarineDebris/ELearning" class="py-10 text-center see-more-row fs-4 px-3 m-auto">
+                See more
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px px-9">
+    <div class="row w-100 gy-10 mt-10 mb-md-10">
+        
         <div class="col-md-12 px-2 mb-10">
-            <div class="w-100 h-100 d-flex flex-column rounded-3 bg-body" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
+            <div class="w-100 h-100 d-flex flex-column bg-body" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
                 <div class="container mb-7 text-center pt-20" style="padding: 20px 15%;">
                     <!--begin::Title-->
                     <h1 class="text-dark mb-5 fw-boldest" style="color: #2577BC!important; ">Documents</h1>
@@ -121,7 +130,7 @@
                         @foreach (DataRow row in documents.Rows)
                         {
                             <a class="d-flex mb-5 text-dark text-hover-primary" href="~/MarineDebris/Documents/@row["ID"].ToString()">
-                                <div class="mx-5 my-2"><img src="~/Content/icons/pdf-icon.png" height="30" /></div>
+                                <div class="mx-5 my-2 d-none"><img src="~/Content/icons/pdf-icon.png" height="30" /></div>
                                 <span class="fw-bold fs-5 my-auto text-gray-800 text-start pe-3 text-hover-primary">@row["Title"].ToString()</span>
                             </a>
                         }
@@ -139,7 +148,7 @@
 
 <div class="row">
     <!--begin::Curve bottom-->
-    <div id="pb_line" class="h-150px landing-curve landing-dark-color" style="background-repeat: no-repeat; background-image: url(&quot;/Content/static/AdobeStock_584264594.jpeg&quot;); background-size: cover;">
+    <div id="pb_line" class="h-250px landing-curve landing-dark-color" style="background-repeat: no-repeat; background-image: url(&quot;/Content/static/AdobeStock_584264594.jpeg&quot;); background-size: cover;">
         @*<svg viewBox="15 12 1470 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 11C3.93573 11.3356 7.85984 11.6689 11.7725 12H1488.16C1492.1 11.6689 1496.04 11.3356 1500 11V12H1488.16C913.668 60.3476 586.282 60.6117 11.7725 12H0V11Z" fill="currentColor"></path>
             </svg>*@
@@ -149,12 +158,12 @@
         document.addEventListener("scroll", (event) => {
             var scrollPos = window.scrollY;
             var elemPos = document.getElementById("pb_line").offsetTop;
-            document.getElementById("pb_line").style.backgroundPosition = "50% -" + String((parseFloat(elemPos) * 0.3) - (parseFloat(scrollPos) * 0.3)) + "px";
+            document.getElementById("pb_line").style.backgroundPosition = "60% -" + String((parseFloat(elemPos) * 0.4) - (parseFloat(scrollPos) * 0.4)) + "px";
         });
     </script>
 </div>
 
-<div class="row py-10 mb-10">
+<div class="row py-10 m-15">
     <!--begin::Container-->
     <div class="container">
         <!--begin::Heading-->
@@ -228,10 +237,10 @@
     <!--end::Container-->
 </div>
 
-<div class="container d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px px-9 mb-20">
+<div class="row d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px mb-20 mx-2">
     <div class="row w-100 gy-10 mb-md-10 mt-md-5">
         <div class="col-md-6 px-2">
-            <div class="w-100 h-100 d-flex flex-column rounded-3 bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
+            <div class="w-100 h-100 d-flex flex-column bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
                 <div class="col-md-12 mb-7 text-center">
                     <!--begin::Title-->
                     <h1 class="text-dark mb-5 fw-boldest">Solid Waste</h1>
@@ -252,7 +261,7 @@
             </div>
         </div>
         <div class="col-md-6 px-2">
-            <div class="w-100 h-100 d-flex flex-column rounded-3 bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
+            <div class="w-100 h-100 d-flex flex-column bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
                 <div class="col-md-12 mb-7 text-center">
                     <!--begin::Title-->
                     <h1 class="text-dark mb-5 fw-boldest">Plastic Waste</h1>
@@ -613,21 +622,25 @@
                             }
                             count++;
                         }
-                        console.log(x_axis);
-                        console.log(series);
 
                         var options = {
                             series: series,
                             chart: {
                                 type: 'bar',
-                                stacked: false,
-                                height: 400
+                                stacked: true,
+                                height: 400,
+                                toolbar: {
+                                    show: true
+                                },
+                                zoom: {
+                                    enabled: true
+                                }
                             },
                             plotOptions: {
                                 bar: {
                                     horizontal: false,
-                                    columnWidth: '55%',
-                                    endingShape: 'rounded'
+                                    endingShape: 'rounded',
+                                    borderRadius: 2
                                 },
                             },
                             dataLabels: {
@@ -640,6 +653,42 @@
                             },
                             xaxis: {
                                 categories: x_axis,
+                                labels: {
+                                    show: true,
+                                    minWidth: 0,
+                                    maxWidth: 160,
+                                    style: {
+                                        fontSize: '12px',
+                                        fontFamily: 'Roboto Condensed, sans-serif',
+                                        fontWeight: 400,
+                                    }
+                                },
+                                title: {
+                                    text: 'Year'
+                                }
+                            },
+                            yaxis: {
+                                labels: {
+                                    show: true,
+                                    align: 'right',
+                                    minWidth: 0,
+                                    maxWidth: 160,
+                                    style: {
+                                        fontSize: '12px',
+                                        fontFamily: 'Roboto Condensed, sans-serif',
+                                        fontWeight: 400,
+                                    },
+                                    offsetX: 0,
+                                    offsetY: 0,
+                                    rotate: 0,
+                                    formatter: function (val) {
+                                        console.log(val);
+                                        return numFormatter(val);//.toLocaleString('en-US')
+                                    }
+                                },
+                                title: {
+                                    text: 'Tons'
+                                }
                             },
                             fill: {
                                 opacity: 1
@@ -648,13 +697,17 @@
                                 enabled: true,
                                 y: {
                                     formatter: function (val) {
-                                        return val.toLocaleString('en-US');
+                                        return val.toLocaleString('en-US') + " Tons";
                                     }
                                 }
                             },
                             noData: {
                                 text: 'No Data'
-                            }
+                            },
+                            legend: {
+                                position: 'right',
+                                offsetY: 40
+                            },
                         };
 
                         chart1 = new ApexCharts(document.querySelector("#chart-1"), options);
@@ -756,21 +809,25 @@
                             }
                             count++;
                         }
-                        console.log(x_axis);
-                        console.log(series);
 
                         var options = {
                             series: series,
                             chart: {
                                 type: 'bar',
-                                stacked: false,
-                                height: 350
+                                stacked: true,
+                                height: 400,
+                                toolbar: {
+                                    show: true
+                                },
+                                zoom: {
+                                    enabled: true
+                                }
                             },
                             plotOptions: {
                                 bar: {
                                     horizontal: false,
-                                    columnWidth: '55%',
-                                    endingShape: 'rounded'
+                                    endingShape: 'rounded',
+                                    borderRadius: 2
                                 },
                             },
                             dataLabels: {
@@ -783,20 +840,61 @@
                             },
                             xaxis: {
                                 categories: x_axis,
+                                labels: {
+                                    show: true,
+                                    minWidth: 0,
+                                    maxWidth: 160,
+                                    style: {
+                                        fontSize: '12px',
+                                        fontFamily: 'Roboto Condensed, sans-serif',
+                                        fontWeight: 400,
+                                    }
+                                },
+                                title: {
+                                    text: 'Year'
+                                }
+                            },
+                            yaxis: {
+                                labels: {
+                                    show: true,
+                                    align: 'right',
+                                    minWidth: 0,
+                                    maxWidth: 160,
+                                    style: {
+                                        fontSize: '12px',
+                                        fontFamily: 'Roboto Condensed, sans-serif',
+                                        fontWeight: 400,
+                                    },
+                                    offsetX: 0,
+                                    offsetY: 0,
+                                    rotate: 0,
+                                    formatter: function (val) {
+                                        console.log(val);
+                                        return numFormatter(val);//.toLocaleString('en-US')
+                                    }
+                                },
+                                title: {
+                                    text: 'Tons'
+                                }
                             },
                             fill: {
                                 opacity: 1
                             },
                             tooltip: {
+                                enabled: true,
                                 y: {
                                     formatter: function (val) {
-                                        return val
+                                        return val.toLocaleString('en-US') + " Tons";
                                     }
                                 }
                             },
                             noData: {
                                 text: 'No Data'
-                            }
+                            },
+                            legend: {
+                                position: 'right',
+                                offsetY: 40
+                            },
                         };
 
                         chart2 = new ApexCharts(document.querySelector("#chart-2"), options);
@@ -863,5 +961,16 @@
                 for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
             }
         });
+        function numFormatter(num) {
+            if (num >= 1000000000) {
+                return Math.abs(num) > 999999999 ? Math.sign(num) * ((Math.abs(num) / 1000000000).toFixed(1)) + ' B' : Math.sign(num) * Math.abs(num)
+            }
+            if (num >= 1000000) {
+                return Math.abs(num) > 999999 ? Math.sign(num) * ((Math.abs(num) / 1000000).toFixed(1)) + ' M' : Math.sign(num) * Math.abs(num)
+            }
+            if (num >= 1000) {
+                return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + ' K' : Math.sign(num) * Math.abs(num)
+            }
+        }
     });
 </script>
