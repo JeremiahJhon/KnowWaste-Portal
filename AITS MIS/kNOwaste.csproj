@@ -141,8 +141,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\MarineDebrisController.cs" />
     <Compile Include="Controllers\RegionController.cs" />
     <Compile Include="Controllers\CountryReferencesController.cs" />
@@ -172,6 +174,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelPages.cs" />
+    <Compile Include="Models\ModelAbout.cs" />
     <Compile Include="Models\ModelRegion.cs" />
     <Compile Include="Models\ModelCountryReferences.cs" />
     <Compile Include="Models\ModelCountryPopulation.cs" />
@@ -6531,6 +6535,8 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\MarineDebris\DocumentItem.cshtml" />
     <Content Include="Views\MarineDebris\Data.cshtml" />
+    <Content Include="Views\Pages\Index.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
