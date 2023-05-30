@@ -161,7 +161,7 @@ namespace UCOnline.Controllers
 
                 ViewBag.DocType = docTypeData;
 
-                return View("DocumentItem");
+                return View();//DocumentItem
             }
         }
         
