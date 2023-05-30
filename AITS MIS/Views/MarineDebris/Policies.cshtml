@@ -81,7 +81,7 @@
                                         bool hasRecord = false;
                                         foreach (DataRow countryPolicy in countryPolicies.Rows)
                                         {
-                                            if (countryPolicy["Area_ID"].ToString() == area["ID"].ToString() && 
+                                            if (countryPolicy["Area_ID"].ToString() == area["ID"].ToString() &&
                                                 countryPolicy["Country_ID"].ToString() == country["ID"].ToString())
                                             {
                                                 hasRecord = true;
@@ -91,17 +91,17 @@
 
                                         if (hasRecord)
                                         {
-                                                <td class="p-1 text-center"><span class="policy-yes"></span></td>
-                                            }
-                                            else
-                                            {
-                                                <td class="p-1 text-center"><span class="policy-no"></span></td>
-                                            }
+                                            <td class="p-1 text-center"><span class="policy-yes" data-country="@country["ID"].ToString()" data-area="@area["ID"].ToString()"></span></td>
                                         }
-                                    </tr>
+                                        else
+                                        {
+                                            <td class="p-1 text-center"><span class="policy-no"></span></td>
+                                        }
+                                    }
+                                </tr>
                             }
                         </tbody>
-                        </table>
+                    </table>
                 </div>
                 <!--end::Tabs content-->
             </div>
@@ -145,8 +145,8 @@
                                     <label class="m-auto px-2">
                                         Country
                                     </label>
-                                    <select id="filter-Area" name="Area" class="form-select form-select form-select-solid" data-placeholder="Select an option" style="border-color: #009ef7 !important;" aria-label="Area">
-                                        <option value="0"></option>
+                                    <select id="filter-Country" name="Area" class="form-select form-select form-select-solid" data-placeholder="Select an option" style="border-color: #009ef7 !important;" aria-label="Area">
+                                        <option value="0">All</option>
                                         @{
                                             foreach (DataRow country in countries.Rows)
                                             {
@@ -160,7 +160,7 @@
                                         Area
                                     </label>
                                     <select id="filter-Area" name="Area" class="form-select form-select form-select-solid" data-placeholder="Select an option" style="border-color: #009ef7 !important;" aria-label="Area">
-                                        <option value="0"></option>
+                                        <option value="0">All</option>
                                         @{
                                             foreach (DataRow area in areas.Rows)
                                             {
@@ -171,11 +171,11 @@
                                 </div>
                             </div>
                             <!--end::Page title-->
-                            </div>
-                            <!--end::Actions-->
                         </div>
-                        <!--end::Container-->
+                        <!--end::Actions-->
                     </div>
+                    <!--end::Container-->
+                </div>
                 <div class="table-responsive">
                     <table class="table table-striped gy-7 gs-7 table-hover" id="datatable">
                         <thead>
@@ -189,7 +189,7 @@
                                 <th class="header-action">Link</th>
                             </tr>
                         </thead>
-                        <tbody id="">
+                        <tbody id="table-data">
                             @{
                                 foreach (DataRow countryPolicy in countryPolicies.Rows)
                                 {
@@ -203,10 +203,12 @@
                                         }
                                         <td class="data-action" style="padding: 10px;">
                                             <div class="action-list" style="display: inline-flex;">
-                                                <a href="@countryPolicy["Link"].ToString()" class="btn btn-primary mt-5 py-3" data-id="@countryPolicy["id"].ToString()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
-  <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
-  <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
-</svg></a>
+                                                <a href="@countryPolicy["Link"].ToString()" class="btn btn-primary mt-5 py-3" data-id="@countryPolicy["id"].ToString()">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+                                                        <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z" />
+                                                        <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z" />
+                                                    </svg>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>
@@ -215,12 +217,73 @@
                         </tbody>
                     </table>
                 </div>
-                </div>
-                <!--end::Tabs content-->
             </div>
-            <!--end::Card body-->
+            <!--end::Tabs content-->
         </div>
-        <!--end::Card-->
+        <!--end::Card body-->
     </div>
-    <!--end::Container-->
+    <!--end::Card-->
 </div>
+
+<script src="\Scripts\jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".policy-yes").click(function () {
+            document.getElementById("filter-Country").value = $(this).data("country");
+            document.getElementById("filter-Area").value = $(this).data("area");
+            GetDataTable();
+        });
+        $("#filter-Country").change(function () {
+            GetDataTable();
+        });
+        $("#filter-Area").change(function () {
+            GetDataTable();
+        });
+        function GetDataTable() {
+            $.ajax({
+                url: '/MarineDebris/getPolicyData?country=' + document.getElementById("filter-Country").value + "&area=" + document.getElementById("filter-Area").value,
+                data: $("#form-filter-2").serialize(),
+                type: 'GET',
+                processData: false,
+                success: function (data) {
+                    var tableData = JSON.parse(data);
+                    $("#table-data").html('');
+                    for (var ctr = 0; ctr < tableData.length; ctr++) {
+                        var row = '<tr class="data-row">';
+                        row += '<td>' + tableData[ctr]["code_number"] + '</td>';
+                        row += '<td>' + tableData[ctr]["Title"] + '</td>';
+                        row += '<td>' + tableData[ctr]["Year"] + '</td>';
+                        row += '<td>' + tableData[ctr]["Description"] + '</td>';
+                        if (tableData[ctr]["Link"]) {
+                            row += '<td class="data-action" style="padding: 10px;"><div class="action-list" style="display: inline-flex;"><a href="' + tableData[ctr]["Link"] + '" class="btn btn-primary mt-5 py-3" data-id="833">Link</a></div></td></tr>';
+                        } else {
+                            row += '<td class="data-action" style="padding: 10px;"></td></tr>';
+                        }
+
+                        $("#table-data").append(row);
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                },
+            });
+        }
+        $("#datatable").DataTable({
+            aaSorting: [],
+            language: {
+                "lengthMenu": "Show _MENU_",
+            },
+            dom: "<'row'" +
+                "<'col-sm-8 d-flex align-items-center justify-content-start'f>" +
+                "<'col-sm-4 d-flex align-items-center justify-content-end'l>" +
+                ">" +
+
+                "<'table-responsive'tr>" +
+
+                "<'row'" +
+                "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                ">"
+        });
+    });
+</script>
