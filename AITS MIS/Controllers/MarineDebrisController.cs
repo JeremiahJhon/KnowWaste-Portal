@@ -93,7 +93,7 @@ namespace UCOnline.Controllers
 
             ViewBag.Area = areaData;
 
-            ViewBag.CountryPolicy = new ModelCountryPolicy().GetData();
+            ViewBag.CountryPolicy = new ModelCountryPolicy().GetDataNew();
 
             DataTable template = new DataTable();
             template.Columns.Add("FieldName", typeof(string));

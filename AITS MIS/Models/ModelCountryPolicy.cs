@@ -117,7 +117,7 @@ namespace UCOnline.Models
             return output.ToString();
         }
 
-        public DataTable GetData()
+        public DataTable GetDataNew()
         {
             DataSet data = new DataSet();
             ServerBase countryPolicy = new ServerBase("CountryPolicy");
