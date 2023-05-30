@@ -27,5 +27,12 @@ namespace UCOnline.Controllers
 
             return View();
         }
+
+        public ActionResult News()
+        {
+            ViewBag.Title = "News";
+
+            return View();
+        }
     }
 }

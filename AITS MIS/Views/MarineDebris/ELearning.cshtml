@@ -4,91 +4,107 @@
 @using System.Data;
 
 @{
-    DataTable videos = (DataTable)ViewBag.Videos;
+    DataTable elearnings = (DataTable)ViewBag.ELearning;
 }
 <div class="row">
-    <div class="landing-dark-bg h-100px">
-        <div class="text-center py-lg-5">
-            <!--begin::Title-->
-            <!--begin::Title-->
-            <h1 class="text-white lh-base fw-bolder fs-2x fs-lg-3x">
-                <span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
-                    <span id="kt_landing_hero_text">Marine Debris</span>
-                </span>
-            </h1>
-            <!--end::Title-->
+    <div class="landing-dark-bg">
+        <div class="tns mh-400">
+            <!--begin::Slider-->
+            <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="6000" data-tns-controls="false" data-tns-nav="false" data-tns-items="1" data-tns-mouse-drag="true" data-tns-center="false" data-tns-dots="false">
+                @foreach (DataRow row in elearnings.Rows)
+                {
+                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-400px min-h-400px" style="background-image: url(Documents/ELearning/@row["Photo"].ToString()); background-repeat: no-repeat; background-size: cover; background-position: 50%">
+                        <div class="col-md-4 h-100 min-h-400px px-20 py-20" style="background-color: #535551aa; margin-left: 50%; display: grid; align-content: center;">
+                            <div class="fs-1 h-100 fw-bolder text-white mb-2">
+                                @row["Title"].ToString()
+                                <span class="fw-normal">@Html.Raw(row["Description"].ToString())</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!--end::Slider-->
         </div>
+        <!--<div class="d-flex flex-column flex-center w-100 px-9 mt-5">-->
+        <!--begin::Clients-->
+        <!--<div class="d-flex flex-center flex-wrap position-relative px-5">-->
+        <!--begin::Client-->
+        <!--<div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Fujifilm">
+            <img src="https://ikhapp.org/wp-content/themes/knowledgehub/asstes/images/logo/ikhapp.svg" class="mh-30px mh-lg-40px" alt="" />
+        </div>-->
+        <!--end::Client-->
+        <!--begin::Client-->
+        <!--<div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Vodafone">
+            <img src="https://rkcmpd-eria.org/wp-content/uploads/2022/08/logo-rkc-mpd-high-new.png" class="mh-30px mh-lg-40px" alt="" />
+        </div>-->
+        <!--end::Client-->
+        <!--</div>-->
+        <!--end::Clients-->
+        <!--</div>-->
     </div>
+</div>
 
-    <!--begin::Curve bottom-->
-    <div id="pb_line" class="landing-curve landing-dark-color">
-        <svg viewBox="15 12 1470 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 11C3.93573 11.3356 7.85984 11.6689 11.7725 12H1488.16C1492.1 11.6689 1496.04 11.3356 1500 11V12H1488.16C913.668 60.3476 586.282 60.6117 11.7725 12H0V11Z" fill="currentColor"></path>
-        </svg>
-    </div>
-    <!--end::Curve bottom-->
-</div>
-<div class="mt-lg-n15 mb-lg-20 position-relative z-index-2">
-    <!--begin::Container-->
-    <div class="container">
-        <!--begin::Card-->
-        <div class="card" style="filter: drop-shadow(0px 0px 10px rgba(68, 81, 96, 0.08))">
-            <div class="card-header p-lg-20">
-                <!--begin::Heading-->
-                <div class="w-100 text-center">
-                    <!--begin::Title-->
-                    <h3 class="fs-2hx text-dark mb-5" id="portfolio" data-kt-scroll-offset="{default: 100, lg: 150}" style="color: #2577BC!important; ">@ViewBag.Title</h3>
-                    <!--end::Title-->
-                </div>
-                <!--end::Heading-->
-            </div>
-            <!--begin::Card body-->
-            <div class="card-body pt-5">
-                <table id="datatable" class="table table-row-bordered gy-5">
-                    <thead>
-                    </thead>
-                    <tbody>
-                        @foreach (DataRow row in videos.Rows)
-                        {
-                            <tr>
-                                <td>
-                                    <!--begin::Item-->
-                                    <div class="d-flex">
-                                        <!--begin::Symbol-->
-                                        <div class="col-md-3 me-5 e-learning-videos">
-                                            @Html.Raw(row["Link"].ToString())
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Section-->
-                                        <div class="d-flex align-items-center flex-row-fluid flex-wrap col-md-6">
-                                            <div class="flex-grow-1 me-2">
-                                                <a href="#" class="text-gray-800 text-hover-primary fs-2 fw-bolder">@Html.Raw(row["Title"].ToString())</a>
-                                                <span class="text-muted fw-bold d-block fs-5">@Html.Raw(row["Description"].ToString())</span>
-                                            </div>
-                                            @*<span class="badge badge-light fw-bolder my-2">+82$</span>*@
-                                        </div>
-                                        <div class="col-md-3">
-                                        </div>
-                                        <!--end::Section-->
-                                    </div>
-                                    <!--end::Item-->
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>                
-            </div>
-            <!--end::Card body-->
+<div class="row w-100 my-10 px-9 d-none">
+    <div class="d-flex flex-stack flex-wrap flex-md-nowrap card shadow p-8" style="background-color: #2577BC;">
+        <!--begin::Content-->
+        <div class="mb-5">
+            <!--begin::Description-->
+            <div class="fs-6 fs-lg-5 text-white fw-bold opacity-75">The kNOwWaste Knowledge Platform was developed through a Project Cooperation Agreement funding by UNEP on 2016. The platform provides data and information on holistic waste management to stakeholders in Asia and the Pacific region. The platform was developed with the following aims: generate and consolidate data or information on holistic waste management, transform data into easily comprehensible outputs for use by key stakeholders, map out and disseminate information on international waste management projects under the GPWM and UNEP projects as well as other international partners, and provide capacity building support through dissemination of data or information support for relevant stakeholders on holistic waste and waste management system.</div>
+            <!--end::Description-->
         </div>
-        <!--end::Card-->
+        <!--end::Content-->
     </div>
-    <!--end::Container-->
+    <div class="w-100 p-5 text-center">
+        <img src="Content/marine-debris/AIT-RRCAP.png" class="h-40px my-5" alt="" />
+    </div>
 </div>
-<script src="\Scripts\jquery-3.6.4.min.js"></script>
-<script>
-    $(document).ready(function () {
-        console.log(document.getElementsByClassName("e-learning-videos")[0]);
-        $(".e-learning-videos").find("iframe").css("height", "100%");
-        $(".e-learning-videos").find("iframe").css("width", "100%");
-    });
-</script>
+
+<style>
+    .title {
+        color: #2577BC !important;
+        font-size: 40px !important;
+        letter-spacing: 15px;
+    }
+
+    .elearning-item:hover {
+        padding-left: 20px;
+    }
+
+    .documents-item:hover {
+        padding-right: 20px;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12 pt-10" style="background-image: url('Content/marine-debris/elearning-1.jpg'); background-repeat: no-repeat; background-position: right; background-size: contain; background-color: white;">
+        <div class="container mb-7 pt-20">
+            <!--begin::Title-->
+            <h1 class="text-dark fs-1 mb-10 fw-boldest title">E-LEARNING</h1>
+            <!--end::Title-->
+            <!--begin::Description-->
+            <div class="text-gray-400 fw-bold mb-15 d-none">Short description here</div>
+            <div class="w-100 mb-5">
+                @foreach (DataRow row in elearnings.Rows)
+                {
+                    <a class="d-flex mb-5 text-dark text-hover-primary elearning-item fs-1 fw-600" href="~/MarineDebris/ELearning/@row["ID"].ToString()">
+                        <div class="mx-5 my-2 d-none"><img src="~/Content/icons/learning.png" height="30" /></div>
+                        <span class="fw-bold fs-3 my-auto text-gray-800 text-start pe-3 text-hover-primary">@row["Title"].ToString()</span>
+                    </a>
+                }
+            </div>
+        </div>
+        <div class="row">
+            <a href="MarineDebris/ELearning" class="py-10 text-center see-more-row fs-4 px-3 m-auto">
+                See more
+            </a>
+        </div>
+    </div>
+</div>
+
+@*<script src="\Scripts\jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            console.log(document.getElementsByClassName("e-learning-videos")[0]);
+            $(".e-learning-videos").find("iframe").css("height", "100%");
+            $(".e-learning-videos").find("iframe").css("width", "100%");
+        });
+    </script>*@

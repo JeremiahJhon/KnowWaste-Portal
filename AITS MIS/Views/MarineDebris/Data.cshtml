@@ -19,118 +19,67 @@
             <!--end::Title-->
         </div>
     </div>
-
-    <!--begin::Curve bottom-->
-    <div id="pb_line" class="landing-curve landing-dark-color">
-        <svg viewBox="15 12 1470 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 11C3.93573 11.3356 7.85984 11.6689 11.7725 12H1488.16C1492.1 11.6689 1496.04 11.3356 1500 11V12H1488.16C913.668 60.3476 586.282 60.6117 11.7725 12H0V11Z" fill="currentColor"></path>
-        </svg>
-    </div>
-    <!--end::Curve bottom-->
 </div>
-<div class="mt-lg-n15 mb-lg-20 position-relative z-index-2">
-    <!--begin::Container-->
-    <div class="container">
-        <!--begin::Card-->
-        <div class="card" style="filter: drop-shadow(0px 0px 10px rgba(68, 81, 96, 0.08))">
-            <!--begin::Card body-->
-            <div class="card-body p-lg-20">
-                <!--begin::Heading-->
-                <div class="text-center mb-5 mb-lg-10">
-                    <!--begin::Title-->
-                    <h3 class="fs-2hx text-dark mb-5" id="portfolio" data-kt-scroll-offset="{default: 100, lg: 150}" style="color: #2577BC!important; ">@ViewBag.Title</h3>
-                    <!--end::Title-->
-                </div>
-                <!--end::Heading-->
-                <div class="row p-5">
-                    <div class="col-md-6 px-2">
-                        <div class="w-100 h-100 d-flex flex-column rounded-3 bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
-                            <div class="col-md-12 mb-7 text-center">
-                                <!--begin::Title-->
-                                <h1 class="text-dark mb-5 fw-boldest">Solid Waste</h1>
-                                <!--end::Title-->
-                                <!--begin::Description-->
-                                <div class="text-gray-400 fw-bold mb-5 d-none">Short description here</div>
-                                <div class="d-flex flex-center mb-10">
-                                    <button id="kt_drawer_filter_1_button" class="btn btn-primary py-2 px-4">
-                                        <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black"></path>
-                                            </svg>
-                                        </span>Filter
-                                    </button>
-                                </div>
-                                <div id="chart-1" style="height: 350px;"></div>
+<div class="mb-lg-20 position-relative z-index-2">
+    <div class="row d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px mb-20 mx-2">
+        <div class="row w-100 gy-10 mb-md-10 mt-md-5">
+            <div class="col-md-6 px-2">
+                <div class="w-100 h-100 d-flex flex-column bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
+                    <div class="col-md-12 mb-7 text-center">
+                        <!--begin::Title-->
+                        <h1 class="text-dark mb-5 fw-boldest">Solid Waste</h1>
+                        <!--end::Title-->
+                        <!--begin::Description-->
+                        <div class="text-gray-400 fw-bold mb-5 d-none">Short description here</div>
+                        <div class="d-flex flex-center mb-10">
+                            <button id="kt_drawer_filter_1_button" class="btn btn-primary py-2 px-4">
+                                <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black"></path>
+                                    </svg>
+                                </span>Filter
+                            </button>
+                        </div>
+                        <div class="d-flex px-5">
+                            <label class="px-2 py-1">Country: </label>
+                            <div id="solid-country-filter-list">
+
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 px-2">
-                        <div class="w-100 h-100 d-flex flex-column rounded-3 bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
-                            <div class="col-md-12 mb-7 text-center">
-                                <!--begin::Title-->
-                                <h1 class="text-dark mb-5 fw-boldest">Plastic Waste</h1>
-                                <!--end::Title-->
-                                <!--begin::Description-->
-                                <div class="text-gray-400 fw-bold mb-5 d-none">Short description here</div>
-                                <div class="tab-content d-flex">
-                                    <!--begin::Container-->
-                                    <div class="col-md-6 d-flex px-2 d-none">
-                                        <label class="m-auto px-2">
-                                            Country
-                                        </label>
-                                        <select id="filter-Area" name="Area" class="form-select form-select form-select-solid" data-placeholder="Select an option" style="border-color: #009ef7 !important;" aria-label="Area">
-                                            <option>All</option>
-                                            <option>Brunei Darussalam</option>
-                                            <option>Cambodia</option>
-                                            <option>Indonesia</option>
-                                            <option>Lao PDR</option>
-                                            <option>Malaysia</option>
-                                            <option>Myanmar</option>
-                                            <option>Singapore</option>
-                                            <option>Thailand</option>
-                                            <option>Timor-Leste</option>
-                                            <option>Viet Nam</option>
-                                            <option>Philippines</option>
-                                            <option>China</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6 d-flex px-2 d-none">
-                                        <label class="m-auto px-2">
-                                            Area
-                                        </label>
-                                        <select id="filter-Area" name="Area" class="form-select form-select form-select-solid" data-placeholder="Select an option" style="border-color: #009ef7 !important;" aria-label="Area">
-                                            <option>All</option>
-                                            <option>Generated</option>
-                                            <option>Collected</option>
-                                            <option>Recycled</option>
-                                            <option>Recovered</option>
-                                            <option>Disposed</option>
-                                        </select>
-                                    </div>
-                                    <!--end::Container-->
-                                </div>
-                                <div class="d-flex flex-center mb-10">
-                                    <button id="kt_drawer_filter_2_button" class="btn btn-primary py-2 px-4">
-                                        <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black"></path>
-                                            </svg>
-                                        </span>Filter
-                                    </button>
-                                </div>
-                                <div id="chart-2" style="height: 350px;"></div>
-                            </div>
-                        </div>
+                        <div id="chart-1" style="height: 350px;"></div>
                     </div>
                 </div>
             </div>
-            <!--end::Card body-->
-        </div>
-        <!--end::Card-->
-    </div>
-    <!--end::Container-->
-</div>
+            <div class="col-md-6 px-2">
+                <div class="w-100 h-100 d-flex flex-column bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
+                    <div class="col-md-12 mb-7 text-center">
+                        <!--begin::Title-->
+                        <h1 class="text-dark mb-5 fw-boldest">Plastic Waste</h1>
+                        <!--end::Title-->
+                        <!--begin::Description-->
+                        <div class="text-gray-400 fw-bold mb-5 d-none">Short description here</div>
+                        <div class="d-flex flex-center mb-10">
+                            <button id="kt_drawer_filter_2_button" class="btn btn-primary py-2 px-4">
+                                <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black"></path>
+                                    </svg>
+                                </span>Filter
+                            </button>
+                        </div>
+                        <div class="d-flex px-5">
+                            <label class="px-2 py-1">Country: </label>
+                            <div id="plastic-country-filter-list">
 
+                            </div>
+                        </div>
+                        <div id="chart-2" style="height: 350px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div id="kt_drawer_filter_1_basic" class="bg-white drawer drawer-end" data-kt-drawer="true" data-kt-drawer-activate="true" data-kt-drawer-toggle="#kt_drawer_filter_1_button" data-kt-drawer-close="#kt_drawer_filter_1_close" data-kt-drawer-width="250px">
     <!--begin::Card-->
@@ -179,7 +128,7 @@
                         @foreach (DataRow row in countries.Rows)
                         {
                             <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                                <input class="form-check-input h-20px w-30px solid-country-filter" name="country" type="checkbox" value="@row["ID"].ToString()" id="country-@row["ID"].ToString()" checked="checked" />
+                                <input class="form-check-input h-20px w-30px solid-country-filter" name="country" type="checkbox" value="@row["ID"].ToString()" id="country-@row["ID"].ToString()" checked="checked" data-text="@row["Name"].ToString()" />
                                 <label class="form-check-label" for="country-@row["ID"].ToString()">
                                     @row["Name"].ToString()
                                 </label>
@@ -285,7 +234,7 @@
                         @foreach (DataRow row in countries.Rows)
                         {
                             <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                                <input class="form-check-input h-20px w-30px plastic-country-filter" name="country" type="checkbox" value="@row["ID"].ToString()" id="country-@row["ID"].ToString()" checked="checked" />
+                                <input class="form-check-input h-20px w-30px plastic-country-filter" name="country" type="checkbox" value="@row["ID"].ToString()" id="country-@row["ID"].ToString()" checked="checked" data-text="@row["Name"].ToString()" />
                                 <label class="form-check-label" for="country-@row["ID"].ToString()">
                                     @row["Name"].ToString()
                                 </label>
@@ -433,21 +382,25 @@
                             }
                             count++;
                         }
-                        console.log(x_axis);
-                        console.log(series);
 
                         var options = {
                             series: series,
                             chart: {
                                 type: 'bar',
-                                stacked: false,
-                                height: 400
+                                stacked: true,
+                                height: 400,
+                                toolbar: {
+                                    show: true
+                                },
+                                zoom: {
+                                    enabled: true
+                                }
                             },
                             plotOptions: {
                                 bar: {
                                     horizontal: false,
-                                    columnWidth: '55%',
-                                    endingShape: 'rounded'
+                                    endingShape: 'rounded',
+                                    borderRadius: 2
                                 },
                             },
                             dataLabels: {
@@ -460,6 +413,41 @@
                             },
                             xaxis: {
                                 categories: x_axis,
+                                labels: {
+                                    show: true,
+                                    minWidth: 0,
+                                    maxWidth: 160,
+                                    style: {
+                                        fontSize: '12px',
+                                        fontFamily: 'Roboto Condensed, sans-serif',
+                                        fontWeight: 400,
+                                    }
+                                },
+                                title: {
+                                    text: 'Year'
+                                }
+                            },
+                            yaxis: {
+                                labels: {
+                                    show: true,
+                                    align: 'right',
+                                    minWidth: 0,
+                                    maxWidth: 160,
+                                    style: {
+                                        fontSize: '12px',
+                                        fontFamily: 'Roboto Condensed, sans-serif',
+                                        fontWeight: 400,
+                                    },
+                                    offsetX: 0,
+                                    offsetY: 0,
+                                    rotate: 0,
+                                    formatter: function (val) {
+                                        return numFormatter(val);//.toLocaleString('en-US')
+                                    }
+                                },
+                                title: {
+                                    text: 'Tons'
+                                }
                             },
                             fill: {
                                 opacity: 1
@@ -468,13 +456,17 @@
                                 enabled: true,
                                 y: {
                                     formatter: function (val) {
-                                        return val.toLocaleString('en-US');
+                                        return val.toLocaleString('en-US') + " Tons";
                                     }
                                 }
                             },
                             noData: {
                                 text: 'No Data'
-                            }
+                            },
+                            legend: {
+                                position: 'right',
+                                offsetY: 40
+                            },
                         };
 
                         chart1 = new ApexCharts(document.querySelector("#chart-1"), options);
@@ -502,6 +494,14 @@
                     console.log(err);
                 },
             });
+            var country = $('#form-filter-1 [name="country"]');
+            $("#solid-country-filter-list").html('');
+            for (var ctr = 0; ctr < country.length; ctr++) {
+                var countryElem = '<span class="badge badge-light-dark m-1">' + $(country[ctr]).data("text") + '</span>';
+                if (country[ctr].checked) {
+                    $("#solid-country-filter-list").append(countryElem);
+                }
+            }
         }
         function createPlasticWasteGraph(id, x_axis, series) {
             $.ajax({
@@ -511,7 +511,6 @@
                 processData: false,
                 success: function (data) {
                     var graphData = JSON.parse(data);
-                    console.log(graphData);
                     var x_axis = [];
                     var series = [];
                     var data_ = [];
@@ -576,21 +575,25 @@
                             }
                             count++;
                         }
-                        console.log(x_axis);
-                        console.log(series);
 
                         var options = {
                             series: series,
                             chart: {
                                 type: 'bar',
-                                stacked: false,
-                                height: 350
+                                stacked: true,
+                                height: 400,
+                                toolbar: {
+                                    show: true
+                                },
+                                zoom: {
+                                    enabled: true
+                                }
                             },
                             plotOptions: {
                                 bar: {
                                     horizontal: false,
-                                    columnWidth: '55%',
-                                    endingShape: 'rounded'
+                                    endingShape: 'rounded',
+                                    borderRadius: 2
                                 },
                             },
                             dataLabels: {
@@ -603,20 +606,60 @@
                             },
                             xaxis: {
                                 categories: x_axis,
+                                labels: {
+                                    show: true,
+                                    minWidth: 0,
+                                    maxWidth: 160,
+                                    style: {
+                                        fontSize: '12px',
+                                        fontFamily: 'Roboto Condensed, sans-serif',
+                                        fontWeight: 400,
+                                    }
+                                },
+                                title: {
+                                    text: 'Year'
+                                }
+                            },
+                            yaxis: {
+                                labels: {
+                                    show: true,
+                                    align: 'right',
+                                    minWidth: 0,
+                                    maxWidth: 160,
+                                    style: {
+                                        fontSize: '12px',
+                                        fontFamily: 'Roboto Condensed, sans-serif',
+                                        fontWeight: 400,
+                                    },
+                                    offsetX: 0,
+                                    offsetY: 0,
+                                    rotate: 0,
+                                    formatter: function (val) {
+                                        return numFormatter(val);//.toLocaleString('en-US')
+                                    }
+                                },
+                                title: {
+                                    text: 'Tons'
+                                }
                             },
                             fill: {
                                 opacity: 1
                             },
                             tooltip: {
+                                enabled: true,
                                 y: {
                                     formatter: function (val) {
-                                        return val
+                                        return val.toLocaleString('en-US') + " Tons";
                                     }
                                 }
                             },
                             noData: {
                                 text: 'No Data'
-                            }
+                            },
+                            legend: {
+                                position: 'right',
+                                offsetY: 40
+                            },
                         };
 
                         chart2 = new ApexCharts(document.querySelector("#chart-2"), options);
@@ -644,6 +687,14 @@
                     console.log(err);
                 },
             })
+            var country = $('#form-filter-2 [name="country"]');
+            $("#plastic-country-filter-list").html('');
+            for (var ctr = 0; ctr < country.length; ctr++) {
+                var countryElem = '<span class="badge badge-light-dark m-1">' + $(country[ctr]).data("text") + '</span>';
+                if (country[ctr].checked) {
+                    $("#plastic-country-filter-list").append(countryElem);
+                }
+            }
         }
         $("#solid-country-all").change(function () {
             if (this.checked) {
@@ -683,5 +734,16 @@
                 for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
             }
         });
+        function numFormatter(num) {
+            if (num >= 1000000000) {
+                return Math.abs(num) > 999999999 ? Math.sign(num) * ((Math.abs(num) / 1000000000).toFixed(1)) + ' B' : Math.sign(num) * Math.abs(num)
+            }
+            if (num >= 1000000) {
+                return Math.abs(num) > 999999 ? Math.sign(num) * ((Math.abs(num) / 1000000).toFixed(1)) + ' M' : Math.sign(num) * Math.abs(num)
+            }
+            if (num >= 1000) {
+                return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + ' K' : Math.sign(num) * Math.abs(num)
+            }
+        }
     });
 </script>

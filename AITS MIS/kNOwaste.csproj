@@ -6212,6 +6212,11 @@
     <Content Include="Documents\doc3.png" />
     <Content Include="Documents\ecoregion_nepal.jpg" />
     <Content Include="Documents\elearning.jpg" />
+    <Content Include="Documents\ELearning\shutterstock_106551086.jpg" />
+    <Content Include="Documents\ELearning\shutterstock_29134336.jpg" />
+    <Content Include="Documents\ELearning\shutterstock_462573169.jpg" />
+    <Content Include="Documents\ELearning\shutterstock_61781794.jpg" />
+    <Content Include="Documents\ELearning\shutterstock_67767790.jpg" />
     <Content Include="Documents\Environmental regulatory failure.png" />
     <Content Include="Documents\event_1.jpg" />
     <Content Include="Documents\event_2.jpg" />
@@ -6243,6 +6248,8 @@
     <Content Include="Documents\moore.jpg" />
     <Content Include="Documents\National state of environment 2011.png" />
     <Content Include="Documents\Necessity of normalization to aluminum.png" />
+    <Content Include="Documents\News\90479.jpg" />
+    <Content Include="Documents\News\90480.jpg" />
     <Content Include="Documents\nitivattananon.jpg" />
     <Content Include="Documents\nnt_131292406489877533.jpg" />
     <Content Include="Documents\Nutrient budgets.png" />
@@ -6537,6 +6544,7 @@
     <Content Include="Views\MarineDebris\Data.cshtml" />
     <Content Include="Views\Pages\Index.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Pages\News.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

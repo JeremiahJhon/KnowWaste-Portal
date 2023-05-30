@@ -119,6 +119,13 @@ namespace UCOnline.Controllers
 
             ViewBag.Videos = videoData;
 
+            ServerBase videoposts = new ServerBase("videoposts");
+            videoposts.SelectLimit(5);
+            videoposts.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
+            DataTable videopostsData = videoposts.SelectQuery();
+
+            ViewBag.ELearning = videopostsData;
+
             return View();
         }
 
