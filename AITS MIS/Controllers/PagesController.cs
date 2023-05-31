@@ -21,6 +21,13 @@ namespace UCOnline.Controllers
             return View();
         }
 
+        public ActionResult Empty()
+        {
+            ViewBag.Title = "Empty";
+
+            return View();
+        }
+
         public ActionResult Repair()
         {
             ViewBag.Title = "Repair";

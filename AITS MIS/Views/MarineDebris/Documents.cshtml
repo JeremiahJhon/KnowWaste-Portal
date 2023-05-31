@@ -142,44 +142,49 @@
                     var documentsData = JSON.parse(data);
                     $("#document-data").html('');
                     Object.keys(documentsData).forEach(function (key) {
-                        var htmlString = '<div class="accordion" id="parent-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '"><div class="accordion-item"><h2 class="accordion-header" id="header-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '"><button class="accordion-button fs-4 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#body-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '" aria-expanded="false" aria-controls="body-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '">' + key + '</button></h2><div id="body-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '" class="accordion-collapse collapse show" aria-labelledby="header-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '" data-bs-parent="#parent-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '" style=""><div class="accordion-body show">'
-                        for (var ctr = 0; ctr < documentsData[key].length; ctr++) {
-                            htmlString += '<table id="datatable-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '" class="table table-row-bordered gy-5"><thead></thead><tbody>';
-                            htmlString += '<tr><td><div class="row">';
-                            htmlString += '<a href="MarineDebris/Documents/' + documentsData[key][ctr]["ID"] + '" class="fs-3 text-dark fw-bolder text-hover-primary text-dark lh-base">' + documentsData[key][ctr]["Title"] + '</a>';
+                        if (documentsData[key].length > 0) {
+                            var htmlString = '<div class="accordion" id="parent-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '"><div class="accordion-item"><h2 class="accordion-header" id="header-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '"><button class="accordion-button fs-4 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#body-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '" aria-expanded="false" aria-controls="body-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '">' + key + '</button></h2><div id="body-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '" class="accordion-collapse collapse show" aria-labelledby="header-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '" data-bs-parent="#parent-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '" style=""><div class="accordion-body show">'
+                            for (var ctr = 0; ctr < documentsData[key].length; ctr++) {
+                                htmlString += '<table id="datatable-' + key.replace(/[^a-zA-Z0-9]/g, "_").trim() + '" class="table table-row-bordered gy-5"><thead></thead><tbody>';
+                                htmlString += '<tr><td><div class="row">';
+                                htmlString += '<a href="MarineDebris/Documents/' + documentsData[key][ctr]["ID"] + '" class="fs-3 text-dark fw-bolder text-hover-primary text-dark lh-base">' + documentsData[key][ctr]["Title"] + '</a>';
 
-                            htmlString += '<div class="w-100">';
-                            if (documentsData[key][ctr]["Subtitle"]) {
-                                htmlString += '<span class="badge badge-white fw-bolder my-2" style="white-space: normal; text-align: left;">' + documentsData[key][ctr]["Subtitle"] + '</span></br>';
+                                htmlString += '<div class="w-100">';
+                                if (documentsData[key][ctr]["Subtitle"]) {
+                                    htmlString += '<span class="badge badge-white fw-bolder my-2" style="white-space: normal; text-align: left;">' + documentsData[key][ctr]["Subtitle"] + '</span></br>';
+                                }
+                                if (documentsData[key][ctr]["Year"].length > 0) {
+                                    htmlString += '<span class="badge badge-light-primary fw-bolder my-2" style="white-space: normal; text-align: left;">Year: ' + documentsData[key][ctr]["Year"] + '</span>';
+                                }
+                                if (documentsData[key][ctr]["Publisher"].length > 0) {
+                                    htmlString += '<span class="badge badge-light-success fw-bolder my-2" style="white-space: normal; text-align: left;">Publisher: ' + documentsData[key][ctr]["Publisher"] + '</span>';
+                                }
+                                if (documentsData[key][ctr]["Keyword"].length > 0) {
+                                    htmlString += '<span class="badge badge-light fw-bolder my-2" style="white-space: normal; text-align: left;">Keyword: ' + documentsData[key][ctr]["Keyword"] + '</span>';
+                                }
+                                htmlString += '</div>';
+
+                                htmlString += '<div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">' + documentsData[key][ctr]["Description"].substring(0, 300);
+                                if (documentsData[key][ctr]["Description"].length > 300) {
+                                    htmlString += '...' + '<a href="MarineDebris/Documents/' + documentsData[key][ctr]["ID"] + '">see more</a>';
+                                }
+
+                                htmlString += '</div>';
+                                htmlString += '<div class="w-100">';
+                                if (documentsData[key][ctr]["Attachment"]) {
+                                    htmlString += '<a href="Documents/' + documentsData[key][ctr]["Attachment"] + '" class="btn btn-primary m-2" style="float: right;"><i class="bi bi-file-earmark-pdf"></i>Document</a>';
+                                }
+                                if (documentsData[key][ctr]["Datasource"]) {
+                                    htmlString += '<a href="' + documentsData[key][ctr]["Datasource"] + '" class="btn btn-light-primary m-2" style="float: right;"><i class="bi bi-link"></i>Source</a>';
+                                }
+                                htmlString += '</div>';
+
+                                htmlString += '</div></td></tr>';
                             }
-                            if (documentsData[key][ctr]["Year"].length > 0) {
-                                htmlString += '<span class="badge badge-light-primary fw-bolder my-2" style="white-space: normal; text-align: left;">Year: ' + documentsData[key][ctr]["Year"] + '</span>'; }
-                            if (documentsData[key][ctr]["Publisher"].length > 0) {
-                                htmlString += '<span class="badge badge-light-success fw-bolder my-2" style="white-space: normal; text-align: left;">Publisher: ' + documentsData[key][ctr]["Publisher"] + '</span>'; }
-                            if (documentsData[key][ctr]["Keyword"].length > 0) {
-                                htmlString += '<span class="badge badge-light fw-bolder my-2" style="white-space: normal; text-align: left;">Keyword: ' + documentsData[key][ctr]["Keyword"] + '</span>'; }
-                            htmlString += '</div>';
+                            htmlString += '</tbody></table></div></div></div></div>'
 
-                            htmlString += '<div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">' + documentsData[key][ctr]["Description"].substring(0, 300);
-                            if (documentsData[key][ctr]["Description"].length > 300) {
-                                htmlString += '...' + '<a href="MarineDebris/Documents/' + documentsData[key][ctr]["ID"] + '">see more</a>';
-                            }
-
-                            htmlString += '</div>';
-                            htmlString += '<div class="w-100">';
-                            if (documentsData[key][ctr]["Attachment"]) {
-                                htmlString += '<a href="Documents/' + documentsData[key][ctr]["Attachment"] + '" class="btn btn-primary m-2" style="float: right;"><i class="bi bi-file-earmark-pdf"></i>Document</a>';
-                            }
-                            if (documentsData[key][ctr]["Datasource"]) {
-                                htmlString += '<a href="' + documentsData[key][ctr]["Datasource"] + '" class="btn btn-light-primary m-2" style="float: right;"><i class="bi bi-link"></i>Source</a>';
-                            }
-                            htmlString += '</div>';
-
-                            htmlString += '</div></td></tr>';
-                        }
-                        htmlString += '</tbody></table></div></div></div></div>'
-
-                        $("#document-data").append(htmlString);
+                            $("#document-data").append(htmlString);
+                        }                        
                     });
                     
                 },
@@ -206,6 +211,7 @@
                 var clist = document.getElementsByClassName("doctype-filter");
                 for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
             }
+            getDocumentData();
         });
     });
 </script>

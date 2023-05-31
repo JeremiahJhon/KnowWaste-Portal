@@ -31,6 +31,7 @@ namespace UCOnline.Controllers
             ViewBag.ELearning = videopostsData;
 
             ServerBase documents = new ServerBase("documents");
+            documents.SelectFilter("Country_id in (select id from country where SubRegion_ID = 3) and Attachment is not null and Attachment <> '' and Geotheme_ID = 6");
             documents.SelectLimit(5);
             documents.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
             DataTable documentsData = documents.SelectQuery();
@@ -150,32 +151,56 @@ namespace UCOnline.Controllers
             }
             else
             {
-                ServerBase country = new ServerBase("Country");
-                country.SelectFilter("SubRegion_ID = 3");
-                DataTable countryData = country.SelectQuery();
+                ServerBase doc = new ServerBase("Documents");
+                doc.SelectFilter("ID = " + id.ToString());
+                DataTable docData = doc.SelectQuery();
 
-                ViewBag.Country = countryData;
+                if(docData.Rows.Count == 1)
+                {
 
-                ServerBase docType = new ServerBase("documentcategory");
-                DataTable docTypeData = docType.SelectQuery();
+                    ViewBag.Document = docData.Rows[0];
 
-                ViewBag.DocType = docTypeData;
-
-                return View();//DocumentItem
+                    return View("DocumentItem");
+                }
+                else
+                {
+                    return View("Empty","Pages");
+                }
             }
         }
         
-        public ActionResult GoodPractices()
+        public ActionResult GoodPractices(int? id)
         {
             ViewBag.Title = "Good Practices";
+            
+            if (id == null)
+            {
+                ServerBase blogs = new ServerBase("blogs");
+                blogs.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
+                DataTable blogsData = blogs.SelectQuery();
 
-            ServerBase blogs = new ServerBase("blogs");
-            blogs.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
-            DataTable blogsData = blogs.SelectQuery();
+                ViewBag.Blogs = blogsData;
 
-            ViewBag.Blogs = blogsData;
+                return View();
+            }
+            else
+            {
+                ServerBase blogs = new ServerBase("blogs");
+                blogs.SelectFilter("ID = " + id.ToString());
+                DataTable blogsData = blogs.SelectQuery();
 
-            return View();
+                if (blogsData.Rows.Count == 1)
+                {
+
+                    ViewBag.Blog = blogsData.Rows[0];
+
+                    return View("BlogItem");
+                }
+                else
+                {
+                    return View("Empty", "Pages");
+                }
+            }
         }
 
         [HttpPost]

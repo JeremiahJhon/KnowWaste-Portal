@@ -6545,6 +6545,8 @@
     <Content Include="Views\Pages\Index.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Pages\News.cshtml" />
+    <Content Include="Views\Pages\Empty.cshtml" />
+    <Content Include="Views\MarineDebris\BlogItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

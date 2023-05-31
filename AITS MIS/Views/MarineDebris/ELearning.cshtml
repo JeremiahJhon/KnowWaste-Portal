@@ -13,14 +13,14 @@
             <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="6000" data-tns-controls="false" data-tns-nav="false" data-tns-items="1" data-tns-mouse-drag="true" data-tns-center="false" data-tns-dots="false">
                 @foreach (DataRow row in elearnings.Rows)
                 {
-                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-400px min-h-400px" style="background-image: url(Documents/ELearning/@row["Photo"].ToString()); background-repeat: no-repeat; background-size: cover; background-position: 50%">
+                    <a href="@row["Link"].ToString()" class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-400px min-h-400px" style="background-image: url(Documents/ELearning/@row["Photo"].ToString()); background-repeat: no-repeat; background-size: cover; background-position: 50%">
                         <div class="col-md-4 h-100 min-h-400px px-20 py-20" style="background-color: #535551aa; margin-left: 50%; display: grid; align-content: center;">
                             <div class="fs-1 h-100 fw-bolder text-white mb-2">
                                 @row["Title"].ToString()
                                 <span class="fw-normal">@Html.Raw(row["Description"].ToString())</span>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 }
             </div>
             <!--end::Slider-->
@@ -74,8 +74,8 @@
         padding-right: 20px;
     }
 </style>
-<div class="row">
-    <div class="col-md-12 pt-10" style="background-image: url('Content/marine-debris/elearning-1.jpg'); background-repeat: no-repeat; background-position: right; background-size: contain; background-color: white;">
+<div class="row h-100">
+    <div class="col-md-12 py-10" style="background-image: url('Content/marine-debris/elearning-1.jpg'); background-repeat: no-repeat; background-position: right; background-size: contain; background-color: white;">
         <div class="container mb-7 pt-20">
             <!--begin::Title-->
             <h1 class="text-dark fs-1 mb-10 fw-boldest title">E-LEARNING</h1>
@@ -85,17 +85,12 @@
             <div class="w-100 mb-5">
                 @foreach (DataRow row in elearnings.Rows)
                 {
-                    <a class="d-flex mb-5 text-dark text-hover-primary elearning-item fs-1 fw-600" href="~/MarineDebris/ELearning/@row["ID"].ToString()">
+                    <a class="d-flex mb-5 text-dark text-hover-primary elearning-item fs-1 fw-600" href="@row["Link"].ToString()">
                         <div class="mx-5 my-2 d-none"><img src="~/Content/icons/learning.png" height="30" /></div>
                         <span class="fw-bold fs-3 my-auto text-gray-800 text-start pe-3 text-hover-primary">@row["Title"].ToString()</span>
                     </a>
                 }
             </div>
-        </div>
-        <div class="row">
-            <a href="MarineDebris/ELearning" class="py-10 text-center see-more-row fs-4 px-3 m-auto">
-                See more
-            </a>
         </div>
     </div>
 </div>

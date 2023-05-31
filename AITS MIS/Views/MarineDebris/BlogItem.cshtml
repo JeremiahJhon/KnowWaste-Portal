@@ -4,7 +4,7 @@
 @using System.Data;
 
 @{
-    DataRow doc = (DataRow)ViewBag.Document;
+    DataRow doc = (DataRow)ViewBag.Blog;
 }
 <div class="row">
     <div class="landing-dark-bg h-100px">
@@ -44,25 +44,36 @@
                 <!--end::Heading-->
                 <div class="row d-flex">
                     <div class="row p-20">
-                        <span class="fs-3 text-dark fw-bolder text-hover-primary text-dark lh-base">@doc["Title"].ToString()</span>
+                        <span class="fs-1 text-dark fw-bolder text-hover-primary text-dark lh-base">@doc["Title"].ToString()</span>
                         <div class="w-100">
-                            <span class="badge badge-white fw-bolder my-2 @(doc["Subtitle"].ToString() == "" || doc["Subtitle"].ToString() == null ? "d-none" : "")" style="white-space: normal; text-align: left;">@doc["Subtitle"].ToString()</span>
-                            <br />
-                            <span class="badge badge-light-primary fw-bolder my-2 @(doc["Year"].ToString() == "" || doc["Year"].ToString() == null ? "d-none" : "")" style="white-space: normal; text-align: left;">Year: @doc["Year"].ToString()</span>
-                            <span class="badge badge-light-success fw-bolder my-2 @(doc["Publisher"].ToString() == "" || doc["Publisher"].ToString() == null ? "d-none" : "")" style="white-space: normal; text-align: left;">Publisher: @doc["Publisher"].ToString()</span>
-                            <span class="badge badge-light fw-bolder my-2 @(doc["Keyword"].ToString() == "" || doc["Keyword"].ToString() == null ? "d-none" : "")" style="white-space: normal; text-align: left;">Keyword: @doc["Keyword"].ToString()</span>
+                            <span class="badge badge-light-success fw-bolder my-2" style="white-space: normal; text-align: left;">Publisher: @doc["Author"].ToString()</span>
+                            <span class="badge badge-light fw-bolder my-2" style="white-space: normal; text-align: left;">Keyword: @doc["Blogsdate"].ToString()</span>
                         </div>
-                        <img class="@(doc["Thumbnail"].ToString() == "" || doc["Thumbnail"].ToString() == null ? "d-none" : "")" src="Documents/@doc["Thumbnail"].ToString()" />
+                        <img class="mt-10" src="Documents/Blogs/@doc["Photo"].ToString()" />
                         <div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">
-                            @doc["Description"].ToString()
+                            @Html.Raw(doc["Description"].ToString())
                         </div>
-                        <div class="w-100">
-                            <a href="Documents/@doc["Attachment"].ToString()" class="btn btn-primary m-2 @(doc["Attachment"].ToString() == "" || doc["Attachment"].ToString() == null ? "d-none" : "")" style="float: right;">
-                                <i class="bi bi-file-earmark-pdf"></i> Document
-                            </a>
-                            <a href="Documents/@doc["Datasource"].ToString()" class="btn btn-light-primary m-2 @(doc["Datasource"].ToString() == "" || doc["Datasource"].ToString() == null ? "d-none" : "")" style="float: right;">
-                                <i class="bi bi-link"></i> Source
-                            </a>
+                        <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base">Results Archived</span>
+                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">
+                            @Html.Raw(doc["ResultsArchieved"].ToString())
+                        </div>
+                        <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base">Challenges Lesson Learned</span>
+                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">
+                            @Html.Raw(doc["ChallengesLessonLearned"].ToString())
+                        </div>
+                        <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base">Replicability</span>
+                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">
+                            @Html.Raw(doc["Replicability"].ToString())
+                        </div>
+                        <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base">Sources</span>
+                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">
+                            @Html.Raw(doc["Sources"].ToString())
+                        </div>
+                        <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base">Company</span>
+                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">
+                            @doc["Company"].ToString()
+                            <br/>
+                            @doc["Email"].ToString()
                         </div>
                     </div>
                 </div>

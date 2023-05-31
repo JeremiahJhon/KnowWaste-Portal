@@ -89,13 +89,13 @@
         letter-spacing: 15px;
     }
     .elearning-item:hover{
-        padding-left: 20px;
+        padding-left: 10px;
     }
     .documents-item:hover {
-        padding-right: 20px;
+        padding-right: 10px;
     }
 </style>
-<div class="row">
+<div class="row h-100">
     <div class="col-md-12 pt-10" style="background-image: url('Content/marine-debris/elearning-1.jpg'); background-repeat: no-repeat; background-position: right; background-size: contain; background-color: white;">
         <div class="container mb-7 pt-20">
             <!--begin::Title-->
@@ -106,7 +106,7 @@
             <div class="w-100 mb-5">
                 @foreach (DataRow row in elearnings.Rows)
                 {
-                    <a class="d-flex mb-5 text-dark text-hover-primary elearning-item fs-1 fw-600" href="~/MarineDebris/ELearning/@row["ID"].ToString()">
+                    <a class="d-flex mb-5 text-dark text-hover-primary elearning-item fs-1 fw-600" href="@row["Link"].ToString()">
                         <div class="mx-5 my-2 d-none"><img src="~/Content/icons/learning.png" height="30" /></div>
                         <span class="fw-bold fs-3 my-auto text-gray-800 text-start pe-3 text-hover-primary">@row["Title"].ToString()</span>
                     </a>
@@ -186,7 +186,7 @@
             <div class="tns-outer" id="tns2-ow">
                 <div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">7 to 8</span>  of 7</div><div id="tns2-mw" class="tns-ovh">
                     <div class="tns-inner" id="tns2-iw">
-                        <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="18000" data-tns-controls="true" data-tns-nav="false" data-tns-items="1" data-tns-center="false" data-tns-dots="false" data-tns-prev-button="#kt_team_slider_prev" data-tns-next-button="#kt_team_slider_next" data-tns-responsive="{1200: {items: 4}, 968: {items: 3}}" class="  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns2" style="transform: translate3d(-40%, 0px, 0px);">
+                        <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="18000" data-tns-controls="true" data-tns-nav="false" data-tns-items="1" data-tns-center="false" data-tns-dots="false" data-tns-prev-button="#kt_team_slider_prev" data-tns-next-button="#kt_team_slider_next" data-tns-responsive="{1200: {items: 3}, 968: {items: 2}}" class="  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns2" style="transform: translate3d(-40%, 0px, 0px);">
                             @foreach (DataRow row in blogs.Rows)
                             {
                                 <div class="text-center tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
@@ -196,7 +196,7 @@
                                     <!--begin::Person-->
                                     <div class="mb-0">
                                         <!--begin::Name-->
-                                        <a href="#" class="text-dark fw-bolder text-hover-primary fs-3">@row["Title"].ToString()</a>
+                                        <a href="~/MarineDebris/GoodPractices/@row["ID"].ToString()" class="text-dark fw-bolder text-hover-primary fs-3">@row["Title"].ToString()</a>
                                         <!--end::Name-->
                                         <!--begin::Position-->
                                         <div class="text-muted fs-6 fw-bold mt-1 d-none">Tagline</div>
