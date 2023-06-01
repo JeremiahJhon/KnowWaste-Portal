@@ -106,6 +106,13 @@ namespace UCOnline.Controllers
 
             ViewBag.Region = region.GetCombobox();
 
+            ServerBase blogs = new ServerBase("blogs");
+            blogs.SelectLimit(10);
+            blogs.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
+            DataTable blogsData = blogs.SelectQuery();
+
+            ViewBag.Blogs = blogsData;
+
             return View();
         }
     }

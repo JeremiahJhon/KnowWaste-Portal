@@ -27,11 +27,12 @@
 
                         </div>
                         <style>
-                            .marine-debris-container{
+                            .marine-debris-container {
                                 width: 100%;
                                 text-align: center;
                             }
-                            .marine-debris-button{
+
+                            .marine-debris-button {
                                 color: white;
                                 padding: 15px 40px;
                                 border: solid 2px #fff;
@@ -40,15 +41,16 @@
                                 font-weight: 500;
                                 z-index: 999;
                             }
-                            .marine-debris-button:hover {
-                                color: #23A2D7;
-                                padding: 15px 40px;
-                                border: solid 2px #23A2D7;
-                                bottom: 10px;
-                                position: absolute;
-                                font-weight: 500;
-                                z-index: 999;
-                            }
+
+                                .marine-debris-button:hover {
+                                    color: #23A2D7;
+                                    padding: 15px 40px;
+                                    border: solid 2px #23A2D7;
+                                    bottom: 10px;
+                                    position: absolute;
+                                    font-weight: 500;
+                                    z-index: 999;
+                                }
                         </style>
                         <div class="marine-debris-container">
                             <a class="marine-debris-button" href="~/MarineDebris">
@@ -130,10 +132,10 @@
         </div>
     </div>
 
-    <div class="c-content-box c-size-md c-bg-white">
+    <div class="c-content-box c-size-md c-bg-white" style="display: none;">
         <div class="container">
 
-            <div class="c-content-title-1"> 
+            <div class="c-content-title-1">
                 <h3 class="c-center c-font-uppercase c-font-bold">Waste Data</h3>
                 <div class="c-line-center c-theme-bg"></div>
             </div>
@@ -170,7 +172,7 @@
                     <div id="mapchart">
                     </div>
                 </div>
-                 <div id="combochartcontainer" class="hidden">
+                <div id="combochartcontainer" class="hidden">
                     <div class="chart-filter">
                         <select>
                             <option value="1">Solid Waste</option>
@@ -229,106 +231,151 @@
     </div>
 
     @*<div class="c-content-box c-size-md c-bg-white">
+            <div class="container">
+
+                <div class="c-content-title-1">
+                    <h3 class="c-center c-font-uppercase c-font-bold">Upcoming Conferences and Seminars</h3>
+                    <div class="c-line-center c-theme-bg"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 conference">
+                        @{
+                            var data = (DataTable)ViewBag.Seminar;
+
+                            foreach (DataRow row in data.Rows)
+                            {
+                                <div class="c-margin-b-40">
+                                    <div class="c-content-product-2 c-bg-white">
+                                        <div class="col-md-4">
+
+                                            @{
+                                if (row["Thumbnail"] != DBNull.Value)
+                                {
+                                    <div class="c-content-overlay">
+                                        <div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 230px; background-image: url(../Content/Images/@row["Thumbnail"].ToString());"></div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="c-content-overlay">
+                                        <div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 230px; background-image: url(../Content/Images/seminar.png);"></div>
+                                    </div>
+                                }
+                                            }
+
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="c-info-list">
+                                                <h3 class="c-title c-font-bold c-font-22 c-font-dark">
+                                                    <a class="c-theme-link" href="../Seminars/Detail?id=@row["id"].ToString()">@row["Title"].ToString()</a>
+                                                </h3>
+
+                                                @{
+                                DateTime start = DateTime.Parse(row["datestart"].ToString());
+                                DateTime end = DateTime.Parse(row["dateend"].ToString());
+                                                }
+
+                                                <p class="c-order-date c-font-14 c-font-thin c-theme-font">@start.ToString("dd MMM yyyy ") to @end.ToString("dd MMM yyyy") | @row["Location"].ToString()</p>
+                                                <div class="conference-content c-font-17 c-margin-b-20 c-margin-t-20 c-font-thin ">
+                                                    @Html.Raw(row["Description"].ToString())
+                                                </div>
+                                                <a class="btn btn-sm c-theme-btn c-btn-square c-btn-bold" href="../Seminars/Detail?id=@row["id"].ToString()" style="color:white;"> EXPLORE </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                    </div>
+                    <div class="col-md-6 conference">
+                        @{
+                            data = (DataTable)ViewBag.Conferences;
+
+                            foreach (DataRow row in data.Rows)
+                            {
+                                <div class="c-margin-b-40">
+                                    <div class="c-content-product-2 c-bg-white">
+                                        <div class="col-md-4">
+
+                                            @{
+                                if (row["Thumbnail"] != DBNull.Value)
+                                {
+                                    <div class="c-content-overlay">
+                                        <div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 230px; background-image: url(../Content/Images/@row["Thumbnail"].ToString());"></div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="c-content-overlay">
+                                        <div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 230px; background-image: url(../Content/Images/conference.png);"></div>
+                                    </div>
+                                }
+                                            }
+
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="c-info-list">
+                                                <h3 class="c-title c-font-bold c-font-22 c-font-dark">
+                                                    <a class="c-theme-link" href="../Conferences/Detail?id=@row["id"].ToString()">@row["Title"].ToString()</a>
+                                                </h3>
+
+                                                @{
+                                DateTime start = DateTime.Parse(row["datestart"].ToString());
+                                DateTime end = DateTime.Parse(row["dateend"].ToString());
+                                                }
+
+                                                <p class="c-order-date c-font-14 c-font-thin c-theme-font">@start.ToString("dd MMM yyyy") to @end.ToString("dd MMM yyyy") | @row["Location"].ToString()</p>
+                                                <div class="conference-content c-font-17 c-margin-b-20 c-margin-t-20 c-font-thin ">
+                                                    @Html.Raw(row["Description"].ToString())
+                                                </div>
+                                                <a class="btn btn-sm c-theme-btn c-btn-square c-btn-bold" href="../Conferences/Detail?id=@row["id"].ToString()" style="color:white;"> EXPLORE </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>*@
+
+    <div class="experts c-content-box c-size-md c-bg-grey-1" style="background-color: white!important; padding: 50px 0px">
         <div class="container">
-
-            <div class="c-content-title-1">
-                <h3 class="c-center c-font-uppercase c-font-bold">Upcoming Conferences and Seminars</h3>
-                <div class="c-line-center c-theme-bg"></div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6 conference">
-                    @{
-                        var data = (DataTable)ViewBag.Seminar;
-
-                        foreach (DataRow row in data.Rows)
-                        {
-                            <div class="c-margin-b-40">
-                                <div class="c-content-product-2 c-bg-white">
-                                    <div class="col-md-4">
-
-                                        @{
-                            if (row["Thumbnail"] != DBNull.Value)
-                            {
-                                <div class="c-content-overlay">
-                                    <div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 230px; background-image: url(../Content/Images/@row["Thumbnail"].ToString());"></div>
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="c-content-overlay">
-                                    <div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 230px; background-image: url(../Content/Images/seminar.png);"></div>
-                                </div>
-                            }
-                                        }
-
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="c-info-list">
-                                            <h3 class="c-title c-font-bold c-font-22 c-font-dark">
-                                                <a class="c-theme-link" href="../Seminars/Detail?id=@row["id"].ToString()">@row["Title"].ToString()</a>
-                                            </h3>
-
-                                            @{
-                            DateTime start = DateTime.Parse(row["datestart"].ToString());
-                            DateTime end = DateTime.Parse(row["dateend"].ToString());
-                                            }
-
-                                            <p class="c-order-date c-font-14 c-font-thin c-theme-font">@start.ToString("dd MMM yyyy ") to @end.ToString("dd MMM yyyy") | @row["Location"].ToString()</p>
-                                            <div class="conference-content c-font-17 c-margin-b-20 c-margin-t-20 c-font-thin ">
-                                                @Html.Raw(row["Description"].ToString())
-                                            </div>
-                                            <a class="btn btn-sm c-theme-btn c-btn-square c-btn-bold" href="../Seminars/Detail?id=@row["id"].ToString()" style="color:white;"> EXPLORE </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    }
-
+            <div class="c-content-person-1-slider" data-slider="owl" data-items="3" data-auto-play="3000">
+                <div class="c-content-title-1">
+                    <h3 class="c-center c-font-uppercase c-font-bold">Good Practices</h3>
+                    <div class="c-line-center c-theme-bg"></div>
                 </div>
-                <div class="col-md-6 conference">
+                <div class="owl-carousel owl-theme c-theme">
                     @{
-                        data = (DataTable)ViewBag.Conferences;
+                        DataTable blogs = (DataTable)ViewBag.Blogs;
 
-                        foreach (DataRow row in data.Rows)
+                        foreach (DataRow row in blogs.Rows)
                         {
-                            <div class="c-margin-b-40">
-                                <div class="c-content-product-2 c-bg-white">
-                                    <div class="col-md-4">
-
+                            <div class="item">
+                                <div class="c-content-person-1">
+                                    <div class="c-caption c-content-overlay">
                                         @{
-                            if (row["Thumbnail"] != DBNull.Value)
-                            {
-                                <div class="c-content-overlay">
-                                    <div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 230px; background-image: url(../Content/Images/@row["Thumbnail"].ToString());"></div>
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="c-content-overlay">
-                                    <div class="c-bg-img-center c-overlay-object" data-height="height" style="height: 230px; background-image: url(../Content/Images/conference.png);"></div>
-                                </div>
-                            }
+                                            if (row["Photo"].ToString() == "")
+                                            {
+                                                <a href="~/MarineDebris/GoodPractices/@row["ID"].ToString()" style="width: 100px; height: 100px; background-image: url('../Documents/anonymous.jpg'); background-size: cover; border-radius: 5px;"></a>
+                                                @*<img class="c-overlay-object img-responsive" src="../Documents/anonymous.jpg" alt="">*@
+                                            }
+                                            else
+                                            {
+                                                <a href="~/MarineDebris/GoodPractices/@row["ID"].ToString()" style="width:200px;height:200px;background-image:url('../Documents/Blogs/@row["Photo"].ToString()'); background-size: cover; border-radius: 2px; margin: auto; display: block;"></a>
+                                                @*<img class="c-overlay-object img-responsive" src="../Documents/@row["Thumbnail"].ToString()" alt="">*@
+                                            }
                                         }
 
                                     </div>
-                                    <div class="col-md-8">
-                                        <div class="c-info-list">
-                                            <h3 class="c-title c-font-bold c-font-22 c-font-dark">
-                                                <a class="c-theme-link" href="../Conferences/Detail?id=@row["id"].ToString()">@row["Title"].ToString()</a>
-                                            </h3>
-
-                                            @{
-                            DateTime start = DateTime.Parse(row["datestart"].ToString());
-                            DateTime end = DateTime.Parse(row["dateend"].ToString());
-                                            }
-
-                                            <p class="c-order-date c-font-14 c-font-thin c-theme-font">@start.ToString("dd MMM yyyy") to @end.ToString("dd MMM yyyy") | @row["Location"].ToString()</p>
-                                            <div class="conference-content c-font-17 c-margin-b-20 c-margin-t-20 c-font-thin ">
-                                                @Html.Raw(row["Description"].ToString())
-                                            </div>
-                                            <a class="btn btn-sm c-theme-btn c-btn-square c-btn-bold" href="../Conferences/Detail?id=@row["id"].ToString()" style="color:white;"> EXPLORE </a>
+                                    <div class="c-body">
+                                        <div class="c-head">
+                                            <div class="c-name c-font-uppercase c-font-bold" style="font-size: 14px; width: 100%; text-align: center;"><a href="~/MarineDebris/GoodPractices/@row["ID"].ToString()">@row["Title"].ToString()</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -336,10 +383,10 @@
                         }
                     }
                 </div>
-            </div>
 
+            </div>
         </div>
-    </div>*@
+    </div>
 
     <div class="experts c-content-box c-size-md c-bg-grey-1">
         <div class="container">
@@ -361,24 +408,24 @@
                                             if (row["Thumbnail"].ToString() == "")
                                             {
                                                 <div style="width: 100px; height: 100px; background-image: url('../Documents/anonymous.jpg'); background-size: cover; border-radius: 5px;"></div>
-                                                @*<img class="c-overlay-object img-responsive" src="../Documents/anonymous.jpg" alt="">*@                                                    
+                                                @*<img class="c-overlay-object img-responsive" src="../Documents/anonymous.jpg" alt="">*@
                                             }
                                             else
                                             {
                                                 <div style="width:100px;height:100px;background-image:url('../Documents/@row["Thumbnail"].ToString()'); background-size: cover; border-radius: 5px;"></div>
                                                 @*<img class="c-overlay-object img-responsive" src="../Documents/@row["Thumbnail"].ToString()" alt="">*@
                                             }
-                    }
-                                        
+                                        }
+
                                     </div>
                                     <div class="c-body">
                                         <div class="c-head">
-                                            <div class="c-name c-font-uppercase c-font-bold"><a href="../Experts#@row["id"].ToString()">@row["firstname"].ToString() @row["lastname"].ToString()</a></div>
+                                            <div class="c-name c-font-uppercase c-font-bold" style="font-size: 14px;"><a href="../Experts#@row["id"].ToString()">@row["firstname"].ToString() @row["lastname"].ToString()</a></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                                                }
+                        }
                     }
                 </div>
 
@@ -397,54 +444,54 @@
                     @Html.Raw(ViewBag.Document)
 
                     @*@{
-                        data = (DataTable)ViewBag.Events;
+                            data = (DataTable)ViewBag.Events;
 
-                        foreach (DataRow row in data.Rows)
-                        {
-                            var datestart = DateTime.Parse(row["datestart"].ToString()).ToString("dd MMM yyyy");
-                            var dateend = DateTime.Parse(row["dateend"].ToString()).ToString("dd MMM yyyy");
+                            foreach (DataRow row in data.Rows)
+                            {
+                                var datestart = DateTime.Parse(row["datestart"].ToString()).ToString("dd MMM yyyy");
+                                var dateend = DateTime.Parse(row["dateend"].ToString()).ToString("dd MMM yyyy");
 
 
-                            <div class="c-margin-b-40">
-                                <div class="c-content-product-2 c-bg-white">
-                                    <div class="col-md-4">
-                                        <div class="c-content-overlay">
-                                            @{
-                                                if (row["Thumbnail"].ToString() == "")
-                                                {
-                                                    <img src="../Documents/default.png" />
+                                <div class="c-margin-b-40">
+                                    <div class="c-content-product-2 c-bg-white">
+                                        <div class="col-md-4">
+                                            <div class="c-content-overlay">
+                                                @{
+                                                    if (row["Thumbnail"].ToString() == "")
+                                                    {
+                                                        <img src="../Documents/default.png" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="../Documents/@row["Thumbnail"].ToString()" />
+                                                    }
                                                 }
-                                                else
-                                                {
-                                                    <img src="../Documents/@row["Thumbnail"].ToString()" />
-                                                }
-                                            }
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="c-info-list">
-                                            <h3 class="c-title c-font-bold c-font-22 c-font-dark">
-                                                <a class="c-theme-link" href="../Events/Detail?id=@row["id"].ToString()">@row["name"].ToString()</a>
-                                            </h3>
-                                            <p class="c-order-date c-font-14 c-font-thin c-theme-font">@datestart to @dateend | @row["location"].ToString()</p>
-                                            <div class="news-content">@Html.Raw(row["description"].ToString())</div>
+                                        <div class="col-md-8">
+                                            <div class="c-info-list">
+                                                <h3 class="c-title c-font-bold c-font-22 c-font-dark">
+                                                    <a class="c-theme-link" href="../Events/Detail?id=@row["id"].ToString()">@row["name"].ToString()</a>
+                                                </h3>
+                                                <p class="c-order-date c-font-14 c-font-thin c-theme-font">@datestart to @dateend | @row["location"].ToString()</p>
+                                                <div class="news-content">@Html.Raw(row["description"].ToString())</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        }
-                    }*@
+                            }
+                        }*@
 
                 </div>
                 <div class="col-md-6 news">
 
                     @*<div class="col-tweets">
-                        <div class="col-md-12">
-                            <a class="twitter-timeline" href="https://twitter.com/unep_ietc" data-widget-id="708284667619876864">Tweets by unep_ietc</a>
-                            <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
-                            @Html.Raw(ViewBag.Tweets)
-                        </div>
-                    </div>*@
+                            <div class="col-md-12">
+                                <a class="twitter-timeline" href="https://twitter.com/unep_ietc" data-widget-id="708284667619876864">Tweets by unep_ietc</a>
+                                <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+                                @Html.Raw(ViewBag.Tweets)
+                            </div>
+                        </div>*@
 
                     @*@{
                             data = (DataTable)ViewBag.Events;
@@ -479,6 +526,28 @@
         </div>
     </div>
 
+    <div class="container">
+        <div class="c-prefooter c-bg-white" style="padding: 30px; margin-bottom: 20px; background-color: #31383c11 !important;">
+            <div class="c-body">
+                <div class="row">
+                    <div class="col-md-12 col-sm-6 col-xs-12">
+                        <div class="logo-padding-bottom">
+                            <a href="http://www.rrcap.ait.ac.th" target="_blank">
+                                <img class="c-content-isotope-image" src="~/Content/marine-debris/AIT-RRCAP.png" alt="rrcap-logo" width="150px">
+                            </a>
+                        </div>
+                    </div>
+                    <span></span>
+                    <div class="col-md-12 col-sm-6 col-xs-12">
+                        <p class="c-address c-font-16">
+                            The kNOwWaste Knowledge Platform was developed through a Project Cooperation Agreement funding by UNEP on 2016. The platform provides data and information on holistic waste management to stakeholders in Asia and the Pacific region. The platform was developed with the following aims: generate and consolidate data or information on holistic waste management, transform data into easily comprehensible outputs for use by key stakeholders, map out and disseminate information on international waste management projects under the GPWM and UNEP projects as well as other international partners, and provide capacity building support through dissemination of data or information support for relevant stakeholders on holistic waste and waste management system.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     @*<div class="blog-container c-content-box c-size-md c-bg-grey-1">
             <div class="container">
                 <div class="c-content-title-1">
@@ -498,65 +567,65 @@
         </div>*@
 
     @*<div class="blog-container c-content-box c-size-md">
-        <div class="container">
-            <div class="c-content-title-1">
-                <h3 class="c-center c-font-uppercase c-font-bold">Latest Blogs</h3>
-                <div class="c-line-center c-theme-bg"></div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="c-content-blog-post-1">
-                        <div class="c-media">
-                            <div class="c-content-media-2-slider" data-slider="owl" data-single-item="true" data-auto-play="4000">
-                                <div class="owl-carousel owl-theme c-theme owl-single">
-                                    @{
-                                        data = (DataTable)ViewBag.Blogs;
+            <div class="container">
+                <div class="c-content-title-1">
+                    <h3 class="c-center c-font-uppercase c-font-bold">Latest Blogs</h3>
+                    <div class="c-line-center c-theme-bg"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="c-content-blog-post-1">
+                            <div class="c-media">
+                                <div class="c-content-media-2-slider" data-slider="owl" data-single-item="true" data-auto-play="4000">
+                                    <div class="owl-carousel owl-theme c-theme owl-single">
+                                        @{
+                                            data = (DataTable)ViewBag.Blogs;
 
-                                        foreach (DataRow row in data.Rows)
-                                        {                                            
-                                            <div class="item blog-item">   
-                                            @{
-                                                if (row["Thumbnail"].ToString() == "")
-                                                {
-                                                    <div class="c-content-media-2" style="background-image: url(../Documents/blog.jpg); min-height: 460px;"></div>                                                                                                                                                                                                                    
+                                            foreach (DataRow row in data.Rows)
+                                            {
+                                                <div class="item blog-item">
+                                                @{
+                                                    if (row["Thumbnail"].ToString() == "")
+                                                    {
+                                                        <div class="c-content-media-2" style="background-image: url(../Documents/blog.jpg); min-height: 460px;"></div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="c-content-media-2" style="background-image: url(../Documents/@row["Thumbnail"].ToString()); min-height: 460px;"></div>
+                                                    }
                                                 }
-                                                else
-                                                {
-                                                    <div class="c-content-media-2" style="background-image: url(../Documents/@row["Thumbnail"].ToString()); min-height: 460px;"></div>
-                                                }
-                                            }       
-                                                                                                                                                 
-                                                <div class="blog-text">
-                                                    <div class="c-title c-font-bold c-font-uppercase">
-                                                        <a href="#">@row["Title"].ToString()</a>
-                                                    </div>
-                                                    <div class="c-desc">
-                                                        @Html.Raw(row["Description"].ToString())
+
+                                                    <div class="blog-text">
+                                                        <div class="c-title c-font-bold c-font-uppercase">
+                                                            <a href="#">@row["Title"].ToString()</a>
+                                                        </div>
+                                                        <div class="c-desc">
+                                                            @Html.Raw(row["Description"].ToString())
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            }
                                         }
-                                    }
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>*@
+        </div>*@
 
     @*<div class="c-content-box c-size-md c-bg-white">
-        <div class="container">
-            <div class="c-content-title-1">
-                <h3 class="c-center c-font-uppercase c-font-bold">Latest Documents</h3>
-                <div class="c-line-center c-theme-bg"></div>
+            <div class="container">
+                <div class="c-content-title-1">
+                    <h3 class="c-center c-font-uppercase c-font-bold">Latest Documents</h3>
+                    <div class="c-line-center c-theme-bg"></div>
+                </div>
+                <div class="row">
+                    @Html.Raw(ViewBag.Document)
+                </div>
             </div>
-            <div class="row">
-                @Html.Raw(ViewBag.Document)
-            </div>
-        </div>
-    </div>*@
+        </div>*@
 
     @*<div class="c-content-box c-size-md c-bg-white">
             <div class="container">

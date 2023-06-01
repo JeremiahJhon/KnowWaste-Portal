@@ -28,7 +28,7 @@
     </div>
     <!--end::Curve bottom-->
 </div>
-<div class="h-100 mt-lg-n15 mb-lg-20 position-relative z-index-2">
+<div class="h-100 mt-lg-n20 mb-lg-20 position-relative z-index-2">
     <!--begin::Container-->
     <div class="container">
         <!--begin::Card-->
@@ -43,21 +43,22 @@
                 </div>
                 <!--end::Heading-->
                 <div class="row d-flex">
-                    <div class="row p-20">
+                    <div class="row pb-20 pt-10">
                         <span class="fs-1 text-dark fw-bolder text-hover-primary text-dark lh-base">@doc["Title"].ToString()</span>
                         <div class="w-100">
                             <span class="badge badge-light-success fw-bolder my-2" style="white-space: normal; text-align: left;">Author: @doc["Author"].ToString()</span>
                             <span class="badge badge-light fw-bolder my-2" style="white-space: normal; text-align: left;">Date Created: @doc["Blogsdate"].ToString()</span>
                         </div>
                         <img class="mt-10" src="Documents/Blogs/@doc["Photo"].ToString()" />
+                        <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base">Background</span>
                         <div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">
                             @Html.Raw(doc["Description"].ToString())
                         </div>
-                        <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base">Results Archived</span>
+                        <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base">Result Achieved</span>
                         <div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">
                             @Html.Raw(doc["ResultsArchieved"].ToString())
                         </div>
-                        <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base">Challenges Lesson Learned</span>
+                        <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base">Challenges and Lesson Learned</span>
                         <div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">
                             @Html.Raw(doc["ChallengesLessonLearned"].ToString())
                         </div>
@@ -69,12 +70,12 @@
                         <div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">
                             @Html.Raw(doc["Sources"].ToString())
                         </div>
-                        <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base">Company</span>
-                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">
-                            @doc["Company"].ToString()
-                            <br/>
-                            @doc["Email"].ToString()
-                        </div>
+                        @*<span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base">Company</span>
+        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">
+            @doc["Company"].ToString()
+            <br/>
+            @doc["Email"].ToString()
+        </div>*@
                     </div>
                 </div>
             </div>
