@@ -103,12 +103,13 @@
             <!--end::Title-->
             <!--begin::Description-->
             <div class="text-gray-400 fw-bold mb-15 d-none">Short description here</div>
-            <div class="w-100 mb-5">
+            <div class="w-75 mb-5">
                 @foreach (DataRow row in elearnings.Rows)
                 {
                     <a class="d-flex mb-5 text-dark text-hover-primary elearning-item fs-1 fw-600" href="@row["Link"].ToString()">
                         <div class="mx-5 my-2 d-none"><img src="~/Content/icons/learning.png" height="30" /></div>
                         <span class="fw-bold fs-3 my-auto text-gray-800 text-start pe-3 text-hover-primary">@row["Title"].ToString()</span>
+                        <span class="fw-bold fs-7 my-auto text-gray-800 text-start pe-3 text-hover-primary">@row["Description"].ToString()</span>
                     </a>
                 }
             </div>
