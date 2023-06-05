@@ -88,12 +88,6 @@
         font-size: 40px !important;
         letter-spacing: 15px;
     }
-    .elearning-item:hover{
-        padding-left: 10px;
-    }
-    .documents-item:hover {
-        padding-right: 10px;
-    }
 </style>
 <div class="row">
     <div class="col-md-12 pt-10" style="background-image: url('Content/marine-debris/elearning-1.jpg'); background-repeat: no-repeat; background-position: right; background-size: contain; background-color: white;">
@@ -109,7 +103,7 @@
                     <a class="d-flex mb-5 text-dark text-hover-primary elearning-item fs-1 fw-600" href="@row["Link"].ToString()">
                         <div class="mx-5 my-2 d-none"><img src="~/Content/icons/learning.png" height="30" /></div>
                         <span class="fw-bold fs-3 my-auto text-gray-800 text-start pe-3 text-hover-primary">@row["Title"].ToString()</span>
-                        <span class="fw-bold fs-7 my-auto text-gray-800 text-start pe-3 text-hover-primary">@row["Description"].ToString()</span>
+                        <span class="fw-bold fs-7 my-auto text-gray-800 text-start pe-3 text-hover-primary d-none">@row["Description"].ToString()</span>
                     </a>
                 }
             </div>
