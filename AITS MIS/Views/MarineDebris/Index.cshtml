@@ -100,10 +100,10 @@
             <div class="w-75 mb-5">
                 @foreach (DataRow row in elearnings.Rows)
                 {
-                    <a class="d-flex mb-5 text-dark text-hover-primary elearning-item fs-1 fw-600" href="@row["Link"].ToString()">
+                    <a class="row mb-5 text-dark text-hover-primary elearning-item fs-1 fw-600" href="@row["Link"].ToString()">
                         <div class="mx-5 my-2 d-none"><img src="~/Content/icons/learning.png" height="30" /></div>
-                        <span class="fw-bold fs-3 my-auto text-gray-800 text-start pe-3 text-hover-primary">@row["Title"].ToString()</span>
-                        <span class="fw-bold fs-7 my-auto text-gray-800 text-start pe-3 text-hover-primary d-none">@row["Description"].ToString()</span>
+                        <span class="fw-bold fs-2 my-auto text-gray-800 text-start pe-3 text-hover-primary">@row["Title"].ToString()</span>
+                        <span class="fw-bold fs-7 my-auto text-gray-800 text-start pe-3 text-hover-primary">@Html.Raw(row["Description"].ToString())</span>
                     </a>
                 }
             </div>
@@ -124,12 +124,14 @@
             <!--end::Title-->
             <!--begin::Description-->
             <div class="text-gray-400 fw-bold mb-15 d-none">Short description here</div>
-            <div class="w-100 mb-5">
+            <div class="col-md-3"></div>
+            <div class="w-100 mb-5 col-md-9">
                 @foreach (DataRow row in documents.Rows)
                 {
-                    <a class="d-flex mb-5 text-dark text-hover-primary documents-item fs-1 fw-600" href="~/MarineDebris/Documents/@row["ID"].ToString()">
+                    <a class="row mb-5 text-dark text-hover-primary documents-item fs-1 fw-600" href="~/MarineDebris/Documents/@row["ID"].ToString()">
                         <div class="mx-5 my-2 d-none"><img src="~/Content/icons/pdf-icon.png" height="30" /></div>
-                        <span class="w-100 fw-bold fs-3 my-auto text-gray-800 text-end pe-3 text-hover-primary">@row["Title"].ToString()</span>
+                        <span class="fw-bold fs-2 my-auto text-gray-800 text-end pe-3 text-hover-primary">@row["Title"].ToString()</span>
+                        <span class="fw-bold fs-7 my-auto text-gray-800 text-end pe-3 text-hover-primary">@Html.Raw(row["Description"].ToString())</span>
                     </a>
                 }
             </div>
@@ -181,7 +183,7 @@
             <div class="tns-outer" id="tns2-ow">
                 <div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">7 to 8</span>  of 7</div><div id="tns2-mw" class="tns-ovh">
                     <div class="tns-inner" id="tns2-iw">
-                        <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="18000" data-tns-controls="true" data-tns-nav="false" data-tns-items="1" data-tns-center="false" data-tns-dots="false" data-tns-prev-button="#kt_team_slider_prev" data-tns-next-button="#kt_team_slider_next" data-tns-responsive="{1200: {items: 3}, 968: {items: 2}}" class="  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns2" style="transform: translate3d(-40%, 0px, 0px);">
+                        <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="18000" data-tns-controls="true" data-tns-nav="false" data-tns-items="1" data-tns-center="false" data-tns-dots="false" data-tns-prev-button="#kt_team_slider_prev" data-tns-next-button="#kt_team_slider_next" data-tns-responsive="{1200: {items: 4}, 968: {items: 3}}" class="  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns2" style="transform: translate3d(-40%, 0px, 0px);">
                             @foreach (DataRow row in blogs.Rows)
                             {
                                 <div class="text-center tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">

@@ -17,7 +17,7 @@
                         <div class="col-md-4 h-100 min-h-400px px-20 py-20" style="background-color: #535551aa; margin-left: 50%; display: grid; align-content: center;">
                             <div class="fs-1 h-100 fw-bolder text-white mb-2">
                                 @row["Title"].ToString()
-                                <span class="fw-normal">@Html.Raw(row["Description"].ToString())</span>
+                                <span class="fw-normal d-none">@Html.Raw(row["Description"].ToString())</span>
                             </div>
                         </div>
                     </a>
@@ -85,10 +85,10 @@
             <div class="w-75 mb-5">
                 @foreach (DataRow row in elearnings.Rows)
                 {
-                    <a class="d-flex mb-5 text-dark text-hover-primary elearning-item fs-1 fw-600" href="@row["Link"].ToString()">
+                    <a class="row mb-5 text-dark text-hover-primary elearning-item fs-1 fw-600" href="@row["Link"].ToString()">
                         <div class="mx-5 my-2 d-none"><img src="~/Content/icons/learning.png" height="30" /></div>
-                        <span class="fw-bold fs-3 my-auto text-gray-800 text-start pe-3 text-hover-primary">@row["Title"].ToString()</span>
-                        <span class="fw-bold fs-7 my-auto text-gray-800 text-start pe-3 text-hover-primary d-none">@row["Description"].ToString()</span>
+                        <span class="fw-bold fs-2 my-auto text-gray-800 text-start pe-3 text-hover-primary">@row["Title"].ToString()</span>
+                        <span class="fw-bold fs-7 my-auto text-gray-800 text-start pe-3 text-hover-primary">@Html.Raw(row["Description"].ToString())</span>
                     </a>
                 }
             </div>

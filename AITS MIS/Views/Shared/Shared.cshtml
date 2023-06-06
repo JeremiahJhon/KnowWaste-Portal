@@ -152,26 +152,29 @@
                             <li><a href="~/Pages" class="c-link"> Projects </a> </li>
                             <li><a href="~/Pages" class="c-link"> Publication </a> </li>
                             <li><a href="~/Contact" class="c-link">Contact</a> </li>
-                            <li style="padding: 20px 0px;">
-                                <script>
-                                    (function () {
-                                        var cx = '003366087466855040359:7y-p87ccjws';
-                                        var gcse = document.createElement('script');
-                                        gcse.type = 'text/javascript';
-                                        gcse.async = true;
-                                        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-                                        var s = document.getElementsByTagName('script')[0];
-                                        s.parentNode.insertBefore(gcse, s);
-                                        window.addEventListener('load', () => {
-                                            if (document.readyState == "complete") {
-                                                document.querySelectorAll(".gsc-input-box")[0].setAttribute("style", "border-radius: 5px; width: 150px;");
-                                                document.querySelectorAll(".gsc-search-box table .gsc-input")[0].setAttribute("style", "padding-right: 0px;");
-                                                document.querySelectorAll(".gsc-search-box table .gsc-search-button button")[0].setAttribute("style", "border-radius: 5px; padding: 10px 15px;");
-                                            }
-                                        })
-                                    })();
-                                </script>
-                                <gcse:search></gcse:search>
+                            <li>
+                                <div class="c-link" style="margin-top: -15px;">
+                                    <script>
+                                        (function () {
+                                            var cx = '003366087466855040359:7y-p87ccjws';
+                                            var gcse = document.createElement('script');
+                                            gcse.type = 'text/javascript';
+                                            gcse.async = true;
+                                            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                                            var s = document.getElementsByTagName('script')[0];
+                                            s.parentNode.insertBefore(gcse, s);
+                                            window.addEventListener('load', () => {
+                                                if (document.readyState == "complete") {
+                                                    document.querySelectorAll(".gsc-control-cse")[0].setAttribute("style", "padding: 0px;");
+                                                    document.querySelectorAll(".gsc-input-box")[0].setAttribute("style", "border-radius: 5px; width: 150px;");
+                                                    document.querySelectorAll(".gsc-search-box table .gsc-input")[0].setAttribute("style", "padding-right: 0px;");
+                                                    document.querySelectorAll(".gsc-search-box table .gsc-search-button button")[0].setAttribute("style", "border-radius: 5px; padding: 10px 15px;");
+                                                }
+                                            })
+                                        })();
+                                    </script>
+                                    <gcse:search></gcse:search>
+                                </div>
                             </li>
                         </ul>
                     </nav>
