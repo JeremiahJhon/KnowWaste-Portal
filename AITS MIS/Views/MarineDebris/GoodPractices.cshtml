@@ -46,7 +46,7 @@
                     @foreach (DataRow row in blogs.Rows)
                     {
                         int MaxLength = 300;
-                        ;
+                        
                         if (row["Description"].ToString().Length < MaxLength)
                         {
                             MaxLength = row["Description"].ToString().Length;

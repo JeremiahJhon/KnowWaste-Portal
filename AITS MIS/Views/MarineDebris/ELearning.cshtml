@@ -82,15 +82,18 @@
             <!--end::Title-->
             <!--begin::Description-->
             <div class="text-gray-400 fw-bold mb-15 d-none">Short description here</div>
-            <div class="w-75 mb-5">
-                @foreach (DataRow row in elearnings.Rows)
-                {
-                    <a class="row mb-5 text-dark text-hover-primary elearning-item fs-1 fw-600" href="@row["Link"].ToString()">
-                        <div class="mx-5 my-2 d-none"><img src="~/Content/icons/learning.png" height="30" /></div>
-                        <span class="fw-bold fs-2 my-auto text-gray-800 text-start pe-3 text-hover-primary">@row["Title"].ToString()</span>
-                        <span class="fw-bold fs-7 my-auto text-gray-800 text-start pe-3 text-hover-primary">@Html.Raw(row["Description"].ToString())</span>
-                    </a>
-                }
+            <div class="row mb-5">
+                <div class="col-md-7">
+                    @foreach (DataRow row in elearnings.Rows)
+                    {
+                        <a class="mb-5 text-dark text-hover-primary elearning-item fs-1 fw-600" href="@row["Link"].ToString()">
+                            <div class="mx-5 my-2 d-none"><img src="~/Content/icons/learning.png" height="30" /></div>
+                            <div class="fw-bolder fs-1 my-auto text-gray-800 text-start pe-3 text-hover-primary">@row["Title"].ToString()</div>
+                            <div class="fw-bold fs-3 my-auto text-gray-800 text-start pe-3">@Html.Raw(row["Description"].ToString())</div>
+                        </a>
+                    }
+                </div>
+                <div class="col-md-5"></div>
             </div>
         </div>
     </div>
