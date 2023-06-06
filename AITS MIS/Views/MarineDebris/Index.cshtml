@@ -141,7 +141,9 @@
                         <a class="row mb-5 text-dark text-hover-primary documents-item fs-1 fw-600" href="~/MarineDebris/Documents/@row["ID"].ToString()">
                             <div class="mx-5 my-2 d-none"><img src="~/Content/icons/pdf-icon.png" height="30" /></div>
                             <div class="fw-bolder fs-1 my-auto text-gray-800 text-end pe-3 text-hover-primary">@row["Title"].ToString()</div>
-                            <div class="fw-bold fs-3 my-auto text-gray-800 text-start pe-3" style="text-align: right!important;">@Html.Raw(row["Description"].ToString().Substring(0,MaxLength))...</div>
+                            <div class="fw-bold fs-3 my-auto text-gray-800 text-start pe-3" style="text-align: right!important;">
+                                @Html.Raw(row["Description"].ToString().Substring(0,MaxLength))...<span class="fs-5 text-primary">see more</span>
+                            </div>
                         </a>
                     }
                 </div>
