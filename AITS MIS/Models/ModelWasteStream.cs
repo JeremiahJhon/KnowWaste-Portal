@@ -276,7 +276,9 @@ namespace UCOnline.Models
                 temp = temp.Replace(",", "");
 
                 int value;
-                int.TryParse(temp, out value);
+                double dValue;
+                double.TryParse(temp, out dValue);
+                int.TryParse(dValue.ToString(), out value);
 
                 return value;
             }
