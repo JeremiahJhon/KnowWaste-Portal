@@ -54,11 +54,16 @@
                         <div class="col-md-4">
                             <!--begin::Feature post-->
                             <div class="card-xl-stretch me-md-6 mb-10">
-                                <!--begin::Image-->
-                                <a class="d-block bgi-no-repeat bgi-size-cover bgi-position-center position-relative min-h-175px mb-5" style="background-image:url('Documents/Blogs/@row["Photo"].ToString()'); background-size: cover;" href="MarineDebris/GoodPractices/@row["ID"].ToString()">
-                                    @*<img src="~/Documents/Blogs/@row["Photo"].ToString()" class="position-absolute top-50 start-50 translate-middle" alt="">*@
+                                <a class="d-block overlay" data-fslightbox="lightbox-hot-sales" href="MarineDebris/GoodPractices/@row["ID"].ToString()">
+                                    <!--begin::Image-->
+                                    <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-175px" style="background-image:url('Documents/Blogs/@row["Photo"].ToString()')"></div>
+                                    <!--end::Image-->
+                                    <!--begin::Action-->
+                                    <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+                                        <i class="bi bi-eye-fill fs-2x text-white"></i>
+                                    </div>
+                                    <!--end::Action-->
                                 </a>
-                                <!--end::Image-->
                                 <!--begin::Body-->
                                 <div class="m-0">
                                     <!--begin::Title-->
