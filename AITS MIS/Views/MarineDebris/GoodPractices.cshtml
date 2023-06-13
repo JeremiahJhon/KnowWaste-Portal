@@ -19,80 +19,56 @@
             <!--end::Title-->
         </div>
     </div>
-
-    <!--begin::Curve bottom-->
-    <div id="pb_line" class="landing-curve landing-dark-color">
-        <svg viewBox="15 12 1470 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 11C3.93573 11.3356 7.85984 11.6689 11.7725 12H1488.16C1492.1 11.6689 1496.04 11.3356 1500 11V12H1488.16C913.668 60.3476 586.282 60.6117 11.7725 12H0V11Z" fill="currentColor"></path>
-        </svg>
-    </div>
-    <!--end::Curve bottom-->
 </div>
-<div class="mt-lg-n20 mb-lg-20 position-relative z-index-2">
-    <!--begin::Container-->
-    <div class="container">
-        <!--begin::Card-->
-        <div class="card" style="filter: drop-shadow(0px 0px 10px rgba(68, 81, 96, 0.08))">
-            <!--begin::Card body-->
-            <div class="card-body p-lg-20">
-                <!--begin::Heading-->
-                <div class="text-center mb-5 mb-lg-10">
-                    <!--begin::Title-->
-                    <h3 class="fs-2hx text-dark mb-5" id="portfolio" data-kt-scroll-offset="{default: 100, lg: 150}" style="color: #2577BC!important; ">@ViewBag.Title</h3>
-                    <!--end::Title-->
-                </div>
-                <!--end::Heading-->
-                <div class="row p-5">
-                    @foreach (DataRow row in blogs.Rows)
-                    {
-                        int MaxLength = 300;
-                        
-                        if (row["Description"].ToString().Length < MaxLength)
-                        {
-                            MaxLength = row["Description"].ToString().Length;
-                        }
-                        <div class="col-md-4">
-                            <!--begin::Feature post-->
-                            <div class="card-xl-stretch me-md-6 mb-10">
-                                <a class="d-block overlay" data-fslightbox="lightbox-hot-sales" href="MarineDebris/GoodPractices/@row["ID"].ToString()">
-                                    <!--begin::Image-->
-                                    <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-175px" style="background-image:url('Documents/Blogs/@row["Photo"].ToString()')"></div>
-                                    <!--end::Image-->
-                                    <!--begin::Action-->
-                                    <div class="overlay-layer card-rounded bg-dark bg-opacity-50">
-                                        <i class="bi bi-eye-fill fs-2x text-white"></i>
-                                    </div>
-                                    <!--end::Action-->
-                                </a>
-                                <!--begin::Body-->
-                                <div class="m-0">
-                                    <!--begin::Title-->
-                                    <a href="MarineDebris/GoodPractices/@row["ID"].ToString()" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">@row["Title"].ToString()</a>
-                                    <!--end::Title-->
-                                    <!--begin::Text-->
-                                    <div class="fw-bold fs-5 text-gray-600 text-dark my-4">@Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<a href="MarineDebris/GoodPractices/@row["ID"].ToString()">see more</a></div>
-                                    <!--end::Text-->
-                                    <!--begin::Content-->
-                                    <div class="fs-6 fw-bolder">
-                                        <!--begin::Author-->
-                                        <a href="#" class="text-gray-700 text-hover-primary">@row["Author"].ToString()</a>
-                                        <!--end::Author-->
-                                        <!--begin::Date-->
-                                        <span class="text-muted d-none">on Mar 21 2021</span>
-                                        <!--end::Date-->
-                                    </div>
-                                    <!--end::Content-->
-                                </div>
-                                <!--end::Body-->
-                            </div>
-                            <!--end::Feature post-->
+
+<div class="container">
+    <div class="row">
+        @foreach (DataRow row in blogs.Rows)
+        {
+            int MaxLength = 100;
+
+            if (row["Description"].ToString().Length < MaxLength)
+            {
+                MaxLength = row["Description"].ToString().Length;
+            }
+            <div class="col-md-4 mb-10">
+                <!--begin::Feature post-->
+                <div class="card border border-hover h-100 m-5">
+                    <a class="d-block overlay" data-fslightbox="lightbox-hot-sales" href="MarineDebris/GoodPractices/@row["ID"].ToString()">
+                        <!--begin::Image-->
+                        <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card min-h-175px" style="background-image:url('Documents/Blogs/@row["Photo"].ToString()')"></div>
+                        <!--end::Image-->
+                        <!--begin::Action-->
+                        <div class="overlay-layer bg-dark bg-opacity-50">
+                            <span class="row text-center text-white fw-bolder fs-2 lh-base d-none">@row["Title"].ToString()</span>
+                            <br />
+                            <i class="bi bi-eye-fill fs-2x text-white"></i>
                         </div>
-                    }
+                        <!--end::Action-->
+                    </a>
+                    <!--begin::Body-->
+                    <div class="m-0 p-5">
+                        <!--begin::Title-->
+                        <a href="MarineDebris/GoodPractices/@row["ID"].ToString()" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">@row["Title"].ToString()</a>
+                        <!--end::Title-->
+                        <!--begin::Text-->
+                        <div class="fw-bold fs-5 text-gray-600 text-dark my-4">@Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<a href="MarineDebris/GoodPractices/@row["ID"].ToString()">see more</a></div>
+                        <!--end::Text-->
+                        <!--begin::Content-->
+                        <div class="fs-6 fw-bolder">
+                            <!--begin::Author-->
+                            <span class="text-gray-700 text-hover-primary">@row["Author"].ToString()</span>
+                            <!--end::Author-->
+                            <!--begin::Date-->
+                            <span class="text-muted d-none">on Mar 21 2021</span>
+                            <!--end::Date-->
+                        </div>
+                        <!--end::Content-->
+                    </div>
+                    <!--end::Body-->
                 </div>
+                <!--end::Feature post-->
             </div>
-            <!--end::Card body-->
-        </div>
-        <!--end::Card-->
+        }
     </div>
-    <!--end::Container-->
 </div>
