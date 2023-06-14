@@ -37,7 +37,7 @@ body {
 }
 
 .landing-dark-bg {
-    background-color: #2577BC;
+    background: linear-gradient(to right, #23A2D7 35%, #15DCBE);
 }
 
 .text-dark {
