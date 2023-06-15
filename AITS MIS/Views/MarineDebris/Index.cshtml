@@ -16,8 +16,8 @@
             <div class="carousel-inner">
                 <!--begin::Item-->
                 <div class="carousel-item active">
-                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-400px min-h-400px" style="background-image: url(Content/marine-debris/AdobeStock_388696870.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%">
-                        <div class="min-h-400px py-10" style="display: grid; align-items: end;">
+                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-500px min-h-500px" style="background-image: url(Content/marine-debris/AdobeStock_388696870.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%">
+                        <div class="min-h-500px py-10" style="display: grid; align-items: end;">
                             <div class="fs-40px text-white carousel-text py-5">
                                 <div class="carousel-text-line-top"></div>
                                 REDUCE, REUSE, RECYCLE
@@ -30,8 +30,8 @@
                 <!--end::Item-->
                 <!--begin::Item-->
                 <div class="carousel-item">
-                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-400px min-h-400px" style="background-image: url(Content/marine-debris/AdobeStock_578026176.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%">
-                        <div class="min-h-400px py-10" style="display: grid; align-items: end;">
+                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-500px min-h-500px" style="background-image: url(Content/marine-debris/AdobeStock_578026176.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%">
+                        <div class="min-h-500px py-10" style="display: grid; align-items: end;">
                             <div class="fs-40px text-white carousel-text py-5">
                                 <div class="carousel-text-line-top"></div>
                                 CHANGE
@@ -44,8 +44,8 @@
                 <!--end::Item-->
                 <!--begin::Item-->
                 <div class="carousel-item">
-                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-400px min-h-400px" style="background-image: url(Content/marine-debris/AdobeStock_205485738.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%">
-                        <div class="min-h-400px py-10" style="display: grid; align-items: end;">
+                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-500px min-h-500px" style="background-image: url(Content/marine-debris/AdobeStock_205485738.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%">
+                        <div class="min-h-500px py-10" style="display: grid; align-items: end;">
                             <div class="fs-40px text-white carousel-text py-5">
                                 <div class="carousel-text-line-top"></div>
                                 MARINE DEBRIS
@@ -96,10 +96,16 @@
                 <div class="col-md-7">
                     @foreach (DataRow row in elearnings.Rows)
                     {
+                        int MaxLength = 300;
+
+                        if (row["Description"].ToString().Length < MaxLength)
+                        {
+                            MaxLength = row["Description"].ToString().Length;
+                        }
                         <a class="mb-5 text-dark text-hover-primary elearning-item fs-1 fw-600" href="@row["Link"].ToString()">
                             <div class="mx-5 my-2 d-none"><img src="~/Content/icons/learning.png" height="30" /></div>
                             <div class="fw-bolder fs-1 my-auto text-gray-800 text-start pe-3 text-hover-primary">@row["Title"].ToString()</div>
-                            <div class="fw-bold fs-3 my-auto text-gray-800 text-start pe-3">@Html.Raw(row["Description"].ToString())</div>
+                            <div class="fw-bold fs-3 my-auto text-gray-800 text-start pe-3"> @Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span class="fs-5 text-primary">see more</div>
                         </a>
                     }
                 </div>
@@ -175,7 +181,7 @@
         <!--begin::Heading-->
         <div class="text-center mb-10">
             <!--begin::Title-->
-            <h3 class="fs-2hx text-dark mb-5" id="team" data-kt-scroll-offset="{default: 100, lg: 150}">Good Practices</h3>
+            <h3 class="fs-2hx text-dark mb-15 title" id="team" data-kt-scroll-offset="{default: 100, lg: 150}">GOOD PRACTICES</h3>
             <!--end::Title-->
             <!--begin::Sub-title-->
             <div class="fs-5 text-muted fw-bold d-none">
