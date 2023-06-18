@@ -11,12 +11,11 @@
         <div class="container py-lg-20">
             <!--begin::Title-->
             <!--begin::Title-->
-            <h1 class="text-white lh-base fw-bolder fs-2x fs-lg-3x">
-                <span class="text-gray-800">MARINE DEBRIS</span>
+            <h1 class="lh-base fw-bolder fs-2x fs-lg-3x">
+                <span class="text-gray-800"><a href="MarineDebris" class="text-primary-hover menu-link">MARINE DEBRIS</a> | <a href="MarineDebris/GoodPractices" class="text-primary-hover menu-link">@ViewBag.Title</a></span>
                 @*<span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
-                    </span>*@
+        </span>*@
             </h1>
-            <!--end::Title-->
         </div>
     </div>
 </div>
@@ -31,13 +30,13 @@
                 <!--begin::Heading-->
                 <div class="text-center mb-5 mb-lg-10">
                     <!--begin::Title-->
-                    <h3 class="fs-2hx text-dark mb-5" id="portfolio" data-kt-scroll-offset="{default: 100, lg: 150}" style="color: #2577BC!important; ">@ViewBag.Title</h3>
+                    <h3 class="fs-2hx text-dark mb-5" id="portfolio" data-kt-scroll-offset="{default: 100, lg: 150}" style="color: #2577BC!important; ">@doc["Title"].ToString()</h3>
                     <!--end::Title-->
                 </div>
                 <!--end::Heading-->
                 <div class="row d-flex">
                     <div class="row pb-20 pt-10">
-                        <span class="fs-1 text-dark fw-bolder text-hover-primary text-dark lh-base">@doc["Title"].ToString()</span>
+                        <span class="fs-1 text-dark fw-bolder text-hover-primary text-dark lh-base d-none">@doc["Title"].ToString()</span>
                         <div class="w-100">
                             <span class="badge badge-light-success fw-bolder my-2" style="white-space: normal; text-align: left;">Author: @doc["Author"].ToString()</span>
                             <span class="badge badge-light fw-bolder my-2" style="white-space: normal; text-align: left;">Date Created: @doc["Blogsdate"].ToString()</span>

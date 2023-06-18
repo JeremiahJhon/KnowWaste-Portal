@@ -14,7 +14,7 @@
             <h1 class="text-white lh-base fw-bolder fs-2x fs-lg-3x">
                 <span class="text-gray-800">MARINE DEBRIS</span>
                 @*<span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
-                </span>*@
+                    </span>*@
             </h1>
             <!--end::Title-->
         </div>
@@ -72,3 +72,17 @@
         }
     </div>
 </div>
+<script src="\Scripts\jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".overlay-layer").hover(function () {
+            $(this).parent().children(".overlay-wrapper").css("background-size", "150%");
+            $(this).parent().parent().css("background-color", "#23A2D722");
+            
+        },
+        function () {
+            $(this).parent().children(".overlay-wrapper").css("background-size", "100%");
+            $(this).parent().parent().css("background-color", "");
+        });
+    });
+</script>
