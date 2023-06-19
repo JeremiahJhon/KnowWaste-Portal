@@ -47,12 +47,12 @@
                         <!--end::Action-->
                     </a>
                     <!--begin::Body-->
-                    <div class="m-0 p-5">
+                    <a href="MarineDebris/GoodPractices/@row["ID"].ToString()" class="m-0 p-5">
                         <!--begin::Title-->
-                        <a href="MarineDebris/GoodPractices/@row["ID"].ToString()" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">@row["Title"].ToString()</a>
+                        <div href="MarineDebris/GoodPractices/@row["ID"].ToString()" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">@row["Title"].ToString()</div>
                         <!--end::Title-->
                         <!--begin::Text-->
-                        <div class="fw-bold fs-5 text-gray-600 text-dark my-4">@Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<a href="MarineDebris/GoodPractices/@row["ID"].ToString()">see more</a></div>
+                        <div class="fw-bold fs-5 text-gray-600 text-dark my-4">@Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<div href="MarineDebris/GoodPractices/@row["ID"].ToString()">see more</div></div>
                         <!--end::Text-->
                         <!--begin::Content-->
                         <div class="fs-6 fw-bolder">
@@ -64,7 +64,7 @@
                             <!--end::Date-->
                         </div>
                         <!--end::Content-->
-                    </div>
+                    </a>
                     <!--end::Body-->
                 </div>
                 <!--end::Feature post-->
@@ -75,14 +75,14 @@
 <script src="\Scripts\jquery-3.6.4.min.js"></script>
 <script>
     $(document).ready(function () {
-        $(".overlay-layer").hover(function () {
-            $(this).parent().children(".overlay-wrapper").css("background-size", "150%");
-            $(this).parent().parent().css("background-color", "#23A2D722");
-            
+        $(".card").hover(function () {
+            $(this).children(".overlay").children(".overlay-wrapper").css("background-size", "150%");
+            $(this).css("background-color", "#23A2D722");
+
         },
         function () {
-            $(this).parent().children(".overlay-wrapper").css("background-size", "100%");
-            $(this).parent().parent().css("background-color", "");
+            $(this).children(".overlay").children(".overlay-wrapper").css("background-size", "cover");
+            $(this).css("background-color", "");
         });
     });
 </script>

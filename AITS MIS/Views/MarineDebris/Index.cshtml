@@ -200,20 +200,47 @@
                         <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="18000" data-tns-controls="true" data-tns-nav="false" data-tns-items="1" data-tns-center="false" data-tns-dots="false" data-tns-prev-button="#kt_team_slider_prev" data-tns-next-button="#kt_team_slider_next" data-tns-responsive="{1200: {items: 4}, 968: {items: 3}}" class="  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns2" style="transform: translate3d(-40%, 0px, 0px);">
                             @foreach (DataRow row in blogs.Rows)
                             {
+                                int MaxLength = 100;
+
+                                if (row["Description"].ToString().Length < MaxLength)
+                                {
+                                    MaxLength = row["Description"].ToString().Length;
+                                }
                                 <div class="text-center tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-                                    <!--begin::Photo-->
-                                    <a href="~/MarineDebris/GoodPractices/@row["ID"].ToString()" class="mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('Documents/Blogs/@row["Photo"].ToString()'); background-size: cover;"></a>
-                                    <!--end::Photo-->
-                                    <!--begin::Person-->
-                                    <div class="mb-0">
-                                        <!--begin::Name-->
-                                        <a href="~/MarineDebris/GoodPractices/@row["ID"].ToString()" class="text-dark fw-bolder text-hover-primary fs-3">@row["Title"].ToString()</a>
-                                        <!--end::Name-->
-                                        <!--begin::Position-->
-                                        <div class="text-muted fs-6 fw-bold mt-1 d-none">Tagline</div>
-                                        <!--begin::Position-->
+                                    <div class="card border border-hover h-100 m-5">
+                                        <a class="d-block overlay" href="MarineDebris/GoodPractices/@row["ID"].ToString()">
+                                            <!--begin::Image-->
+                                            <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card min-h-175px" style="background-image:url('Documents/Blogs/@row["Photo"].ToString()')"></div>
+                                            <!--end::Image-->
+                                            <!--begin::Action-->
+                                            <div class="overlay-layer bg-dark bg-opacity-50">
+                                                <span class="row text-center text-white fw-bolder fs-2 lh-base d-none">@row["Title"].ToString()</span>
+                                                <br />
+                                                <i class="bi bi-eye-fill fs-2x text-white"></i>
+                                            </div>
+                                            <!--end::Action-->
+                                        </a>
+                                        <!--begin::Body-->
+                                        <a href="MarineDebris/GoodPractices/@row["ID"].ToString()" class="m-0 p-5">
+                                            <!--begin::Title-->
+                                            <div href="MarineDebris/GoodPractices/@row["ID"].ToString()" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">@row["Title"].ToString()</div>
+                                            <!--end::Title-->
+                                            <!--begin::Text-->
+                                            <div class="fw-bold fs-5 text-gray-600 text-dark my-4">@Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<div href="MarineDebris/GoodPractices/@row["ID"].ToString()">see more</div></div>
+                                            <!--end::Text-->
+                                            <!--begin::Content-->
+                                            <div class="fs-6 fw-bolder">
+                                                <!--begin::Author-->
+                                                <span class="text-gray-700 text-hover-primary">@row["Author"].ToString()</span>
+                                                <!--end::Author-->
+                                                <!--begin::Date-->
+                                                <span class="text-muted d-none">on Mar 21 2021</span>
+                                                <!--end::Date-->
+                                            </div>
+                                            <!--end::Content-->
+                                        </a>
+                                        <!--end::Body-->
                                     </div>
-                                    <!--end::Person-->
                                 </div>
                             }
                         </div>
@@ -972,5 +999,15 @@
                 return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + ' K' : Math.sign(num) * Math.abs(num)
             }
         }
+
+        $(".card").hover(function () {
+            $(this).children(".overlay").children(".overlay-wrapper").css("background-size", "150%");
+            $(this).css("background-color", "#23A2D722");
+
+        },
+        function () {
+            $(this).children(".overlay").children(".overlay-wrapper").css("background-size", "cover");
+            $(this).css("background-color", "");
+        });
     });
 </script>
