@@ -16,7 +16,7 @@
             <div class="carousel-inner">
                 <!--begin::Item-->
                 <div class="carousel-item active">
-                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-500px min-h-500px" style="background-image: url(Content/marine-debris/AdobeStock_388696870.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%">
+                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-600px min-h-600px" style="background-image: url(Content/marine-debris/AdobeStock_388696870.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%">
                         <div class="min-h-500px py-10" style="display: grid; align-items: end;">
                             <div class="fs-40px text-white carousel-text py-5">
                                 <div class="carousel-text-line-top"></div>
@@ -30,7 +30,7 @@
                 <!--end::Item-->
                 <!--begin::Item-->
                 <div class="carousel-item">
-                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-500px min-h-500px" style="background-image: url(Content/marine-debris/AdobeStock_578026176.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%">
+                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-600px min-h-600px" style="background-image: url(Content/marine-debris/AdobeStock_578026176.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%">
                         <div class="min-h-500px py-10" style="display: grid; align-items: end;">
                             <div class="fs-40px text-white carousel-text py-5">
                                 <div class="carousel-text-line-top"></div>
@@ -44,7 +44,7 @@
                 <!--end::Item-->
                 <!--begin::Item-->
                 <div class="carousel-item">
-                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-500px min-h-500px" style="background-image: url(Content/marine-debris/AdobeStock_205485738.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%">
+                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-600px min-h-600px" style="background-image: url(Content/marine-debris/AdobeStock_205485738.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%">
                         <div class="min-h-500px py-10" style="display: grid; align-items: end;">
                             <div class="fs-40px text-white carousel-text py-5">
                                 <div class="carousel-text-line-top"></div>
@@ -80,8 +80,8 @@
 <style>
     .title {
         color: #2577BC !important;
-        font-size: 40px !important;
-        letter-spacing: 15px;
+        font-size: 50px !important;
+        letter-spacing: 10px;
     }
     .title:after {
         content: '';
@@ -105,7 +105,7 @@
         width: 70%;
         height: 40%;
         background: #2577BC;
-        border-radius: 0.25rem;
+        border-radius: 50px 15px;
         animation-name: amagdic-picture-background-animation;
         animation-duration: 3s;
         z-index: -999;
@@ -113,7 +113,7 @@
 </style>
 <div class="row">
     <div class="col-md-12 py-10">
-        <div class="container mb-7 pt-20">
+        <div class="container mb-7 p-20">
             <!--begin::Title-->
             <h1 class="text-dark fs-1 mb-10 fw-100 title">E-LEARNING</h1>
             <!--end::Title-->
@@ -132,14 +132,14 @@
                     <div class="col-md-7 p-5 align-items-center d-grid">
                         <a class="mb-5 text-dark text-hover-primary elearning-item fs-1 fw-600" href="@row["Link"].ToString()">
                             <div class="mx-5 my-2 d-none"><img src="~/Content/icons/learning.png" height="30" /></div>
-                            <div class="fw-bolder fs-1 my-auto text-gray-800 text-start pe-3 text-hover-primary">@row["Title"].ToString()</div>
-                            <div class="fw-bold fs-3 my-auto text-gray-800 text-start pe-3"> @Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span class="fs-5 text-primary">see more</span></div>
+                            <div class="fw-bolder my-auto text-gray-800 text-end pe-10 text-hover-primary justify-content-end" style="font-size: 30px !important;">@row["Title"].ToString()</div>
+                            <div class="fw-bold fs-4 my-auto text-gray-800 text-end ps-20 pe-10 mt-5"> @Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span class="fs-5 text-primary">see more</span></div>
                         </a>
 
                     </div>
-                    <div class="col-md-5 p-5 main-image">
+                    <div class="col-md-5 p-5 main-image s-border-reverse box-shadow">
                         <a href="@row["Link"].ToString()">
-                            <div class="col-md-12 min-h-300px h-100 pt-10" style="background-image: url('Documents/ELearning/elearn1.jpg'); background-repeat: no-repeat; background-size: cover;">
+                            <div class="s-border-reverse col-md-12 min-h-300px h-100" style="background-image: url('Documents/ELearning/elearn1.jpg'); background-repeat: no-repeat; background-size: cover;">
                             </div>
                         </a>
                     </div>
@@ -225,7 +225,7 @@
             <div class="tns-outer" id="tns2-ow">
                 <div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">7 to 8</span>  of 7</div><div id="tns2-mw" class="tns-ovh">
                     <div class="tns-inner" id="tns2-iw">
-                        <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="18000" data-tns-controls="true" data-tns-nav="false" data-tns-items="1" data-tns-center="false" data-tns-dots="false" data-tns-prev-button="#kt_team_slider_prev" data-tns-next-button="#kt_team_slider_next" data-tns-responsive="{1200: {items: 4}, 968: {items: 3}}" class="  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns2" style="transform: translate3d(-40%, 0px, 0px);">
+                        <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="18000" data-tns-controls="true" data-tns-nav="false" data-tns-items="1" data-tns-center="false" data-tns-dots="false" data-tns-prev-button="#kt_team_slider_prev" data-tns-next-button="#kt_team_slider_next" data-tns-responsive="{1200: {items: 4}, 968: {items: 3}}" class="tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns2" style="transform: translate3d(-40%, 0px, 0px);">
                             @foreach (DataRow row in blogs.Rows)
                             {
                                 int MaxLength = 70;
@@ -234,14 +234,14 @@
                                 {
                                     MaxLength = row["Description"].ToString().Length;
                                 }
-                                <div class="text-center tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
-                                    <div class="card h-100 m-5">
+                                <div class="card card-rounded s-border box-shadow text-center tns-item tns-slide-cloned m-10" aria-hidden="true" tabindex="-1">
+                                    <div class="h-100">
                                         <a class="d-block overlay" href="MarineDebris/GoodPractices/@row["ID"].ToString()">
                                             <!--begin::Image-->
-                                            <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card min-h-175px" style="background-image:url('Documents/Blogs/@row["Photo"].ToString()')"></div>
+                                            <div class="overlay-wrapper s-border-top bgi-no-repeat bgi-position-center bgi-size-cover min-h-175px" style="background-image:url('Documents/Blogs/@row["Photo"].ToString()')"></div>
                                             <!--end::Image-->
                                             <!--begin::Action-->
-                                            <div class="overlay-layer bg-dark bg-opacity-50">
+                                            <div class="overlay-layer s-border-top bg-dark bg-opacity-50">
                                                 <span class="row text-center text-white fw-bolder fs-2 lh-base d-none">@row["Title"].ToString()</span>
                                                 <br />
                                                 <i class="bi bi-eye-fill fs-2x text-white"></i>
@@ -251,13 +251,13 @@
                                         <!--begin::Body-->
                                         <a href="MarineDebris/GoodPractices/@row["ID"].ToString()" class="m-0 p-5">
                                             <!--begin::Title-->
-                                            <div href="MarineDebris/GoodPractices/@row["ID"].ToString()" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">@row["Title"].ToString()</div>
+                                            <div href="MarineDebris/GoodPractices/@row["ID"].ToString()" class="px-2 fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">@row["Title"].ToString()</div>
                                             <!--end::Title-->
                                             <!--begin::Text-->
-                                            <div class="fw-bold fs-6 text-gray-600 text-dark my-4">@Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span  href="MarineDebris/GoodPractices/@row["ID"].ToString()">see more</span></div>
+                                            <div class="px-2 fw-bold fs-6 text-gray-600 text-dark my-4">@Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span class="text-primary" href="MarineDebris/GoodPractices/@row["ID"].ToString()">see more</span></div>
                                             <!--end::Text-->
                                             <!--begin::Content-->
-                                            <div class="fs-6 fw-bolder">
+                                            <div class="px-2 fs-6 fw-bolder">
                                                 <!--begin::Author-->
                                                 <span class="text-gray-700 text-hover-primary">@row["Author"].ToString()</span>
                                                 <!--end::Author-->
