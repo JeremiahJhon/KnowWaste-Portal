@@ -4,7 +4,7 @@
 @using System.Data;
 
 @{
-    DataTable blogs = (DataTable)ViewBag.Blogs;
+    DataTable data = (DataTable)ViewBag._3RproMar;
 }
 <div class="row mt-20">
     <div class="landing-dark-bg h-250px">
@@ -12,7 +12,7 @@
             <!--begin::Title-->
             <!--begin::Title-->
             <h1 class="text-white lh-base fw-bolder fs-2x fs-lg-3x">
-                <span class="text-gray-800">MARINE DEBRIS</span>
+                <span class="text-white">MARINE DEBRIS | 3RproMar</span>
                 @*<span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
                     </span>*@
             </h1>
@@ -21,9 +21,9 @@
     </div>
 </div>
 
-<div class="container mt-lg-n20">
+<div class="container mt-lg-n20 h-50">
     <div class="row">
-        @foreach (DataRow row in blogs.Rows)
+        @foreach (DataRow row in data.Rows)
         {
             int MaxLength = 100;
 
@@ -34,9 +34,9 @@
             <div class="col-md-3 mb-10">
                 <!--begin::Feature post-->
                 <div class="card h-100 m-5">
-                    <a class="d-block overlay" href="MarineDebris/GoodPractices/@row["ID"].ToString()">
+                    <a class="d-block overlay" target="_blank" href="~/Documents/@row["Attachment"].ToString()">
                         <!--begin::Image-->
-                        <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card min-h-175px" style="background-image:url('Documents/Blogs/@row["Photo"].ToString()')"></div>
+                        <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card min-h-175px" style="background-image:url('Documents/@row["Thumbnail"].ToString()')"></div>
                         <!--end::Image-->
                         <!--begin::Action-->
                         <div class="overlay-layer bg-dark bg-opacity-50">
@@ -47,7 +47,7 @@
                         <!--end::Action-->
                     </a>
                     <!--begin::Body-->
-                    <a href="MarineDebris/GoodPractices/@row["ID"].ToString()" class="m-0 p-5">
+                    <a href="~/Documents/@row["Attachment"].ToString()" target="_blank" class="m-0 p-5">
                         <!--begin::Title-->
                         <div class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">@row["Title"].ToString()</div>
                         <!--end::Title-->
@@ -57,7 +57,7 @@
                         <!--begin::Content-->
                         <div class="fs-6 fw-bolder">
                             <!--begin::Author-->
-                            <span class="text-gray-700 text-hover-primary">@row["Author"].ToString()</span>
+                            <span class="text-gray-700 text-hover-primary">@row["Publisher"].ToString()</span>
                             <!--end::Author-->
                             <!--begin::Date-->
                             <span class="text-muted d-none">on Mar 21 2021</span>

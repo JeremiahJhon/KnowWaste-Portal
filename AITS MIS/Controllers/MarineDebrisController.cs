@@ -203,6 +203,49 @@ namespace UCOnline.Controllers
             }
         }
 
+        public ActionResult _3RproMar(int? id)
+        {
+            ViewBag.Title = "3RproMar";
+
+            if (id == null)
+            {
+                ServerBase _3RproMar = new ServerBase("documents");
+                _3RproMar.SelectFilter("documentcategory_id = 4"); //3RproMar
+                _3RproMar.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
+                DataTable _3RproMarData = _3RproMar.SelectQuery();
+
+                ViewBag._3RproMar = _3RproMarData;
+
+                return View();
+            }
+            else
+            {
+                //ServerBase blogs = new ServerBase("documents");
+                //blogs.SelectFilter("ID = " + id.ToString());
+                //DataTable blogsData = blogs.SelectQuery();
+
+                //if (blogsData.Rows.Count == 1)
+                //{
+
+                //    ViewBag.Blog = blogsData.Rows[0];
+
+                //    return View("BlogItem");
+                //}
+                //else
+                //{
+                //    return View("Empty", "Pages");
+                //}
+                ServerBase _3RproMar = new ServerBase("documents");
+                _3RproMar.SelectFilter("documentcategory_id = 4"); //3RproMar
+                _3RproMar.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
+                DataTable _3RproMarData = _3RproMar.SelectQuery();
+
+                ViewBag._3RproMar = _3RproMarData;
+
+                return View();
+            }
+        }
+
         [HttpPost]
         public String getSolidWasteGraphData(FormCollection formData)
         {
