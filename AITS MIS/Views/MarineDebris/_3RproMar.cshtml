@@ -21,11 +21,13 @@
     </div>
 </div>
 
-<div class="container mt-lg-n20 h-50">
+<div class="container mt-lg-n20 min-h-50">
     <div class="row">
         @foreach (DataRow row in data.Rows)
         {
             int MaxLength = 100;
+
+            string description = Html.Raw(row["Description"].ToString()).ToString();
 
             if (row["Description"].ToString().Length < MaxLength)
             {
