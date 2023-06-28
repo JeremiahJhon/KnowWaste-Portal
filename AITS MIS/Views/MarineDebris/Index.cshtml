@@ -16,7 +16,7 @@
             <div class="carousel-inner">
                 <!--begin::Item-->
                 <div class="carousel-item active">
-                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-600px min-h-600px" style="background-image: url(Content/marine-debris/AdobeStock_388696870.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%">
+                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-600px min-h-600px" style="background-image: url(Content/marine-debris/AdobeStock_388696870.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%; background-attachment: fixed;">
                         <div class="min-h-500px py-10" style="display: grid; align-items: end;">
                             <div class="fs-40px text-white carousel-text py-5">
                                 <div class="carousel-text-line-top"></div>
@@ -30,7 +30,7 @@
                 <!--end::Item-->
                 <!--begin::Item-->
                 <div class="carousel-item">
-                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-600px min-h-600px" style="background-image: url(Content/marine-debris/AdobeStock_578026176.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%">
+                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-600px min-h-600px" style="background-image: url(Content/marine-debris/AdobeStock_578026176.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%; background-attachment: fixed;">
                         <div class="min-h-500px py-10" style="display: grid; align-items: end;">
                             <div class="fs-40px text-white carousel-text py-5">
                                 <div class="carousel-text-line-top"></div>
@@ -44,7 +44,7 @@
                 <!--end::Item-->
                 <!--begin::Item-->
                 <div class="carousel-item">
-                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-600px min-h-600px" style="background-image: url(Content/marine-debris/AdobeStock_205485738.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%">
+                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-600px min-h-600px" style="background-image: url(Content/marine-debris/AdobeStock_205485738.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%; background-attachment: fixed;">
                         <div class="min-h-500px py-10" style="display: grid; align-items: end;">
                             <div class="fs-40px text-white carousel-text py-5">
                                 <div class="carousel-text-line-top"></div>
@@ -80,6 +80,11 @@
 <style>
     .title {
         color: #2577BC !important;
+        font-size: 50px !important;
+        letter-spacing: 10px;
+    }
+    .title-white {
+        color: #fff !important;
         font-size: 50px !important;
         letter-spacing: 10px;
     }
@@ -129,7 +134,7 @@
                     MaxLength = row["Description"].ToString().Length;
                 }
                 <div class="row p-10">
-                    <div class="col-md-7 p-5 align-items-center d-grid">
+                    <div class="col-md-6 p-5 align-items-center d-grid">
                         <a class="mb-5 text-dark text-hover-primary elearning-item fs-1 fw-600" href="@row["Link"].ToString()">
                             <div class="mx-5 my-2 d-none"><img src="~/Content/icons/learning.png" height="30" /></div>
                             <div class="fw-bolder my-auto text-gray-800 text-end pe-10 text-hover-primary justify-content-end" style="font-size: 30px !important;">@row["Title"].ToString()</div>
@@ -137,7 +142,7 @@
                         </a>
 
                     </div>
-                    <div class="col-md-5 p-5 main-image s-border-reverse box-shadow">
+                    <div class="col-md-6 p-5 main-image s-border-reverse box-shadow">
                         <a href="@row["Link"].ToString()">
                             <div class="s-border-reverse col-md-12 min-h-300px h-100" style="background-image: url('Documents/ELearning/elearn1.jpg'); background-repeat: no-repeat; background-size: cover;">
                             </div>
@@ -148,21 +153,21 @@
         </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12 pt-10" style="background-image: url('Content/marine-debris/documents-1.jpg'); background-repeat: no-repeat; background-position: left; background-size: contain; background-color: white;">
-        <div class="container mb-7 text-end pt-15">
+<div class="row h-700px" style="background-image: url('Content/marine-debris/bg-document.jpg'); background-repeat: no-repeat; background-size: cover; background-color: white; opacity: 0.75; background-attachment: fixed;">
+    <div class="col-md-12 pt-10" style=" background-color: #00000099; ">
+        <div class="container mb-7 text-center pt-15">
             <!--begin::Title-->
-            <h1 class="text-dark fs-1 mb-10 fw-boldest title">DOCUMENTS</h1>
+            <h1 class="text-dark fs-1 mb-15 p-2 fw-boldest title-white">DOCUMENTS</h1>
             <!--end::Title-->
             <!--begin::Description-->
             <div class="text-gray-400 fw-bold mb-15 d-none">Short description here</div>
-            <div class="row mb-5">
+            <div class="row mb-5 d-none">
                 <div class="col-md-5"></div>
                 <div class="col-md-7">
                     @foreach (DataRow row in documents.Rows)
                     {
                         int MaxLength = 300;
-                        
+
                         if (row["Description"].ToString().Length < MaxLength)
                         {
                             MaxLength = row["Description"].ToString().Length;
@@ -171,22 +176,55 @@
                             <div class="mx-5 my-2 d-none"><img src="~/Content/icons/pdf-icon.png" height="30" /></div>
                             <div class="fw-bolder fs-1 my-auto text-gray-800 text-end pe-3 text-hover-primary">@row["Title"].ToString()</div>
                             <div class="fw-bold fs-3 my-auto text-gray-800 text-start pe-3" style="text-align: right!important;">
-                                @Html.Raw(row["Description"].ToString().Substring(0,MaxLength))...<span class="fs-5 text-primary">see more</span>
+                                @Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span class="fs-5 text-primary">see more</span>
                             </div>
                         </a>
                     }
                 </div>
+            </div><!--begin::Slider-->
+            <div class="tns tns-default tns-initiazlied mw-600px m-auto">
+                <!--begin::Wrapper-->
+                <div class="tns-outer" id="tns1-ow">
+                    <div id="tns1-mw" class="tns-ovh">
+                        <div class="tns-inner" id="tns1-iw">
+                            <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="true" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="18000" data-tns-controls="false" data-tns-nav="true" data-tns-items="1" data-tns-center="true" data-tns-dots="true" data-tns-dots-position="bottom" data-tns-responsive="{1200: {items: 1}, 968: {items: 1}}" class="tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns1" style="transform: translate3d(-40%, 0px, 0px);">
+                                @foreach (DataRow row in documents.Rows)
+                                {
+                                    int MaxLength = 70;
+
+                                    if (row["Description"].ToString().Length < MaxLength)
+                                    {
+                                        MaxLength = row["Description"].ToString().Length;
+                                    }
+
+                                    <div class="document-card h-100">
+                                        <a class="d-block overlay mw-200px m-auto" href="MarineDebris/Documents/@row["ID"].ToString()">
+                                            <!--begin::Image-->
+                                            <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover min-h-300px" style="background-image:url('Documents/@row["Thumbnail"].ToString()')"></div>
+                                            <!--end::Image-->
+                                            <!--begin::Action-->
+                                            <div class="overlay-layer bg-dark bg-opacity-50">
+                                                <span class="row text-center text-white fw-bolder fs-2 lh-base d-none">@row["Title"].ToString()</span>
+                                                <br />
+                                                <i class="bi bi-eye-fill fs-2x text-white"></i>
+                                            </div>
+                                            <!--end::Action-->
+                                        </a>
+                                        <a href="MarineDebris/Documents/@row["ID"].ToString()" class="fw-bolder my-5 text-white" style="font-size: 24px !important;">@row["Title"].ToString()</a>                                    
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end::Wrapper-->
             </div>
-        </div>
-        <div class="row">
-            <a href="MarineDebris/Documents" class="py-10 text-center see-more-row fs-4 px-3 m-auto">
-                See more
-            </a>
+            <!--end::Slider-->
         </div>
     </div>
 </div>
 
-<div class="row">
+<div class="row d-none">
     <!--begin::Curve bottom-->
     <div id="pb_line" class="h-250px landing-curve landing-dark-color" style="background-repeat: no-repeat; background-image: url(&quot;/Content/static/AdobeStock_584264594.jpeg&quot;); background-size: cover;">
         @*<svg viewBox="15 12 1470 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1029,13 +1067,21 @@
         }
 
         $(".card").hover(function () {
-            $(this).children(".overlay").children(".overlay-wrapper").css("background-size", "150%");
+            $(this).find(".overlay-wrapper").css("background-size", "150%");
             $(this).css("background-color", "#23A2D722");
 
         },
         function () {
-            $(this).children(".overlay").children(".overlay-wrapper").css("background-size", "cover");
+            $(this).find(".overlay-wrapper").css("background-size", "cover");
             $(this).css("background-color", "");
+            });
+
+        $(".document-card").hover(function () {
+            $(this).find(".overlay-wrapper").css("background-size", "150%");
+
+        },
+        function () {
+            $(this).find(".overlay-wrapper").css("background-size", "cover");
         });
     });
 </script>
