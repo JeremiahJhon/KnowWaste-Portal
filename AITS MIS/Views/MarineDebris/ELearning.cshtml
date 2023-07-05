@@ -8,13 +8,13 @@
 }
 <div class="row z-index-n2">
     <div class="landing-dark-bg">
-        <div class="tns mh-400">
+        <div class="tns mh-500">
             <!--begin::Slider-->
             <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="6000" data-tns-controls="false" data-tns-nav="false" data-tns-items="1" data-tns-mouse-drag="true" data-tns-center="false" data-tns-dots="false">
                 @foreach (DataRow row in elearnings.Rows)
                 {
-                    <a href="@row["Link"].ToString()" class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-400px min-h-400px" style="background-image: url(Documents/ELearning/@row["Photo"].ToString()); background-repeat: no-repeat; background-size: cover; background-position: 50%">
-                        <div class="col-md-4 h-100 min-h-400px px-20 py-20" style="background-color: #535551aa; margin-left: 50%; display: grid; align-content: center;">
+                    <a href="@row["Link"].ToString()" class="text-center px-0 pt-0 pt-lg-0 px-lg-0 mh-500px min-h-500px" style="background-image: url(Documents/ELearning/@row["Photo"].ToString()); background-repeat: no-repeat; background-size: cover; background-position: 50%">
+                        <div class="col-md-4 h-100 min-h-400px px-20 py-20" style="background-color: #535551aa; margin-left: 50%; display: grid; align-content: center; background-attachment: fixed; ">
                             <div class="fs-1 h-100 fw-bolder text-white mb-2">
                                 @row["Title"].ToString()
                                 <span class="fw-normal d-none">@Html.Raw(row["Description"].ToString())</span>
@@ -44,60 +44,87 @@
     </div>
 </div>
 
-<div class="row w-100 my-10 px-9 d-none">
-    <div class="d-flex flex-stack flex-wrap flex-md-nowrap card shadow p-8" style="background-color: #2577BC;">
-        <!--begin::Content-->
-        <div class="mb-5">
+<div class="row">
+    <div class="col-md-12 py-10">
+        <div class="container mb-7 p-20">
+            <!--begin::Title-->
+            <h1 class="text-dark fs-1 mb-10 fw-100 title">E-LEARNING</h1>
+            <!--end::Title-->
             <!--begin::Description-->
-            <div class="fs-6 fs-lg-5 text-white fw-bold opacity-75">The kNOwWaste Knowledge Platform was developed through a Project Cooperation Agreement funding by UNEP on 2016. The platform provides data and information on holistic waste management to stakeholders in Asia and the Pacific region. The platform was developed with the following aims: generate and consolidate data or information on holistic waste management, transform data into easily comprehensible outputs for use by key stakeholders, map out and disseminate information on international waste management projects under the GPWM and UNEP projects as well as other international partners, and provide capacity building support through dissemination of data or information support for relevant stakeholders on holistic waste and waste management system.</div>
-            <!--end::Description-->
+            <div class="text-gray-400 fw-bold mb-15 d-none">Short description here</div>
+
+            @foreach (DataRow row in elearnings.Rows)
+            {
+                int MaxLength = 300;
+
+                if (row["Description"].ToString().Length < MaxLength)
+                {
+                    MaxLength = row["Description"].ToString().Length;
+                }
+                <div class="row p-10">
+                    <div class="col-md-6 p-5 align-items-center d-grid">
+                        <a class="mb-5 text-dark text-hover-primary elearning-item fs-1 fw-600" href="@row["Link"].ToString()">
+                            <div class="mx-5 my-2 d-none"><img src="~/Content/icons/learning.png" height="30" /></div>
+                            <div class="fw-bolder my-auto text-gray-800 text-end pe-10 text-hover-primary justify-content-end" style="font-size: 30px !important;">@row["Title"].ToString()</div>
+                            <div class="fw-bold fs-4 my-auto text-gray-800 text-end ps-20 pe-10 mt-5"> @Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span class="fs-5 text-primary">see more</span></div>
+                        </a>
+
+                    </div>
+                    <div class="col-md-6 p-5 main-image s-border-reverse box-shadow">
+                        <a href="@row["Link"].ToString()">
+                            <div class="s-border-reverse col-md-12 min-h-300px h-100" style="background-image: url('Documents/ELearning/elearn1.jpg'); background-repeat: no-repeat; background-size: cover;">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            }
         </div>
-        <!--end::Content-->
-    </div>
-    <div class="w-100 p-5 text-center">
-        <img src="Content/marine-debris/AIT-RRCAP.png" class="h-40px my-5" alt="" />
     </div>
 </div>
 
 <style>
     .title {
         color: #2577BC !important;
-        font-size: 40px !important;
-        letter-spacing: 15px;
+        font-size: 50px !important;
+        letter-spacing: 10px;
     }
 
-    .elearning-item:hover {
-        padding-left: 20px;
+    .title-white {
+        color: #fff !important;
+        font-size: 50px !important;
+        letter-spacing: 10px;
     }
 
-    .documents-item:hover {
-        padding-right: 20px;
+    .title:after {
+        content: '';
+        width: 3.125rem;
+        border-bottom: 4px solid #2577BC;
+        margin: 1rem 0 1rem 0;
+        height: 0;
+        padding: 0;
+        display: none;
+        background-color: transparent;
     }
+
+    .main-image {
+        position: relative;
+        padding: 10px;
+    }
+
+        .main-image:before {
+            content: '';
+            position: absolute;
+            bottom: 0rem;
+            right: 0rem;
+            width: 70%;
+            height: 40%;
+            background: #2577BC;
+            border-radius: 50px 15px;
+            animation-name: amagdic-picture-background-animation;
+            animation-duration: 3s;
+            z-index: -999;
+        }
 </style>
-<div class="row h-100">
-    <div class="col-md-12 py-10" style="background-image: url('Content/marine-debris/elearning-1.jpg'); background-repeat: no-repeat; background-position: right; background-size: contain; background-color: white;">
-        <div class="container mb-7 pt-20">
-            <!--begin::Title-->
-            <h1 class="text-dark fs-1 mb-10 fw-boldest title">E-LEARNING</h1>
-            <!--end::Title-->
-            <!--begin::Description-->
-            <div class="text-gray-400 fw-bold mb-15 d-none">Short description here</div>
-            <div class="row mb-5">
-                <div class="col-md-7">
-                    @foreach (DataRow row in elearnings.Rows)
-                    {
-                        <a class="mb-5 text-dark text-hover-primary elearning-item fs-1 fw-600" href="@row["Link"].ToString()">
-                            <div class="mx-5 my-2 d-none"><img src="~/Content/icons/learning.png" height="30" /></div>
-                            <div class="fw-bolder fs-1 my-auto text-gray-800 text-start pe-3 text-hover-primary">@row["Title"].ToString()</div>
-                            <div class="fw-bold fs-3 my-auto text-gray-800 text-start pe-3">@Html.Raw(row["Description"].ToString())</div>
-                        </a>
-                    }
-                </div>
-                <div class="col-md-5"></div>
-            </div>
-        </div>
-    </div>
-</div>
 
 @*<script src="\Scripts\jquery-3.6.4.min.js"></script>
     <script>
