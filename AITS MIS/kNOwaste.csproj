@@ -6551,6 +6551,7 @@
     <Content Include="Views\Pages\Empty.cshtml" />
     <Content Include="Views\MarineDebris\BlogItem.cshtml" />
     <Content Include="Views\MarineDebris\_3RproMar.cshtml" />
+    <Content Include="Views\MarineDebris\Publications.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

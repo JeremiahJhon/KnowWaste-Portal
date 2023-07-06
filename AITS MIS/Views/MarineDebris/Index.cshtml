@@ -120,7 +120,7 @@
     <div class="col-md-12 py-10">
         <div class="container mb-7 p-20">
             <!--begin::Title-->
-            <h1 class="text-dark fs-1 mb-10 fw-100 title">E-LEARNING</h1>
+            <h1 class="text-dark fs-1 mb-10 fw-100 title" id="elearning-title">E-LEARNING</h1>
             <!--end::Title-->
             <!--begin::Description-->
             <div class="text-gray-400 fw-bold mb-15 d-none">Short description here</div>
@@ -1083,6 +1083,9 @@
         },
         function () {
             $(this).find(".overlay-wrapper").css("background-size", "cover");
-        });
+            });
+                
+                
+        $("#elearning-title").animate({ left: 200, opacity: "show" }, 1500);
     });
 </script>

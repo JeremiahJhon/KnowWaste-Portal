@@ -203,6 +203,77 @@ namespace UCOnline.Controllers
             }
         }
 
+        public ActionResult Publications(int? id)
+        {
+            ViewBag.Title = "Publications";
+
+            //if (id == null)
+            //{
+            ServerBase _3RproMar = new ServerBase("documents");
+            _3RproMar.SelectFilter("Publisher like '%RRC.AP%'");
+            _3RproMar.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
+            DataTable _3RproMarData = _3RproMar.SelectQuery();
+
+            ServerBase country_ = new ServerBase("Country");
+            country_.SelectFilter("SubRegion_ID is not null and SubRegion_ID <> ''"); // 3 = Asia
+            DataTable countryData = country_.SelectQuery();
+
+            DataTable dtResult = new DataTable();
+            dtResult.Columns.Add("ID", typeof(int));
+            dtResult.Columns.Add("Title", typeof(string));
+            dtResult.Columns.Add("Country", typeof(string));
+            dtResult.Columns.Add("Attachment", typeof(string));
+            dtResult.Columns.Add("Description", typeof(string));
+            dtResult.Columns.Add("Datasource", typeof(string));
+            dtResult.Columns.Add("Thumbnail", typeof(string));
+            dtResult.Columns.Add("Keyword", typeof(string));
+            dtResult.Columns.Add("Year", typeof(string));
+            dtResult.Columns.Add("Publisher", typeof(string));
+            dtResult.Columns.Add("Subtitle", typeof(string));
+
+            var JoinResult = from a in _3RproMarData.AsEnumerable()
+                                join b in countryData.AsEnumerable()
+                                on a.Field<String>("Country_ID").ToString() equals b.Field<int>("ID").ToString()
+                                select dtResult.LoadDataRow(new object[]
+                                {
+                                    a.Field<int>("ID"),
+                                    a.Field<string>("Title"),
+                                    b.Field<string>("Name"),
+                                    a.Field<string>("Attachment"),
+                                    a.Field<string>("Description"),
+                                    a.Field<string>("Datasource"),
+                                    a.Field<string>("Thumbnail"),
+                                    a.Field<string>("Keyword"),
+                                    a.Field<string>("Year"),
+                                    a.Field<string>("Publisher"),
+                                    a.Field<string>("Subtitle"),
+                                }, false);
+            JoinResult.CopyToDataTable();
+
+            ViewBag.Data = dtResult;
+
+            return View();
+            //}
+            //else
+            //{
+            //    ServerBase blogs = new ServerBase("blogs");
+            //    blogs.SelectFilter("ID = " + id.ToString());
+            //    DataTable blogsData = blogs.SelectQuery();
+
+            //    if (blogsData.Rows.Count == 1)
+            //    {
+
+            //        ViewBag.Blog = blogsData.Rows[0];
+
+            //        return View("BlogItem");
+            //    }
+            //    else
+            //    {
+            //        return View("Empty", "Pages");
+            //    }
+            //}
+        }
+
         public ActionResult _3RproMar(int? id)
         {
             ViewBag.Title = "3RproMar";
@@ -214,7 +285,43 @@ namespace UCOnline.Controllers
                 _3RproMar.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
                 DataTable _3RproMarData = _3RproMar.SelectQuery();
 
-                ViewBag._3RproMar = _3RproMarData;
+                ServerBase country_ = new ServerBase("Country");
+                country_.SelectFilter("SubRegion_ID is not null and SubRegion_ID <> ''"); // 3 = Asia
+                DataTable countryData = country_.SelectQuery();
+
+                DataTable dtResult = new DataTable();
+                dtResult.Columns.Add("ID", typeof(int));
+                dtResult.Columns.Add("Title", typeof(string));
+                dtResult.Columns.Add("Country", typeof(string));
+                dtResult.Columns.Add("Attachment", typeof(string));
+                dtResult.Columns.Add("Description", typeof(string));
+                dtResult.Columns.Add("Datasource", typeof(string));
+                dtResult.Columns.Add("Thumbnail", typeof(string));
+                dtResult.Columns.Add("Keyword", typeof(string));
+                dtResult.Columns.Add("Year", typeof(string));
+                dtResult.Columns.Add("Publisher", typeof(string));
+                dtResult.Columns.Add("Subtitle", typeof(string));
+
+                var JoinResult = from a in _3RproMarData.AsEnumerable()
+                                 join b in countryData.AsEnumerable()
+                                 on a.Field<String>("Country_ID").ToString() equals b.Field<int>("ID").ToString()
+                                 select dtResult.LoadDataRow(new object[]
+                                    {
+                                        a.Field<int>("ID"),
+                                        a.Field<string>("Title"),
+                                        b.Field<string>("Name"),
+                                        a.Field<string>("Attachment"),
+                                        a.Field<string>("Description"),
+                                        a.Field<string>("Datasource"),
+                                        a.Field<string>("Thumbnail"),
+                                        a.Field<string>("Keyword"),
+                                        a.Field<string>("Year"),
+                                        a.Field<string>("Publisher"),
+                                        a.Field<string>("Subtitle"),
+                                    }, false);
+                JoinResult.CopyToDataTable();
+
+                ViewBag._3RproMar = dtResult;
 
                 return View();
             }
