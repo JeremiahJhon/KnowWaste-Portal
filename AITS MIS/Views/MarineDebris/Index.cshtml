@@ -17,8 +17,8 @@
                 <!--begin::Item-->
                 <div class="carousel-item active">
                     <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0" style="background-image: url(Content/marine-debris/AdobeStock_388696870.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%; background-attachment: fixed;">
-                        <div class="min-h-600px py-10" style="display: grid; align-items: end;">
-                            <div class="fs-40px text-white carousel-text py-5">
+                        <div class="min-h-650px py-10" style="display: grid; align-items: end;">
+                            <div class="fs-40px text-white carousel-text py-20">
                                 <div class="carousel-text-line-top"></div>
                                 REDUCE, REUSE, RECYCLE
                                 <p class="fw-bold fs-1" style="letter-spacing: 7px; word-spacing: 10px;">TO KEEP OUR OCEAN CLEAN</p>
@@ -31,8 +31,8 @@
                 <!--begin::Item-->
                 <div class="carousel-item">
                     <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0" style="background-image: url(Content/marine-debris/AdobeStock_578026176.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%; background-attachment: fixed;">
-                        <div class="min-h-600px py-10" style="display: grid; align-items: end;">
-                            <div class="fs-40px text-white carousel-text py-5">
+                        <div class="min-h-650px py-10" style="display: grid; align-items: end;">
+                            <div class="fs-40px text-white carousel-text py-20">
                                 <div class="carousel-text-line-top"></div>
                                 CHANGE
                                 <p class="fw-bold fs-1" style="letter-spacing: 7px; word-spacing: 5px;">STARTS IN US</p>
@@ -45,8 +45,8 @@
                 <!--begin::Item-->
                 <div class="carousel-item">
                     <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0" style="background-image: url(Content/marine-debris/AdobeStock_205485738.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%; background-attachment: fixed;">
-                        <div class="min-h-600px py-10" style="display: grid; align-items: end;">
-                            <div class="fs-40px text-white carousel-text py-5">
+                        <div class="min-h-650px py-10" style="display: grid; align-items: end;">
+                            <div class="fs-40px text-white carousel-text py-20">
                                 <div class="carousel-text-line-top"></div>
                                 MARINE DEBRIS
                                 <p class="fw-bold fs-1" style="letter-spacing: 7px; word-spacing: 10px;">A THREAT TO OCEAN LIFE</p>
@@ -118,9 +118,9 @@
 </style>
 <div class="row">
     <div class="col-md-12 py-10">
-        <div class="container mb-7 p-20">
+        <div class="container mb-7 py-20">
             <!--begin::Title-->
-            <h1 class="text-dark fs-1 mb-10 fw-100 title" id="elearning-title">E-LEARNING</h1>
+            <h1 class="text-dark fs-1 mb-10 fw-100 title d-none" id="elearning-title">E-LEARNING</h1>
             <!--end::Title-->
             <!--begin::Description-->
             <div class="text-gray-400 fw-bold mb-15 d-none">Short description here</div>
@@ -133,16 +133,16 @@
                 {
                     MaxLength = row["Description"].ToString().Length;
                 }
-                <div class="row p-10">
+                <div class="row">
                     <div class="col-md-6 p-5 align-items-center d-grid">
                         <a class="mb-5 text-dark text-hover-primary elearning-item fs-1 fw-600" href="@row["Link"].ToString()">
                             <div class="mx-5 my-2 d-none"><img src="~/Content/icons/learning.png" height="30" /></div>
-                            <div class="fw-bolder my-auto text-gray-800 text-end pe-10 text-hover-primary justify-content-end" style="font-size: 30px !important;">@row["Title"].ToString()</div>
-                            <div class="fw-bold fs-4 my-auto text-gray-800 text-end ps-20 pe-10 mt-5"> @Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span class="fs-5 text-primary">see more</span></div>
+                            <div class="fw-bolder my-auto text-gray-800 text-end px-10 text-hover-primary justify-content-end" style="font-size: 30px !important;">@row["Title"].ToString()</div>
+                            <div class="fw-bold fs-4 my-auto text-gray-800 text-end px-10 mt-5 mw-400px float-end"> @Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span class="fs-5 text-primary">see more</span></div>
                         </a>
-
+                        <a href="#" class="btn btn-light-primary">Explore</a>
                     </div>
-                    <div class="col-md-6 p-5 main-image s-border-reverse box-shadow">
+                    <div class="col-md-6 p-5 main-image s-border-reverse">
                         <a href="@row["Link"].ToString()">
                             <div class="s-border-reverse col-md-12 min-h-300px h-100" style="background-image: url('Documents/ELearning/elearn1.jpg'); background-repeat: no-repeat; background-size: cover;">
                             </div>
