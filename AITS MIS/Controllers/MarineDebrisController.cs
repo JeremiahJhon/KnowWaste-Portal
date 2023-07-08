@@ -31,7 +31,7 @@ namespace UCOnline.Controllers
             ViewBag.ELearning = videopostsData;
 
             ServerBase documents = new ServerBase("documents");
-            documents.SelectFilter("Documentscategory_ID = 4");
+            documents.SelectFilter("Documentcategory_ID = 4");
             documents.SelectLimit(10);
             documents.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
             DataTable documentsData = documents.SelectQuery();
