@@ -140,7 +140,9 @@
                             <div class="fw-bolder my-auto text-gray-800 text-end px-10 text-hover-primary justify-content-end" style="font-size: 30px !important;">@row["Title"].ToString()</div>
                             <div class="fw-bold fs-4 my-auto text-gray-800 text-end px-10 mt-5 mw-400px float-end"> @Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span class="fs-5 text-primary">see more</span></div>
                         </a>
-                        <a href="#" class="btn btn-light-primary">Explore</a>
+                        <div class="w-100 px-10">
+                            <a href="@row["Link"].ToString()" class="btn btn-primary mw-150px float-end">Explore</a>
+                        </div>
                     </div>
                     <div class="col-md-6 p-5 main-image s-border-reverse">
                         <a href="@row["Link"].ToString()">
