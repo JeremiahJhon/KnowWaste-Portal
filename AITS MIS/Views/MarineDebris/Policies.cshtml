@@ -30,86 +30,90 @@
 </div>
 
 <div class="container mt-lg-n20">
-    <!--begin::Container-->
-    <div class="container">
-        <!--begin::Card-->
-        <div class="card" style="filter: drop-shadow(0px 0px 10px rgba(68, 81, 96, 0.08))">
-            <!--begin::Card body-->
-            <div class="card-body p-lg-20">
-                <!--begin::Heading-->
-                <div class="text-center mb-5 mb-lg-10">
-                    <!--begin::Title-->
-                    <h3 class="fs-2hx text-dark mb-5 d-none" id="portfolio" data-kt-scroll-offset="{default: 100, lg: 150}" style="color: #2577BC!important; ">@ViewBag.Title</h3>
-                    <!--end::Title-->
-                </div>
-                <!--end::Heading-->
-                <div class="col-md-12 w-100 text-center">The Status of Marine Debris Policy in ASEAN</div>
-                <div class="col-md-12 w-100 text-center">Click the capsules to view a detailed list of the relevant policies below.</div>
-                <!--begin::Tabs wrapper-->
-                <div class="d-flex flex-center m-10">
-                    <!--begin::Tabs-->
-                    <ul class="nav border-transparent flex-center fs-5 fw-bold">
-                        <li class="nav-item">
-                            <span class="policy-yes">Yes</span>
-                        </li>
-                        <li class="nav-item">
-                            <span class="policy-no">No</span>
-                        </li>
-                    </ul>
-                    <!--end::Tabs-->
-                </div>
-                <!--end::Tabs wrapper-->
-                <!--begin::Tabs content-->
-                <div class="tab-content">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                @foreach (DataRow row in areas.Rows)
-                                {
-                                    <th class="text-center"><h6 style="color: #535551;">@row["Name"].ToString()</h6></th>
-                                }
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (DataRow country in countries.Rows)
+    <!--begin::Card-->
+    <div class="card" style="filter: drop-shadow(0px 0px 10px rgba(68, 81, 96, 0.08))">
+        <!--begin::Card body-->
+        <div class="card-body p-10">
+            <!--begin::Heading-->
+            <div class="text-center mb-5 mb-lg-10">
+                <!--begin::Title-->
+                <h3 class="fs-2hx text-dark mb-5 d-none" id="portfolio" data-kt-scroll-offset="{default: 100, lg: 150}" style="color: #2577BC!important; ">@ViewBag.Title</h3>
+                <!--end::Title-->
+            </div>
+            <!--end::Heading-->
+            <div class="col-md-12 w-100 text-center">The Status of Marine Debris Policy in ASEAN</div>
+            <div class="col-md-12 w-100 text-center">Click the capsules to view a detailed list of the relevant policies below.</div>
+            <!--begin::Tabs wrapper-->
+            <div class="d-flex flex-center m-10">
+                <!--begin::Tabs-->
+                <ul class="nav border-transparent flex-center fs-5 fw-bold">
+                    <li class="nav-item">
+                        <span class="policy-yes">Yes</span>
+                    </li>
+                    <li class="nav-item">
+                        <span class="policy-no">No</span>
+                    </li>
+                </ul>
+                <!--end::Tabs-->
+            </div>
+            <!--end::Tabs wrapper-->
+            <!--begin::Tabs content-->
+            <div class="tab-content" style="overflow-x: auto;">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            @foreach (DataRow row in areas.Rows)
                             {
-                                <tr>
-                                    <td class="p-1" style="color: #535551;">@country["Name"].ToString()</td>
-                                    @foreach (DataRow area in areas.Rows)
+                                <th class="text-center w-120px min-w-120px mw-120px p-0" style="width: 120px !important;"><h6 style="color: #535551;">@row["Name"].ToString()</h6></th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (DataRow country in countries.Rows)
+                        {
+                            <tr>
+                                <td class="p-1" style="color: #535551; white-space: nowrap; text-align: right; width: 12.5%;">@country["Name"].ToString()</td>
+                                @foreach (DataRow area in areas.Rows)
+                                {
+                                    bool hasRecord = false;
+                                    foreach (DataRow countryPolicy in countryPolicies.Rows)
                                     {
-                                        bool hasRecord = false;
-                                        foreach (DataRow countryPolicy in countryPolicies.Rows)
+                                        if (countryPolicy["Area_ID"].ToString() == area["ID"].ToString() &&
+                                            countryPolicy["Country_ID"].ToString() == country["ID"].ToString())
                                         {
-                                            if (countryPolicy["Area_ID"].ToString() == area["ID"].ToString() &&
-                                                countryPolicy["Country_ID"].ToString() == country["ID"].ToString())
-                                            {
-                                                hasRecord = true;
-                                                break;
-                                            }
-                                        }
-
-                                        if (hasRecord)
-                                        {
-                                            <td class="p-1 text-center"><span class="policy-yes" data-country="@country["ID"].ToString()" data-area="@area["ID"].ToString()"></span></td>
-                                        }
-                                        else
-                                        {
-                                            <td class="p-1 text-center"><span class="policy-no"></span></td>
+                                            hasRecord = true;
+                                            break;
                                         }
                                     }
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                <!--end::Tabs content-->
+
+                                    if (hasRecord)
+                                    {
+                                        <td class="p-1 text-center">
+                                            <span class="policy-yes d-none" data-country="@country["ID"].ToString()" data-area="@area["ID"].ToString()">
+                                            </span>
+                                            <button type="button" class="policy-yes" data-bs-toggle="tooltip" data-bs-placement="right" title="Click to load data in datatable" data-country="@country["ID"].ToString()" data-area="@area["ID"].ToString()" data-bs-html="true" data-bs-custom-class="box-shadow">
+                                            </button>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td class="p-1 text-center">
+                                            <span class="policy-no" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" data-bs-placement="right">
+                                            </span>
+                                        </td>
+                                    }
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
-            <!--end::Card body-->
+            <!--end::Tabs content-->
         </div>
-        <!--end::Card-->
+        <!--end::Card body-->
     </div>
-    <!--end::Container-->
+    <!--end::Card-->
 </div>
 
 <div class="mb-lg-20 position-relative z-index-2">
@@ -232,6 +236,9 @@
             document.getElementById("filter-Country").value = $(this).data("country");
             document.getElementById("filter-Area").value = $(this).data("area");
             GetDataTable();
+            document.getElementById("datatable").scrollIntoView({
+                behavior: 'smooth'
+            });
         });
         $("#filter-Country").change(function () {
             GetDataTable();

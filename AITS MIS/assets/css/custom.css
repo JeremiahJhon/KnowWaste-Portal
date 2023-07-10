@@ -8,15 +8,22 @@ body {
 }
 
 .policy-yes {
-    padding: 2px 40px;
+    height: 25px;
+    width: 120px;
+    display: block;
+    padding: 2px 50px;
     margin: 0px;
     background-color: #50cd89;
     color: white;
     border-radius: 20px;
+    border: none;
 }
 
 .policy-no {
-    padding: 2px 40px;
+    height: 25px;
+    width: 120px;
+    display: block;
+    padding: 2px 50px;
     margin: 0px;
     background-color: #e4e6ef;
     color: #777;
