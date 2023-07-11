@@ -30,24 +30,103 @@ namespace UCOnline.Controllers
 
             ViewBag.ELearning = videopostsData;
 
+            ServerBase blogs = new ServerBase("blogs");
+            blogs.SelectLimit(10);
+            blogs.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
+            DataTable blogsData = blogs.SelectQuery();
+
+            ServerBase country_ = new ServerBase("Country");
+            country_.SelectFilter("SubRegion_ID is not null and SubRegion_ID <> ''"); // 3 = Asia
+            DataTable countryData = country_.SelectQuery();
+
+            DataTable dtResult = new DataTable();
+            dtResult.Columns.Add("ID", typeof(int));
+            dtResult.Columns.Add("Title", typeof(string));
+            dtResult.Columns.Add("Description", typeof(string));
+            dtResult.Columns.Add("Detail", typeof(string));
+            dtResult.Columns.Add("Author", typeof(string));
+            dtResult.Columns.Add("Thumbnail", typeof(string));
+            dtResult.Columns.Add("Country", typeof(string));
+            dtResult.Columns.Add("ResultsAchieved", typeof(string));
+            dtResult.Columns.Add("ChallengesLessonLearned", typeof(string));
+            dtResult.Columns.Add("Replicability", typeof(string));
+            dtResult.Columns.Add("Sources", typeof(string));
+            dtResult.Columns.Add("Company", typeof(string));
+            dtResult.Columns.Add("Email", typeof(string));
+            dtResult.Columns.Add("Phone", typeof(string));
+            dtResult.Columns.Add("Initiative", typeof(string));
+            dtResult.Columns.Add("Photo", typeof(string));
+
+            var JoinResult = from a in blogsData.AsEnumerable()
+                             join b in countryData.AsEnumerable()
+                             on a.Field<int>("Country_ID").ToString() equals b.Field<int>("ID").ToString()
+                             select dtResult.LoadDataRow(new object[]
+                             {
+                                    a.Field<int>("ID"),
+                                    a.Field<string>("Title"),
+                                    a.Field<string>("Description"),
+                                    a.Field<string>("Detail"),
+                                    a.Field<string>("Author"),
+                                    a.Field<string>("Thumbnail"),
+                                    b.Field<string>("Name"),
+                                    a.Field<string>("ResultsArchieved"),
+                                    a.Field<string>("ChallengesLessonLearned"),
+                                    a.Field<string>("Replicability"),
+                                    a.Field<string>("Sources"),
+                                    a.Field<string>("Company"),
+                                    a.Field<string>("Email"),
+                                    a.Field<string>("Phone"),
+                                    a.Field<string>("Initiative"),
+                                    a.Field<string>("Photo"),
+                             }, false);
+            JoinResult.CopyToDataTable();
+
+            ViewBag.Blogs = dtResult;
+
             ServerBase documents = new ServerBase("documents");
             documents.SelectFilter("Documentcategory_ID = 4");
             documents.SelectLimit(10);
             documents.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
             DataTable documentsData = documents.SelectQuery();
 
-            ViewBag.Documents = documentsData;
+            dtResult = new DataTable();
+            dtResult.Columns.Add("ID", typeof(int));
+            dtResult.Columns.Add("Title", typeof(string));
+            dtResult.Columns.Add("Country", typeof(string));
+            dtResult.Columns.Add("Attachment", typeof(string));
+            dtResult.Columns.Add("Description", typeof(string));
+            dtResult.Columns.Add("Datasource", typeof(string));
+            dtResult.Columns.Add("Thumbnail", typeof(string));
+            dtResult.Columns.Add("Keyword", typeof(string));
+            dtResult.Columns.Add("Year", typeof(string));
+            dtResult.Columns.Add("Publisher", typeof(string));
+            dtResult.Columns.Add("Subtitle", typeof(string));
 
-            ServerBase blogs = new ServerBase("blogs");
-            blogs.SelectLimit(10);
-            blogs.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
-            DataTable blogsData = blogs.SelectQuery();
+            var JoinResult2 = from a in documentsData.AsEnumerable()
+                             join b in countryData.AsEnumerable()
+                             on a.Field<String>("Country_ID").ToString() equals b.Field<int>("ID").ToString()
+                             select dtResult.LoadDataRow(new object[]
+                                {
+                                        a.Field<int>("ID"),
+                                        a.Field<string>("Title"),
+                                        b.Field<string>("Name"),
+                                        a.Field<string>("Attachment"),
+                                        a.Field<string>("Description"),
+                                        a.Field<string>("Datasource"),
+                                        a.Field<string>("Thumbnail"),
+                                        a.Field<string>("Keyword"),
+                                        a.Field<string>("Year"),
+                                        a.Field<string>("Publisher"),
+                                        a.Field<string>("Subtitle"),
+                                }, false);
+            JoinResult2.CopyToDataTable();
 
-            ViewBag.Blogs = blogsData;
+            ViewBag.Documents = dtResult;
+
 
             ServerBase country = new ServerBase("Country");
             country.SelectFilter("SubRegion_ID = 3");
-            DataTable countryData = country.SelectQuery();
+            countryData = country.SelectQuery();
 
             ViewBag.Country = countryData;
 
@@ -179,7 +258,53 @@ namespace UCOnline.Controllers
                 blogs.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
                 DataTable blogsData = blogs.SelectQuery();
 
-                ViewBag.Blogs = blogsData;
+                ServerBase country_ = new ServerBase("Country");
+                country_.SelectFilter("SubRegion_ID is not null and SubRegion_ID <> ''"); // 3 = Asia
+                DataTable countryData = country_.SelectQuery();
+
+                DataTable dtResult = new DataTable();
+                dtResult.Columns.Add("ID", typeof(int));
+                dtResult.Columns.Add("Title", typeof(string));
+                dtResult.Columns.Add("Description", typeof(string));
+                dtResult.Columns.Add("Detail", typeof(string));
+                dtResult.Columns.Add("Author", typeof(string));
+                dtResult.Columns.Add("Thumbnail", typeof(string));
+                dtResult.Columns.Add("Country", typeof(string));
+                dtResult.Columns.Add("ResultsAchieved", typeof(string));
+                dtResult.Columns.Add("ChallengesLessonLearned", typeof(string));
+                dtResult.Columns.Add("Replicability", typeof(string));
+                dtResult.Columns.Add("Sources", typeof(string));
+                dtResult.Columns.Add("Company", typeof(string));
+                dtResult.Columns.Add("Email", typeof(string));
+                dtResult.Columns.Add("Phone", typeof(string));
+                dtResult.Columns.Add("Initiative", typeof(string));
+                dtResult.Columns.Add("Photo", typeof(string));
+
+                var JoinResult = from a in blogsData.AsEnumerable()
+                                 join b in countryData.AsEnumerable()
+                                 on a.Field<int>("Country_ID").ToString() equals b.Field<int>("ID").ToString()
+                                 select dtResult.LoadDataRow(new object[]
+                                 {
+                                    a.Field<int>("ID"),
+                                    a.Field<string>("Title"),
+                                    a.Field<string>("Description"),
+                                    a.Field<string>("Detail"),
+                                    a.Field<string>("Author"),
+                                    a.Field<string>("Thumbnail"),
+                                    b.Field<string>("Name"),
+                                    a.Field<string>("ResultsArchieved"),
+                                    a.Field<string>("ChallengesLessonLearned"),
+                                    a.Field<string>("Replicability"),
+                                    a.Field<string>("Sources"),
+                                    a.Field<string>("Company"),
+                                    a.Field<string>("Email"),
+                                    a.Field<string>("Phone"),
+                                    a.Field<string>("Initiative"),
+                                    a.Field<string>("Photo"),
+                                 }, false);
+                JoinResult.CopyToDataTable();
+
+                ViewBag.Data = dtResult;
 
                 return View();
             }
@@ -191,8 +316,53 @@ namespace UCOnline.Controllers
 
                 if (blogsData.Rows.Count == 1)
                 {
+                    ServerBase country_ = new ServerBase("Country");
+                    country_.SelectFilter("SubRegion_ID is not null and SubRegion_ID <> ''"); // 3 = Asia
+                    DataTable countryData = country_.SelectQuery();
 
-                    ViewBag.Blog = blogsData.Rows[0];
+                    DataTable dtResult = new DataTable();
+                    dtResult.Columns.Add("ID", typeof(int));
+                    dtResult.Columns.Add("Title", typeof(string));
+                    dtResult.Columns.Add("Description", typeof(string));
+                    dtResult.Columns.Add("Detail", typeof(string));
+                    dtResult.Columns.Add("Author", typeof(string));
+                    dtResult.Columns.Add("Thumbnail", typeof(string));
+                    dtResult.Columns.Add("Country", typeof(string));
+                    dtResult.Columns.Add("ResultsAchieved", typeof(string));
+                    dtResult.Columns.Add("ChallengesLessonLearned", typeof(string));
+                    dtResult.Columns.Add("Replicability", typeof(string));
+                    dtResult.Columns.Add("Sources", typeof(string));
+                    dtResult.Columns.Add("Company", typeof(string));
+                    dtResult.Columns.Add("Email", typeof(string));
+                    dtResult.Columns.Add("Phone", typeof(string));
+                    dtResult.Columns.Add("Initiative", typeof(string));
+                    dtResult.Columns.Add("Photo", typeof(string));
+
+                    var JoinResult = from a in blogsData.AsEnumerable()
+                                     join b in countryData.AsEnumerable()
+                                     on a.Field<int>("Country_ID").ToString() equals b.Field<int>("ID").ToString()
+                                     select dtResult.LoadDataRow(new object[]
+                                     {
+                                    a.Field<int>("ID"),
+                                    a.Field<string>("Title"),
+                                    a.Field<string>("Description"),
+                                    a.Field<string>("Detail"),
+                                    a.Field<string>("Author"),
+                                    a.Field<string>("Thumbnail"),
+                                    b.Field<string>("Name"),
+                                    a.Field<string>("ResultsArchieved"),
+                                    a.Field<string>("ChallengesLessonLearned"),
+                                    a.Field<string>("Replicability"),
+                                    a.Field<string>("Sources"),
+                                    a.Field<string>("Company"),
+                                    a.Field<string>("Email"),
+                                    a.Field<string>("Phone"),
+                                    a.Field<string>("Initiative"),
+                                    a.Field<string>("Photo"),
+                                     }, false);
+                    JoinResult.CopyToDataTable();
+
+                    ViewBag.Data = dtResult;
 
                     return View("BlogItem");
                 }
@@ -210,7 +380,7 @@ namespace UCOnline.Controllers
             //if (id == null)
             //{
             ServerBase _3RproMar = new ServerBase("documents");
-            _3RproMar.SelectFilter("Publisher like '%RRC.AP%'");
+            _3RproMar.SelectFilter("Publisher like '%RRC.AP%' or Publisher like '%UNEP%' or Publisher like '%3RPROMAR%'");
             _3RproMar.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
             DataTable _3RproMarData = _3RproMar.SelectQuery();
 

@@ -213,7 +213,9 @@
                                             </div>
                                             <!--end::Action-->
                                         </a>
-                                        <a href="MarineDebris/Documents/@row["ID"].ToString()" class="fw-bolder my-5 text-white" style="font-size: 24px !important;">@row["Title"].ToString()</a>                                    
+                                        <a href="MarineDebris/Documents/@row["ID"].ToString()" class="fw-bolder my-5 text-white" style="font-size: 24px !important;">@row["Title"].ToString()</a>    
+                                        <br />
+                                        <a href="MarineDebris/Documents/@row["ID"].ToString()" class="fw-bolder my-5 text-white-50" style="font-size: 20px !important;">@row["Country"].ToString()</a>
                                     </div>
                                 }
                             </div>
@@ -297,6 +299,9 @@
                                             <!--begin::Text-->
                                             <div class="px-2 fw-bold fs-6 text-gray-600 text-dark my-4">@Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span class="text-primary" href="MarineDebris/GoodPractices/@row["ID"].ToString()">see more</span></div>
                                             <!--end::Text-->
+                                            <div class="fs-6 fw-bolder">
+                                                <span class="badge badge-light-primary fw-bolder my-2" style="white-space: normal; text-align: left;">Country: @row["Country"].ToString()</span>
+                                            </div>
                                             <!--begin::Content-->
                                             <div class="px-2 fs-6 fw-bolder">
                                                 <!--begin::Author-->
