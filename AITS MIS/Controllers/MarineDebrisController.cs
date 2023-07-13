@@ -310,12 +310,12 @@ namespace UCOnline.Controllers
                                  }, false);
                 JoinResult.CopyToDataTable();
 
-                ViewBag.Data = dtResult;
-
                 if (dtResult.Rows.Count == 0)
                 {
                     return View("Empty", "Pages");
                 }
+
+                ViewBag.Data = dtResult;
 
                 return View();
             }
@@ -446,12 +446,12 @@ namespace UCOnline.Controllers
                                  }, false);
                 JoinResult.CopyToDataTable();
 
-                ViewBag.Data = dtResult;
-
                 if (dtResult.Rows.Count == 0)
                 {
                     return View("Empty", "Pages");
                 }
+
+                ViewBag.Data = dtResult;
 
                 return View();
             }
@@ -582,12 +582,12 @@ namespace UCOnline.Controllers
                                  }, false);
                 JoinResult.CopyToDataTable();
 
-                ViewBag.Data = dtResult;
-
-                if(dtResult.Rows.Count == 0)
+                if (dtResult.Rows.Count == 0)
                 {
                     return View("Empty", "Pages");
                 }
+
+                ViewBag.Data = dtResult;
 
                 return View();
             }
