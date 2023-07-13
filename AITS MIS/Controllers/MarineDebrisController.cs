@@ -394,7 +394,7 @@ namespace UCOnline.Controllers
             if (id == null)
             {
                 ServerBase blogs = new ServerBase("blogs");
-                blogs.SelectFilter("Blogscategory_ID = 2000");
+                blogs.SelectFilter("Blogscategory_ID = 2");
                 blogs.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
                 DataTable blogsData = blogs.SelectQuery();
 
