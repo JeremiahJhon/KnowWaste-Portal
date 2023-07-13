@@ -262,6 +262,11 @@ namespace UCOnline.Controllers
                 blogs.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
                 DataTable blogsData = blogs.SelectQuery();
 
+                if (blogsData.Rows.Count == 0)
+                {
+                    return RedirectToAction("Index", "Pages");
+                }
+
                 ServerBase country_ = new ServerBase("Country");
                 country_.SelectFilter("SubRegion_ID is not null and SubRegion_ID <> ''"); // 3 = Asia
                 DataTable countryData = country_.SelectQuery();
@@ -309,11 +314,6 @@ namespace UCOnline.Controllers
                                     a.Field<DateTime>("Blogsdate").ToString(),
                                  }, false);
                 JoinResult.CopyToDataTable();
-
-                if (dtResult.Rows.Count == 0)
-                {
-                    return View("Empty", "Pages");
-                }
 
                 ViewBag.Data = dtResult;
 
@@ -394,9 +394,14 @@ namespace UCOnline.Controllers
             if (id == null)
             {
                 ServerBase blogs = new ServerBase("blogs");
-                blogs.SelectFilter("Blogscategory_ID = 2");
+                blogs.SelectFilter("Blogscategory_ID = 2000");
                 blogs.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
                 DataTable blogsData = blogs.SelectQuery();
+
+                if (blogsData.Rows.Count == 0)
+                {
+                    return RedirectToAction("Index", "Pages");
+                }
 
                 ServerBase country_ = new ServerBase("Country");
                 country_.SelectFilter("SubRegion_ID is not null and SubRegion_ID <> ''"); // 3 = Asia
@@ -445,11 +450,6 @@ namespace UCOnline.Controllers
                                     a.Field<DateTime>("Blogsdate").ToString(),
                                  }, false);
                 JoinResult.CopyToDataTable();
-
-                if (dtResult.Rows.Count == 0)
-                {
-                    return View("Empty", "Pages");
-                }
 
                 ViewBag.Data = dtResult;
 
@@ -534,6 +534,11 @@ namespace UCOnline.Controllers
                 blogs.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
                 DataTable blogsData = blogs.SelectQuery();
 
+                if (blogsData.Rows.Count == 0)
+                {
+                    return RedirectToAction("Index", "Pages");
+                }
+
                 ServerBase country_ = new ServerBase("Country");
                 country_.SelectFilter("SubRegion_ID is not null and SubRegion_ID <> ''"); // 3 = Asia
                 DataTable countryData = country_.SelectQuery();
@@ -581,11 +586,6 @@ namespace UCOnline.Controllers
                                     a.Field<DateTime>("Blogsdate").ToString(),
                                  }, false);
                 JoinResult.CopyToDataTable();
-
-                if (dtResult.Rows.Count == 0)
-                {
-                    return View("Empty", "Pages");
-                }
 
                 ViewBag.Data = dtResult;
 
