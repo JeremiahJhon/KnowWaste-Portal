@@ -312,6 +312,11 @@ namespace UCOnline.Controllers
 
                 ViewBag.Data = dtResult;
 
+                if (dtResult.Rows.Count == 0)
+                {
+                    return View("Empty", "Pages");
+                }
+
                 return View();
             }
             else
@@ -443,6 +448,11 @@ namespace UCOnline.Controllers
 
                 ViewBag.Data = dtResult;
 
+                if (dtResult.Rows.Count == 0)
+                {
+                    return View("Empty", "Pages");
+                }
+
                 return View();
             }
             else
@@ -573,6 +583,11 @@ namespace UCOnline.Controllers
                 JoinResult.CopyToDataTable();
 
                 ViewBag.Data = dtResult;
+
+                if(dtResult.Rows.Count == 0)
+                {
+                    return View("Empty", "Pages");
+                }
 
                 return View();
             }
