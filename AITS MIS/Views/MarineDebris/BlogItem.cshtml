@@ -56,9 +56,12 @@
                                         <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="true" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="5000" data-tns-controls="false" data-tns-nav="true" data-tns-items="1" data-tns-center="true" data-tns-dots="true" data-tns-nav-position="bottom" data-tns-responsive="{1200: {items: 1}, 968: {items: 1}}" class="tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns1" style="transform: translate3d(-40%, 0px, 0px);">
                                             @foreach (string image in images)
                                             {
-                                                <div class="document-card h-400px min-h-400px mh-400px">
-                                                    <img class="mt-10" src="Documents/@mediaPath/@image" />
-                                                </div>
+                                                if (image.Length > 0)
+                                                {
+                                                    <div class="document-card h-400px min-h-400px mh-400px">
+                                                        <img class="mt-10 h-100" src="Documents/@mediaPath/@image" />
+                                                    </div>
+                                                }
                                             }
                                         </div>
                                     </div>
