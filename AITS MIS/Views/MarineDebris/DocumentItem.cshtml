@@ -50,7 +50,7 @@
                             <span class="d-none badge badge-light fw-bolder my-2 @(doc["Keyword"].ToString() == "" || doc["Keyword"].ToString() == null ? "d-none" : "")" style="white-space: normal; text-align: left;">Keyword: @doc["Keyword"].ToString()</span>
                         </div>
                         <div class="d-flex">
-                            <img class="h-100px w-auto my-2 @(doc["Thumbnail"].ToString() == "" || doc["Thumbnail"].ToString() == null ? "d-none" : "")" src="Documents/@doc["Thumbnail"].ToString()" />
+                            <img class="h-150px w-auto my-2 @(doc["Thumbnail"].ToString() == "" || doc["Thumbnail"].ToString() == null ? "d-none" : "")" src="Documents/@doc["Thumbnail"].ToString()" />
                             <div class="m-2">
                                 <div>Publisher: @doc["Publisher"].ToString()</div>
                                 <div>Year: @doc["Year"].ToString()</div>
