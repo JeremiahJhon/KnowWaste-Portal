@@ -32,6 +32,7 @@ namespace UCOnline.Controllers
 
             ServerBase blogs = new ServerBase("blogs");
             blogs.SelectLimit(10);
+            blogs.SelectFilter("Blogscategory_ID = 1");
             blogs.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
             DataTable blogsData = blogs.SelectQuery();
 
