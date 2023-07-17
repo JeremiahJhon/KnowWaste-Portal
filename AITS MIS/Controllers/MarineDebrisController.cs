@@ -665,7 +665,7 @@ namespace UCOnline.Controllers
             //if (id == null)
             //{
             ServerBase _3RproMar = new ServerBase("documents");
-            _3RproMar.SelectFilter("Publisher like '%RRC.AP%' or Publisher like '%UNEP%' or Publisher like '%3RPROMAR%'");
+            _3RproMar.SelectFilter("Publisher like '%RRC.AP%' or Publisher like '%ERIA%' or Publisher like '%NIVA%' or Publisher like '%GIZ%' or Documentcategory_ID = 4 and CAST(Year as int) >= 2017");
             _3RproMar.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
             DataTable _3RproMarData = _3RproMar.SelectQuery();
 
