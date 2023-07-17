@@ -48,7 +48,7 @@
                 <!--begin::Tabs-->
                 <ul class="nav border-transparent flex-center fs-5 fw-bold">
                     <li class="nav-item">
-                        <span class="policy-yes">Yes</span>
+                        <span class="policy-yes d-grid">Yes</span>
                     </li>
                     <li class="nav-item">
                         <span class="policy-no">No</span>
@@ -258,6 +258,7 @@
                     for (var ctr = 0; ctr < tableData.length; ctr++) {
                         var row = '<tr class="data-row">';
                         row += '<td>' + tableData[ctr]["code_number"] + '</td>';
+                        row += '<td>' + tableData[ctr]["Country"] + '</td>';
                         row += '<td>' + tableData[ctr]["Title"] + '</td>';
                         row += '<td>' + tableData[ctr]["Year"] + '</td>';
                         row += '<td>' + tableData[ctr]["Description"] + '</td>';

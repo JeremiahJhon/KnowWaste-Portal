@@ -184,6 +184,7 @@ namespace UCOnline.Controllers
             template.Columns.Add("FieldTitle", typeof(string));
 
             template.Rows.Add(new String[] { "code_number", "Code/Number" });
+            template.Rows.Add(new String[] { "Country", "Country" });
             template.Rows.Add(new String[] { "Title", "Title" });
             template.Rows.Add(new String[] { "Year", "Year" });
             template.Rows.Add(new String[] { "Description", "Description" });
