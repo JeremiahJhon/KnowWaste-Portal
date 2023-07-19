@@ -156,7 +156,7 @@ namespace UCOnline.Models
                 var thumbnail = "";
 
                 if (row["thumbnail"].ToString() != "")
-                    thumbnail = string.Format("<div class='doc-thumbnail'><img src='../Documents/{0}'/></div>", row["thumbnail"].ToString());
+                    thumbnail = string.Format("<div class='doc-thumbnail'><img src='../Documents/{0}'/></div>", row["thumbnail"].ToString().Split(';')[0]);
                 else
                     thumbnail = string.Format("<div class='doc-thumbnail'><i class='fa fa-{0}'></i></div>", icon);
 
@@ -266,7 +266,7 @@ namespace UCOnline.Models
                     var thumbnail = "";
 
                     if (row["thumbnail"].ToString() != "")
-                        thumbnail = string.Format("<div class='doc-thumbnail'><img src='../Documents/{0}'/></div>", row["thumbnail"].ToString());
+                        thumbnail = string.Format("<div class='doc-thumbnail'><img src='../Documents/{0}'/></div>", row["thumbnail"].ToString().Split(';')[0]);
                     else
                         thumbnail = string.Format("<div class='doc-thumbnail'><i class='fa fa-{0}'></i></div>", icon);
 
@@ -378,7 +378,7 @@ namespace UCOnline.Models
                     var thumbnail = "";
 
                     if (row["thumbnail"].ToString() != "")
-                        thumbnail = string.Format("<div class='doc-thumbnail'><img src='../Documents/{0}'/></div>", row["thumbnail"].ToString());
+                        thumbnail = string.Format("<div class='doc-thumbnail'><img src='../Documents/{0}'/></div>", row["thumbnail"].ToString().Split(';')[0]);
                     else
                         thumbnail = string.Format("<div class='doc-thumbnail'><i class='fa fa-{0}'></i></div>", icon);
 
@@ -494,7 +494,7 @@ namespace UCOnline.Models
                     var thumbnail = "";
 
                     if (row["thumbnail"].ToString() != "")
-                        thumbnail = string.Format("<div class='doc-thumbnail'><img src='../Documents/{0}'/></div>", row["thumbnail"].ToString());
+                        thumbnail = string.Format("<div class='doc-thumbnail'><img src='../Documents/{0}'/></div>", row["thumbnail"].ToString().Split(';')[0]);
                     else
                         thumbnail = string.Format("<div class='doc-thumbnail'><i class='fa fa-{0}'></i></div>", icon);
 
@@ -588,7 +588,7 @@ namespace UCOnline.Models
                 var thumbnail = "";
 
                 if (row["thumbnail"].ToString() != "")
-                    thumbnail = string.Format("<div class='doc-thumbnail'><img src='../Documents/{0}'/></div>", row["thumbnail"].ToString());
+                    thumbnail = string.Format("<div class='doc-thumbnail'><img src='../Documents/{0}'/></div>", row["thumbnail"].ToString().Split(';')[0]);
                 else
                     thumbnail = string.Format("<div class='doc-thumbnail'><i class='fa fa-{0}'></i></div>", icon);
 
