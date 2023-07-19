@@ -76,7 +76,7 @@ namespace UCOnline.Models
             {
                 if (geothemeid == row["id"].ToString())
                 {
-                    output.AppendFormat("<img src='../Content/Images/Logo/{0}'/> <span class='c-font-uppercase c-font-sbold'>{1}</span>", row["photo"].ToString(), row["Name"].ToString());
+                    output.AppendFormat("<img src='../Content/Images/Logo/{0}'/> <span class='c-font-uppercase c-font-sbold'>{1}</span>", row["photo"].ToString().Split(';')[0], row["Name"].ToString());
                     //output.AppendFormat("<br/>");
                     //output.AppendFormat("<a class='thematic_link' href='{0}' target='_blank'>Lead Org./Int. - {1}</a>", row["referencelink"].ToString(), row["organization"].ToString());
                 }
