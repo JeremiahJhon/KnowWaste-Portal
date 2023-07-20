@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using UCOnline.Models;
@@ -25,6 +26,18 @@ namespace UCOnline.Controllers
         public ActionResult About()
         {
             ViewBag.About = "";
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SendEmail(FormCollection formData)
+        {
+            SmtpClient ss = new SmtpClient("smtp.rrcap.ait.ac.th");
+            ss.Port = 25;
+            ss.UseDefaultCredentials = true;
+            string asd = formData["email"];
+            ss.Send(formData["email"], "warm@rrcap.ait.ac.th", formData["name"], formData["message"]);
 
             return View();
         }
