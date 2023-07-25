@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Services.Description;
+using System.Web.UI.WebControls;
 using UCOnline.Models;
 using Web.Framework.Controllers;
 using Web.Framework.Server;
@@ -706,8 +708,11 @@ namespace UCOnline.Controllers
                                     a.Field<string>("Subtitle"),
                                 }, false);
             JoinResult.CopyToDataTable();
-
             ViewBag.Data = dtResult;
+
+            var year = (from r in _3RproMarData.AsEnumerable() select r.Field<string>("Year")).Distinct().ToList();
+
+            ViewBag.Year = year;
 
             return View();
             //}
