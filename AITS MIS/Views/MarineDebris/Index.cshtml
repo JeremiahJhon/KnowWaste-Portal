@@ -121,81 +121,160 @@
         }
 </style>
 <div class="row">
+   
     <div class="col-md-12 py-10">
-        <div class="container mb-7 py-20">
-            <!--begin::Title-->
-            <h1 class="text-dark fs-1 mb-10 fw-100 title d-none" id="elearning-title">E-LEARNING</h1>
-            <!--end::Title-->
-            <!--begin::Description-->
-            <div class="text-gray-400 fw-bold mb-15 d-none">Short description here</div>
+            <div class="container mb-7 py-20 ">
+                <!--begin::Title-->
+                <h1 class="text-dark fs-1 mb-10 fw-100 title d-none" id="elearning-title">E-LEARNING</h1>
+                <!--end::Title-->
+                <!--begin::Description-->
+                <div class="text-gray-400 fw-bold mb-15 d-none">Short description here</div>
 
-            @foreach (DataRow row in elearnings.Rows)
-            {
-                int MaxLength = 300;
-
-                if (row["Description"].ToString().Length < MaxLength)
+                @foreach (DataRow row in elearnings.Rows)
                 {
-                    MaxLength = row["Description"].ToString().Length;
-                }
-                <div class="row">
-                    <div class="col-md-6 p-5 align-items-center d-grid">
-                        <a class="mb-5 text-dark text-hover-primary elearning-item fs-1 fw-600" href="@row["Link"].ToString()">
-                            <div class="mx-5 my-2 d-none"><img src="~/Content/icons/learning.png" height="30" /></div>
-                            <div class="fw-bolder my-auto text-gray-800 text-end px-10 text-hover-primary justify-content-end" style="font-size: 30px !important;">@row["Title"].ToString()</div>
-                            <div class="fw-bold fs-4 my-auto text-gray-800 text-end px-10 mt-5 mw-400px float-end"> @Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span class="fs-5 text-primary">see more</span></div>
-                        </a>
-                        <div class="w-100 px-10">
-                            <a href="@row["Link"].ToString()" class="btn btn-primary mw-150px float-end">Explore</a>
+                    int MaxLength = 300;
+
+                    if (row["Description"].ToString().Length < MaxLength)
+                    {
+                        MaxLength = row["Description"].ToString().Length;
+                    }
+                    <div class="row">
+                        <div class="col-md-6 p-5 align-items-center d-grid">
+                            <a class="mb-5 text-dark text-hover-primary elearning-item fs-1 fw-600" href="@row["Link"].ToString()">
+                                <div class="mx-5 my-2 d-none"><img src="~/Content/icons/learning.png" height="30" /></div>
+                                <div class="fw-bolder my-auto text-gray-800 text-end px-10 text-hover-primary justify-content-end" style="font-size: 30px !important;">@row["Title"].ToString()</div>
+                                <div class="fw-bold fs-4 my-auto text-gray-800 text-end px-10 mt-5 mw-400px float-end"> @Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span class="fs-5 text-primary">see more</span></div>
+                            </a>
+                            <div class="w-100 px-10">
+                                <a href="@row["Link"].ToString()" class="btn btn-primary mw-150px float-end">Explore</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 p-5 main-image s-border-reverse">
+                            <a href="@row["Link"].ToString()">
+                                <div class="s-border-reverse col-md-12 min-h-300px h-100" style="background-image: url('Documents/ELearning/elearn1.jpg'); background-repeat: no-repeat; background-size: cover;">
+                                </div>
+                            </a>
                         </div>
                     </div>
-                    <div class="col-md-6 p-5 main-image s-border-reverse">
-                        <a href="@row["Link"].ToString()">
-                            <div class="s-border-reverse col-md-12 min-h-300px h-100" style="background-image: url('Documents/ELearning/elearn1.jpg'); background-repeat: no-repeat; background-size: cover;">
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            }
+                }
+            </div>
         </div>
     </div>
-</div>
 
-<div class="row h-700px" style="background-image: url('Content/marine-debris/bg-document.jpg'); background-repeat: no-repeat; background-size: cover; background-color: white; opacity: 0.75; background-attachment: fixed;">
-    <div class="col-md-12 pt-10" style=" background-color: #00000099; ">
-        <div class="container mb-7 text-center pt-15">
-            <!--begin::Title-->
-            <h1 class="text-dark fs-1 mb-15 p-2 fw-boldest title-white">3RPROMAR</h1>
-            <!--end::Title-->
-            <!--begin::Description-->
-            <div class="text-gray-400 fw-bold mb-15 d-none">Short description here</div>
-            <div class="row mb-5 d-none">
-                <div class="col-md-5"></div>
-                <div class="col-md-7">
-                    @foreach (DataRow row in documents.Rows)
-                    {
-                        int MaxLength = 300;
-
-                        if (row["Description"].ToString().Length < MaxLength)
+    <div class="row h-700px" style="background-image: url('Content/marine-debris/bg-document.jpg'); background-repeat: no-repeat; background-size: cover; background-color: white; opacity: 0.75; background-attachment: fixed;">
+        <div class="col-md-12 pt-10" style=" background-color: #00000099; ">
+            <div class="container mb-7 text-center pt-15">
+                <!--begin::Title-->
+                <h1 class="text-dark fs-1 mb-15 p-2 fw-boldest title-white">3RPROMAR</h1>
+                <!--end::Title-->
+                <!--begin::Description-->
+                <div class="text-gray-400 fw-bold mb-15 d-none">Short description here</div>
+                <div class="row mb-5 d-none">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-7">
+                        @foreach (DataRow row in documents.Rows)
                         {
-                            MaxLength = row["Description"].ToString().Length;
+                            int MaxLength = 300;
+
+                            if (row["Description"].ToString().Length < MaxLength)
+                            {
+                                MaxLength = row["Description"].ToString().Length;
+                            }
+                            <a class="row mb-5 text-dark text-hover-primary documents-item fs-1 fw-600" href="~/MarineDebris/Documents/@row["ID"].ToString()">
+                                <div class="mx-5 my-2 d-none"><img src="~/Content/icons/pdf-icon.png" height="30" /></div>
+                                <div class="fw-bolder fs-1 my-auto text-gray-800 text-end pe-3 text-hover-primary">@row["Title"].ToString()</div>
+                                <div class="fw-bold fs-3 my-auto text-gray-800 text-start pe-3" style="text-align: right!important;">
+                                    @Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span class="fs-5 text-primary">see more</span>
+                                </div>
+                            </a>
                         }
-                        <a class="row mb-5 text-dark text-hover-primary documents-item fs-1 fw-600" href="~/MarineDebris/Documents/@row["ID"].ToString()">
-                            <div class="mx-5 my-2 d-none"><img src="~/Content/icons/pdf-icon.png" height="30" /></div>
-                            <div class="fw-bolder fs-1 my-auto text-gray-800 text-end pe-3 text-hover-primary">@row["Title"].ToString()</div>
-                            <div class="fw-bold fs-3 my-auto text-gray-800 text-start pe-3" style="text-align: right!important;">
-                                @Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span class="fs-5 text-primary">see more</span>
+                    </div>
+                </div><!--begin::Slider-->
+                <div class="tns tns-default tns-initiazlied mw-600px m-auto">
+                    <!--begin::Wrapper-->
+                    <div class="tns-outer" id="tns1-ow">
+                        <div id="tns1-mw" class="tns-ovh">
+                            <div class="tns-inner" id="tns1-iw">
+                                <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="true" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="5000" data-tns-controls="false" data-tns-nav="true" data-tns-items="1" data-tns-center="true" data-tns-dots="true" data-tns-dots-position="bottom" data-tns-responsive="{1200: {items: 1}, 968: {items: 1}}" class="tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns1" style="transform: translate3d(-40%, 0px, 0px);">
+                                    @foreach (DataRow row in documents.Rows)
+                                    {
+                                        int MaxLength = 70;
+
+                                        if (row["Description"].ToString().Length < MaxLength)
+                                        {
+                                            MaxLength = row["Description"].ToString().Length;
+                                        }
+
+                                        <div class="document-card h-100">
+                                            <a class="d-block overlay mw-200px m-auto mb-5 box-shadow-dark" href="MarineDebris/Documents/@row["ID"].ToString()">
+                                                <!--begin::Image-->
+                                                <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover min-h-300px" style="background-image:url('Documents/@row["Thumbnail"].ToString()')"></div>
+                                                <!--end::Image-->
+                                                <!--begin::Action-->
+                                                <div class="overlay-layer bg-dark bg-opacity-50">
+                                                    <span class="row text-center text-white fw-bolder fs-2 lh-base d-none">@row["Title"].ToString()</span>
+                                                    <br />
+                                                    <i class="bi bi-eye-fill fs-2x text-white"></i>
+                                                </div>
+                                                <!--end::Action-->
+                                            </a>
+                                            <a href="MarineDebris/Documents/@row["ID"].ToString()" class="fw-bolder my-5 text-white" style="font-size: 24px !important;">@row["Title"].ToString()</a>
+                                            <br />
+                                            <a href="MarineDebris/Documents/@row["ID"].ToString()" class="fw-bolder my-5 text-white-50" style="font-size: 20px !important;">@row["Country"].ToString()</a>
+                                        </div>
+                                    }
+                                </div>
                             </div>
-                        </a>
-                    }
+                        </div>
+                    </div>
+                    <!--end::Wrapper-->
                 </div>
-            </div><!--begin::Slider-->
-            <div class="tns tns-default tns-initiazlied mw-600px m-auto">
+                <!--end::Slider-->
+            </div>
+        </div>
+    </div>
+
+    <div class="row d-none">
+        <!--begin::Curve bottom-->
+        <div id="pb_line" class="h-250px landing-curve landing-dark-color" style="background-repeat: no-repeat; background-image: url(&quot;/Content/static/AdobeStock_584264594.jpeg&quot;); background-size: cover;">
+            @*<svg viewBox="15 12 1470 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 11C3.93573 11.3356 7.85984 11.6689 11.7725 12H1488.16C1492.1 11.6689 1496.04 11.3356 1500 11V12H1488.16C913.668 60.3476 586.282 60.6117 11.7725 12H0V11Z" fill="currentColor"></path>
+                </svg>*@
+        </div>
+        <!--end::Curve bottom-->
+        <script>
+            document.addEventListener("scroll", (event) => {
+                var scrollPos = window.scrollY;
+                var elemPos = document.getElementById("pb_line").offsetTop;
+                document.getElementById("pb_line").style.backgroundPosition = "60% -" + String((parseFloat(elemPos) * 0.4) - (parseFloat(scrollPos) * 0.4)) + "px";
+            });
+        </script>
+    </div>
+
+    <div class="row py-10 my-15">
+        <!--begin::Container-->
+        <div class="container">
+            <!--begin::Heading-->
+            <div class="text-center mb-10">
+                <!--begin::Title-->
+                <h3 class="fs-2hx text-dark mb-15 title" id="team" data-kt-scroll-offset="{default: 100, lg: 150}">GOOD PRACTICES</h3>
+                <!--end::Title-->
+                <!--begin::Sub-title-->
+                <div class="fs-5 text-muted fw-bold d-none">
+                    Description Here - Lorem ipsum dolor sit amet,
+                    <br>Details here - consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </div>
+                <!--end::Sub-title=-->
+            </div>
+            <!--end::Heading-->
+            <!--begin::Slider-->
+            <div class="tns tns-default tns-initiazlied">
                 <!--begin::Wrapper-->
-                <div class="tns-outer" id="tns1-ow">
-                    <div id="tns1-mw" class="tns-ovh">
-                        <div class="tns-inner" id="tns1-iw">
-                            <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="true" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="5000" data-tns-controls="false" data-tns-nav="true" data-tns-items="1" data-tns-center="true" data-tns-dots="true" data-tns-dots-position="bottom" data-tns-responsive="{1200: {items: 1}, 968: {items: 1}}" class="tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns1" style="transform: translate3d(-40%, 0px, 0px);">
-                                @foreach (DataRow row in documents.Rows)
+                <div class="tns-outer" id="tns2-ow">
+                    <div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">7 to 8</span>  of 7</div><div id="tns2-mw" class="tns-ovh">
+                        <div class="tns-inner" id="tns2-iw">
+                            <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="18000" data-tns-controls="true" data-tns-nav="false" data-tns-items="1" data-tns-center="false" data-tns-dots="false" data-tns-prev-button="#kt_team_slider_prev" data-tns-next-button="#kt_team_slider_next" data-tns-responsive="{1200: {items: 4}, 968: {items: 3}}" class="tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns2" style="transform: translate3d(-40%, 0px, 0px);">
+                                @foreach (DataRow row in blogs.Rows)
                                 {
                                     int MaxLength = 70;
 
@@ -203,23 +282,44 @@
                                     {
                                         MaxLength = row["Description"].ToString().Length;
                                     }
-
-                                    <div class="document-card h-100">
-                                        <a class="d-block overlay mw-200px m-auto mb-5 box-shadow-dark" href="MarineDebris/Documents/@row["ID"].ToString()">
-                                            <!--begin::Image-->
-                                            <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover min-h-300px" style="background-image:url('Documents/@row["Thumbnail"].ToString()')"></div>
-                                            <!--end::Image-->
-                                            <!--begin::Action-->
-                                            <div class="overlay-layer bg-dark bg-opacity-50">
-                                                <span class="row text-center text-white fw-bolder fs-2 lh-base d-none">@row["Title"].ToString()</span>
-                                                <br />
-                                                <i class="bi bi-eye-fill fs-2x text-white"></i>
-                                            </div>
-                                            <!--end::Action-->
-                                        </a>
-                                        <a href="MarineDebris/Documents/@row["ID"].ToString()" class="fw-bolder my-5 text-white" style="font-size: 24px !important;">@row["Title"].ToString()</a>
-                                        <br />
-                                        <a href="MarineDebris/Documents/@row["ID"].ToString()" class="fw-bolder my-5 text-white-50" style="font-size: 20px !important;">@row["Country"].ToString()</a>
+                                    <div class="card card-rounded s-border box-shadow text-center tns-item tns-slide-cloned m-10" aria-hidden="true" tabindex="-1">
+                                        <div class="h-100">
+                                            <a class="d-block overlay" href="MarineDebris/GoodPractices/@row["ID"].ToString()">
+                                                <!--begin::Image-->
+                                                <div class="overlay-wrapper s-border-top bgi-no-repeat bgi-position-center bgi-size-cover min-h-175px" style="background-image:url('Documents/Blogs/@row["Photo"].ToString().Split(';')[0]')"></div>
+                                                <!--end::Image-->
+                                                <!--begin::Action-->
+                                                <div class="overlay-layer s-border-top bg-dark bg-opacity-50">
+                                                    <span class="row text-center text-white fw-bolder fs-2 lh-base d-none">@row["Title"].ToString()</span>
+                                                    <br />
+                                                    <i class="bi bi-eye-fill fs-2x text-white"></i>
+                                                </div>
+                                                <!--end::Action-->
+                                            </a>
+                                            <!--begin::Body-->
+                                            <a href="MarineDebris/GoodPractices/@row["ID"].ToString()" class="m-0 p-5">
+                                                <!--begin::Title-->
+                                                <div href="MarineDebris/GoodPractices/@row["ID"].ToString()" class="px-2 fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">@row["Title"].ToString()</div>
+                                                <!--end::Title-->
+                                                <!--begin::Text-->
+                                                <div class="px-2 fw-bold fs-6 text-gray-600 text-dark my-4">@Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span class="text-primary" href="MarineDebris/GoodPractices/@row["ID"].ToString()">see more</span></div>
+                                                <!--end::Text-->
+                                                <div class="fs-6 fw-bolder">
+                                                    <span class="badge badge-light-primary fw-bolder my-2" style="white-space: normal; text-align: left;">Country: @row["Country"].ToString()</span>
+                                                </div>
+                                                <!--begin::Content-->
+                                                <div class="px-2 fs-6 fw-bolder">
+                                                    <!--begin::Author-->
+                                                    <span class="text-gray-700 text-hover-primary">@row["Author"].ToString()</span>
+                                                    <!--end::Author-->
+                                                    <!--begin::Date-->
+                                                    <span class="text-muted d-none">on Mar 21 2021</span>
+                                                    <!--end::Date-->
+                                                </div>
+                                                <!--end::Content-->
+                                            </a>
+                                            <!--end::Body-->
+                                        </div>
                                     </div>
                                 }
                             </div>
@@ -227,912 +327,816 @@
                     </div>
                 </div>
                 <!--end::Wrapper-->
+                <!--begin::Button-->
+                <button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_prev" aria-controls="tns2" tabindex="-1" data-controls="prev">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr074.svg-->
+                    <span class="svg-icon svg-icon-3x">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M11.2657 11.4343L15.45 7.25C15.8642 6.83579 15.8642 6.16421 15.45 5.75C15.0358 5.33579 14.3642 5.33579 13.95 5.75L8.40712 11.2929C8.01659 11.6834 8.01659 12.3166 8.40712 12.7071L13.95 18.25C14.3642 18.6642 15.0358 18.6642 15.45 18.25C15.8642 17.8358 15.8642 17.1642 15.45 16.75L11.2657 12.5657C10.9533 12.2533 10.9533 11.7467 11.2657 11.4343Z" fill="black"></path>
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </button>
+                <!--end::Button-->
+                <!--begin::Button-->
+                <button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_next" aria-controls="tns2" tabindex="-1" data-controls="next">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr071.svg-->
+                    <span class="svg-icon svg-icon-3x">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M12.6343 12.5657L8.45001 16.75C8.0358 17.1642 8.0358 17.8358 8.45001 18.25C8.86423 18.6642 9.5358 18.6642 9.95001 18.25L15.4929 12.7071C15.8834 12.3166 15.8834 11.6834 15.4929 11.2929L9.95001 5.75C9.5358 5.33579 8.86423 5.33579 8.45001 5.75C8.0358 6.16421 8.0358 6.83579 8.45001 7.25L12.6343 11.4343C12.9467 11.7467 12.9467 12.2533 12.6343 12.5657Z" fill="black"></path>
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </button>
+                <!--end::Button-->
             </div>
             <!--end::Slider-->
         </div>
+        <!--end::Container-->
     </div>
-</div>
 
-<div class="row d-none">
-    <!--begin::Curve bottom-->
-    <div id="pb_line" class="h-250px landing-curve landing-dark-color" style="background-repeat: no-repeat; background-image: url(&quot;/Content/static/AdobeStock_584264594.jpeg&quot;); background-size: cover;">
-        @*<svg viewBox="15 12 1470 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 11C3.93573 11.3356 7.85984 11.6689 11.7725 12H1488.16C1492.1 11.6689 1496.04 11.3356 1500 11V12H1488.16C913.668 60.3476 586.282 60.6117 11.7725 12H0V11Z" fill="currentColor"></path>
-            </svg>*@
+
+    <div class="row h-550px" style="background-image: url('Content/marine-debris/shutterstock_436985632.jpg'); background-repeat: no-repeat; background-size: cover; background-color: white; background-attachment: fixed;">
+        <div class="col-md-12 pt-10" style=" background-color: #00000099; ">
+            <div class="container mb-7 text-center pt-10">
+                <!--begin::Title-->
+                <h1 class="text-dark fs-1 mb-5 p-2 fw-boldest title-white">NETWORKS OF PRACTICE</h1>
+                <!--end::Title-->
+                <div class="tns tns-default tns-initiazlied mw-550px m-auto">
+                    <!--begin::Wrapper-->
+                    <div class="tns-outer" id="tns3-ow">
+                        <div id="tns3-mw" class="tns-ovh">
+                            <div class="tns-inner" id="tns3-iw">
+                                <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="true" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="5000" data-tns-controls="false" data-tns-nav="true" data-tns-items="1" data-tns-center="true" data-tns-dots="true" data-tns-dots-position="bottom" data-tns-responsive="{1200: {items: 1}, 968: {items: 1}}" class="tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns3" style="transform: translate3d(-40%, 0px, 0px);">
+                                    <div class="h-100 w-100">
+                                        <a class="octagon d-flex align-items-center h-200px w-200px m-auto" style="background-color: #13222c;" href="https://ikhapp.org/">
+                                            <img src="/Content/marine-debris/ikhapp.svg" class="h-150px m-auto" alt="" />
+                                        </a>
+                                        <a href="https://ikhapp.org/" class="fw-bolder my-10 text-white" style="font-size: 24px !important;">International Knowledge Hub Against Plastic Pollution</a>
+                                    </div>
+                                    <div class="h-100 w-100">
+                                        <a class="octagon d-flex align-items-center h-200px w-200px bg-white m-auto" href="https://rkcmpd-eria.org/">
+                                            <img src="~/Content/marine-debris/logo-rkc-mpd.png" class="m-auto" alt="" />
+                                        </a>
+                                        <a href="https://rkcmpd-eria.org/" class="fw-bolder my-10 text-white" style="font-size: 24px !important;">
+                                            Regional Knowledge Centre for Marine Plastic Debris
+                                            RKC-MPD ERIA
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Wrapper-->
+                </div>
+                <!--end::Slider-->
+            </div>
+        </div>
     </div>
-    <!--end::Curve bottom-->
+
+    <div class="row d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px mb-20">
+        <div class="row w-100 gy-10 mb-md-10 mt-md-5">
+            <div class="col-md-6 px-2">
+                <div class="w-100 h-100 d-flex flex-column bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
+                    <div class="col-md-12 mb-7 text-center">
+                        <!--begin::Title-->
+                        <h1 class="text-dark mb-5 fw-boldest">Solid Waste</h1>
+                        <!--end::Title-->
+                        <!--begin::Description-->
+                        <div class="text-gray-400 fw-bold mb-5 d-none">Short description here</div>
+                        <div class="d-flex flex-center mb-10">
+                            <button id="kt_drawer_filter_1_button" class="btn btn-primary py-2 px-4">
+                                <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black"></path>
+                                    </svg>
+                                </span>Filter
+                            </button>
+                        </div>
+                        <div class="d-flex px-5">
+                            <label class="px-2 py-1">Country: </label>
+                            <div id="solid-country-filter-list">
+
+                            </div>
+                        </div>
+                        <div id="chart-1" style="height: 350px;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 px-2">
+                <div class="w-100 h-100 d-flex flex-column bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
+                    <div class="col-md-12 mb-7 text-center">
+                        <!--begin::Title-->
+                        <h1 class="text-dark mb-5 fw-boldest">Plastic Waste</h1>
+                        <!--end::Title-->
+                        <!--begin::Description-->
+                        <div class="text-gray-400 fw-bold mb-5 d-none">Short description here</div>
+                        <div class="d-flex flex-center mb-10">
+                            <button id="kt_drawer_filter_2_button" class="btn btn-primary py-2 px-4">
+                                <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black"></path>
+                                    </svg>
+                                </span>Filter
+                            </button>
+                        </div>
+                        <div class="d-flex px-5">
+                            <label class="px-2 py-1">Country: </label>
+                            <div id="plastic-country-filter-list">
+
+                            </div>
+                        </div>
+                        <div id="chart-2" style="height: 350px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="kt_drawer_filter_1_basic" class="bg-white drawer drawer-end" data-kt-drawer="true" data-kt-drawer-activate="true" data-kt-drawer-toggle="#kt_drawer_filter_1_button" data-kt-drawer-close="#kt_drawer_filter_1_close" data-kt-drawer-width="250px">
+        <!--begin::Card-->
+        <div class="card w-100 rounded-0">
+            <!--begin::Card header-->
+            <div class="card-header pe-5">
+                <!--begin::Title-->
+                <div class="card-title">
+                    <!--begin::User-->
+                    <div class="d-flex justify-content-center flex-column me-3">
+                        <a href="#" class="fs-4 fw-bolder text-gray-900 text-hover-primary me-1 lh-1">Filter Data</a>
+                    </div>
+                    <!--end::User-->
+                </div>
+                <!--end::Title-->
+                <!--begin::Card toolbar-->
+                <div class="card-toolbar">
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-light-primary" id="kt_drawer_filter_1_close">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black"></rect>
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black"></rect>
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Card toolbar-->
+            </div>
+            <!--end::Card header-->
+            <!--begin::Card body-->
+            <div class="card-body hover-scroll-overlay-y pt-2">
+                <form id="form-filter-1">
+                    <div class="m-5 mb-10" ">
+                        <h3 class="mb-3">Country</h3>
+                        <div class="w-100">
+                            <div class="form-check form-switch form-check-custom form-check-solid m-2 mb-5">
+                                <input class="form-check-input h-20px w-30px" name="solid-country-all" type="checkbox" value="All" id="solid-country-all" checked="checked" />
+                                <label class="form-check-label" for="solid-country-all">
+                                    All
+                                </label>
+                            </div>
+                            @foreach (DataRow row in countries.Rows)
+                            {
+                                <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                    <input class="form-check-input h-20px w-30px solid-country-filter" name="country" type="checkbox" value="@row["ID"].ToString()" id="country-@row["ID"].ToString()" checked="checked" data-text="@row["Name"].ToString()" />
+                                    <label class="form-check-label" for="country-@row["ID"].ToString()">
+                                        @row["Name"].ToString()
+                                    </label>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="m-5 mb-10">
+                        <h3 class="mb-3">Type</h3>
+                        <div class="w-100">
+                            <div class="form-check form-switch form-check-custom form-check-solid m-2 mb-5">
+                                <input class="form-check-input h-20px w-30px" name="solid-type-all" type="checkbox" value="All" id="solid-type-all" checked="checked" />
+                                <label class="form-check-label" for="solid-type-all">
+                                    All
+                                </label>
+                            </div>
+                            <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                <input class="form-check-input h-20px w-30px solid-type-filter" name="type" type="checkbox" value="Generated" id="type-generated" checked="checked">
+                                <label class="form-check-label" for="type-generated">
+                                    Generated
+                                </label>
+                            </div>
+                            <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                <input class="form-check-input h-20px w-30px solid-type-filter" name="type" type="checkbox" value="Collected" id="type-collected" checked="checked">
+                                <label class="form-check-label" for="type-collected">
+                                    Collected
+                                </label>
+                            </div>
+                            <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                <input class="form-check-input h-20px w-30px solid-type-filter" name="type" type="checkbox" value="Recycled" id="type-recycled" checked="checked">
+                                <label class="form-check-label" for="type-recycled">
+                                    Recycled
+                                </label>
+                            </div>
+                            <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                <input class="form-check-input h-20px w-30px solid-type-filter" name="type" type="checkbox" value="Recovered" id="type-recovered" checked="checked">
+                                <label class="form-check-label" for="type-recovered">
+                                    Recovered
+                                </label>
+                            </div>
+                            <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                <input class="form-check-input h-20px w-30px solid-type-filter" name="type" type="checkbox" value="Disposal" id="type-disposal" checked="checked">
+                                <label class="form-check-label" for="type-disposal">
+                                    Disposal
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--end::Card body-->
+            <div class="card-footer pe-5">
+                <button type="button" class="btn btn-success" id="button-filter-apply-1">Apply</button>
+            </div>
+        </div>
+        <!--end::Card-->
+    </div>
+
+    <div id="kt_drawer_filter_2_basic" class="bg-white drawer drawer-end" data-kt-drawer="true" data-kt-drawer-activate="true" data-kt-drawer-toggle="#kt_drawer_filter_2_button" data-kt-drawer-close="#kt_drawer_filter_2_close" data-kt-drawer-width="250px">
+        <!--begin::Card-->
+        <div class="card w-100 rounded-0">
+            <!--begin::Card header-->
+            <div class="card-header pe-5">
+                <!--begin::Title-->
+                <div class="card-title">
+                    <!--begin::User-->
+                    <div class="d-flex justify-content-center flex-column me-3">
+                        <a href="#" class="fs-4 fw-bolder text-gray-900 text-hover-primary me-1 lh-1">Filter Data</a>
+                    </div>
+                    <!--end::User-->
+                </div>
+                <!--end::Title-->
+                <!--begin::Card toolbar-->
+                <div class="card-toolbar">
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-light-primary" id="kt_drawer_filter_2_close">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black"></rect>
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black"></rect>
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Card toolbar-->
+            </div>
+            <!--end::Card header-->
+            <!--begin::Card body-->
+            <div class="card-body hover-scroll-overlay-y pt-2">
+                <form id="form-filter-2">
+                    <div class="m-5 mb-10" ">
+                        <h3 class="mb-3">Country</h3>
+                        <div class="w-100">
+                            <div class="form-check form-switch form-check-custom form-check-solid m-2 mb-5">
+                                <input class="form-check-input h-20px w-30px" name="plastic-country-all" type="checkbox" value="All" id="plastic-country-all" checked="checked" />
+                                <label class="form-check-label" for="plastic-country-all">
+                                    All
+                                </label>
+                            </div>
+                            @foreach (DataRow row in countries.Rows)
+                            {
+                                <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                    <input class="form-check-input h-20px w-30px plastic-country-filter" name="country" type="checkbox" value="@row["ID"].ToString()" id="country-@row["ID"].ToString()" checked="checked" data-text="@row["Name"].ToString()" />
+                                    <label class="form-check-label" for="country-@row["ID"].ToString()">
+                                        @row["Name"].ToString()
+                                    </label>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="m-5 mb-10">
+                        <h3 class="mb-3">Type</h3>
+                        <div class="w-100">
+                            <div class="form-check form-switch form-check-custom form-check-solid m-2 mb-5">
+                                <input class="form-check-input h-20px w-30px" name="plastic-type-all" type="checkbox" value="All" id="plastic-type-all" checked="checked" />
+                                <label class="form-check-label" for="plastic-type-all">
+                                    All
+                                </label>
+                            </div>
+                            <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                <input class="form-check-input h-20px w-30px plastic-type-filter" name="type" type="checkbox" value="Generated" id="type-generated" checked="checked">
+                                <label class="form-check-label" for="type-generated">
+                                    Generated
+                                </label>
+                            </div>
+                            <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                <input class="form-check-input h-20px w-30px plastic-type-filter" name="type" type="checkbox" value="Collected" id="type-collected" checked="checked">
+                                <label class="form-check-label" for="type-collected">
+                                    Collected
+                                </label>
+                            </div>
+                            <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                <input class="form-check-input h-20px w-30px plastic-type-filter" name="type" type="checkbox" value="Recycled" id="type-recycled" checked="checked">
+                                <label class="form-check-label" for="type-recycled">
+                                    Recycled
+                                </label>
+                            </div>
+                            <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                <input class="form-check-input h-20px w-30px plastic-type-filter" name="type" type="checkbox" value="Recovered" id="type-recovered" checked="checked">
+                                <label class="form-check-label" for="type-recovered">
+                                    Recovered
+                                </label>
+                            </div>
+                            <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                <input class="form-check-input h-20px w-30px plastic-type-filter" name="type" type="checkbox" value="Disposal" id="type-disposal" checked="checked">
+                                <label class="form-check-label" for="type-disposal">
+                                    Disposal
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--end::Card body-->
+            <div class="card-footer pe-5">
+                <button type="button" class="btn btn-success" id="button-filter-apply-2">Apply</button>
+            </div>
+        </div>
+        <!--end::Card-->
+    </div>
+
+    <script src="\Scripts\jquery-3.6.4.min.js"></script>
     <script>
-        document.addEventListener("scroll", (event) => {
-            var scrollPos = window.scrollY;
-            var elemPos = document.getElementById("pb_line").offsetTop;
-            document.getElementById("pb_line").style.backgroundPosition = "60% -" + String((parseFloat(elemPos) * 0.4) - (parseFloat(scrollPos) * 0.4)) + "px";
+        var chart1;
+        var chart2;
+        $(document).ready(function () {
+            createSolidWasteGraph();
+            createPlasticWasteGraph();
+            $("#button-filter-apply-1").click(function () {
+                chart1.destroy();
+                createSolidWasteGraph();
+                $("#kt_drawer_filter_1_close").click();
+            });
+            $("#button-filter-apply-2").click(function () {
+                chart2.destroy();
+                createPlasticWasteGraph();
+                $("#kt_drawer_filter_2_close").click();
+            });
+            function createSolidWasteGraph(id, x_axis, series) {
+                $.ajax({
+                    url: '/MarineDebris/getSolidWasteGraphData',
+                    data: $("#form-filter-1").serialize(),
+                    type: 'POST',
+                    processData: false,
+                    success: function (data) {
+                        var graphData = JSON.parse(data);
+                        var x_axis = [];
+                        var series = [];
+                        var data_ = [];
+                        var count = 0;
+                        if (graphData.length > 0) {
+                            if (graphData[0].hasOwnProperty("Generated")) {
+                                for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                    x_axis[ctr] = graphData[ctr]["Year"];
+                                    data_[ctr] = graphData[ctr]["Generated"];
+                                }
+                                series[count] = {
+                                    name: "Generated",
+                                    data: data_
+                                }
+                                count++;
+                            }
+                            data_ = [];
+                            if (graphData[0].hasOwnProperty("Collected")) {
+                                for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                    x_axis[ctr] = graphData[ctr]["Year"];
+                                    data_[ctr] = graphData[ctr]["Collected"];
+                                }
+                                series[count] = {
+                                    name: "Collected",
+                                    data: data_
+                                }
+                                count++;
+                            }
+                            data_ = [];
+                            if (graphData[0].hasOwnProperty("Recycled")) {
+                                for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                    x_axis[ctr] = graphData[ctr]["Year"];
+                                    data_[ctr] = graphData[ctr]["Recycled"];
+                                }
+                                series[count] = {
+                                    name: "Recycled",
+                                    data: data_
+                                }
+                                count++;
+                            }
+                            data_ = [];
+                            if (graphData[0].hasOwnProperty("Recovered")) {
+                                for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                    x_axis[ctr] = graphData[ctr]["Year"];
+                                    data_[ctr] = graphData[ctr]["Recovered"];
+                                }
+                                series[count] = {
+                                    name: "Recovered",
+                                    data: data_
+                                }
+                                count++;
+                            }
+                            data_ = [];
+                            if (graphData[0].hasOwnProperty("Disposal")) {
+                                for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                    x_axis[ctr] = graphData[ctr]["Year"];
+                                    data_[ctr] = graphData[ctr]["Disposal"];
+                                }
+                                series[count] = {
+                                    name: "Disposal",
+                                    data: data_
+                                }
+                                count++;
+                            }
+
+                            var options = {
+                                series: series,
+                                chart: {
+                                    type: 'bar',
+                                    stacked: true,
+                                    height: 400,
+                                    toolbar: {
+                                        show: true
+                                    },
+                                    zoom: {
+                                        enabled: true
+                                    }
+                                },
+                                plotOptions: {
+                                    bar: {
+                                        horizontal: false,
+                                        endingShape: 'rounded',
+                                        borderRadius: 2
+                                    },
+                                },
+                                dataLabels: {
+                                    enabled: false
+                                },
+                                stroke: {
+                                    show: true,
+                                    width: 2,
+                                    colors: ['transparent']
+                                },
+                                xaxis: {
+                                    categories: x_axis,
+                                    labels: {
+                                        show: true,
+                                        minWidth: 0,
+                                        maxWidth: 160,
+                                        style: {
+                                            fontSize: '12px',
+                                            fontFamily: 'Roboto Condensed, sans-serif',
+                                            fontWeight: 400,
+                                        }
+                                    },
+                                    title: {
+                                        text: 'Year'
+                                    }
+                                },
+                                yaxis: {
+                                    labels: {
+                                        show: true,
+                                        align: 'right',
+                                        minWidth: 0,
+                                        maxWidth: 160,
+                                        style: {
+                                            fontSize: '12px',
+                                            fontFamily: 'Roboto Condensed, sans-serif',
+                                            fontWeight: 400,
+                                        },
+                                        offsetX: 0,
+                                        offsetY: 0,
+                                        rotate: 0,
+                                        formatter: function (val) {
+                                            return numFormatter(val);//.toLocaleString('en-US')
+                                        }
+                                    },
+                                    title: {
+                                        text: 'Tons'
+                                    }
+                                },
+                                fill: {
+                                    opacity: 1
+                                },
+                                tooltip: {
+                                    enabled: true,
+                                    y: {
+                                        formatter: function (val) {
+                                            return val.toLocaleString('en-US') + " Tons";
+                                        }
+                                    }
+                                },
+                                noData: {
+                                    text: 'No Data'
+                                },
+                                legend: {
+                                    position: 'right',
+                                    offsetY: 40
+                                },
+                            };
+
+                            chart1 = new ApexCharts(document.querySelector("#chart-1"), options);
+                            chart1.render();
+                        } else {
+                            var options = {
+                                chart: {
+                                    height: 350,
+                                    type: 'bar',
+                                },
+                                dataLabels: {
+                                    enabled: false
+                                },
+                                series: [],
+                                noData: {
+                                    text: 'No Data'
+                                }
+                            }
+
+                            chart1 = new ApexCharts(document.querySelector("#chart-1"), options);
+                            chart1.render();
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    },
+                });
+                var country = $('#form-filter-1 [name="country"]');
+                $("#solid-country-filter-list").html('');
+                for (var ctr = 0; ctr < country.length; ctr++) {
+                    var countryElem = '<span class="badge badge-light-dark m-1">' + $(country[ctr]).data("text") + '</span>';
+                    if (country[ctr].checked) {
+                        $("#solid-country-filter-list").append(countryElem);
+                    }
+                }
+            }
+            function createPlasticWasteGraph(id, x_axis, series) {
+                $.ajax({
+                    url: '/MarineDebris/getPlasticWasteGraphData',
+                    data: $("#form-filter-2").serialize(),
+                    type: 'POST',
+                    processData: false,
+                    success: function (data) {
+                        var graphData = JSON.parse(data);
+                        var x_axis = [];
+                        var series = [];
+                        var data_ = [];
+                        var count = 0;
+                        if (graphData.length > 0) {
+                            if (graphData[0].hasOwnProperty("Generated")) {
+                                for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                    x_axis[ctr] = graphData[ctr]["Year"];
+                                    data_[ctr] = graphData[ctr]["Generated"];
+                                }
+                                series[count] = {
+                                    name: "Generated",
+                                    data: data_
+                                }
+                                count++;
+                            }
+                            data_ = [];
+                            if (graphData[0].hasOwnProperty("Collected")) {
+                                for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                    x_axis[ctr] = graphData[ctr]["Year"];
+                                    data_[ctr] = graphData[ctr]["Collected"];
+                                }
+                                series[count] = {
+                                    name: "Collected",
+                                    data: data_
+                                }
+                                count++;
+                            }
+                            data_ = [];
+                            if (graphData[0].hasOwnProperty("Recycled")) {
+                                for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                    x_axis[ctr] = graphData[ctr]["Year"];
+                                    data_[ctr] = graphData[ctr]["Recycled"];
+                                }
+                                series[count] = {
+                                    name: "Recycled",
+                                    data: data_
+                                }
+                                count++;
+                            }
+                            data_ = [];
+                            if (graphData[0].hasOwnProperty("Recovered")) {
+                                for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                    x_axis[ctr] = graphData[ctr]["Year"];
+                                    data_[ctr] = graphData[ctr]["Recovered"];
+                                }
+                                series[count] = {
+                                    name: "Recovered",
+                                    data: data_
+                                }
+                                count++;
+                            }
+                            data_ = [];
+                            if (graphData[0].hasOwnProperty("Disposal")) {
+                                for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                    x_axis[ctr] = graphData[ctr]["Year"];
+                                    data_[ctr] = graphData[ctr]["Disposal"];
+                                }
+                                series[count] = {
+                                    name: "Disposal",
+                                    data: data_
+                                }
+                                count++;
+                            }
+
+                            var options = {
+                                series: series,
+                                chart: {
+                                    type: 'bar',
+                                    stacked: true,
+                                    height: 400,
+                                    toolbar: {
+                                        show: true
+                                    },
+                                    zoom: {
+                                        enabled: true
+                                    }
+                                },
+                                plotOptions: {
+                                    bar: {
+                                        horizontal: false,
+                                        endingShape: 'rounded',
+                                        borderRadius: 2
+                                    },
+                                },
+                                dataLabels: {
+                                    enabled: false
+                                },
+                                stroke: {
+                                    show: true,
+                                    width: 2,
+                                    colors: ['transparent']
+                                },
+                                xaxis: {
+                                    categories: x_axis,
+                                    labels: {
+                                        show: true,
+                                        minWidth: 0,
+                                        maxWidth: 160,
+                                        style: {
+                                            fontSize: '12px',
+                                            fontFamily: 'Roboto Condensed, sans-serif',
+                                            fontWeight: 400,
+                                        }
+                                    },
+                                    title: {
+                                        text: 'Year'
+                                    }
+                                },
+                                yaxis: {
+                                    labels: {
+                                        show: true,
+                                        align: 'right',
+                                        minWidth: 0,
+                                        maxWidth: 160,
+                                        style: {
+                                            fontSize: '12px',
+                                            fontFamily: 'Roboto Condensed, sans-serif',
+                                            fontWeight: 400,
+                                        },
+                                        offsetX: 0,
+                                        offsetY: 0,
+                                        rotate: 0,
+                                        formatter: function (val) {
+                                            return numFormatter(val);//.toLocaleString('en-US')
+                                        }
+                                    },
+                                    title: {
+                                        text: 'Tons'
+                                    }
+                                },
+                                fill: {
+                                    opacity: 1
+                                },
+                                tooltip: {
+                                    enabled: true,
+                                    y: {
+                                        formatter: function (val) {
+                                            return val.toLocaleString('en-US') + " Tons";
+                                        }
+                                    }
+                                },
+                                noData: {
+                                    text: 'No Data'
+                                },
+                                legend: {
+                                    position: 'right',
+                                    offsetY: 40
+                                },
+                            };
+
+                            chart2 = new ApexCharts(document.querySelector("#chart-2"), options);
+                            chart2.render();
+                        } else {
+                            var options = {
+                                chart: {
+                                    height: 350,
+                                    type: 'bar',
+                                },
+                                dataLabels: {
+                                    enabled: false
+                                },
+                                series: [],
+                                noData: {
+                                    text: 'No Data'
+                                }
+                            }
+
+                            chart2 = new ApexCharts(document.querySelector("#chart-2"), options);
+                            chart2.render();
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    },
+                })
+                var country = $('#form-filter-2 [name="country"]');
+                $("#plastic-country-filter-list").html('');
+                for (var ctr = 0; ctr < country.length; ctr++) {
+                    var countryElem = '<span class="badge badge-light-dark m-1">' + $(country[ctr]).data("text") + '</span>';
+                    if (country[ctr].checked) {
+                        $("#plastic-country-filter-list").append(countryElem);
+                    }
+                }
+            }
+            $("#solid-country-all").change(function () {
+                if (this.checked) {
+                    var clist = document.getElementsByClassName("solid-country-filter");
+                    for (var i = 0; i < clist.length; ++i) { clist[i].checked = true; }
+                } else {
+                    var clist = document.getElementsByClassName("solid-country-filter");
+                    for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
+                }
+                getDocumentData();
+            });
+            $("#solid-type-all").change(function () {
+                if (this.checked) {
+                    var clist = document.getElementsByClassName("solid-type-filter");
+                    for (var i = 0; i < clist.length; ++i) { clist[i].checked = true; }
+                } else {
+                    var clist = document.getElementsByClassName("solid-type-filter");
+                    for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
+                }
+            });
+            $("#plastic-country-all").change(function () {
+                if (this.checked) {
+                    var clist = document.getElementsByClassName("plastic-country-filter");
+                    for (var i = 0; i < clist.length; ++i) { clist[i].checked = true; }
+                } else {
+                    var clist = document.getElementsByClassName("plastic-country-filter");
+                    for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
+                }
+                getDocumentData();
+            });
+            $("#plastic-type-all").change(function () {
+                if (this.checked) {
+                    var clist = document.getElementsByClassName("plastic-type-filter");
+                    for (var i = 0; i < clist.length; ++i) { clist[i].checked = true; }
+                } else {
+                    var clist = document.getElementsByClassName("plastic-type-filter");
+                    for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
+                }
+            });
+            function numFormatter(num) {
+                if (num >= 1000000000) {
+                    return Math.abs(num) > 999999999 ? Math.sign(num) * ((Math.abs(num) / 1000000000).toFixed(1)) + ' B' : Math.sign(num) * Math.abs(num)
+                }
+                if (num >= 1000000) {
+                    return Math.abs(num) > 999999 ? Math.sign(num) * ((Math.abs(num) / 1000000).toFixed(1)) + ' M' : Math.sign(num) * Math.abs(num)
+                }
+                if (num >= 1000) {
+                    return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + ' K' : Math.sign(num) * Math.abs(num)
+                }
+            }
+
+            $(".card").hover(function () {
+                $(this).find(".overlay-wrapper").css("background-size", "150%");
+                $(this).css("background-color", "#23A2D722");
+
+            },
+                function () {
+                    $(this).find(".overlay-wrapper").css("background-size", "cover");
+                    $(this).css("background-color", "");
+                });
+
+            $(".document-card").hover(function () {
+                $(this).find(".overlay-wrapper").css("background-size", "150%");
+
+            },
+                function () {
+                    $(this).find(".overlay-wrapper").css("background-size", "cover");
+                });
+
+
+            $("#elearning-title").animate({ left: 200, opacity: "show" }, 1500);
         });
     </script>
-</div>
-
-<div class="row py-10 my-15">
-    <!--begin::Container-->
-    <div class="container">
-        <!--begin::Heading-->
-        <div class="text-center mb-10">
-            <!--begin::Title-->
-            <h3 class="fs-2hx text-dark mb-15 title" id="team" data-kt-scroll-offset="{default: 100, lg: 150}">GOOD PRACTICES</h3>
-            <!--end::Title-->
-            <!--begin::Sub-title-->
-            <div class="fs-5 text-muted fw-bold d-none">
-                Description Here - Lorem ipsum dolor sit amet,
-                <br>Details here - consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </div>
-            <!--end::Sub-title=-->
-        </div>
-        <!--end::Heading-->
-        <!--begin::Slider-->
-        <div class="tns tns-default tns-initiazlied">
-            <!--begin::Wrapper-->
-            <div class="tns-outer" id="tns2-ow">
-                <div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">7 to 8</span>  of 7</div><div id="tns2-mw" class="tns-ovh">
-                    <div class="tns-inner" id="tns2-iw">
-                        <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="18000" data-tns-controls="true" data-tns-nav="false" data-tns-items="1" data-tns-center="false" data-tns-dots="false" data-tns-prev-button="#kt_team_slider_prev" data-tns-next-button="#kt_team_slider_next" data-tns-responsive="{1200: {items: 4}, 968: {items: 3}}" class="tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns2" style="transform: translate3d(-40%, 0px, 0px);">
-                            @foreach (DataRow row in blogs.Rows)
-                            {
-                                int MaxLength = 70;
-
-                                if (row["Description"].ToString().Length < MaxLength)
-                                {
-                                    MaxLength = row["Description"].ToString().Length;
-                                }
-                                <div class="card card-rounded s-border box-shadow text-center tns-item tns-slide-cloned m-10" aria-hidden="true" tabindex="-1">
-                                    <div class="h-100">
-                                        <a class="d-block overlay" href="MarineDebris/GoodPractices/@row["ID"].ToString()">
-                                            <!--begin::Image-->
-                                            <div class="overlay-wrapper s-border-top bgi-no-repeat bgi-position-center bgi-size-cover min-h-175px" style="background-image:url('Documents/Blogs/@row["Photo"].ToString().Split(';')[0]')"></div>
-                                            <!--end::Image-->
-                                            <!--begin::Action-->
-                                            <div class="overlay-layer s-border-top bg-dark bg-opacity-50">
-                                                <span class="row text-center text-white fw-bolder fs-2 lh-base d-none">@row["Title"].ToString()</span>
-                                                <br />
-                                                <i class="bi bi-eye-fill fs-2x text-white"></i>
-                                            </div>
-                                            <!--end::Action-->
-                                        </a>
-                                        <!--begin::Body-->
-                                        <a href="MarineDebris/GoodPractices/@row["ID"].ToString()" class="m-0 p-5">
-                                            <!--begin::Title-->
-                                            <div href="MarineDebris/GoodPractices/@row["ID"].ToString()" class="px-2 fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">@row["Title"].ToString()</div>
-                                            <!--end::Title-->
-                                            <!--begin::Text-->
-                                            <div class="px-2 fw-bold fs-6 text-gray-600 text-dark my-4">@Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span class="text-primary" href="MarineDebris/GoodPractices/@row["ID"].ToString()">see more</span></div>
-                                            <!--end::Text-->
-                                            <div class="fs-6 fw-bolder">
-                                                <span class="badge badge-light-primary fw-bolder my-2" style="white-space: normal; text-align: left;">Country: @row["Country"].ToString()</span>
-                                            </div>
-                                            <!--begin::Content-->
-                                            <div class="px-2 fs-6 fw-bolder">
-                                                <!--begin::Author-->
-                                                <span class="text-gray-700 text-hover-primary">@row["Author"].ToString()</span>
-                                                <!--end::Author-->
-                                                <!--begin::Date-->
-                                                <span class="text-muted d-none">on Mar 21 2021</span>
-                                                <!--end::Date-->
-                                            </div>
-                                            <!--end::Content-->
-                                        </a>
-                                        <!--end::Body-->
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--end::Wrapper-->
-            <!--begin::Button-->
-            <button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_prev" aria-controls="tns2" tabindex="-1" data-controls="prev">
-                <!--begin::Svg Icon | path: icons/duotune/arrows/arr074.svg-->
-                <span class="svg-icon svg-icon-3x">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M11.2657 11.4343L15.45 7.25C15.8642 6.83579 15.8642 6.16421 15.45 5.75C15.0358 5.33579 14.3642 5.33579 13.95 5.75L8.40712 11.2929C8.01659 11.6834 8.01659 12.3166 8.40712 12.7071L13.95 18.25C14.3642 18.6642 15.0358 18.6642 15.45 18.25C15.8642 17.8358 15.8642 17.1642 15.45 16.75L11.2657 12.5657C10.9533 12.2533 10.9533 11.7467 11.2657 11.4343Z" fill="black"></path>
-                    </svg>
-                </span>
-                <!--end::Svg Icon-->
-            </button>
-            <!--end::Button-->
-            <!--begin::Button-->
-            <button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_next" aria-controls="tns2" tabindex="-1" data-controls="next">
-                <!--begin::Svg Icon | path: icons/duotune/arrows/arr071.svg-->
-                <span class="svg-icon svg-icon-3x">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M12.6343 12.5657L8.45001 16.75C8.0358 17.1642 8.0358 17.8358 8.45001 18.25C8.86423 18.6642 9.5358 18.6642 9.95001 18.25L15.4929 12.7071C15.8834 12.3166 15.8834 11.6834 15.4929 11.2929L9.95001 5.75C9.5358 5.33579 8.86423 5.33579 8.45001 5.75C8.0358 6.16421 8.0358 6.83579 8.45001 7.25L12.6343 11.4343C12.9467 11.7467 12.9467 12.2533 12.6343 12.5657Z" fill="black"></path>
-                    </svg>
-                </span>
-                <!--end::Svg Icon-->
-            </button>
-            <!--end::Button-->
-        </div>
-        <!--end::Slider-->
-    </div>
-    <!--end::Container-->
-</div>
-
-
-<div class="row h-550px" style="background-image: url('Content/marine-debris/shutterstock_436985632.jpg'); background-repeat: no-repeat; background-size: cover; background-color: white; background-attachment: fixed;">
-    <div class="col-md-12 pt-10" style=" background-color: #00000099; ">
-        <div class="container mb-7 text-center pt-10">
-            <!--begin::Title-->
-            <h1 class="text-dark fs-1 mb-5 p-2 fw-boldest title-white">NETWORKS OF PRACTICE</h1>
-            <!--end::Title-->
-            <div class="tns tns-default tns-initiazlied mw-550px m-auto">
-                <!--begin::Wrapper-->
-                <div class="tns-outer" id="tns3-ow">
-                    <div id="tns3-mw" class="tns-ovh">
-                        <div class="tns-inner" id="tns3-iw">
-                            <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="true" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="5000" data-tns-controls="false" data-tns-nav="true" data-tns-items="1" data-tns-center="true" data-tns-dots="true" data-tns-dots-position="bottom" data-tns-responsive="{1200: {items: 1}, 968: {items: 1}}" class="tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns3" style="transform: translate3d(-40%, 0px, 0px);">
-                                <div class="h-100 w-100">
-                                    <a class="octagon d-flex align-items-center h-200px w-200px m-auto" style="background-color: #13222c;" href="https://ikhapp.org/">
-                                        <img src="/Content/marine-debris/ikhapp.svg" class="h-150px m-auto" alt="" />
-                                    </a>
-                                    <a href="https://ikhapp.org/" class="fw-bolder my-10 text-white" style="font-size: 24px !important;">International Knowledge Hub Against Plastic Pollution</a>
-                                </div>
-                                <div class="h-100 w-100">
-                                    <a class="octagon d-flex align-items-center h-200px w-200px bg-white m-auto" href="https://rkcmpd-eria.org/">
-                                        <img src="/Content/marine-debris/logo-eria-144.png" class="h-60px m-auto" alt="" />
-                                    </a>
-                                    <a href="https://rkcmpd-eria.org/" class="fw-bolder my-10 text-white" style="font-size: 24px !important;">Economic Research Institute for ASEAN and East Asia</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--end::Wrapper-->
-            </div>
-            <!--end::Slider-->
-        </div>
-    </div>
-</div>
-
-<div class="row d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px mb-20">
-    <div class="row w-100 gy-10 mb-md-10 mt-md-5">
-        <div class="col-md-6 px-2">
-            <div class="w-100 h-100 d-flex flex-column bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
-                <div class="col-md-12 mb-7 text-center">
-                    <!--begin::Title-->
-                    <h1 class="text-dark mb-5 fw-boldest">Solid Waste</h1>
-                    <!--end::Title-->
-                    <!--begin::Description-->
-                    <div class="text-gray-400 fw-bold mb-5 d-none">Short description here</div>
-                    <div class="d-flex flex-center mb-10">
-                        <button id="kt_drawer_filter_1_button" class="btn btn-primary py-2 px-4">
-                            <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black"></path>
-                                </svg>
-                            </span>Filter
-                        </button>
-                    </div>
-                    <div class="d-flex px-5">
-                        <label class="px-2 py-1">Country: </label>
-                        <div id="solid-country-filter-list">
-
-                        </div>
-                    </div>
-                    <div id="chart-1" style="height: 350px;"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 px-2">
-            <div class="w-100 h-100 d-flex flex-column bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
-                <div class="col-md-12 mb-7 text-center">
-                    <!--begin::Title-->
-                    <h1 class="text-dark mb-5 fw-boldest">Plastic Waste</h1>
-                    <!--end::Title-->
-                    <!--begin::Description-->
-                    <div class="text-gray-400 fw-bold mb-5 d-none">Short description here</div>
-                    <div class="d-flex flex-center mb-10">
-                        <button id="kt_drawer_filter_2_button" class="btn btn-primary py-2 px-4">
-                            <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black"></path>
-                                </svg>
-                            </span>Filter
-                        </button>
-                    </div>
-                    <div class="d-flex px-5">
-                        <label class="px-2 py-1">Country: </label>
-                        <div id="plastic-country-filter-list">
-
-                        </div>
-                    </div>
-                    <div id="chart-2" style="height: 350px;"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="kt_drawer_filter_1_basic" class="bg-white drawer drawer-end" data-kt-drawer="true" data-kt-drawer-activate="true" data-kt-drawer-toggle="#kt_drawer_filter_1_button" data-kt-drawer-close="#kt_drawer_filter_1_close" data-kt-drawer-width="250px">
-    <!--begin::Card-->
-    <div class="card w-100 rounded-0">
-        <!--begin::Card header-->
-        <div class="card-header pe-5">
-            <!--begin::Title-->
-            <div class="card-title">
-                <!--begin::User-->
-                <div class="d-flex justify-content-center flex-column me-3">
-                    <a href="#" class="fs-4 fw-bolder text-gray-900 text-hover-primary me-1 lh-1">Filter Data</a>
-                </div>
-                <!--end::User-->
-            </div>
-            <!--end::Title-->
-            <!--begin::Card toolbar-->
-            <div class="card-toolbar">
-                <!--begin::Close-->
-                <div class="btn btn-sm btn-icon btn-active-light-primary" id="kt_drawer_filter_1_close">
-                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                    <span class="svg-icon svg-icon-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black"></rect>
-                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black"></rect>
-                        </svg>
-                    </span>
-                    <!--end::Svg Icon-->
-                </div>
-                <!--end::Close-->
-            </div>
-            <!--end::Card toolbar-->
-        </div>
-        <!--end::Card header-->
-        <!--begin::Card body-->
-        <div class="card-body hover-scroll-overlay-y pt-2">
-            <form id="form-filter-1">
-                <div class="m-5 mb-10" ">
-                    <h3 class="mb-3">Country</h3>
-                    <div class="w-100">
-                        <div class="form-check form-switch form-check-custom form-check-solid m-2 mb-5">
-                            <input class="form-check-input h-20px w-30px" name="solid-country-all" type="checkbox" value="All" id="solid-country-all" checked="checked" />
-                            <label class="form-check-label" for="solid-country-all">
-                                All
-                            </label>
-                        </div>
-                        @foreach (DataRow row in countries.Rows)
-                        {
-                            <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                                <input class="form-check-input h-20px w-30px solid-country-filter" name="country" type="checkbox" value="@row["ID"].ToString()" id="country-@row["ID"].ToString()" checked="checked" data-text="@row["Name"].ToString()" />
-                                <label class="form-check-label" for="country-@row["ID"].ToString()">
-                                    @row["Name"].ToString()
-                                </label>
-                            </div>
-                        }
-                    </div>
-                </div>
-                <div class="m-5 mb-10">
-                    <h3 class="mb-3">Type</h3>
-                    <div class="w-100">
-                        <div class="form-check form-switch form-check-custom form-check-solid m-2 mb-5">
-                            <input class="form-check-input h-20px w-30px" name="solid-type-all" type="checkbox" value="All" id="solid-type-all" checked="checked" />
-                            <label class="form-check-label" for="solid-type-all">
-                                All
-                            </label>
-                        </div>
-                        <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                            <input class="form-check-input h-20px w-30px solid-type-filter" name="type" type="checkbox" value="Generated" id="type-generated" checked="checked">
-                            <label class="form-check-label" for="type-generated">
-                                Generated
-                            </label>
-                        </div>
-                        <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                            <input class="form-check-input h-20px w-30px solid-type-filter" name="type" type="checkbox" value="Collected" id="type-collected" checked="checked">
-                            <label class="form-check-label" for="type-collected">
-                                Collected
-                            </label>
-                        </div>
-                        <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                            <input class="form-check-input h-20px w-30px solid-type-filter" name="type" type="checkbox" value="Recycled" id="type-recycled" checked="checked">
-                            <label class="form-check-label" for="type-recycled">
-                                Recycled
-                            </label>
-                        </div>
-                        <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                            <input class="form-check-input h-20px w-30px solid-type-filter" name="type" type="checkbox" value="Recovered" id="type-recovered" checked="checked">
-                            <label class="form-check-label" for="type-recovered">
-                                Recovered
-                            </label>
-                        </div>
-                        <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                            <input class="form-check-input h-20px w-30px solid-type-filter" name="type" type="checkbox" value="Disposal" id="type-disposal" checked="checked">
-                            <label class="form-check-label" for="type-disposal">
-                                Disposal
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <!--end::Card body-->
-        <div class="card-footer pe-5">
-            <button type="button" class="btn btn-success" id="button-filter-apply-1">Apply</button>
-        </div>
-    </div>
-    <!--end::Card-->
-</div>
-
-<div id="kt_drawer_filter_2_basic" class="bg-white drawer drawer-end" data-kt-drawer="true" data-kt-drawer-activate="true" data-kt-drawer-toggle="#kt_drawer_filter_2_button" data-kt-drawer-close="#kt_drawer_filter_2_close" data-kt-drawer-width="250px">
-    <!--begin::Card-->
-    <div class="card w-100 rounded-0">
-        <!--begin::Card header-->
-        <div class="card-header pe-5">
-            <!--begin::Title-->
-            <div class="card-title">
-                <!--begin::User-->
-                <div class="d-flex justify-content-center flex-column me-3">
-                    <a href="#" class="fs-4 fw-bolder text-gray-900 text-hover-primary me-1 lh-1">Filter Data</a>
-                </div>
-                <!--end::User-->
-            </div>
-            <!--end::Title-->
-            <!--begin::Card toolbar-->
-            <div class="card-toolbar">
-                <!--begin::Close-->
-                <div class="btn btn-sm btn-icon btn-active-light-primary" id="kt_drawer_filter_2_close">
-                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                    <span class="svg-icon svg-icon-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black"></rect>
-                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black"></rect>
-                        </svg>
-                    </span>
-                    <!--end::Svg Icon-->
-                </div>
-                <!--end::Close-->
-            </div>
-            <!--end::Card toolbar-->
-        </div>
-        <!--end::Card header-->
-        <!--begin::Card body-->
-        <div class="card-body hover-scroll-overlay-y pt-2">
-            <form id="form-filter-2">
-                <div class="m-5 mb-10" ">
-                    <h3 class="mb-3">Country</h3>
-                    <div class="w-100">
-                        <div class="form-check form-switch form-check-custom form-check-solid m-2 mb-5">
-                            <input class="form-check-input h-20px w-30px" name="plastic-country-all" type="checkbox" value="All" id="plastic-country-all" checked="checked" />
-                            <label class="form-check-label" for="plastic-country-all">
-                                All
-                            </label>
-                        </div>
-                        @foreach (DataRow row in countries.Rows)
-                        {
-                            <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                                <input class="form-check-input h-20px w-30px plastic-country-filter" name="country" type="checkbox" value="@row["ID"].ToString()" id="country-@row["ID"].ToString()" checked="checked" data-text="@row["Name"].ToString()" />
-                                <label class="form-check-label" for="country-@row["ID"].ToString()">
-                                    @row["Name"].ToString()
-                                </label>
-                            </div>
-                        }
-                    </div>
-                </div>
-                <div class="m-5 mb-10">
-                    <h3 class="mb-3">Type</h3>
-                    <div class="w-100">
-                        <div class="form-check form-switch form-check-custom form-check-solid m-2 mb-5">
-                            <input class="form-check-input h-20px w-30px" name="plastic-type-all" type="checkbox" value="All" id="plastic-type-all" checked="checked" />
-                            <label class="form-check-label" for="plastic-type-all">
-                                All
-                            </label>
-                        </div>
-                        <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                            <input class="form-check-input h-20px w-30px plastic-type-filter" name="type" type="checkbox" value="Generated" id="type-generated" checked="checked">
-                            <label class="form-check-label" for="type-generated">
-                                Generated
-                            </label>
-                        </div>
-                        <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                            <input class="form-check-input h-20px w-30px plastic-type-filter" name="type" type="checkbox" value="Collected" id="type-collected" checked="checked">
-                            <label class="form-check-label" for="type-collected">
-                                Collected
-                            </label>
-                        </div>
-                        <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                            <input class="form-check-input h-20px w-30px plastic-type-filter" name="type" type="checkbox" value="Recycled" id="type-recycled" checked="checked">
-                            <label class="form-check-label" for="type-recycled">
-                                Recycled
-                            </label>
-                        </div>
-                        <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                            <input class="form-check-input h-20px w-30px plastic-type-filter" name="type" type="checkbox" value="Recovered" id="type-recovered" checked="checked">
-                            <label class="form-check-label" for="type-recovered">
-                                Recovered
-                            </label>
-                        </div>
-                        <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                            <input class="form-check-input h-20px w-30px plastic-type-filter" name="type" type="checkbox" value="Disposal" id="type-disposal" checked="checked">
-                            <label class="form-check-label" for="type-disposal">
-                                Disposal
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <!--end::Card body-->
-        <div class="card-footer pe-5">
-            <button type="button" class="btn btn-success" id="button-filter-apply-2">Apply</button>
-        </div>
-    </div>
-    <!--end::Card-->
-</div>
-
-<script src="\Scripts\jquery-3.6.4.min.js"></script>
-<script>
-    var chart1;
-    var chart2;
-    $(document).ready(function () {
-        createSolidWasteGraph();
-        createPlasticWasteGraph();
-        $("#button-filter-apply-1").click(function () {
-            chart1.destroy();
-            createSolidWasteGraph();
-            $("#kt_drawer_filter_1_close").click();
-        });
-        $("#button-filter-apply-2").click(function () {
-            chart2.destroy();
-            createPlasticWasteGraph();
-            $("#kt_drawer_filter_2_close").click();
-        });
-        function createSolidWasteGraph(id, x_axis, series) {
-            $.ajax({
-                url: '/MarineDebris/getSolidWasteGraphData',
-                data: $("#form-filter-1").serialize(),
-                type: 'POST',
-                processData: false,
-                success: function (data) {
-                    var graphData = JSON.parse(data);
-                    var x_axis = [];
-                    var series = [];
-                    var data_ = [];
-                    var count = 0;
-                    if (graphData.length > 0) {
-                        if (graphData[0].hasOwnProperty("Generated")) {
-                            for (var ctr = 0; ctr < graphData.length; ctr++) {
-                                x_axis[ctr] = graphData[ctr]["Year"];
-                                data_[ctr] = graphData[ctr]["Generated"];
-                            }
-                            series[count] = {
-                                name: "Generated",
-                                data: data_
-                            }
-                            count++;
-                        }
-                        data_ = [];
-                        if (graphData[0].hasOwnProperty("Collected")) {
-                            for (var ctr = 0; ctr < graphData.length; ctr++) {
-                                x_axis[ctr] = graphData[ctr]["Year"];
-                                data_[ctr] = graphData[ctr]["Collected"];
-                            }
-                            series[count] = {
-                                name: "Collected",
-                                data: data_
-                            }
-                            count++;
-                        }
-                        data_ = [];
-                        if (graphData[0].hasOwnProperty("Recycled")) {
-                            for (var ctr = 0; ctr < graphData.length; ctr++) {
-                                x_axis[ctr] = graphData[ctr]["Year"];
-                                data_[ctr] = graphData[ctr]["Recycled"];
-                            }
-                            series[count] = {
-                                name: "Recycled",
-                                data: data_
-                            }
-                            count++;
-                        }
-                        data_ = [];
-                        if (graphData[0].hasOwnProperty("Recovered")) {
-                            for (var ctr = 0; ctr < graphData.length; ctr++) {
-                                x_axis[ctr] = graphData[ctr]["Year"];
-                                data_[ctr] = graphData[ctr]["Recovered"];
-                            }
-                            series[count] = {
-                                name: "Recovered",
-                                data: data_
-                            }
-                            count++;
-                        }
-                        data_ = [];
-                        if (graphData[0].hasOwnProperty("Disposal")) {
-                            for (var ctr = 0; ctr < graphData.length; ctr++) {
-                                x_axis[ctr] = graphData[ctr]["Year"];
-                                data_[ctr] = graphData[ctr]["Disposal"];
-                            }
-                            series[count] = {
-                                name: "Disposal",
-                                data: data_
-                            }
-                            count++;
-                        }
-
-                        var options = {
-                            series: series,
-                            chart: {
-                                type: 'bar',
-                                stacked: true,
-                                height: 400,
-                                toolbar: {
-                                    show: true
-                                },
-                                zoom: {
-                                    enabled: true
-                                }
-                            },
-                            plotOptions: {
-                                bar: {
-                                    horizontal: false,
-                                    endingShape: 'rounded',
-                                    borderRadius: 2
-                                },
-                            },
-                            dataLabels: {
-                                enabled: false
-                            },
-                            stroke: {
-                                show: true,
-                                width: 2,
-                                colors: ['transparent']
-                            },
-                            xaxis: {
-                                categories: x_axis,
-                                labels: {
-                                    show: true,
-                                    minWidth: 0,
-                                    maxWidth: 160,
-                                    style: {
-                                        fontSize: '12px',
-                                        fontFamily: 'Roboto Condensed, sans-serif',
-                                        fontWeight: 400,
-                                    }
-                                },
-                                title: {
-                                    text: 'Year'
-                                }
-                            },
-                            yaxis: {
-                                labels: {
-                                    show: true,
-                                    align: 'right',
-                                    minWidth: 0,
-                                    maxWidth: 160,
-                                    style: {
-                                        fontSize: '12px',
-                                        fontFamily: 'Roboto Condensed, sans-serif',
-                                        fontWeight: 400,
-                                    },
-                                    offsetX: 0,
-                                    offsetY: 0,
-                                    rotate: 0,
-                                    formatter: function (val) {
-                                        return numFormatter(val);//.toLocaleString('en-US')
-                                    }
-                                },
-                                title: {
-                                    text: 'Tons'
-                                }
-                            },
-                            fill: {
-                                opacity: 1
-                            },
-                            tooltip: {
-                                enabled: true,
-                                y: {
-                                    formatter: function (val) {
-                                        return val.toLocaleString('en-US') + " Tons";
-                                    }
-                                }
-                            },
-                            noData: {
-                                text: 'No Data'
-                            },
-                            legend: {
-                                position: 'right',
-                                offsetY: 40
-                            },
-                        };
-
-                        chart1 = new ApexCharts(document.querySelector("#chart-1"), options);
-                        chart1.render();
-                    } else {
-                        var options = {
-                            chart: {
-                                height: 350,
-                                type: 'bar',
-                            },
-                            dataLabels: {
-                                enabled: false
-                            },
-                            series: [],
-                            noData: {
-                                text: 'No Data'
-                            }
-                        }
-
-                        chart1 = new ApexCharts(document.querySelector("#chart-1"), options);
-                        chart1.render();
-                    }
-                },
-                error: function (err) {
-                    console.log(err);
-                },
-            });
-            var country = $('#form-filter-1 [name="country"]');
-            $("#solid-country-filter-list").html('');
-            for (var ctr = 0; ctr < country.length; ctr++) {
-                var countryElem = '<span class="badge badge-light-dark m-1">' + $(country[ctr]).data("text") + '</span>';
-                if (country[ctr].checked) {
-                    $("#solid-country-filter-list").append(countryElem);
-                }
-            }
-        }
-        function createPlasticWasteGraph(id, x_axis, series) {
-            $.ajax({
-                url: '/MarineDebris/getPlasticWasteGraphData',
-                data: $("#form-filter-2").serialize(),
-                type: 'POST',
-                processData: false,
-                success: function (data) {
-                    var graphData = JSON.parse(data);
-                    var x_axis = [];
-                    var series = [];
-                    var data_ = [];
-                    var count = 0;
-                    if (graphData.length > 0) {
-                        if (graphData[0].hasOwnProperty("Generated")) {
-                            for (var ctr = 0; ctr < graphData.length; ctr++) {
-                                x_axis[ctr] = graphData[ctr]["Year"];
-                                data_[ctr] = graphData[ctr]["Generated"];
-                            }
-                            series[count] = {
-                                name: "Generated",
-                                data: data_
-                            }
-                            count++;
-                        }
-                        data_ = [];
-                        if (graphData[0].hasOwnProperty("Collected")) {
-                            for (var ctr = 0; ctr < graphData.length; ctr++) {
-                                x_axis[ctr] = graphData[ctr]["Year"];
-                                data_[ctr] = graphData[ctr]["Collected"];
-                            }
-                            series[count] = {
-                                name: "Collected",
-                                data: data_
-                            }
-                            count++;
-                        }
-                        data_ = [];
-                        if (graphData[0].hasOwnProperty("Recycled")) {
-                            for (var ctr = 0; ctr < graphData.length; ctr++) {
-                                x_axis[ctr] = graphData[ctr]["Year"];
-                                data_[ctr] = graphData[ctr]["Recycled"];
-                            }
-                            series[count] = {
-                                name: "Recycled",
-                                data: data_
-                            }
-                            count++;
-                        }
-                        data_ = [];
-                        if (graphData[0].hasOwnProperty("Recovered")) {
-                            for (var ctr = 0; ctr < graphData.length; ctr++) {
-                                x_axis[ctr] = graphData[ctr]["Year"];
-                                data_[ctr] = graphData[ctr]["Recovered"];
-                            }
-                            series[count] = {
-                                name: "Recovered",
-                                data: data_
-                            }
-                            count++;
-                        }
-                        data_ = [];
-                        if (graphData[0].hasOwnProperty("Disposal")) {
-                            for (var ctr = 0; ctr < graphData.length; ctr++) {
-                                x_axis[ctr] = graphData[ctr]["Year"];
-                                data_[ctr] = graphData[ctr]["Disposal"];
-                            }
-                            series[count] = {
-                                name: "Disposal",
-                                data: data_
-                            }
-                            count++;
-                        }
-
-                        var options = {
-                            series: series,
-                            chart: {
-                                type: 'bar',
-                                stacked: true,
-                                height: 400,
-                                toolbar: {
-                                    show: true
-                                },
-                                zoom: {
-                                    enabled: true
-                                }
-                            },
-                            plotOptions: {
-                                bar: {
-                                    horizontal: false,
-                                    endingShape: 'rounded',
-                                    borderRadius: 2
-                                },
-                            },
-                            dataLabels: {
-                                enabled: false
-                            },
-                            stroke: {
-                                show: true,
-                                width: 2,
-                                colors: ['transparent']
-                            },
-                            xaxis: {
-                                categories: x_axis,
-                                labels: {
-                                    show: true,
-                                    minWidth: 0,
-                                    maxWidth: 160,
-                                    style: {
-                                        fontSize: '12px',
-                                        fontFamily: 'Roboto Condensed, sans-serif',
-                                        fontWeight: 400,
-                                    }
-                                },
-                                title: {
-                                    text: 'Year'
-                                }
-                            },
-                            yaxis: {
-                                labels: {
-                                    show: true,
-                                    align: 'right',
-                                    minWidth: 0,
-                                    maxWidth: 160,
-                                    style: {
-                                        fontSize: '12px',
-                                        fontFamily: 'Roboto Condensed, sans-serif',
-                                        fontWeight: 400,
-                                    },
-                                    offsetX: 0,
-                                    offsetY: 0,
-                                    rotate: 0,
-                                    formatter: function (val) {
-                                        return numFormatter(val);//.toLocaleString('en-US')
-                                    }
-                                },
-                                title: {
-                                    text: 'Tons'
-                                }
-                            },
-                            fill: {
-                                opacity: 1
-                            },
-                            tooltip: {
-                                enabled: true,
-                                y: {
-                                    formatter: function (val) {
-                                        return val.toLocaleString('en-US') + " Tons";
-                                    }
-                                }
-                            },
-                            noData: {
-                                text: 'No Data'
-                            },
-                            legend: {
-                                position: 'right',
-                                offsetY: 40
-                            },
-                        };
-
-                        chart2 = new ApexCharts(document.querySelector("#chart-2"), options);
-                        chart2.render();
-                    } else {
-                        var options = {
-                            chart: {
-                                height: 350,
-                                type: 'bar',
-                            },
-                            dataLabels: {
-                                enabled: false
-                            },
-                            series: [],
-                            noData: {
-                                text: 'No Data'
-                            }
-                        }
-
-                        chart2 = new ApexCharts(document.querySelector("#chart-2"), options);
-                        chart2.render();
-                    }
-                },
-                error: function (err) {
-                    console.log(err);
-                },
-            })
-            var country = $('#form-filter-2 [name="country"]');
-            $("#plastic-country-filter-list").html('');
-            for (var ctr = 0; ctr < country.length; ctr++) {
-                var countryElem = '<span class="badge badge-light-dark m-1">' + $(country[ctr]).data("text") + '</span>';
-                if (country[ctr].checked) {
-                    $("#plastic-country-filter-list").append(countryElem);
-                }
-            }
-        }
-        $("#solid-country-all").change(function () {
-            if (this.checked) {
-                var clist = document.getElementsByClassName("solid-country-filter");
-                for (var i = 0; i < clist.length; ++i) { clist[i].checked = true; }
-            } else {
-                var clist = document.getElementsByClassName("solid-country-filter");
-                for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
-            }
-            getDocumentData();
-        });
-        $("#solid-type-all").change(function () {
-            if (this.checked) {
-                var clist = document.getElementsByClassName("solid-type-filter");
-                for (var i = 0; i < clist.length; ++i) { clist[i].checked = true; }
-            } else {
-                var clist = document.getElementsByClassName("solid-type-filter");
-                for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
-            }
-        });
-        $("#plastic-country-all").change(function () {
-            if (this.checked) {
-                var clist = document.getElementsByClassName("plastic-country-filter");
-                for (var i = 0; i < clist.length; ++i) { clist[i].checked = true; }
-            } else {
-                var clist = document.getElementsByClassName("plastic-country-filter");
-                for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
-            }
-            getDocumentData();
-        });
-        $("#plastic-type-all").change(function () {
-            if (this.checked) {
-                var clist = document.getElementsByClassName("plastic-type-filter");
-                for (var i = 0; i < clist.length; ++i) { clist[i].checked = true; }
-            } else {
-                var clist = document.getElementsByClassName("plastic-type-filter");
-                for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
-            }
-        });
-        function numFormatter(num) {
-            if (num >= 1000000000) {
-                return Math.abs(num) > 999999999 ? Math.sign(num) * ((Math.abs(num) / 1000000000).toFixed(1)) + ' B' : Math.sign(num) * Math.abs(num)
-            }
-            if (num >= 1000000) {
-                return Math.abs(num) > 999999 ? Math.sign(num) * ((Math.abs(num) / 1000000).toFixed(1)) + ' M' : Math.sign(num) * Math.abs(num)
-            }
-            if (num >= 1000) {
-                return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + ' K' : Math.sign(num) * Math.abs(num)
-            }
-        }
-
-        $(".card").hover(function () {
-            $(this).find(".overlay-wrapper").css("background-size", "150%");
-            $(this).css("background-color", "#23A2D722");
-
-        },
-            function () {
-                $(this).find(".overlay-wrapper").css("background-size", "cover");
-                $(this).css("background-color", "");
-            });
-
-        $(".document-card").hover(function () {
-            $(this).find(".overlay-wrapper").css("background-size", "150%");
-
-        },
-            function () {
-                $(this).find(".overlay-wrapper").css("background-size", "cover");
-            });
-
-
-        $("#elearning-title").animate({ left: 200, opacity: "show" }, 1500);
-    });
-</script>
