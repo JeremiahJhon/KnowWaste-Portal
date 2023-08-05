@@ -39,7 +39,7 @@ namespace UCOnline.Controllers
             string asd = formData["email"];
             ss.Send(formData["email"], "warm@rrcap.ait.ac.th", formData["name"], formData["message"]);
 
-            return View();
+            return RedirectToAction("Index", "Contact");
         }
     }
 }
