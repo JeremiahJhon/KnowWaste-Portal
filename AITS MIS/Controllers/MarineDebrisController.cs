@@ -240,10 +240,23 @@ namespace UCOnline.Controllers
                 doc.SelectFilter("ID = " + id.ToString());
                 DataTable docData = doc.SelectQuery();
 
-                if(docData.Rows.Count == 1)
+                if (docData.Rows.Count == 1)
                 {
+                    ServerBase country = new ServerBase("Country");
+                    country.SelectFilter("ID = " + docData.Rows[0]["Country_ID"].ToString());
+                    DataTable countryData = country.SelectQuery();
+                    ServerBase category = new ServerBase("DocumentCategory");
+                    category.SelectFilter("ID = " + docData.Rows[0]["DocumentCategory_ID"].ToString());
+                    DataTable categoryData = category.SelectQuery();
+                    ServerBase geotheme = new ServerBase("Geotheme");
+                    geotheme.SelectFilter("ID = " + docData.Rows[0]["Geotheme_ID"].ToString());
+                    DataTable geothemeData = geotheme.SelectQuery();
 
                     ViewBag.Document = docData.Rows[0];
+
+                    ViewData["Country"] = countryData.Rows[0]["Name"].ToString();
+                    ViewData["Category"] = categoryData.Rows[0]["Name"].ToString();
+                    ViewData["Geotheme"] = geothemeData.Rows[0]["Name"].ToString();
 
                     return View("DocumentItem");
                 }

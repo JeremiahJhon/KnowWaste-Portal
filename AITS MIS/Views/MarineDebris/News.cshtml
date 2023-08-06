@@ -57,7 +57,7 @@
                         <div class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">@row["Title"].ToString()</div>
                         <!--end::Title-->
                         <div class="fs-6 fw-bolder">
-                            <span class="badge badge-light-primary fw-bolder my-2" style="white-space: normal; text-align: left;">Country: @row["Country"].ToString()</span>
+                            <span class="text-gray-500 text-hover-primary" style="white-space: normal; text-align: left;">@row["Country"].ToString()</span>
                         </div>
                         <!--begin::Text-->
                         <div class="fw-bold fs-5 text-gray-600 text-dark my-4">@Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span class="text-hover-primary">see more</span></div>
