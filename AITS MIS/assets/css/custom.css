@@ -3,8 +3,8 @@ body {
     background-color: #fff !important;
 }
 
-.landing-header .menu .menu-link.active {
-    color: #009ef7;
+html {
+    scroll-behavior: smooth;
 }
 
 .policy-yes {

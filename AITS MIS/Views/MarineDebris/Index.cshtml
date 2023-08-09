@@ -356,7 +356,7 @@
     </div>
 
 
-    <div class="row h-550px" style="background-image: url('Content/marine-debris/shutterstock_436985632.jpg'); background-repeat: no-repeat; background-size: cover; background-color: white; background-attachment: fixed;">
+    <div class="row h-550px" id="networks-of-practice" style="background-image: url('Content/marine-debris/shutterstock_436985632.jpg'); background-repeat: no-repeat; background-size: cover; background-color: white; background-attachment: fixed;">
         <div class="col-md-12 pt-10" style=" background-color: #00000099; ">
             <div class="container mb-7 text-center pt-10">
                 <!--begin::Title-->
@@ -1135,8 +1135,10 @@
                 function () {
                     $(this).find(".overlay-wrapper").css("background-size", "cover");
                 });
-
-
             $("#elearning-title").animate({ left: 200, opacity: "show" }, 1500);
+            window.onload = function () {
+                var el = document.getElementById(window.location.hash.replace("#",""));
+                el.scrollIntoView(true);
+            }
         });
     </script>
