@@ -305,7 +305,7 @@
                                                 <div class="px-2 fw-bold fs-6 text-gray-600 text-dark my-4">@Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span class="text-primary" href="MarineDebris/GoodPractices/@row["ID"].ToString()">see more</span></div>
                                                 <!--end::Text-->
                                                 <div class="fs-6 fw-bolder">
-                                                    <span class="badge badge-light-primary fw-bolder my-2" style="white-space: normal; text-align: left;">Country: @row["Country"].ToString()</span>
+                                                    <span class="text-gray-500 text-hover-primary" style="white-space: normal; text-align: left;">@row["Country"].ToString()</span>
                                                 </div>
                                                 <!--begin::Content-->
                                                 <div class="px-2 fs-6 fw-bolder">
