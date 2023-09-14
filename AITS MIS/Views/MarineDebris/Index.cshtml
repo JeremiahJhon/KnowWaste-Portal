@@ -1137,8 +1137,12 @@
                 });
             $("#elearning-title").animate({ left: 200, opacity: "show" }, 1500);
             window.onload = function () {
-                var el = document.getElementById(window.location.hash.replace("#",""));
+                var el = document.getElementById(window.location.hash.replace("#", ""));
                 el.scrollIntoView(true);
             }
+            window.addEventListener('load', function () {
+                var el = document.getElementById(window.location.hash.replace("#", ""));
+                el.scrollIntoView(true);
+            })
         });
     </script>

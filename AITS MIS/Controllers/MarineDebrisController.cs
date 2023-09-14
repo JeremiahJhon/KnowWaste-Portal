@@ -693,6 +693,7 @@ namespace UCOnline.Controllers
             DataTable dtResult = new DataTable();
             dtResult.Columns.Add("ID", typeof(int));
             dtResult.Columns.Add("Title", typeof(string));
+            dtResult.Columns.Add("Location", typeof(string));
             dtResult.Columns.Add("Country", typeof(string));
             dtResult.Columns.Add("Attachment", typeof(string));
             dtResult.Columns.Add("Description", typeof(string));
@@ -705,11 +706,12 @@ namespace UCOnline.Controllers
 
             var JoinResult = from a in _3RproMarData.AsEnumerable()
                                 join b in countryData.AsEnumerable()
-                                on a.Field<String>("Country_ID").ToString() equals b.Field<int>("ID").ToString()
+                                on a.Field<String>("Country_ID").ToString().Split(',')[0] equals b.Field<int>("ID").ToString()
                                 select dtResult.LoadDataRow(new object[]
                                 {
                                     a.Field<int>("ID"),
                                     a.Field<string>("Title"),
+                                    a.Field<string>("Location"),
                                     b.Field<string>("Name"),
                                     a.Field<string>("Attachment"),
                                     a.Field<string>("Description"),
