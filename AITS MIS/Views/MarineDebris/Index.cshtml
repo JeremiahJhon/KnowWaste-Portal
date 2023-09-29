@@ -666,6 +666,7 @@
     </div>
 
     <script src="\Scripts\jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
         var chart1;
         var chart2;
@@ -702,6 +703,7 @@
                                 }
                                 series[count] = {
                                     name: "Generated",
+                                    group: "a",
                                     data: data_
                                 }
                                 count++;
@@ -714,6 +716,7 @@
                                 }
                                 series[count] = {
                                     name: "Collected",
+                                    group: "b",
                                     data: data_
                                 }
                                 count++;
@@ -726,6 +729,7 @@
                                 }
                                 series[count] = {
                                     name: "Recycled",
+                                    group: "b",
                                     data: data_
                                 }
                                 count++;
@@ -738,6 +742,7 @@
                                 }
                                 series[count] = {
                                     name: "Recovered",
+                                    group: "b",
                                     data: data_
                                 }
                                 count++;
@@ -750,11 +755,13 @@
                                 }
                                 series[count] = {
                                     name: "Disposal",
+                                    group: "b",
                                     data: data_
                                 }
                                 count++;
                             }
 
+                            console.log(series);
                             var options = {
                                 series: series,
                                 chart: {
@@ -895,6 +902,7 @@
                                 }
                                 series[count] = {
                                     name: "Generated",
+                                    group: "a",
                                     data: data_
                                 }
                                 count++;
@@ -907,6 +915,7 @@
                                 }
                                 series[count] = {
                                     name: "Collected",
+                                    group: "b",
                                     data: data_
                                 }
                                 count++;
@@ -919,6 +928,7 @@
                                 }
                                 series[count] = {
                                     name: "Recycled",
+                                    group: "b",
                                     data: data_
                                 }
                                 count++;
@@ -931,6 +941,7 @@
                                 }
                                 series[count] = {
                                     name: "Recovered",
+                                    group: "b",
                                     data: data_
                                 }
                                 count++;
@@ -943,11 +954,13 @@
                                 }
                                 series[count] = {
                                     name: "Disposal",
+                                    group: "b",
                                     data: data_
                                 }
                                 count++;
                             }
 
+                            console.log(series);
                             var options = {
                                 series: series,
                                 chart: {
@@ -1138,11 +1151,15 @@
             $("#elearning-title").animate({ left: 200, opacity: "show" }, 1500);
             window.onload = function () {
                 var el = document.getElementById(window.location.hash.replace("#", ""));
-                el.scrollIntoView(true);
+                try {
+                    el.scrollIntoView(true);
+                } catch { }
             }
             window.addEventListener('load', function () {
                 var el = document.getElementById(window.location.hash.replace("#", ""));
-                el.scrollIntoView(true);
+                try {
+                    el.scrollIntoView(true);
+                } catch { }
             })
         });
     </script>
