@@ -761,7 +761,6 @@
                                 count++;
                             }
 
-                            console.log(series);
                             var options = {
                                 series: series,
                                 chart: {
@@ -783,7 +782,17 @@
                                     },
                                 },
                                 dataLabels: {
-                                    enabled: false
+                                    enabled: false,
+                                    formatter: (val) => {
+                                        if (val >= 1000000000)
+                                            return val / 1000000000 + 'B';
+                                        else if (val >= 1000000)
+                                            return val / 1000000 + 'M';
+                                        else if (val >= 1000)
+                                            return val / 1000 + 'K';
+                                        else
+                                            return val;
+                                    }
                                 },
                                 stroke: {
                                     show: true,
@@ -960,7 +969,6 @@
                                 count++;
                             }
 
-                            console.log(series);
                             var options = {
                                 series: series,
                                 chart: {
@@ -982,7 +990,17 @@
                                     },
                                 },
                                 dataLabels: {
-                                    enabled: false
+                                    enabled: false,
+                                    formatter: (val) => {
+                                        if (val >= 1000000000)
+                                            return val / 1000000000 + 'B';
+                                        else if (val >= 1000000)
+                                            return val / 1000000 + 'M';
+                                        else if (val >= 1000)
+                                            return val / 1000 + 'K';
+                                        else
+                                            return val;
+                                    }
                                 },
                                 stroke: {
                                     show: true,
