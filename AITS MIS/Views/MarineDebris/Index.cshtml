@@ -782,16 +782,12 @@
                                     },
                                 },
                                 dataLabels: {
-                                    enabled: false,
-                                    formatter: (val) => {
-                                        if (val >= 1000000000)
-                                            return val / 1000000000 + 'B';
-                                        else if (val >= 1000000)
-                                            return val / 1000000 + 'M';
-                                        else if (val >= 1000)
-                                            return val / 1000 + 'K';
-                                        else
-                                            return val;
+                                    formatter: function (val) {
+                                        return numFormatter(val);//.toLocaleString('en-US')
+                                    },
+                                    style: {
+                                        fontSize: "10px",
+                                        colors: ['#000000']
                                     }
                                 },
                                 stroke: {
@@ -990,16 +986,12 @@
                                     },
                                 },
                                 dataLabels: {
-                                    enabled: false,
-                                    formatter: (val) => {
-                                        if (val >= 1000000000)
-                                            return val / 1000000000 + 'B';
-                                        else if (val >= 1000000)
-                                            return val / 1000000 + 'M';
-                                        else if (val >= 1000)
-                                            return val / 1000 + 'K';
-                                        else
-                                            return val;
+                                    formatter: function (val) {
+                                        return numFormatter(val);//.toLocaleString('en-US')
+                                    },
+                                    style: {
+                                        fontSize: "10px",
+                                        colors: ['#000000']
                                     }
                                 },
                                 stroke: {
@@ -1139,13 +1131,13 @@
             });
             function numFormatter(num) {
                 if (num >= 1000000000) {
-                    return Math.abs(num) > 999999999 ? Math.sign(num) * ((Math.abs(num) / 1000000000).toFixed(1)) + ' B' : Math.sign(num) * Math.abs(num)
+                    return Math.abs(num) > 999999999 ? Math.sign(num) * ((Math.abs(num) / 1000000000).toFixed(1)) + 'B' : Math.sign(num) * Math.abs(num)
                 }
                 if (num >= 1000000) {
-                    return Math.abs(num) > 999999 ? Math.sign(num) * ((Math.abs(num) / 1000000).toFixed(1)) + ' M' : Math.sign(num) * Math.abs(num)
+                    return Math.abs(num) > 999999 ? Math.sign(num) * ((Math.abs(num) / 1000000).toFixed(1)) + 'M' : Math.sign(num) * Math.abs(num)
                 }
                 if (num >= 1000) {
-                    return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + ' K' : Math.sign(num) * Math.abs(num)
+                    return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + 'K' : Math.sign(num) * Math.abs(num)
                 }
             }
 
