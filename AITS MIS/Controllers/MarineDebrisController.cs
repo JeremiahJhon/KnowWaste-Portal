@@ -871,7 +871,7 @@ namespace UCOnline.Controllers
             if(columns.Length == 0) return JsonConvert.SerializeObject(dtResult);
 
             MSSQLServer db = new MSSQLServer();
-            db.Query = "select [Year]," + columns + " from countrywastestreams  where country_id in (select id from country where subregion_id = 3) and [YEAR] < 2023 and [year] > 2015 and Country_ID in (" + country_ + ") and WasteCategory_ID = 1 group by [year]  order by [year]";
+            db.Query = "select [Year]," + columns + " from countrywastestreams  where country_id in (select id from country where subregion_id = 3) and [YEAR] < 2023 and [year] > 2015 and Country_ID in (" + country_ + ") and WasteCategory_ID = 1 and Deleted = 0 group by [year] order by [year]";
             dtResult = db.ExecuteQuery();
 
             return JsonConvert.SerializeObject(dtResult);
@@ -918,7 +918,7 @@ namespace UCOnline.Controllers
             if (columns.Length == 0) return JsonConvert.SerializeObject(dtResult);
 
             MSSQLServer db = new MSSQLServer();
-            db.Query = "select [Year]," + columns + " from countrywastestreams  where country_id in (select id from country where subregion_id = 3) and [YEAR] < 2023 and [year] > 2015 and Country_ID in (" + country_ + ") and WasteCategory_ID = 14 group by [year]  order by [year]";
+            db.Query = "select [Year]," + columns + " from countrywastestreams  where country_id in (select id from country where subregion_id = 3) and [YEAR] < 2023 and [year] > 2015 and Country_ID in (" + country_ + ") and WasteCategory_ID = 14 and Deleted = 0 group by [year] order by [year]";
             dtResult = db.ExecuteQuery();
 
             return JsonConvert.SerializeObject(dtResult);
