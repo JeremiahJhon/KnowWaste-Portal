@@ -909,37 +909,54 @@ namespace UCOnline.Controllers
             if (type_.Contains("Generated"))
             {
                 if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(Totalgenerated as decimal(10,2))) as Generated";
+                columns += "SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated";
             }
             if (type_.Contains("Collected"))
             {
                 if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(Totalcollected as decimal(10,2))) as Collected";
+                columns += "SUM(cast(a.Totalcollected as decimal(10,2))) as Collected";
             }
             if (type_.Contains("Recycled"))
             {
                 if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(Recycled as decimal(10,2))) as Recycled";
+                columns += "SUM(cast(a.Recycled as decimal(10,2))) as Recycled";
             }
             if (type_.Contains("Recovered"))
             {
                 if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(Recovered as decimal(10,2))) as Recovered";
+                columns += "SUM(cast(a.Recovered as decimal(10,2))) as Recovered";
             }
             if (type_.Contains("Disposal"))
             {
                 if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(Disposal as decimal(10,2))) as Disposal";
+                columns += "SUM(cast(a.Disposal as decimal(10,2))) as Disposal";
             }
 
-
             DataTable dtResult = new DataTable();
+            DataTable dtDataResult = new DataTable();
+            DataTable dtDataProcessed = new DataTable();
+            dtDataProcessed.Columns.Add("Country");
+            dtDataProcessed.Columns.Add("Type");
 
             if (columns.Length == 0) return JsonConvert.SerializeObject(dtResult);
 
             MSSQLServer db = new MSSQLServer();
-            db.Query = "select [Year]," + columns + " from countrywastestreams  where country_id in (select id from country where subregion_id = 3) and [YEAR] < 2023 and [year] > 2015 and Country_ID in (" + country_ + ") and WasteCategory_ID = 14 and Deleted = 0 group by [year] order by [year]";
+            db.Query = "select a.[Year]," + columns + " from countrywastestreams a where a.country_id in (select id from country where subregion_id = 3 and Deleted = 0) and a.[year] < 2023 and a.[year] > 2015 and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 14 and a.Deleted = 0 group by a.[year] order by a.[year]";
             dtResult = db.ExecuteQuery();
+
+            foreach (DataRow dr in dtResult.Rows)
+            {
+                dtDataProcessed.Columns.Add(dr[0].ToString());
+            }
+
+            db = new MSSQLServer();
+            db.Query = "select b.Name as Country,a.[Year]," + columns + " from countrywastestreams a inner join country b on a.country_id = b.id where a.country_id in (select id from country where subregion_id = 3 and Deleted = 0) and a.[year] < 2023 and a.[year] > 2015 and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 14 and a.Deleted = 0 group by b.Name,a.[year] order by b.Name";
+            dtDataResult = db.ExecuteQuery();
+
+            foreach(DataRow dr in dtDataProcessed.Rows)
+            {
+                //dtDataProcessed.Rows.Add();
+            }
 
             foreach (DataColumn col in dtResult.Copy().Columns)
             {
@@ -960,6 +977,100 @@ namespace UCOnline.Controllers
                     dtResult.Columns.Remove(col.ToString());
                 }
             }
+
+            return JsonConvert.SerializeObject(dtResult);
+        }
+
+        [HttpPost]
+        public String getSolidWasteTableData(FormCollection formData)
+        {
+            MSSQLServer db = new MSSQLServer();
+            String country_ = formData["country"];
+            String type_ = formData["type"];
+
+            if (type_ == null) type_ = "";
+
+            string columns = "";
+            if (type_.Contains("Generated"))
+            {
+                if (columns.Length > 0) columns += ",";
+                columns += "SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated";
+            }
+            if (type_.Contains("Collected"))
+            {
+                if (columns.Length > 0) columns += ",";
+                columns += "SUM(cast(a.Totalcollected as decimal(10,2))) as Collected";
+            }
+            if (type_.Contains("Recycled"))
+            {
+                if (columns.Length > 0) columns += ",";
+                columns += "SUM(cast(a.Recycled as decimal(10,2))) as Recycled";
+            }
+            if (type_.Contains("Recovered"))
+            {
+                if (columns.Length > 0) columns += ",";
+                columns += "SUM(cast(a.Recovered as decimal(10,2))) as Recovered";
+            }
+            if (type_.Contains("Disposal"))
+            {
+                if (columns.Length > 0) columns += ",";
+                columns += "SUM(cast(a.Disposal as decimal(10,2))) as Disposal";
+            }
+
+            DataTable dtResult = new DataTable();
+
+            db = new MSSQLServer();
+            db.Query = "select b.Name as Country," + columns + " from countrywastestreams a inner join country b on a.country_id = b.id where a.country_id in (select id from country where subregion_id = 3 and Deleted = 0) and a.[year] < 2023 and a.[year] > 2015 and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 1 and a.Deleted = 0 group by b.Name order by b.Name";
+            dtResult = db.ExecuteQuery();
+
+            dtResult.TableName = "data";
+
+            return JsonConvert.SerializeObject(dtResult);
+        }
+
+        [HttpPost]
+        public String getPlasticWasteTableData(FormCollection formData)
+        {
+            MSSQLServer db = new MSSQLServer();
+            String country_ = formData["country"];
+            String type_ = formData["type"];
+
+            if (type_ == null) type_ = "";
+
+            string columns = "";
+            if (type_.Contains("Generated"))
+            {
+                if (columns.Length > 0) columns += ",";
+                columns += "SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated";
+            }
+            if (type_.Contains("Collected"))
+            {
+                if (columns.Length > 0) columns += ",";
+                columns += "SUM(cast(a.Totalcollected as decimal(10,2))) as Collected";
+            }
+            if (type_.Contains("Recycled"))
+            {
+                if (columns.Length > 0) columns += ",";
+                columns += "SUM(cast(a.Recycled as decimal(10,2))) as Recycled";
+            }
+            if (type_.Contains("Recovered"))
+            {
+                if (columns.Length > 0) columns += ",";
+                columns += "SUM(cast(a.Recovered as decimal(10,2))) as Recovered";
+            }
+            if (type_.Contains("Disposal"))
+            {
+                if (columns.Length > 0) columns += ",";
+                columns += "SUM(cast(a.Disposal as decimal(10,2))) as Disposal";
+            }
+
+            DataTable dtResult = new DataTable();
+
+            db = new MSSQLServer();
+            db.Query = "select b.Name as Country," + columns + " from countrywastestreams a inner join country b on a.country_id = b.id where a.country_id in (select id from country where subregion_id = 3 and Deleted = 0) and a.[year] < 2023 and a.[year] > 2015 and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 14 and a.Deleted = 0 group by b.Name order by b.Name";
+            dtResult = db.ExecuteQuery();
+
+            dtResult.TableName = "data";
 
             return JsonConvert.SerializeObject(dtResult);
         }

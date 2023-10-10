@@ -54,6 +54,49 @@
                         </div>
                         <div id="chart-1" style="height: 350px;"></div>
                     </div>
+                    <div class="tab-content">
+                        <div class="toolbar" id="kt_toolbar1">
+                            <!--begin::Container-->
+                            <div id="kt_toolbar_container1" class="container-fluid d-inline" data-select2-id="select2-data-kt_toolbar_container">
+                                <!--begin::Page title-->
+                                <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                                    <label>
+                                        <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black"></path>
+                                            </svg>
+                                        </span>
+                                        Filter:
+                                    </label>
+                                    <div class="col-md-5 d-flex px-5">
+                                        <label class="m-auto px-2">
+                                            Year
+                                        </label>
+                                        <select id="filter-solidwaste-year" class="form-select form-select form-select-solid" data-placeholder="Select an option" style="border-color: #009ef7 !important;" aria-label="Year">
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--end::Page title-->
+                            </div>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Container-->
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped gy-7 gs-7 table-hover" id="datatable-solidwaste">
+                            <thead>
+                                <tr>
+                                    <th>Country</th>
+                                    <th>Generated</th>
+                                    <th>Collected</th>
+                                    <th>Recycled</th>
+                                    <th>Recovered</th>
+                                    <th>Disposal</th>
+                                    <th>Reference</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6 px-2">
@@ -80,6 +123,38 @@
                             </div>
                         </div>
                         <div id="chart-2" style="height: 350px;"></div>
+                    </div>
+                    <div class="tab-content">
+                        <div class="toolbar" id="kt_toolbar2">
+                            <!--begin::Container-->
+                            <div id="kt_toolbar_container2" class="container-fluid d-inline" data-select2-id="select2-data-kt_toolbar_container">
+                                <!--begin::Page title-->
+                                <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                                    <label>
+                                        <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black"></path>
+                                            </svg>
+                                        </span>
+                                        Filter:
+                                    </label>
+                                    <div class="col-md-5 d-flex px-5">
+                                        <label class="m-auto px-2">
+                                            Year
+                                        </label>
+                                        <select id="filter-plasticwaste-year" class="form-select form-select form-select-solid" data-placeholder="Select an option" style="border-color: #009ef7 !important;" aria-label="Year">
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--end::Page title-->
+                            </div>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Container-->
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped gy-7 gs-7 table-hover" id="datatable-plasticwaste">
+                        </table>
                     </div>
                 </div>
             </div>
@@ -316,6 +391,21 @@
             createPlasticWasteGraph();
             $("#kt_drawer_filter_2_close").click();
         });
+
+        function populateFilter(id, data) {
+            $("#" + id).empty();
+            var option = document.createElement("option");
+            option.setAttribute("value", "All");
+            option.text = "All";
+            document.getElementById(id).appendChild(option);
+            for (var ctr = 0; ctr < data.length; ctr++) {
+                var option = document.createElement("option");
+                option.setAttribute("value", data[ctr]["Year"]);
+                option.text = data[ctr]["Year"];
+                document.getElementById(id).appendChild(option);
+            }
+        }
+
         function createSolidWasteGraph(id, x_axis, series) {
             $.ajax({
                 url: '/MarineDebris/getSolidWasteGraphData',
@@ -323,7 +413,9 @@
                 type: 'POST',
                 processData: false,
                 success: function (data) {
+                    getSolidWasteTableData();
                     var graphData = JSON.parse(data);
+                    populateFilter("filter-solidwaste-year", graphData);
                     var x_axis = [];
                     var series = [];
                     var data_ = [];
@@ -520,6 +612,7 @@
                 }
             }
         }
+ 
         function createPlasticWasteGraph(id, x_axis, series) {
             $.ajax({
                 url: '/MarineDebris/getPlasticWasteGraphData',
@@ -527,7 +620,9 @@
                 type: 'POST',
                 processData: false,
                 success: function (data) {
+                    getPlasticWasteTableData();
                     var graphData = JSON.parse(data);
+                    populateFilter("filter-plasticwaste-year",graphData);
                     var x_axis = [];
                     var series = [];
                     var data_ = [];
@@ -772,6 +867,124 @@
             if (num >= 1000) {
                 return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + ' K' : Math.sign(num) * Math.abs(num)
             }
+        }
+
+        function getSolidWasteTableData() {
+            $.ajax({
+                url: '/MarineDebris/getSolidWasteTableData',
+                data: $("#form-filter-2").serialize() + '&year=' + $("#solid-country-filter-list").val(),
+                type: 'POST',
+                processData: false,
+                success: function (res) {
+                    var data = JSON.parse(res);
+
+                    var dataSet = [
+                        ['Tiger Nixon', 'System Architect', 'Edinburgh', '5421', '2011/04/25', '$320,800'],
+                        ['Garrett Winters', 'Accountant', 'Tokyo', '8422', '2011/07/25', '$170,750']
+                    ];
+
+                    console.log(dataSet);
+
+                    dataSet = [];
+                    for (var ctr = 0; ctr < data.length; ctr++) {
+                        array = [];
+                        array.push(data[ctr]["Country"]);
+                        array.push(data[ctr]["Generated"]);
+                        array.push(data[ctr]["Collected"]);
+                        array.push(data[ctr]["Recycled"]);
+                        array.push(data[ctr]["Recovered"]);
+                        array.push(data[ctr]["Disposal"]);
+                        dataSet.push(array);
+                    }
+
+                    console.log(dataSet);
+
+                    $("#datatable-solidwaste").DataTable({
+                        columns: [
+                            { title: 'Country' },
+                            { title: 'Generated' },
+                            { title: 'Collected' },
+                            { title: 'Recycled' },
+                            { title: 'Recovered' },
+                            { title: 'Disposal' }
+                        ],
+                        data: dataSet,
+                        dom: "<'row'" +
+                            "<'col-sm-8 d-flex align-items-center justify-content-start'f>" +
+                            "<'col-sm-4 d-flex align-items-center justify-content-end'l>" +
+                            ">" +
+
+                            "<'table-responsive'tr>" +
+
+                            "<'row'" +
+                            "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                            "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                            ">"
+                    });
+                },
+                error: function (err) {
+                    console.log(err);
+                },
+            })
+        }
+
+        function getPlasticWasteTableData() {
+            $.ajax({
+                url: '/MarineDebris/getPlasticWasteTableData',
+                data: $("#form-filter-2").serialize() + '&year=' + $("#plastic-country-filter-list").val(),
+                type: 'POST',
+                processData: false,
+                success: function (res) {
+                    var data = JSON.parse(res);
+                    
+                    var dataSet = [
+                        ['Tiger Nixon', 'System Architect', 'Edinburgh', '5421', '2011/04/25', '$320,800'],
+                        ['Garrett Winters', 'Accountant', 'Tokyo', '8422', '2011/07/25', '$170,750']
+                    ];
+
+                    console.log(dataSet);
+
+                    dataSet = [];
+                    for (var ctr = 0; ctr < data.length; ctr++) {
+                        array = [];
+                        array.push(data[ctr]["Country"]);
+                        array.push(data[ctr]["Generated"]);
+                        array.push(data[ctr]["Collected"]);
+                        array.push(data[ctr]["Recycled"]);
+                        array.push(data[ctr]["Recovered"]);
+                        array.push(data[ctr]["Disposal"]);
+                        dataSet.push(array);
+                    } 
+
+                    console.log(dataSet);
+
+                    $("#datatable-plasticwaste").DataTable({
+                        columns: [
+                            { title: 'Country' },
+                            { title: 'Generated' },
+                            { title: 'Collected' },
+                            { title: 'Recycled' },
+                            { title: 'Recovered' },
+                            { title: 'Disposal' }
+                        ],
+                        data: dataSet,
+                        dom: "<'row'" +
+                            "<'col-sm-8 d-flex align-items-center justify-content-start'f>" +
+                            "<'col-sm-4 d-flex align-items-center justify-content-end'l>" +
+                            ">" +
+
+                            "<'table-responsive'tr>" +
+
+                            "<'row'" +
+                            "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                            "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                            ">"
+                    });
+                },
+                error: function (err) {
+                    console.log(err);
+                },
+            })
         }
     });
 </script>
