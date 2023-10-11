@@ -84,17 +84,6 @@
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped gy-7 gs-7 table-hover" id="datatable-solidwaste">
-                            <thead>
-                                <tr>
-                                    <th>Country</th>
-                                    <th>Generated</th>
-                                    <th>Collected</th>
-                                    <th>Recycled</th>
-                                    <th>Recovered</th>
-                                    <th>Disposal</th>
-                                    <th>Reference</th>
-                                </tr>
-                            </thead>
                         </table>
                     </div>
                 </div>
@@ -378,6 +367,8 @@
 <script>
     var chart1;
     var chart2;
+    var datatable1;
+    var datatable2;
     $(document).ready(function () {
         createSolidWasteGraph();
         createPlasticWasteGraph();
@@ -819,6 +810,7 @@
                 }
             }
         }
+
         $("#solid-country-all").change(function () {
             if (this.checked) {
                 var clist = document.getElementsByClassName("solid-country-filter");
@@ -827,7 +819,7 @@
                 var clist = document.getElementsByClassName("solid-country-filter");
                 for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
             }
-            getDocumentData();
+            //getDocumentData();
         });
         $("#solid-type-all").change(function () {
             if (this.checked) {
@@ -846,7 +838,7 @@
                 var clist = document.getElementsByClassName("plastic-country-filter");
                 for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
             }
-            getDocumentData();
+            //getDocumentData();
         });
         $("#plastic-type-all").change(function () {
             if (this.checked) {
@@ -857,49 +849,55 @@
                 for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
             }
         });
+
+        $("#filter-solidwaste-year").change(function () {
+            getSolidWasteTableData(); 
+        });
+        $("#filter-plasticwaste-year").change(function () {
+            getPlasticWasteTableData();
+        });
+
         function numFormatter(num) {
-            if (num >= 1000000000) {
-                return Math.abs(num) > 999999999 ? Math.sign(num) * ((Math.abs(num) / 1000000000).toFixed(1)) + ' B' : Math.sign(num) * Math.abs(num)
+            try {
+                if (num >= 1000000000) {
+                    return Math.abs(num) > 999999999 ? Math.sign(num) * ((Math.abs(num) / 1000000000).toFixed(1)) + ' B' : Math.sign(num) * Math.abs(num)
+                }
+                if (num >= 1000000) {
+                    return Math.abs(num) > 999999 ? Math.sign(num) * ((Math.abs(num) / 1000000).toFixed(1)) + ' M' : Math.sign(num) * Math.abs(num)
+                }
+                if (num >= 1000) {
+                    return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + ' K' : Math.sign(num) * Math.abs(num)
+                }
+                return 0;
             }
-            if (num >= 1000000) {
-                return Math.abs(num) > 999999 ? Math.sign(num) * ((Math.abs(num) / 1000000).toFixed(1)) + ' M' : Math.sign(num) * Math.abs(num)
-            }
-            if (num >= 1000) {
-                return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + ' K' : Math.sign(num) * Math.abs(num)
+            catch {
+                return 0;
             }
         }
 
         function getSolidWasteTableData() {
+            if (datatable2 != null) datatable2.destroy();
             $.ajax({
                 url: '/MarineDebris/getSolidWasteTableData',
-                data: $("#form-filter-2").serialize() + '&year=' + $("#solid-country-filter-list").val(),
+                data: $("#form-filter-1").serialize() + '&year=' + $("#filter-solidwaste-year").val(),
                 type: 'POST',
                 processData: false,
                 success: function (res) {
                     var data = JSON.parse(res);
 
-                    var dataSet = [
-                        ['Tiger Nixon', 'System Architect', 'Edinburgh', '5421', '2011/04/25', '$320,800'],
-                        ['Garrett Winters', 'Accountant', 'Tokyo', '8422', '2011/07/25', '$170,750']
-                    ];
-
-                    console.log(dataSet);
-
                     dataSet = [];
                     for (var ctr = 0; ctr < data.length; ctr++) {
                         array = [];
                         array.push(data[ctr]["Country"]);
-                        array.push(data[ctr]["Generated"]);
-                        array.push(data[ctr]["Collected"]);
-                        array.push(data[ctr]["Recycled"]);
-                        array.push(data[ctr]["Recovered"]);
-                        array.push(data[ctr]["Disposal"]);
+                        array.push(numFormatter(data[ctr]["Generated"]));
+                        array.push(numFormatter(data[ctr]["Collected"]));
+                        array.push(numFormatter(data[ctr]["Recycled"]));
+                        array.push(numFormatter(data[ctr]["Recovered"]));
+                        array.push(numFormatter(data[ctr]["Disposal"]));
                         dataSet.push(array);
                     }
 
-                    console.log(dataSet);
-
-                    $("#datatable-solidwaste").DataTable({
+                    datatable2 = $("#datatable-solidwaste").DataTable({
                         columns: [
                             { title: 'Country' },
                             { title: 'Generated' },
@@ -929,36 +927,28 @@
         }
 
         function getPlasticWasteTableData() {
+            if (datatable1 != null) datatable1.destroy();
             $.ajax({
                 url: '/MarineDebris/getPlasticWasteTableData',
-                data: $("#form-filter-2").serialize() + '&year=' + $("#plastic-country-filter-list").val(),
+                data: $("#form-filter-2").serialize() + '&year=' + $("#filter-plasticwaste-year").val(),
                 type: 'POST',
                 processData: false,
                 success: function (res) {
                     var data = JSON.parse(res);
                     
-                    var dataSet = [
-                        ['Tiger Nixon', 'System Architect', 'Edinburgh', '5421', '2011/04/25', '$320,800'],
-                        ['Garrett Winters', 'Accountant', 'Tokyo', '8422', '2011/07/25', '$170,750']
-                    ];
-
-                    console.log(dataSet);
-
                     dataSet = [];
                     for (var ctr = 0; ctr < data.length; ctr++) {
                         array = [];
                         array.push(data[ctr]["Country"]);
-                        array.push(data[ctr]["Generated"]);
-                        array.push(data[ctr]["Collected"]);
-                        array.push(data[ctr]["Recycled"]);
-                        array.push(data[ctr]["Recovered"]);
-                        array.push(data[ctr]["Disposal"]);
+                        array.push(numFormatter(data[ctr]["Generated"]));
+                        array.push(numFormatter(data[ctr]["Collected"]));
+                        array.push(numFormatter(data[ctr]["Recycled"]));
+                        array.push(numFormatter(data[ctr]["Recovered"]));
+                        array.push(numFormatter(data[ctr]["Disposal"]));
                         dataSet.push(array);
                     } 
 
-                    console.log(dataSet);
-
-                    $("#datatable-plasticwaste").DataTable({
+                    datatable1 = $("#datatable-plasticwaste").DataTable({
                         columns: [
                             { title: 'Country' },
                             { title: 'Generated' },

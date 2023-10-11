@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics.PerformanceData;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Services.Description;
@@ -987,6 +988,7 @@ namespace UCOnline.Controllers
             MSSQLServer db = new MSSQLServer();
             String country_ = formData["country"];
             String type_ = formData["type"];
+            String year_ = formData["year"];
 
             if (type_ == null) type_ = "";
 
@@ -1019,9 +1021,18 @@ namespace UCOnline.Controllers
 
             DataTable dtResult = new DataTable();
 
-            db = new MSSQLServer();
-            db.Query = "select b.Name as Country," + columns + " from countrywastestreams a inner join country b on a.country_id = b.id where a.country_id in (select id from country where subregion_id = 3 and Deleted = 0) and a.[year] < 2023 and a.[year] > 2015 and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 1 and a.Deleted = 0 group by b.Name order by b.Name";
-            dtResult = db.ExecuteQuery();
+            if(year_ == "All" || year_ == "null")
+            {
+                db = new MSSQLServer();
+                db.Query = "select b.Name as Country," + columns + " from countrywastestreams a inner join country b on a.country_id = b.id where a.country_id in (select id from country where subregion_id = 3 and Deleted = 0) and a.[year] < " + DateTime.Now.Year.ToString() + " and a.[year] > " + (DateTime.Now.Year - 5).ToString() + " and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 1 and a.Deleted = 0 group by b.Name order by b.Name";
+                dtResult = db.ExecuteQuery();
+            }
+            else
+            {
+                db = new MSSQLServer();
+                db.Query = "select b.Name as Country," + columns + " from countrywastestreams a inner join country b on a.country_id = b.id where a.country_id in (select id from country where subregion_id = 3 and Deleted = 0) and a.[year] = " + year_ + " and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 1 and a.Deleted = 0 group by b.Name order by b.Name";
+                dtResult = db.ExecuteQuery();
+            }
 
             dtResult.TableName = "data";
 
@@ -1034,6 +1045,7 @@ namespace UCOnline.Controllers
             MSSQLServer db = new MSSQLServer();
             String country_ = formData["country"];
             String type_ = formData["type"];
+            String year_ = formData["year"];
 
             if (type_ == null) type_ = "";
 
@@ -1066,9 +1078,18 @@ namespace UCOnline.Controllers
 
             DataTable dtResult = new DataTable();
 
-            db = new MSSQLServer();
-            db.Query = "select b.Name as Country," + columns + " from countrywastestreams a inner join country b on a.country_id = b.id where a.country_id in (select id from country where subregion_id = 3 and Deleted = 0) and a.[year] < 2023 and a.[year] > 2015 and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 14 and a.Deleted = 0 group by b.Name order by b.Name";
-            dtResult = db.ExecuteQuery();
+            if (year_ == "All" || year_ == "null")
+            {
+                db = new MSSQLServer();
+                db.Query = "select b.Name as Country," + columns + " from countrywastestreams a inner join country b on a.country_id = b.id where a.country_id in (select id from country where subregion_id = 3 and Deleted = 0) and a.[year] < " + DateTime.Now.Year.ToString() + " and a.[year] > " + (DateTime.Now.Year - 5).ToString() + " and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 14 and a.Deleted = 0 group by b.Name order by b.Name";
+                dtResult = db.ExecuteQuery();
+            }
+            else
+            {
+                db = new MSSQLServer();
+                db.Query = "select b.Name as Country," + columns + " from countrywastestreams a inner join country b on a.country_id = b.id where a.country_id in (select id from country where subregion_id = 3 and Deleted = 0) and a.[year] = " + year_ + " and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 14 and a.Deleted = 0 group by b.Name order by b.Name";
+                dtResult = db.ExecuteQuery();
+            }
 
             dtResult.TableName = "data";
 
