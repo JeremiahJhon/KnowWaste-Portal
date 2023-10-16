@@ -6,6 +6,11 @@
 @{
     DataTable countries = (DataTable)ViewBag.Country;
 }
+<style>
+    .apexcharts-legend{
+        align-items: baseline !important;
+    }
+</style>
 <div class="row mt-20">
     <div class="landing-dark-bg h-250px">
         <div class="container py-lg-20">
@@ -566,7 +571,7 @@
                             legend: {
                                 position: 'right',
                                 offsetY: 40,
-                                horizontalAlign: 'left'
+                                alignItems: 'baseline'
                             },
                         };
 
