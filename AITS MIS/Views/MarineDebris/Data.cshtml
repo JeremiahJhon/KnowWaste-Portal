@@ -565,7 +565,8 @@
                             },
                             legend: {
                                 position: 'right',
-                                offsetY: 40
+                                offsetY: 40,
+                                horizontalAlign: 'left'
                             },
                         };
 
@@ -772,7 +773,8 @@
                             },
                             legend: {
                                 position: 'right',
-                                offsetY: 40
+                                offsetY: 40,
+                                horizontalAlign: 'left'
                             },
                         };
 
@@ -889,6 +891,7 @@
                     for (var ctr = 0; ctr < data.length; ctr++) {
                         array = [];
                         array.push(data[ctr]["Country"]);
+                        array.push(data[ctr]["Year"]);
                         array.push(numFormatter(data[ctr]["Generated"]));
                         array.push(numFormatter(data[ctr]["Collected"]));
                         array.push(numFormatter(data[ctr]["Recycled"]));
@@ -900,6 +903,7 @@
                     datatable2 = $("#datatable-solidwaste").DataTable({
                         columns: [
                             { title: 'Country' },
+                            { title: 'Year' },
                             { title: 'Generated' },
                             { title: 'Collected' },
                             { title: 'Recycled' },
@@ -940,6 +944,7 @@
                     for (var ctr = 0; ctr < data.length; ctr++) {
                         array = [];
                         array.push(data[ctr]["Country"]);
+                        array.push(data[ctr]["Year"]);
                         array.push(numFormatter(data[ctr]["Generated"]));
                         array.push(numFormatter(data[ctr]["Collected"]));
                         array.push(numFormatter(data[ctr]["Recycled"]));
@@ -951,6 +956,7 @@
                     datatable1 = $("#datatable-plasticwaste").DataTable({
                         columns: [
                             { title: 'Country' },
+                            { title: 'Year' },
                             { title: 'Generated' },
                             { title: 'Collected' },
                             { title: 'Recycled' },
