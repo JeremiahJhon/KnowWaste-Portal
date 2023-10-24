@@ -6254,8 +6254,6 @@
     <Content Include="Documents\moore.jpg" />
     <Content Include="Documents\National state of environment 2011.png" />
     <Content Include="Documents\Necessity of normalization to aluminum.png" />
-    <Content Include="Documents\News\90479.jpg" />
-    <Content Include="Documents\News\90480.jpg" />
     <Content Include="Documents\nitivattananon.jpg" />
     <Content Include="Documents\nnt_131292406489877533.jpg" />
     <Content Include="Documents\Nutrient budgets.png" />
@@ -6562,6 +6560,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\documents\Lawpolicy\" />
     <Folder Include="Content\script\" />
+    <Folder Include="Documents\News\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\Search\" />
   </ItemGroup>
