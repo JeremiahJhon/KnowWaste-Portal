@@ -867,13 +867,13 @@
         function numFormatter(num) {
             try {
                 if (num >= 1000000000) {
-                    return Math.abs(num) > 999999999 ? Math.sign(num) * ((Math.abs(num) / 1000000000).toFixed(1)) + ' B' : Math.sign(num) * Math.abs(num)
+                    return Math.abs(num) > 999999999 ? Math.sign(num) * ((Math.abs(num) / 1000000000).toFixed(3)) + ' B' : Math.sign(num) * Math.abs(num)
                 }
                 if (num >= 1000000) {
-                    return Math.abs(num) > 999999 ? Math.sign(num) * ((Math.abs(num) / 1000000).toFixed(1)) + ' M' : Math.sign(num) * Math.abs(num)
+                    return Math.abs(num) > 999999 ? Math.sign(num) * ((Math.abs(num) / 1000000).toFixed(3)) + ' M' : Math.sign(num) * Math.abs(num)
                 }
                 if (num >= 1000) {
-                    return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + ' K' : Math.sign(num) * Math.abs(num)
+                    return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(3)) + ' K' : Math.sign(num) * Math.abs(num)
                 }
                 return 0;
             }
