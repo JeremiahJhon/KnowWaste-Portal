@@ -1010,13 +1010,13 @@ namespace UCOnline.Controllers
             if(year_ == "All" || year_ == "null")
             {
                 db = new MSSQLServer();
-                db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') from countrywastestreams a inner join country b on a.country_id = b.id where a.[year] < " + DateTime.Now.Year.ToString() + " and a.[year] > " + (DateTime.Now.Year - 5).ToString() + " and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 1 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') as Reference from countrywastestreams a inner join country b on a.country_id = b.id where a.[year] < " + DateTime.Now.Year.ToString() + " and a.[year] > " + (DateTime.Now.Year - 5).ToString() + " and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 1 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
                 dtResult = db.ExecuteQuery();
             }
             else
             {
                 db = new MSSQLServer();
-                db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') from countrywastestreams a inner join country b on a.country_id = b.id where a.[year] = " + year_ + " and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 1 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') as Reference from countrywastestreams a inner join country b on a.country_id = b.id where a.[year] = " + year_ + " and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 1 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
                 dtResult = db.ExecuteQuery();
             }
 

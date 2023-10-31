@@ -873,7 +873,7 @@
                     return Math.abs(num) > 999999 ? Math.sign(num) * ((Math.abs(num) / 1000000).toFixed(3)) + ' M' : Math.sign(num) * Math.abs(num)
                 }
                 if (num >= 1000) {
-                    return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(3)) + ' K' : Math.sign(num) * Math.abs(num)
+                    return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(2)) + ' K' : Math.sign(num) * Math.abs(num)
                 }
                 return 0;
             }
@@ -891,7 +891,7 @@
                 processData: false,
                 success: function (res) {
                     var data = JSON.parse(res);
-
+                    console.log(data);
                     dataSet = [];
                     for (var ctr = 0; ctr < data.length; ctr++) {
                         array = [];
@@ -902,6 +902,7 @@
                         array.push(numFormatter(data[ctr]["Recycled"]));
                         array.push(numFormatter(data[ctr]["Recovered"]));
                         array.push(numFormatter(data[ctr]["Disposal"]));
+                        /*array.push('<button type="button" class="btn btn-primary popover-group py-2 px-4 border" data-bs-toggle="popover" data-bs-placement="left" title="References" data-bs-content="' + data[ctr]["Reference"] +'" style="border-radius: 20px;position:relative;top:-10px;"><i class="bi bi-info-lg px-0"></i></button>');*/
                         dataSet.push(array);
                     }
 
@@ -913,7 +914,8 @@
                             { title: 'Collected' },
                             { title: 'Recycled' },
                             { title: 'Recovered' },
-                            { title: 'Disposal' }
+                            { title: 'Disposal' }/*,
+                            { title: 'Ref' }*/
                         ],
                         data: dataSet,
                         dom: "<'row'" +
@@ -928,6 +930,10 @@
                             "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
                             ">"
                     });
+
+                    /*$('.popover-group').popover({
+                        trigger: 'focus'
+                    })*/
                 },
                 error: function (err) {
                     console.log(err);
@@ -954,7 +960,8 @@
                         array.push(numFormatter(data[ctr]["Collected"]));
                         array.push(numFormatter(data[ctr]["Recycled"]));
                         array.push(numFormatter(data[ctr]["Recovered"]));
-                        array.push(numFormatter(data[ctr]["Disposal"]));
+                        array.push(numFormatter(data[ctr]["Disposal"]));/*
+                        array.push("<b>Test</b>");*/
                         dataSet.push(array);
                     } 
 
@@ -966,7 +973,8 @@
                             { title: 'Collected' },
                             { title: 'Recycled' },
                             { title: 'Recovered' },
-                            { title: 'Disposal' }
+                            { title: 'Disposal' }/*,
+                            { title: 'Ref' */}
                         ],
                         data: dataSet,
                         dom: "<'row'" +
