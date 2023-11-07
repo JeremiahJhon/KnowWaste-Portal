@@ -891,7 +891,6 @@
                 processData: false,
                 success: function (res) {
                     var data = JSON.parse(res);
-                    console.log(data);
                     dataSet = [];
                     for (var ctr = 0; ctr < data.length; ctr++) {
                         array = [];
@@ -902,7 +901,7 @@
                         array.push(numFormatter(data[ctr]["Recycled"]));
                         array.push(numFormatter(data[ctr]["Recovered"]));
                         array.push(numFormatter(data[ctr]["Disposal"]));
-                        /*array.push('<button type="button" class="btn btn-primary popover-group py-2 px-4 border" data-bs-toggle="popover" data-bs-placement="left" title="References" data-bs-content="' + data[ctr]["Reference"] +'" style="border-radius: 20px;position:relative;top:-10px;"><i class="bi bi-info-lg px-0"></i></button>');*/
+                        array.push('<div hidden><div data-name="SW-popover-content-' + ctr + '" style="font-size: 10px;">' + data[ctr]["Reference"] + '</div></div><button id="SW-ref' + ctr + '" type="button" class="btn btn-primary popover-group py-2 px-4 border" data-bs-toggle="tooltip" data-bs-trigger="focus" data-bs-placement="right" style="border-radius: 20px;position:relative;top:-10px;"><i class="bi bi-info-lg px-0"></i></button>');
                         dataSet.push(array);
                     }
 
@@ -914,8 +913,8 @@
                             { title: 'Collected' },
                             { title: 'Recycled' },
                             { title: 'Recovered' },
-                            { title: 'Disposal' }/*,
-                            { title: 'Ref' }*/
+                            { title: 'Disposal' },
+                            { title: 'Ref' }
                         ],
                         data: dataSet,
                         dom: "<'row'" +
@@ -930,10 +929,20 @@
                             "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
                             ">"
                     });
+                    for (var ctr = 0; ctr < data.length; ctr++) {
+                        var options = {
+                            html: true,
+                            title: "References",
+                            //html element
+                            //content: $("#popover-content")
+                            content: $('[data-name="SW-popover-content-'+ctr+'"]')
+                            //Doing below won't work. Shows title only
+                            //content: $("#popover-content").html()
 
-                    /*$('.popover-group').popover({
-                        trigger: 'focus'
-                    })*/
+                        }
+                        var exampleEl = document.getElementById('SW-ref'+ctr)
+                        var popover = new bootstrap.Popover(exampleEl, options)
+                    }
                 },
                 error: function (err) {
                     console.log(err);
@@ -950,7 +959,7 @@
                 processData: false,
                 success: function (res) {
                     var data = JSON.parse(res);
-                    
+                    console.log(data);
                     dataSet = [];
                     for (var ctr = 0; ctr < data.length; ctr++) {
                         array = [];
@@ -960,8 +969,8 @@
                         array.push(numFormatter(data[ctr]["Collected"]));
                         array.push(numFormatter(data[ctr]["Recycled"]));
                         array.push(numFormatter(data[ctr]["Recovered"]));
-                        array.push(numFormatter(data[ctr]["Disposal"]));/*
-                        array.push("<b>Test</b>");*/
+                        array.push(numFormatter(data[ctr]["Disposal"]));
+                        array.push('<div hidden><div data-name="PW-popover-content-' + ctr + '" style="font-size: 10px;">' + data[ctr]["Reference"] + '</div></div><button id="PW-ref' + ctr + '" type="button" class="btn btn-primary popover-group py-2 px-4 border" data-bs-toggle="tooltip" data-bs-trigger="focus" data-bs-placement="right" style="border-radius: 20px;position:relative;top:-10px;"><i class="bi bi-info-lg px-0"></i></button>');
                         dataSet.push(array);
                     } 
 
@@ -973,8 +982,8 @@
                             { title: 'Collected' },
                             { title: 'Recycled' },
                             { title: 'Recovered' },
-                            { title: 'Disposal' }/*,
-                            { title: 'Ref' }*/
+                            { title: 'Disposal' },
+                            { title: 'Ref' }
                         ],
                         data: dataSet,
                         dom: "<'row'" +
@@ -989,6 +998,20 @@
                             "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
                             ">"
                     });
+                    for (var ctr = 0; ctr < data.length; ctr++) {
+                        var options = {
+                            html: true,
+                            title: "References",
+                            //html element
+                            //content: $("#popover-content")
+                            content: $('[data-name="PW-popover-content-' + ctr + '"]')
+                            //Doing below won't work. Shows title only
+                            //content: $("#popover-content").html()
+
+                        }
+                        var exampleEl = document.getElementById('PW-ref' + ctr)
+                        var popover = new bootstrap.Popover(exampleEl, options)
+                    }
                 },
                 error: function (err) {
                     console.log(err);
