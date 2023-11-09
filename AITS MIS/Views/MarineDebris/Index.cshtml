@@ -497,7 +497,7 @@
                         <h3 class="mb-3">Country</h3>
                         <div class="w-100">
                             <div class="form-check form-switch form-check-custom form-check-solid m-2 mb-5">
-                                <input class="form-check-input h-20px w-30px" name="solid-country-all" type="checkbox" value="All" id="solid-country-all" checked="checked" />
+                                <input class="form-check-input h-20px w-30px" name="solid-country-all" type="checkbox" value="All" id="solid-country-all"/>
                                 <label class="form-check-label" for="solid-country-all">
                                     All
                                 </label>
@@ -505,7 +505,7 @@
                             @foreach (DataRow row in countries.Rows)
                             {
                                 <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                                    <input class="form-check-input h-20px w-30px solid-country-filter" name="country" type="checkbox" value="@row["ID"].ToString()" id="solid-country-@row["ID"].ToString()" checked="checked" data-text="@row["Name"].ToString()" />
+                                    <input class="form-check-input h-20px w-30px solid-country-filter" name="country" type="checkbox" value="@row["ID"].ToString()" id="solid-country-@row["ID"].ToString()" data-text="@row["Name"].ToString()" />
                                     <label class="form-check-label" for="country-@row["ID"].ToString()">
                                         @row["Name"].ToString()
                                     </label>
@@ -603,7 +603,7 @@
                         <h3 class="mb-3">Country</h3>
                         <div class="w-100">
                             <div class="form-check form-switch form-check-custom form-check-solid m-2 mb-5">
-                                <input class="form-check-input h-20px w-30px" name="plastic-country-all" type="checkbox" value="All" id="plastic-country-all" checked="checked" />
+                                <input class="form-check-input h-20px w-30px" name="plastic-country-all" type="checkbox" value="All" id="plastic-country-all"/>
                                 <label class="form-check-label" for="plastic-country-all">
                                     All
                                 </label>
@@ -611,7 +611,7 @@
                             @foreach (DataRow row in countries.Rows)
                             {
                                 <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                                    <input class="form-check-input h-20px w-30px plastic-country-filter" name="country" type="checkbox" value="@row["ID"].ToString()" id="plastic-country-@row["ID"].ToString()" checked="checked" data-text="@row["Name"].ToString()" />
+                                    <input class="form-check-input h-20px w-30px plastic-country-filter" name="country" type="checkbox" value="@row["ID"].ToString()" id="plastic-country-@row["ID"].ToString()" data-text="@row["Name"].ToString()" />
                                     <label class="form-check-label" for="country-@row["ID"].ToString()">
                                         @row["Name"].ToString()
                                     </label>
