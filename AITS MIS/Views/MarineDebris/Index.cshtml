@@ -505,7 +505,7 @@
                             @foreach (DataRow row in countries.Rows)
                             {
                                 <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                                    <input class="form-check-input h-20px w-30px solid-country-filter" name="country" type="checkbox" value="@row["ID"].ToString()" id="country-@row["ID"].ToString()" checked="checked" data-text="@row["Name"].ToString()" />
+                                    <input class="form-check-input h-20px w-30px solid-country-filter" name="country" type="checkbox" value="@row["ID"].ToString()" id="solid-country-@row["ID"].ToString()" checked="checked" data-text="@row["Name"].ToString()" />
                                     <label class="form-check-label" for="country-@row["ID"].ToString()">
                                         @row["Name"].ToString()
                                     </label>
@@ -611,7 +611,7 @@
                             @foreach (DataRow row in countries.Rows)
                             {
                                 <div class="form-check form-switch form-check-custom form-check-solid m-2">
-                                    <input class="form-check-input h-20px w-30px plastic-country-filter" name="country" type="checkbox" value="@row["ID"].ToString()" id="country-@row["ID"].ToString()" checked="checked" data-text="@row["Name"].ToString()" />
+                                    <input class="form-check-input h-20px w-30px plastic-country-filter" name="country" type="checkbox" value="@row["ID"].ToString()" id="plastic-country-@row["ID"].ToString()" checked="checked" data-text="@row["Name"].ToString()" />
                                     <label class="form-check-label" for="country-@row["ID"].ToString()">
                                         @row["Name"].ToString()
                                     </label>
@@ -676,6 +676,8 @@
         var chart1;
         var chart2;
         $(document).ready(function () {
+            $("#solid-country-23").prop("checked", true);//Singapore default
+            $("#plastic-country-23").prop("checked", true);//Singapore default
             createSolidWasteGraph();
             createPlasticWasteGraph();
             $("#button-filter-apply-1").click(function () {
