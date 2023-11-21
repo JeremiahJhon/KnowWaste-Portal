@@ -50,6 +50,8 @@
                                     </svg>
                                 </span>Filter
                             </button>
+                            <select class="form-select py-2 mx-1 w-25" id="filter-city-1">
+                            </select>
                         </div>
                         <div class="d-flex px-5">
                             <label class="px-2 py-1">Country: </label>
@@ -109,6 +111,8 @@
                                     </svg>
                                 </span>Filter
                             </button>
+                            <select class="form-select py-2 mx-1 w-25" id="filter-city-2">
+                            </select>
                         </div>
                         <div class="d-flex px-5">
                             <label class="px-2 py-1">Country: </label>
@@ -389,6 +393,12 @@
             createPlasticWasteGraph();
             $("#kt_drawer_filter_2_close").click();
         });
+        $("#filter-city-1").change(function () {
+            $("#button-filter-apply-1").click();
+        });
+        $("#filter-city-2").change(function () {
+            $("#button-filter-apply-2").click();
+        });
 
         function populateFilter(id, data) {
             $("#" + id).empty();
@@ -407,7 +417,7 @@
         function createSolidWasteGraph(id, x_axis, series) {
             $.ajax({
                 url: '/MarineDebris/getSolidWasteGraphData',
-                data: $("#form-filter-1").serialize(),
+                data: $("#form-filter-1").serialize() + '&city=' + $("#filter-city-1").val(),
                 type: 'POST',
                 processData: false,
                 success: function (data) {
@@ -610,12 +620,21 @@
                     $("#solid-country-filter-list").append(countryElem);
                 }
             }
+
+            var country = $('#form-filter-1 [name="country"]');
+            var countries = [];
+            $.each($("#form-filter-1").serializeArray(), function (i, field) {
+                if (field.name == "country") {
+                    countries.push(field.value);
+                }
+            });
+            populateCityFilter("solidWaste", countries);
         }
  
         function createPlasticWasteGraph(id, x_axis, series) {
             $.ajax({
                 url: '/MarineDebris/getPlasticWasteGraphData',
-                data: $("#form-filter-2").serialize(),
+                data: $("#form-filter-2").serialize() + '&city=' + $("#filter-city-2").val(),
                 type: 'POST',
                 processData: false,
                 success: function (data) {
@@ -818,6 +837,14 @@
                     $("#plastic-country-filter-list").append(countryElem);
                 }
             }
+            var country = $('#form-filter-2 [name="country"]');
+            var countries = [];
+            $.each($("#form-filter-2").serializeArray(), function (i, field) {
+                if (field.name == "country") {
+                    countries.push(field.value);
+                }
+            });
+            populateCityFilter("plasticWaste", countries);
         }
 
         $("#solid-country-all").change(function () {
@@ -888,7 +915,7 @@
             if (datatable2 != null) datatable2.destroy();
             $.ajax({
                 url: '/MarineDebris/getSolidWasteTableData',
-                data: $("#form-filter-1").serialize() + '&year=' + $("#filter-solidwaste-year").val(),
+                data: $("#form-filter-1").serialize() + '&year=' + $("#filter-solidwaste-year").val() + '&city=' + $("#filter-city-1").val(),
                 type: 'POST',
                 processData: false,
                 success: function (res) {
@@ -956,7 +983,7 @@
             if (datatable1 != null) datatable1.destroy();
             $.ajax({
                 url: '/MarineDebris/getPlasticWasteTableData',
-                data: $("#form-filter-2").serialize() + '&year=' + $("#filter-plasticwaste-year").val(),
+                data: $("#form-filter-2").serialize() + '&year=' + $("#filter-plasticwaste-year").val() + '&city=' + $("#filter-city-2").val(),
                 type: 'POST',
                 processData: false,
                 success: function (res) {
@@ -973,7 +1000,7 @@
                         array.push(numFormatter(data[ctr]["Disposal"]));
                         array.push('<div hidden><div data-name="PW-popover-content-' + ctr + '" style="font-size: 10px;">' + data[ctr]["Reference"] + '</div></div><button id="PW-ref' + ctr + '" type="button" class="btn btn-primary popover-group py-2 px-4 border" data-bs-toggle="tooltip" data-bs-trigger="focus" data-bs-placement="right" style="border-radius: 20px;position:relative;top:-10px;"><i class="bi bi-info-lg px-0"></i></button>');
                         dataSet.push(array);
-                    } 
+                    }
 
                     datatable1 = $("#datatable-plasticwaste").DataTable({
                         columns: [
@@ -1017,7 +1044,40 @@
                 error: function (err) {
                     console.log(err);
                 },
-            })
+            });
+        }
+
+        function populateCityFilter(wasteType, country) {
+            $.ajax({
+                url: '/MarineDebris/getCity?country=' + country,
+                type: 'GET',
+                processData: false,
+                success: function (res) {
+                    var data = JSON.parse(res);
+                    var select;
+                    if (wasteType == "solidWaste") {
+                        select = document.getElementById("filter-city-1");
+                    } else if (wasteType == "plasticWaste") {
+                        select = document.getElementById("filter-city-2");
+                    }
+                    var currentValue = select.value;
+                    select.innerHTML = "";
+                    var option = document.createElement("option");
+                    option.setAttribute("value", 0);
+                    option.text = "All";
+                    select.add(option);
+                    for (var ctr = 0; ctr < data.length; ctr++) {
+                        var option = document.createElement("option");
+                        option.setAttribute("value", data[ctr]["ID"]);
+                        option.text = data[ctr]["Name"];
+                        select.add(option);
+                    }
+                    select.value = currentValue;
+                },
+                error: function (res) {
+                    console.log(res);
+                }
+            });
         }
     });
 </script>

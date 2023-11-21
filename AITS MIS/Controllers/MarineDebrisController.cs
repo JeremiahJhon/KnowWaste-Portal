@@ -837,6 +837,9 @@ namespace UCOnline.Controllers
             String country_ = formData["country"];
             String type_ = formData["type"];
 
+            int result;
+            int city = Int32.TryParse(formData["city"],out result) ? result : 0;
+
             if (type_ == null) type_ = "";
 
             string columns = "";
@@ -872,8 +875,16 @@ namespace UCOnline.Controllers
             if(columns.Length == 0) return JsonConvert.SerializeObject(dtResult);
 
             MSSQLServer db = new MSSQLServer();
-            db.Query = "select [Year]," + columns + ",STRING_AGG(reference,'') from countrywastestreams  where country_id in (select id from country where subregion_id = 3) and [year] < " + DateTime.Now.Year.ToString() + " and [year] > " + (DateTime.Now.Year - 5).ToString() + " and Country_ID in (" + country_ + ") and WasteCategory_ID = 1 and Deleted = 0 group by [year] order by [year]";
-            dtResult = db.ExecuteQuery();
+            if(city > 0)
+            {
+                db.Query = "select [Year]," + columns + ",STRING_AGG(reference,'') from citywastestreams  where [year] < " + DateTime.Now.Year.ToString() + " and [year] > " + (DateTime.Now.Year - 5).ToString() + " and City_ID in (" + city + ") and WasteCategory_ID = 1 and Deleted = 0 group by [year] order by [year]";
+                dtResult = db.ExecuteQuery();
+            }
+            else
+            {
+                db.Query = "select [Year]," + columns + ",STRING_AGG(reference,'') from countrywastestreams  where country_id in (select id from country where subregion_id = 3) and [year] < " + DateTime.Now.Year.ToString() + " and [year] > " + (DateTime.Now.Year - 5).ToString() + " and Country_ID in (" + country_ + ") and WasteCategory_ID = 1 and Deleted = 0 group by [year] order by [year]";
+                dtResult = db.ExecuteQuery();
+            }
 
             foreach (DataColumn col in dtResult.Copy().Columns)
             {
@@ -905,6 +916,9 @@ namespace UCOnline.Controllers
             String type_ = formData["type"];
 
             if (type_ == null) type_ = "";
+
+            int result;
+            int city = Int32.TryParse(formData["city"], out result) ? result : 0;
 
             string columns = "";
             if (type_.Contains("Generated"))
@@ -942,7 +956,15 @@ namespace UCOnline.Controllers
             if (columns.Length == 0) return JsonConvert.SerializeObject(dtResult);
 
             MSSQLServer db = new MSSQLServer();
-            db.Query = "select a.[Year]," + columns + ",STRING_AGG(reference,'') from countrywastestreams a where a.country_id in (select id from country where subregion_id = 3 and Deleted = 0) and [year] < " + DateTime.Now.Year.ToString() + " and [year] > " + (DateTime.Now.Year - 5).ToString() + " and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 14 and a.Deleted = 0 group by a.[year] order by a.[year]";
+            if (city > 0)
+            {
+                db.Query = "select [Year]," + columns + ",STRING_AGG(reference,'') from citywastestreams where [year] < " + DateTime.Now.Year.ToString() + " and [year] > " + (DateTime.Now.Year - 5).ToString() + " and City_ID in (" + city + ") and WasteCategory_ID = 14 and Deleted = 0 group by [year] order by [year]";
+                dtResult = db.ExecuteQuery();
+            }
+            else
+            {
+                db.Query = "select a.[Year]," + columns + ",STRING_AGG(reference,'') from countrywastestreams a where a.country_id in (select id from country where subregion_id = 3 and Deleted = 0) and [year] < " + DateTime.Now.Year.ToString() + " and [year] > " + (DateTime.Now.Year - 5).ToString() + " and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 14 and a.Deleted = 0 group by a.[year] order by a.[year]";
+            }
             dtResult = db.ExecuteQuery();
 
             foreach (DataColumn col in dtResult.Copy().Columns)
@@ -978,6 +1000,9 @@ namespace UCOnline.Controllers
 
             if (type_ == null) type_ = "";
 
+            int result;
+            int city = Int32.TryParse(formData["city"], out result) ? result : 0;
+
             string columns = "";
             if (type_.Contains("Generated"))
             {
@@ -1007,17 +1032,35 @@ namespace UCOnline.Controllers
 
             DataTable dtResult = new DataTable();
 
-            if(year_ == "All" || year_ == "null")
+            if(city > 0)
             {
-                db = new MSSQLServer();
-                db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') as Reference from countrywastestreams a inner join country b on a.country_id = b.id where a.[year] < " + DateTime.Now.Year.ToString() + " and a.[year] > " + (DateTime.Now.Year - 5).ToString() + " and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 1 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
-                dtResult = db.ExecuteQuery();
+                if (year_ == "All" || year_ == "null")
+                {
+                    db = new MSSQLServer();
+                    db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') as Reference from citywastestreams a inner join city b on a.city_id = b.id where a.[year] < " + DateTime.Now.Year.ToString() + " and a.[year] > " + (DateTime.Now.Year - 5).ToString() + " and a.city_ID in (" + city + ") and a.WasteCategory_ID = 1 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    dtResult = db.ExecuteQuery();
+                }
+                else
+                {
+                    db = new MSSQLServer();
+                    db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') as Reference from citywastestreams a inner join city b on a.city_id = b.id where a.[year] = " + year_ + " and a.city_ID in (" + city + ") and a.WasteCategory_ID = 1 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    dtResult = db.ExecuteQuery();
+                }
             }
             else
             {
-                db = new MSSQLServer();
-                db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') as Reference from countrywastestreams a inner join country b on a.country_id = b.id where a.[year] = " + year_ + " and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 1 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
-                dtResult = db.ExecuteQuery();
+                if (year_ == "All" || year_ == "null")
+                {
+                    db = new MSSQLServer();
+                    db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') as Reference from countrywastestreams a inner join country b on a.country_id = b.id where a.[year] < " + DateTime.Now.Year.ToString() + " and a.[year] > " + (DateTime.Now.Year - 5).ToString() + " and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 1 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    dtResult = db.ExecuteQuery();
+                }
+                else
+                {
+                    db = new MSSQLServer();
+                    db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') as Reference from countrywastestreams a inner join country b on a.country_id = b.id where a.[year] = " + year_ + " and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 1 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    dtResult = db.ExecuteQuery();
+                }
             }
 
             dtResult.TableName = "data";
@@ -1035,6 +1078,9 @@ namespace UCOnline.Controllers
 
             if (type_ == null) type_ = "";
 
+            int result;
+            int city = Int32.TryParse(formData["city"], out result) ? result : 0;
+
             string columns = "";
             if (type_.Contains("Generated"))
             {
@@ -1064,17 +1110,35 @@ namespace UCOnline.Controllers
 
             DataTable dtResult = new DataTable();
 
-            if (year_ == "All" || year_ == "null")
+            if (city > 0)
             {
-                db = new MSSQLServer();
-                db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') as Reference from countrywastestreams a inner join country b on a.country_id = b.id where a.country_id in (select id from country where subregion_id = 3 and Deleted = 0) and a.[year] < " + DateTime.Now.Year.ToString() + " and a.[year] > " + (DateTime.Now.Year - 5).ToString() + " and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 14 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
-                dtResult = db.ExecuteQuery();
+                if (year_ == "All" || year_ == "null")
+                {
+                    db = new MSSQLServer();
+                    db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') as Reference from citywastestreams a inner join city b on a.city_id = b.id where a.[year] < " + DateTime.Now.Year.ToString() + " and a.[year] > " + (DateTime.Now.Year - 5).ToString() + " and a.city_ID in (" + city + ") and a.WasteCategory_ID = 14 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    dtResult = db.ExecuteQuery();
+                }
+                else
+                {
+                    db = new MSSQLServer();
+                    db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') as Reference from citywastestreams a inner join city b on a.city_id = b.id where a.[year] = " + year_ + " and a.city_ID in (" + city + ") and a.WasteCategory_ID = 14 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    dtResult = db.ExecuteQuery();
+                }
             }
             else
             {
-                db = new MSSQLServer();
-                db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') as Reference from countrywastestreams a inner join country b on a.country_id = b.id where a.country_id in (select id from country where subregion_id = 3 and Deleted = 0) and a.[year] = " + year_ + " and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 14 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
-                dtResult = db.ExecuteQuery();
+                if (year_ == "All" || year_ == "null")
+                {
+                    db = new MSSQLServer();
+                    db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') as Reference from countrywastestreams a inner join country b on a.country_id = b.id where a.country_id in (select id from country where subregion_id = 3 and Deleted = 0) and a.[year] < " + DateTime.Now.Year.ToString() + " and a.[year] > " + (DateTime.Now.Year - 5).ToString() + " and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 14 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    dtResult = db.ExecuteQuery();
+                }
+                else
+                {
+                    db = new MSSQLServer();
+                    db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') as Reference from countrywastestreams a inner join country b on a.country_id = b.id where a.country_id in (select id from country where subregion_id = 3 and Deleted = 0) and a.[year] = " + year_ + " and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 14 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    dtResult = db.ExecuteQuery();
+                }
             }
 
             dtResult.TableName = "data";
@@ -1185,5 +1249,14 @@ namespace UCOnline.Controllers
             return JsonConvert.SerializeObject(dtResult);
         }
 
+        [HttpGet]
+        public String getCity(string country)
+        {
+            ServerBase country_ = new ServerBase("City");
+            country_.SelectFilter("Country_ID in (" + country + ")"); // 3 = Asia
+            DataTable countryData = country_.SelectQuery();
+
+            return JsonConvert.SerializeObject(countryData);
+        }
     }
 }
