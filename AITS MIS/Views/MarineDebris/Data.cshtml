@@ -31,10 +31,10 @@
     </div>
 </div>
 
-<div class="row mt-lg-n20">
+<div class="row mt-lg-n20 mx-20">
     <div class="row d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px">
         <div class="row w-100 mb-md-10">
-            <div class="col-md-6 px-2">
+            <div class="col-md-12 px-2 mb-20">
                 <div class="w-100 h-100 d-flex flex-column bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
                     <div class="col-md-12 mb-7 text-center">
                         <!--begin::Title-->
@@ -42,7 +42,7 @@
                         <!--end::Title-->
                         <!--begin::Description-->
                         <div class="text-gray-400 fw-bold mb-5 d-none">Short description here</div>
-                        <div class="d-flex flex-center mb-10">
+                        <div class="d-flex flex-center mb-10 d-none">
                             <button id="kt_drawer_filter_1_button" class="btn btn-primary py-2 px-4">
                                 <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -50,18 +50,43 @@
                                     </svg>
                                 </span>Filter
                             </button>
-                            <select class="form-select py-2 mx-1 w-25" id="filter-city-1">
+                            <select class="form-select py-2 mx-1 w-25" id="filter-city-1_">
                             </select>
+                            <div id="solid-waste-year" class="noUi-sm w-50"></div>
                         </div>
-                        <div class="d-flex px-5">
+                        <div class="row px-5 py-2 docs-wrapper rounded-2">
+                            <div class="col-md-3 d-flex px-5">
+                                <label class="px-2 py-2">Country: </label>
+                                <select class="form-select py-1 mx-1" id="filter-country-1">
+                                    <option value="0">All</option>
+                                    @foreach (DataRow row in countries.Rows)
+                                    {
+                                        <option value="@row["ID"].ToString()">@row["Name"].ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3 d-flex px-5">
+                                <label class="px-2 py-2">City: </label>
+                                <select class="form-select py-1 mx-1" id="filter-city-1">
+                                </select>
+                            </div>
+                            <div class="col-md-3 d-flex px-5">
+                                <label class="px-2 py-2">Year: </label>
+                                <select class="form-select py-1 mx-1" id="filter-year-1">
+                                </select>
+                            </div>
+                            <div class="col-md-3 d-flex px-5">
+                                <button id="button-apply-1" class="btn btn-primary py-2 px-10">Apply</button>
+                            </div>
+                        </div>
+                        <div class="d-flex px-5 d-none">
                             <label class="px-2 py-1">Country: </label>
                             <div id="solid-country-filter-list">
-
                             </div>
                         </div>
                         <div id="chart-1" style="height: 350px;"></div>
                     </div>
-                    <div class="tab-content">
+                    <div class="tab-content d-none">
                         <div class="toolbar" id="kt_toolbar1">
                             <!--begin::Container-->
                             <div id="kt_toolbar_container1" class="container-fluid d-inline" data-select2-id="select2-data-kt_toolbar_container">
@@ -95,7 +120,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 px-2">
+            <div class="col-md-12 px-2 mb-20">
                 <div class="w-100 h-100 d-flex flex-column bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
                     <div class="col-md-12 mb-7 text-center">
                         <!--begin::Title-->
@@ -103,7 +128,7 @@
                         <!--end::Title-->
                         <!--begin::Description-->
                         <div class="text-gray-400 fw-bold mb-5 d-none">Short description here</div>
-                        <div class="d-flex flex-center mb-10">
+                        <div class="d-flex flex-center mb-10 d-none">
                             <button id="kt_drawer_filter_2_button" class="btn btn-primary py-2 px-4">
                                 <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -111,18 +136,45 @@
                                     </svg>
                                 </span>Filter
                             </button>
-                            <select class="form-select py-2 mx-1 w-25" id="filter-city-2">
+                            <select class="form-select py-2 mx-1 w-25" id="filter-city-2_">
                             </select>
                         </div>
-                        <div class="d-flex px-5">
+                        <div class="d-flex flex-center my-15 d-none">
+                            <div id="plastic-waste-year" class="noUi-sm w-75"></div>
+                        </div>
+                        <div class="d-flex px-5 d-none">
                             <label class="px-2 py-1">Country: </label>
                             <div id="plastic-country-filter-list">
 
                             </div>
+                        </div><div class="row px-5 py-2 docs-wrapper rounded-2">
+                            <div class="col-md-3 d-flex px-5">
+                                <label class="px-2 py-2">Country: </label>
+                                <select class="form-select py-1 mx-1" id="filter-country-2">
+                                    <option value="0">All</option>
+                                    @foreach (DataRow row in countries.Rows)
+                                    {
+                                        <option value="@row["ID"].ToString()">@row["Name"].ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3 d-flex px-5">
+                                <label class="px-2 py-2">City: </label>
+                                <select class="form-select py-1 mx-1" id="filter-city-2">
+                                </select>
+                            </div>
+                            <div class="col-md-3 d-flex px-5">
+                                <label class="px-2 py-2">Year: </label>
+                                <select class="form-select py-1 mx-1" id="filter-year-2">
+                                </select>
+                            </div>
+                            <div class="col-md-3 d-flex px-5">
+                                <button id="button-apply-2" class="btn btn-primary py-2 px-10">Apply</button>
+                            </div>
                         </div>
                         <div id="chart-2" style="height: 350px;"></div>
                     </div>
-                    <div class="tab-content">
+                    <div class="tab-content d-none">
                         <div class="toolbar" id="kt_toolbar2">
                             <!--begin::Container-->
                             <div id="kt_toolbar_container2" class="container-fluid d-inline" data-select2-id="select2-data-kt_toolbar_container">
@@ -379,11 +431,10 @@
     var datatable1;
     var datatable2;
     $(document).ready(function () {
-        $("#solid-country-23").prop("checked", true);//Singapore default
+        /*$("#solid-country-23").prop("checked", true);//Singapore default
         $("#plastic-country-23").prop("checked", true);//Singapore default
-        createSolidWasteGraph();
-        createPlasticWasteGraph();
-        $("#button-filter-apply-1").click(function () {
+*/
+        /*$("#button-filter-apply-1").click(function () {
             chart1.destroy();
             createSolidWasteGraph();
             $("#kt_drawer_filter_1_close").click();
@@ -392,15 +443,82 @@
             chart2.destroy();
             createPlasticWasteGraph();
             $("#kt_drawer_filter_2_close").click();
+        });*/
+
+        $("#filter-country-1").change(function () {
+            populateCityFilter("solidWaste", this.value);
+            $("#filter-city-1").change();
         });
-        $("#filter-city-1").change(function () {
-            $("#button-filter-apply-1").click();
-        });
-        $("#filter-city-2").change(function () {
-            $("#button-filter-apply-2").click();
+        $("#filter-country-2").change(function () {
+            populateCityFilter("plasticWaste", this.value);
+            $("#filter-city-2").change();
         });
 
-        function populateFilter(id, data) {
+        $("#filter-city-1").change(function () {
+            $.ajax({
+                url: '/MarineDebris/getDataYears?country=' + $("#filter-country-1").val() + '&city=' + $("#filter-city-1").val(),
+                type: 'GET',
+                processData: false,
+                async: false,
+                success: function (res) {
+                    var data = JSON.parse(res);
+                    var select = document.getElementById("filter-year-1");
+                    select.innerHTML = "";
+                    var option = document.createElement("option");
+                    option.setAttribute("value", 0);
+                    option.text = "All";
+                    select.add(option);
+                    for (var ctr = 0; ctr < data.length; ctr++) {
+                        var option = document.createElement("option");
+                        option.setAttribute("value", data[ctr]["Year"]);
+                        option.text = data[ctr]["Year"];
+                        select.add(option);
+                    }
+                    select.value = 0;
+                },
+                error: function (res) {
+                    console.log(res);
+                }
+            });
+        });
+        $("#filter-city-2").change(function () {
+            $.ajax({
+                url: '/MarineDebris/getDataYears?country=' + $("#filter-country-2").val() + '&city=' + $("#filter-city-2").val(),
+                type: 'GET',
+                processData: false,
+                async: false,
+                success: function (res) {
+                    var data = JSON.parse(res);
+                    var select = document.getElementById("filter-year-2");
+                    select.innerHTML = "";
+                    var option = document.createElement("option");
+                    option.setAttribute("value", 0);
+                    option.text = "All";
+                    select.add(option);
+                    for (var ctr = 0; ctr < data.length; ctr++) {
+                        var option = document.createElement("option");
+                        option.setAttribute("value", data[ctr]["Year"]);
+                        option.text = data[ctr]["Year"];
+                        select.add(option);
+                    }
+                    select.value = 0;
+                },
+                error: function (res) {
+                    console.log(res);
+                }
+            });
+        });
+
+        $("#button-apply-1").click(function () {
+            chart1.destroy();
+            createSolidWasteGraph();
+        });
+        $("#button-apply-2").click(function () {
+            chart2.destroy();
+            createPlasticWasteGraph();
+        });
+
+        /*function populateFilter(id, data) {
             $("#" + id).empty();
             var option = document.createElement("option");
             option.setAttribute("value", "All");
@@ -412,18 +530,54 @@
                 option.text = data[ctr]["Year"];
                 document.getElementById(id).appendChild(option);
             }
+        }*/
+
+        function populateCityFilter(wasteType, country) {
+            $.ajax({
+                url: '/MarineDebris/getCity?country=' + country,
+                type: 'GET',
+                async: false,
+                processData: false,
+                success: function (res) {
+                    var data = JSON.parse(res);
+                    var select;
+                    if (wasteType == "solidWaste") {
+                        select = document.getElementById("filter-city-1");
+                    } else if (wasteType == "plasticWaste") {
+                        select = document.getElementById("filter-city-2");
+                    }
+                    select.innerHTML = "";
+                    var option = document.createElement("option");
+                    option.setAttribute("value", -1);
+                    option.text = "-";
+                    select.add(option);
+                    option = document.createElement("option");
+                    option.setAttribute("value", 0);
+                    option.text = "All";
+                    select.add(option);
+                    for (var ctr = 0; ctr < data.length; ctr++) {
+                        var option = document.createElement("option");
+                        option.setAttribute("value", data[ctr]["ID"]);
+                        option.text = data[ctr]["Name"];
+                        select.add(option);
+                    }
+                    select.value = -1;
+                },
+                error: function (res) {
+                    console.log(res);
+                }
+            });
         }
 
         function createSolidWasteGraph(id, x_axis, series) {
             $.ajax({
-                url: '/MarineDebris/getSolidWasteGraphData',
-                data: $("#form-filter-1").serialize() + '&city=' + $("#filter-city-1").val(),
-                type: 'POST',
+                url: `/MarineDebris/getSolidWasteGraphData?country=${$("#filter-country-1").val()}&city=${$("#filter-city-1").val()}&year=${$("#filter-year-1").val() }`,
+                type: 'GET',
                 processData: false,
+                async: false,
                 success: function (data) {
                     getSolidWasteTableData();
                     var graphData = JSON.parse(data);
-                    populateFilter("filter-solidwaste-year", graphData);
                     var x_axis = [];
                     var series = [];
                     var data_ = [];
@@ -612,7 +766,7 @@
                     console.log(err);
                 },
             });
-            var country = $('#form-filter-1 [name="country"]');
+            /*var country = $('#form-filter-1 [name="country"]');
             $("#solid-country-filter-list").html('');
             for (var ctr = 0; ctr < country.length; ctr++) {
                 var countryElem = '<span class="badge badge-light-dark m-1">' + $(country[ctr]).data("text") + '</span>';
@@ -628,19 +782,18 @@
                     countries.push(field.value);
                 }
             });
-            populateCityFilter("solidWaste", countries);
+            populateCityFilter("solidWaste", countries);*/
         }
  
         function createPlasticWasteGraph(id, x_axis, series) {
             $.ajax({
-                url: '/MarineDebris/getPlasticWasteGraphData',
-                data: $("#form-filter-2").serialize() + '&city=' + $("#filter-city-2").val(),
-                type: 'POST',
+                url: `/MarineDebris/getPlasticWasteGraphData?country=${$("#filter-country-2").val()}&city=${$("#filter-city-2").val()}&year=${$("#filter-year-2").val()}`,
+                type: 'GET',
                 processData: false,
+                async: false,
                 success: function (data) {
                     getPlasticWasteTableData();
                     var graphData = JSON.parse(data);
-                    populateFilter("filter-plasticwaste-year",graphData);
                     var x_axis = [];
                     var series = [];
                     var data_ = [];
@@ -829,7 +982,7 @@
                     console.log(err);
                 },
             })
-            var country = $('#form-filter-2 [name="country"]');
+            /*var country = $('#form-filter-2 [name="country"]');
             $("#plastic-country-filter-list").html('');
             for (var ctr = 0; ctr < country.length; ctr++) {
                 var countryElem = '<span class="badge badge-light-dark m-1">' + $(country[ctr]).data("text") + '</span>';
@@ -844,10 +997,153 @@
                     countries.push(field.value);
                 }
             });
-            populateCityFilter("plasticWaste", countries);
+            //populateCityFilter("plasticWaste", countries);*/
         }
 
-        $("#solid-country-all").change(function () {
+        function getSolidWasteTableData() {
+            if (datatable2 != null) datatable2.destroy();
+            $.ajax({
+                url: `/MarineDebris/getSolidWasteTableData?country=${$("#filter-country-1").val()}&city=${$("#filter-city-1").val()}&year=${$("#filter-year-1").val()}`,
+                type: 'GET',
+                processData: false,
+                async: false,
+                success: function (res) {
+                    var data = JSON.parse(res);
+                    console.log(data);
+                    dataSet = [];
+                    var column = "Country";
+                    if ($("#filter-city-1").val() >= 0) column = "City";
+                    for (var ctr = 0; ctr < data.length; ctr++) {
+                        array = [];
+                        if ($("#filter-city-1").val() >= 0) array.push(data[ctr]["City"]);
+                        else array.push(data[ctr]["Country"]);
+                        array.push(data[ctr]["Year"]);
+                        array.push(numFormatter(data[ctr]["Generated"]));
+                        array.push(numFormatter(data[ctr]["Collected"]));
+                        array.push(numFormatter(data[ctr]["Recycled"]));
+                        array.push(numFormatter(data[ctr]["Recovered"]));
+                        array.push(numFormatter(data[ctr]["Disposal"]));
+                        array.push('<div hidden><div data-name="SW-popover-content-' + ctr + '" style="font-size: 10px;">' + data[ctr]["Reference"] + '</div></div><button id="SW-ref' + ctr + '" type="button" class="btn btn-primary popover-group py-2 px-4 border" data-bs-toggle="tooltip" data-bs-trigger="focus" data-bs-placement="right" style="border-radius: 20px;position:relative;top:-10px;"><i class="bi bi-info-lg px-0"></i></button>');
+                        dataSet.push(array);
+                    }
+
+                    datatable2 = $("#datatable-solidwaste").DataTable({
+                        columns: [
+                            { title: column },
+                            { title: 'Year' },
+                            { title: 'Generated' },
+                            { title: 'Collected' },
+                            { title: 'Recycled' },
+                            { title: 'Recovered' },
+                            { title: 'Disposal' },
+                            { title: 'Ref' }
+                        ],
+                        data: dataSet,
+                        dom: "<'row'" +
+                            "<'col-sm-8 d-flex align-items-center justify-content-start'f>" +
+                            "<'col-sm-4 d-flex align-items-center justify-content-end'l>" +
+                            ">" +
+
+                            "<'table-responsive'tr>" +
+
+                            "<'row'" +
+                            "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                            "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                            ">"
+                    });
+                    for (var ctr = 0; ctr < data.length; ctr++) {
+                        var options = {
+                            html: true,
+                            title: "References",
+                            //html element
+                            //content: $("#popover-content")
+                            content: $('[data-name="SW-popover-content-' + ctr + '"]')
+                            //Doing below won't work. Shows title only
+                            //content: $("#popover-content").html()
+
+                        }
+                        var exampleEl = document.getElementById('SW-ref' + ctr)
+                        var popover = new bootstrap.Popover(exampleEl, options)
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                },
+            })
+        }
+
+        function getPlasticWasteTableData() {
+            if (datatable1 != null) datatable1.destroy();
+            $.ajax({
+                url: `/MarineDebris/getPlasticWasteTableData?country=${$("#filter-country-2").val()}&city=${$("#filter-city-2").val()}&year=${$("#filter-year-2").val()}`,
+                type: 'GET',
+                processData: false,
+                async: false,
+                success: function (res) {
+                    var data = JSON.parse(res);
+                    dataSet = [];
+                    var column = "Country";
+                    if ($("#filter-city-1").val() >= 0) column = "City";
+                    for (var ctr = 0; ctr < data.length; ctr++) {
+                        array = [];
+                        if ($("#filter-city-1").val() >= 0) array.push(data[ctr]["City"]);
+                        else array.push(data[ctr]["Country"]);
+                        array.push(data[ctr]["Year"]);
+                        array.push(numFormatter(data[ctr]["Generated"]));
+                        array.push(numFormatter(data[ctr]["Collected"]));
+                        array.push(numFormatter(data[ctr]["Recycled"]));
+                        array.push(numFormatter(data[ctr]["Recovered"]));
+                        array.push(numFormatter(data[ctr]["Disposal"]));
+                        array.push('<div hidden><div data-name="PW-popover-content-' + ctr + '" style="font-size: 10px;">' + data[ctr]["Reference"] + '</div></div><button id="PW-ref' + ctr + '" type="button" class="btn btn-primary popover-group py-2 px-4 border" data-bs-toggle="tooltip" data-bs-trigger="focus" data-bs-placement="right" style="border-radius: 20px;position:relative;top:-10px;"><i class="bi bi-info-lg px-0"></i></button>');
+                        dataSet.push(array);
+                    }
+
+                    datatable1 = $("#datatable-plasticwaste").DataTable({
+                        columns: [
+                            { title: column },
+                            { title: 'Year' },
+                            { title: 'Generated' },
+                            { title: 'Collected' },
+                            { title: 'Recycled' },
+                            { title: 'Recovered' },
+                            { title: 'Disposal' },
+                            { title: 'Ref' }
+                        ],
+                        data: dataSet,
+                        dom: "<'row'" +
+                            "<'col-sm-8 d-flex align-items-center justify-content-start'f>" +
+                            "<'col-sm-4 d-flex align-items-center justify-content-end'l>" +
+                            ">" +
+
+                            "<'table-responsive'tr>" +
+
+                            "<'row'" +
+                            "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                            "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                            ">"
+                    });
+                    for (var ctr = 0; ctr < data.length; ctr++) {
+                        var options = {
+                            html: true,
+                            title: "References",
+                            //html element
+                            //content: $("#popover-content")
+                            content: $('[data-name="PW-popover-content-' + ctr + '"]')
+                            //Doing below won't work. Shows title only
+                            //content: $("#popover-content").html()
+
+                        }
+                        var exampleEl = document.getElementById('PW-ref' + ctr)
+                        var popover = new bootstrap.Popover(exampleEl, options)
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                },
+            });
+        }
+
+        /*$("#solid-country-all").change(function () {
             if (this.checked) {
                 var clist = document.getElementsByClassName("solid-country-filter");
                 for (var i = 0; i < clist.length; ++i) { clist[i].checked = true; }
@@ -891,7 +1187,7 @@
         });
         $("#filter-plasticwaste-year").change(function () {
             getPlasticWasteTableData();
-        });
+        });*/
 
         function numFormatter(num) {
             try {
@@ -911,173 +1207,42 @@
             }
         }
 
-        function getSolidWasteTableData() {
-            if (datatable2 != null) datatable2.destroy();
-            $.ajax({
-                url: '/MarineDebris/getSolidWasteTableData',
-                data: $("#form-filter-1").serialize() + '&year=' + $("#filter-solidwaste-year").val() + '&city=' + $("#filter-city-1").val(),
-                type: 'POST',
-                processData: false,
-                success: function (res) {
-                    var data = JSON.parse(res);
-                    dataSet = [];
-                    for (var ctr = 0; ctr < data.length; ctr++) {
-                        array = [];
-                        array.push(data[ctr]["Country"]);
-                        array.push(data[ctr]["Year"]);
-                        array.push(numFormatter(data[ctr]["Generated"]));
-                        array.push(numFormatter(data[ctr]["Collected"]));
-                        array.push(numFormatter(data[ctr]["Recycled"]));
-                        array.push(numFormatter(data[ctr]["Recovered"]));
-                        array.push(numFormatter(data[ctr]["Disposal"]));
-                        array.push('<div hidden><div data-name="SW-popover-content-' + ctr + '" style="font-size: 10px;">' + data[ctr]["Reference"] + '</div></div><button id="SW-ref' + ctr + '" type="button" class="btn btn-primary popover-group py-2 px-4 border" data-bs-toggle="tooltip" data-bs-trigger="focus" data-bs-placement="right" style="border-radius: 20px;position:relative;top:-10px;"><i class="bi bi-info-lg px-0"></i></button>');
-                        dataSet.push(array);
-                    }
+        /*var slider1 = document.getElementById('solid-waste-year');
 
-                    datatable2 = $("#datatable-solidwaste").DataTable({
-                        columns: [
-                            { title: 'Country' },
-                            { title: 'Year' },
-                            { title: 'Generated' },
-                            { title: 'Collected' },
-                            { title: 'Recycled' },
-                            { title: 'Recovered' },
-                            { title: 'Disposal' },
-                            { title: 'Ref' }
-                        ],
-                        data: dataSet,
-                        dom: "<'row'" +
-                            "<'col-sm-8 d-flex align-items-center justify-content-start'f>" +
-                            "<'col-sm-4 d-flex align-items-center justify-content-end'l>" +
-                            ">" +
+        noUiSlider.create(slider1, {
+            start: [2019, new Date().getFullYear()],
+            connect: true,
+            tooltips: true,
+            step: 1,
+            format: wNumb({
+                decimals: 0
+            }),
+            range: {
+                'min': 2000,
+                'max': new Date().getFullYear()
+            }
+        });
 
-                            "<'table-responsive'tr>" +
+        var slider2 = document.getElementById('plastic-waste-year');
 
-                            "<'row'" +
-                            "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
-                            "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
-                            ">"
-                    });
-                    for (var ctr = 0; ctr < data.length; ctr++) {
-                        var options = {
-                            html: true,
-                            title: "References",
-                            //html element
-                            //content: $("#popover-content")
-                            content: $('[data-name="SW-popover-content-'+ctr+'"]')
-                            //Doing below won't work. Shows title only
-                            //content: $("#popover-content").html()
+        noUiSlider.create(slider2, {
+            start: [2019, new Date().getFullYear()],
+            connect: true,
+            tooltips: true,
+            step: 1,
+            format: wNumb({
+                decimals: 0
+            }),
+            range: {
+                'min': 2000,
+                'max': new Date().getFullYear()
+            }
+        });*/
 
-                        }
-                        var exampleEl = document.getElementById('SW-ref'+ctr)
-                        var popover = new bootstrap.Popover(exampleEl, options)
-                    }
-                },
-                error: function (err) {
-                    console.log(err);
-                },
-            })
-        }
+        $("#filter-country-1").change();
+        $("#filter-country-2").change();
 
-        function getPlasticWasteTableData() {
-            if (datatable1 != null) datatable1.destroy();
-            $.ajax({
-                url: '/MarineDebris/getPlasticWasteTableData',
-                data: $("#form-filter-2").serialize() + '&year=' + $("#filter-plasticwaste-year").val() + '&city=' + $("#filter-city-2").val(),
-                type: 'POST',
-                processData: false,
-                success: function (res) {
-                    var data = JSON.parse(res);
-                    dataSet = [];
-                    for (var ctr = 0; ctr < data.length; ctr++) {
-                        array = [];
-                        array.push(data[ctr]["Country"]);
-                        array.push(data[ctr]["Year"]);
-                        array.push(numFormatter(data[ctr]["Generated"]));
-                        array.push(numFormatter(data[ctr]["Collected"]));
-                        array.push(numFormatter(data[ctr]["Recycled"]));
-                        array.push(numFormatter(data[ctr]["Recovered"]));
-                        array.push(numFormatter(data[ctr]["Disposal"]));
-                        array.push('<div hidden><div data-name="PW-popover-content-' + ctr + '" style="font-size: 10px;">' + data[ctr]["Reference"] + '</div></div><button id="PW-ref' + ctr + '" type="button" class="btn btn-primary popover-group py-2 px-4 border" data-bs-toggle="tooltip" data-bs-trigger="focus" data-bs-placement="right" style="border-radius: 20px;position:relative;top:-10px;"><i class="bi bi-info-lg px-0"></i></button>');
-                        dataSet.push(array);
-                    }
-
-                    datatable1 = $("#datatable-plasticwaste").DataTable({
-                        columns: [
-                            { title: 'Country' },
-                            { title: 'Year' },
-                            { title: 'Generated' },
-                            { title: 'Collected' },
-                            { title: 'Recycled' },
-                            { title: 'Recovered' },
-                            { title: 'Disposal' },
-                            { title: 'Ref' }
-                        ],
-                        data: dataSet,
-                        dom: "<'row'" +
-                            "<'col-sm-8 d-flex align-items-center justify-content-start'f>" +
-                            "<'col-sm-4 d-flex align-items-center justify-content-end'l>" +
-                            ">" +
-
-                            "<'table-responsive'tr>" +
-
-                            "<'row'" +
-                            "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
-                            "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
-                            ">"
-                    });
-                    for (var ctr = 0; ctr < data.length; ctr++) {
-                        var options = {
-                            html: true,
-                            title: "References",
-                            //html element
-                            //content: $("#popover-content")
-                            content: $('[data-name="PW-popover-content-' + ctr + '"]')
-                            //Doing below won't work. Shows title only
-                            //content: $("#popover-content").html()
-
-                        }
-                        var exampleEl = document.getElementById('PW-ref' + ctr)
-                        var popover = new bootstrap.Popover(exampleEl, options)
-                    }
-                },
-                error: function (err) {
-                    console.log(err);
-                },
-            });
-        }
-
-        function populateCityFilter(wasteType, country) {
-            $.ajax({
-                url: '/MarineDebris/getCity?country=' + country,
-                type: 'GET',
-                processData: false,
-                success: function (res) {
-                    var data = JSON.parse(res);
-                    var select;
-                    if (wasteType == "solidWaste") {
-                        select = document.getElementById("filter-city-1");
-                    } else if (wasteType == "plasticWaste") {
-                        select = document.getElementById("filter-city-2");
-                    }
-                    var currentValue = select.value;
-                    select.innerHTML = "";
-                    var option = document.createElement("option");
-                    option.setAttribute("value", 0);
-                    option.text = "All";
-                    select.add(option);
-                    for (var ctr = 0; ctr < data.length; ctr++) {
-                        var option = document.createElement("option");
-                        option.setAttribute("value", data[ctr]["ID"]);
-                        option.text = data[ctr]["Name"];
-                        select.add(option);
-                    }
-                    select.value = currentValue;
-                },
-                error: function (res) {
-                    console.log(res);
-                }
-            });
-        }
+        createSolidWasteGraph();
+        createPlasticWasteGraph();
     });
 </script>

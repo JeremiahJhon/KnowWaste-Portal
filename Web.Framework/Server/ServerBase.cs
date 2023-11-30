@@ -182,7 +182,7 @@ namespace Web.Framework.Server
 
         public virtual DataTable SelectDistinct(string column)
         {
-            Query = string.Format("SELECT DISTINCT({1}) AS {1} FROM {0} ORDER BY {1} ASC", Table, column);
+            Query = string.Format("SELECT DISTINCT({1}) AS {1} FROM {0} {2} ORDER BY {1} ASC", Table, column, Where.ToString());
             return ExecuteQuery();
         }
 

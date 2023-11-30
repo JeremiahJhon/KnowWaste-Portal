@@ -831,59 +831,46 @@ namespace UCOnline.Controllers
             }
         }
 
-        [HttpPost]
-        public String getSolidWasteGraphData(FormCollection formData)
+        [HttpGet]
+        public String getSolidWasteGraphData(int country,int city,int year)
         {
-            String country_ = formData["country"];
-            String type_ = formData["type"];
-
-            int result;
-            int city = Int32.TryParse(formData["city"],out result) ? result : 0;
-
-            if (type_ == null) type_ = "";
-
-            string columns = "";
-            if (type_.Contains("Generated"))
-            {
-                if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(Totalgenerated as decimal(10,2))) as Generated";
-            }
-            if (type_.Contains("Collected"))
-            {
-                if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(Totalcollected as decimal(10,2))) as Collected";
-            }
-            if (type_.Contains("Recycled"))
-            {
-                if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(Recycled as decimal(10,2))) as Recycled";
-            }
-            if (type_.Contains("Recovered"))
-            {
-                if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(Recovered as decimal(10,2))) as Recovered";
-            }
-            if (type_.Contains("Disposal"))
-            {
-                if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(Disposal as decimal(10,2))) as Disposal";
-            }
-
-
             DataTable dtResult = new DataTable();
-
-            if(columns.Length == 0) return JsonConvert.SerializeObject(dtResult);
-
             MSSQLServer db = new MSSQLServer();
-            if(city > 0)
+            string yearFilter = "";
+            if (year > 0) yearFilter = " and [Year] = " + year.ToString();
+            string countryFilter = "";
+            if (country > 0) countryFilter = "select ID from city where [Country_ID] = " + country.ToString();
+
+            if (city > 0)
             {
-                db.Query = "select [Year]," + columns + ",STRING_AGG(reference,'') from citywastestreams  where [year] < " + DateTime.Now.Year.ToString() + " and [year] > " + (DateTime.Now.Year - 5).ToString() + " and City_ID in (" + city + ") and WasteCategory_ID = 1 and Deleted = 0 group by [year] order by [year]";
+                db.Query = "select [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') from citywastestreams where City_ID in (" + city + ") " + yearFilter + " and WasteCategory_ID = 1 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year]";
                 dtResult = db.ExecuteQuery();
+            }
+            else if (city == 0)
+            {
+                if (country == 0)
+                {
+                    db.Query = "select [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') from citywastestreams where City_ID in (" + city + ") " + yearFilter + " and WasteCategory_ID = 1 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year]";
+                    dtResult = db.ExecuteQuery();
+                }
+                else
+                {
+                    db.Query = "select [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') from citywastestreams where City_ID in (" + countryFilter + ") " + yearFilter + " and WasteCategory_ID = 1 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year]";
+                    dtResult = db.ExecuteQuery();
+                }
             }
             else
             {
-                db.Query = "select [Year]," + columns + ",STRING_AGG(reference,'') from countrywastestreams  where country_id in (select id from country where subregion_id = 3) and [year] < " + DateTime.Now.Year.ToString() + " and [year] > " + (DateTime.Now.Year - 5).ToString() + " and Country_ID in (" + country_ + ") and WasteCategory_ID = 1 and Deleted = 0 group by [year] order by [year]";
-                dtResult = db.ExecuteQuery();
+                if (country == 0)
+                {
+                    db.Query = "select [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') from countrywastestreams where country_id in (select id from country where subregion_id = 3) " + yearFilter + " and WasteCategory_ID = 1 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year]";
+                    dtResult = db.ExecuteQuery();
+                }
+                else
+                {
+                    db.Query = "select [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') from countrywastestreams where country_id in (select id from country where subregion_id = 3) " + yearFilter + " and Country_ID in (" + country + ") and WasteCategory_ID = 1 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year]";
+                    dtResult = db.ExecuteQuery();
+                }
             }
 
             foreach (DataColumn col in dtResult.Copy().Columns)
@@ -909,63 +896,46 @@ namespace UCOnline.Controllers
             return JsonConvert.SerializeObject(dtResult);
         }
 
-        [HttpPost]
-        public String getPlasticWasteGraphData(FormCollection formData)
+        [HttpGet]
+        public String getPlasticWasteGraphData(int country, int city, int year)
         {
-            String country_ = formData["country"];
-            String type_ = formData["type"];
-
-            if (type_ == null) type_ = "";
-
-            int result;
-            int city = Int32.TryParse(formData["city"], out result) ? result : 0;
-
-            string columns = "";
-            if (type_.Contains("Generated"))
-            {
-                if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated";
-            }
-            if (type_.Contains("Collected"))
-            {
-                if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(a.Totalcollected as decimal(10,2))) as Collected";
-            }
-            if (type_.Contains("Recycled"))
-            {
-                if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(a.Recycled as decimal(10,2))) as Recycled";
-            }
-            if (type_.Contains("Recovered"))
-            {
-                if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(a.Recovered as decimal(10,2))) as Recovered";
-            }
-            if (type_.Contains("Disposal"))
-            {
-                if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(a.Disposal as decimal(10,2))) as Disposal";
-            }
-
             DataTable dtResult = new DataTable();
-            DataTable dtDataResult = new DataTable();
-            DataTable dtDataProcessed = new DataTable();
-            dtDataProcessed.Columns.Add("Country");
-            dtDataProcessed.Columns.Add("Type");
-
-            if (columns.Length == 0) return JsonConvert.SerializeObject(dtResult);
-
             MSSQLServer db = new MSSQLServer();
+            string yearFilter = "";
+            if (year > 0) yearFilter = " and [Year] = " + year.ToString();
+            string countryFilter = "";
+            if (country > 0) countryFilter = "select ID from city where [Country_ID] = " + country.ToString();
+
             if (city > 0)
             {
-                db.Query = "select [Year]," + columns + ",STRING_AGG(reference,'') from citywastestreams where [year] < " + DateTime.Now.Year.ToString() + " and [year] > " + (DateTime.Now.Year - 5).ToString() + " and City_ID in (" + city + ") and WasteCategory_ID = 14 and Deleted = 0 group by [year] order by [year]";
+                db.Query = "select [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') from citywastestreams where City_ID in (" + city + ") " + yearFilter + " and WasteCategory_ID = 14 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year]";
                 dtResult = db.ExecuteQuery();
+            }else if (city > 0)
+            {
+                if (country == 0)
+                {
+                    db.Query = "select [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') from citywastestreams where City_ID in (" + city + ") " + yearFilter + " and WasteCategory_ID = 14 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year]";
+                    dtResult = db.ExecuteQuery();
+                }
+                else
+                {
+                    db.Query = "select [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') from citywastestreams where City_ID in (" + countryFilter + ") " + yearFilter + " and WasteCategory_ID = 14 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year]";
+                    dtResult = db.ExecuteQuery();
+                }
             }
             else
             {
-                db.Query = "select a.[Year]," + columns + ",STRING_AGG(reference,'') from countrywastestreams a where a.country_id in (select id from country where subregion_id = 3 and Deleted = 0) and [year] < " + DateTime.Now.Year.ToString() + " and [year] > " + (DateTime.Now.Year - 5).ToString() + " and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 14 and a.Deleted = 0 group by a.[year] order by a.[year]";
+                if (country == 0)
+                {
+                    db.Query = "select [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') from countrywastestreams where country_id in (select id from country where subregion_id = 3) " + yearFilter + " and WasteCategory_ID = 14 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year]";
+                    dtResult = db.ExecuteQuery();
+                }
+                else
+                {
+                    db.Query = "select [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') from countrywastestreams where country_id in (select id from country where subregion_id = 3) " + yearFilter + " and Country_ID in (" + country + ") and WasteCategory_ID = 14 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year]";
+                    dtResult = db.ExecuteQuery();
+                }
             }
-            dtResult = db.ExecuteQuery();
 
             foreach (DataColumn col in dtResult.Copy().Columns)
             {
@@ -990,75 +960,44 @@ namespace UCOnline.Controllers
             return JsonConvert.SerializeObject(dtResult);
         }
 
-        [HttpPost]
-        public String getSolidWasteTableData(FormCollection formData)
+        [HttpGet]
+        public String getSolidWasteTableData(int country, int city, int year)
         {
             MSSQLServer db = new MSSQLServer();
-            String country_ = formData["country"];
-            String type_ = formData["type"];
-            String year_ = formData["year"];
-
-            if (type_ == null) type_ = "";
-
-            int result;
-            int city = Int32.TryParse(formData["city"], out result) ? result : 0;
-
-            string columns = "";
-            if (type_.Contains("Generated"))
-            {
-                if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated";
-            }
-            if (type_.Contains("Collected"))
-            {
-                if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(a.Totalcollected as decimal(10,2))) as Collected";
-            }
-            if (type_.Contains("Recycled"))
-            {
-                if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(a.Recycled as decimal(10,2))) as Recycled";
-            }
-            if (type_.Contains("Recovered"))
-            {
-                if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(a.Recovered as decimal(10,2))) as Recovered";
-            }
-            if (type_.Contains("Disposal"))
-            {
-                if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(a.Disposal as decimal(10,2))) as Disposal";
-            }
-
             DataTable dtResult = new DataTable();
+            string yearFilter = "";
+            if (year > 0) yearFilter = " and [Year] = " + year.ToString();
+            string countryFilter = "";
+            if (country > 0) countryFilter = "select ID from city where [Country_ID] = " + country.ToString();
 
-            if(city > 0)
+            if (city > 0)
             {
-                if (year_ == "All" || year_ == "null")
+                db.Query = "select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from citywastestreams a inner join city b on a.city_id = b.id where a.City_ID in (" + city + ") " + yearFilter + " and a.WasteCategory_ID = 1 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                dtResult = db.ExecuteQuery();
+            }
+            else if (city == 0)
+            {
+                if (country == 0)
                 {
-                    db = new MSSQLServer();
-                    db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') as Reference from citywastestreams a inner join city b on a.city_id = b.id where a.[year] < " + DateTime.Now.Year.ToString() + " and a.[year] > " + (DateTime.Now.Year - 5).ToString() + " and a.city_ID in (" + city + ") and a.WasteCategory_ID = 1 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    db.Query = "select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from citywastestreams a inner join city b on a.city_id = b.id where a.City_ID in (" + city + ") " + yearFilter + " and a.WasteCategory_ID = 1 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
                     dtResult = db.ExecuteQuery();
                 }
                 else
                 {
-                    db = new MSSQLServer();
-                    db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') as Reference from citywastestreams a inner join city b on a.city_id = b.id where a.[year] = " + year_ + " and a.city_ID in (" + city + ") and a.WasteCategory_ID = 1 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    db.Query = "select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from citywastestreams a inner join city b on a.city_id = b.id where a.City_ID in (" + countryFilter + ") " + yearFilter + " and a.WasteCategory_ID = 1 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
                     dtResult = db.ExecuteQuery();
                 }
             }
             else
             {
-                if (year_ == "All" || year_ == "null")
+                if (country == 0)
                 {
-                    db = new MSSQLServer();
-                    db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') as Reference from countrywastestreams a inner join country b on a.country_id = b.id where a.[year] < " + DateTime.Now.Year.ToString() + " and a.[year] > " + (DateTime.Now.Year - 5).ToString() + " and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 1 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    db.Query = "select b.Name as Country,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from countrywastestreams a inner join country b on a.country_id = b.id where a.WasteCategory_ID = 1 " + yearFilter + " and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
                     dtResult = db.ExecuteQuery();
                 }
                 else
                 {
-                    db = new MSSQLServer();
-                    db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') as Reference from countrywastestreams a inner join country b on a.country_id = b.id where a.[year] = " + year_ + " and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 1 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    db.Query = "select b.Name as Country,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from countrywastestreams a inner join country b on a.country_id = b.id where a.Country_ID in (" + country + ") " + yearFilter + " and a.WasteCategory_ID = 1 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
                     dtResult = db.ExecuteQuery();
                 }
             }
@@ -1068,75 +1007,42 @@ namespace UCOnline.Controllers
             return JsonConvert.SerializeObject(dtResult);
         }
 
-        [HttpPost]
-        public String getPlasticWasteTableData(FormCollection formData)
+        [HttpGet]
+        public String getPlasticWasteTableData(int country, int city, int year)
         {
             MSSQLServer db = new MSSQLServer();
-            String country_ = formData["country"];
-            String type_ = formData["type"];
-            String year_ = formData["year"];
-
-            if (type_ == null) type_ = "";
-
-            int result;
-            int city = Int32.TryParse(formData["city"], out result) ? result : 0;
-
-            string columns = "";
-            if (type_.Contains("Generated"))
-            {
-                if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated";
-            }
-            if (type_.Contains("Collected"))
-            {
-                if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(a.Totalcollected as decimal(10,2))) as Collected";
-            }
-            if (type_.Contains("Recycled"))
-            {
-                if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(a.Recycled as decimal(10,2))) as Recycled";
-            }
-            if (type_.Contains("Recovered"))
-            {
-                if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(a.Recovered as decimal(10,2))) as Recovered";
-            }
-            if (type_.Contains("Disposal"))
-            {
-                if (columns.Length > 0) columns += ",";
-                columns += "SUM(cast(a.Disposal as decimal(10,2))) as Disposal";
-            }
-
             DataTable dtResult = new DataTable();
+            string yearFilter = "";
+            if (year > 0) yearFilter = " and [Year] = " + year.ToString();
+            string countryFilter = "";
+            if (country > 0) countryFilter = "select ID from city where [Country_ID] = " + country.ToString();
 
             if (city > 0)
             {
-                if (year_ == "All" || year_ == "null")
+                db.Query = "select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from countrywastestreams a inner join city b on a.city_id = b.id where a.City_ID in (" + city + ") " + yearFilter + " and a.WasteCategory_ID = 14 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                dtResult = db.ExecuteQuery();
+            }else if (city == 0)
+            {
+                if (country == 0)
                 {
-                    db = new MSSQLServer();
-                    db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') as Reference from citywastestreams a inner join city b on a.city_id = b.id where a.[year] < " + DateTime.Now.Year.ToString() + " and a.[year] > " + (DateTime.Now.Year - 5).ToString() + " and a.city_ID in (" + city + ") and a.WasteCategory_ID = 14 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    db.Query = "select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from citywastestreams a inner join city b on a.city_id = b.id where a.City_ID in (" + city + ") " + yearFilter + " and a.WasteCategory_ID = 14 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
                     dtResult = db.ExecuteQuery();
                 }
-                else
-                {
-                    db = new MSSQLServer();
-                    db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') as Reference from citywastestreams a inner join city b on a.city_id = b.id where a.[year] = " + year_ + " and a.city_ID in (" + city + ") and a.WasteCategory_ID = 14 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                else {
+                    db.Query = "select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from citywastestreams a inner join city b on a.city_id = b.id where a.City_ID in (" + countryFilter + ") " + yearFilter + " and a.WasteCategory_ID = 14 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
                     dtResult = db.ExecuteQuery();
                 }
             }
             else
             {
-                if (year_ == "All" || year_ == "null")
+                if (country == 0)
                 {
-                    db = new MSSQLServer();
-                    db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') as Reference from countrywastestreams a inner join country b on a.country_id = b.id where a.country_id in (select id from country where subregion_id = 3 and Deleted = 0) and a.[year] < " + DateTime.Now.Year.ToString() + " and a.[year] > " + (DateTime.Now.Year - 5).ToString() + " and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 14 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    db.Query = "select b.Name as Country,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from countrywastestreams a inner join country b on a.country_id = b.id where a.WasteCategory_ID = 14 " + yearFilter + " and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
                     dtResult = db.ExecuteQuery();
                 }
                 else
                 {
-                    db = new MSSQLServer();
-                    db.Query = "select b.Name as Country,a.[Year]," + columns + ",STRING_AGG(reference,'') as Reference from countrywastestreams a inner join country b on a.country_id = b.id where a.country_id in (select id from country where subregion_id = 3 and Deleted = 0) and a.[year] = " + year_ + " and a.Country_ID in (" + country_ + ") and a.WasteCategory_ID = 14 and a.Deleted = 0 group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    db.Query = "select b.Name as Country,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from countrywastestreams a inner join country b on a.country_id = b.id where a.Country_ID in (" + country + ") " + yearFilter + " and a.WasteCategory_ID = 14 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
                     dtResult = db.ExecuteQuery();
                 }
             }
@@ -1257,6 +1163,48 @@ namespace UCOnline.Controllers
             DataTable countryData = country_.SelectQuery();
 
             return JsonConvert.SerializeObject(countryData);
+        }
+
+        [HttpGet]
+        public String getDataYears(int country, int city)
+        {
+            if(city > 0)
+            {
+                ServerBase cw = new ServerBase("CityWastestreams");
+                cw.SelectFilter("City_ID in (" + city.ToString() + ")");
+                cw.SelectOrder("Year", Web.Framework.Enums.EnumOrder.ASCENDING);
+                DataTable cwData = cw.SelectDistinct("Year");
+
+                return JsonConvert.SerializeObject(cwData);
+            }else if (city == 0)
+            {
+                ServerBase cw = new ServerBase("CityWastestreams");
+                cw.SelectFilter("City_ID in (" + city.ToString() + ")");
+                cw.SelectOrder("Year", Web.Framework.Enums.EnumOrder.ASCENDING);
+                DataTable cwData = cw.SelectDistinct("Year");
+
+                return JsonConvert.SerializeObject(cwData);
+            }
+            else
+            {
+                if(country == 0)
+                {
+                    ServerBase cw = new ServerBase("CountryWastestreams");
+                    cw.SelectOrder("Year", Web.Framework.Enums.EnumOrder.ASCENDING);
+                    DataTable cwData = cw.SelectDistinct("Year");
+
+                    return JsonConvert.SerializeObject(cwData);
+                }
+                else
+                {
+                    ServerBase cw = new ServerBase("CountryWastestreams");
+                    cw.SelectFilter("Country_ID in (" + country + ")");
+                    cw.SelectOrder("Year", Web.Framework.Enums.EnumOrder.ASCENDING);
+                    DataTable cwData = cw.SelectDistinct("Year");
+
+                    return JsonConvert.SerializeObject(cwData);
+                }
+            }
         }
     }
 }
