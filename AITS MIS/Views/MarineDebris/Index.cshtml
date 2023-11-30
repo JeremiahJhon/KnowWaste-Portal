@@ -399,9 +399,9 @@
         </div>
     </div>
 
-    <div class="row d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px mb-20">
-        <div class="row w-100 gy-10 mb-md-10 mt-md-5">
-            <div class="col-md-6 px-2">
+    <div class="row d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px">
+        <div class="row w-100 mb-md-10">
+            <div class="col-md-12 px-2 mb-20">
                 <div class="w-100 h-100 d-flex flex-column bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
                     <div class="col-md-12 mb-7 text-center">
                         <!--begin::Title-->
@@ -409,7 +409,7 @@
                         <!--end::Title-->
                         <!--begin::Description-->
                         <div class="text-gray-400 fw-bold mb-5 d-none">Short description here</div>
-                        <div class="d-flex flex-center mb-10">
+                        <div class="d-flex flex-center mb-10 d-none">
                             <button id="kt_drawer_filter_1_button" class="btn btn-primary py-2 px-4">
                                 <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -417,18 +417,77 @@
                                     </svg>
                                 </span>Filter
                             </button>
+                            <select class="form-select py-2 mx-1 w-25" id="filter-city-1_">
+                            </select>
+                            <div id="solid-waste-year" class="noUi-sm w-50"></div>
                         </div>
-                        <div class="d-flex px-5">
+                        <div class="row px-5 py-2 docs-wrapper rounded-2">
+                            <div class="col-md-3 d-flex px-5">
+                                <label class="px-2 py-2">Country: </label>
+                                <select class="form-select py-1 mx-1" id="filter-country-1">
+                                    <option value="0">All</option>
+                                    @foreach (DataRow row in countries.Rows)
+                                    {
+                                        <option value="@row["ID"].ToString()">@row["Name"].ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3 d-flex px-5">
+                                <label class="px-2 py-2">City: </label>
+                                <select class="form-select py-1 mx-1" id="filter-city-1">
+                                </select>
+                            </div>
+                            <div class="col-md-3 d-flex px-5">
+                                <label class="px-2 py-2">Year: </label>
+                                <select class="form-select py-1 mx-1" id="filter-year-1">
+                                </select>
+                            </div>
+                            <div class="col-md-3 d-flex px-5">
+                                <button id="button-apply-1" class="btn btn-primary py-2 px-10">Apply</button>
+                            </div>
+                        </div>
+                        <div class="d-flex px-5 d-none">
                             <label class="px-2 py-1">Country: </label>
                             <div id="solid-country-filter-list">
-
                             </div>
                         </div>
                         <div id="chart-1" style="height: 350px;"></div>
                     </div>
+                    <div class="tab-content d-none">
+                        <div class="toolbar" id="kt_toolbar1">
+                            <!--begin::Container-->
+                            <div id="kt_toolbar_container1" class="container-fluid d-inline" data-select2-id="select2-data-kt_toolbar_container">
+                                <!--begin::Page title-->
+                                <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                                    <label>
+                                        <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black"></path>
+                                            </svg>
+                                        </span>
+                                        Filter:
+                                    </label>
+                                    <div class="col-md-5 d-flex px-5">
+                                        <label class="m-auto px-2">
+                                            Year
+                                        </label>
+                                        <select id="filter-solidwaste-year" class="form-select form-select form-select-solid" data-placeholder="Select an option" style="border-color: #009ef7 !important;" aria-label="Year">
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--end::Page title-->
+                            </div>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Container-->
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped gy-7 gs-7 table-hover" id="datatable-solidwaste">
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6 px-2">
+            <div class="col-md-12 px-2 mb-20">
                 <div class="w-100 h-100 d-flex flex-column bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
                     <div class="col-md-12 mb-7 text-center">
                         <!--begin::Title-->
@@ -436,7 +495,7 @@
                         <!--end::Title-->
                         <!--begin::Description-->
                         <div class="text-gray-400 fw-bold mb-5 d-none">Short description here</div>
-                        <div class="d-flex flex-center mb-10">
+                        <div class="d-flex flex-center mb-10 d-none">
                             <button id="kt_drawer_filter_2_button" class="btn btn-primary py-2 px-4">
                                 <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -444,14 +503,75 @@
                                     </svg>
                                 </span>Filter
                             </button>
+                            <select class="form-select py-2 mx-1 w-25" id="filter-city-2_">
+                            </select>
                         </div>
-                        <div class="d-flex px-5">
+                        <div class="d-flex flex-center my-15 d-none">
+                            <div id="plastic-waste-year" class="noUi-sm w-75"></div>
+                        </div>
+                        <div class="d-flex px-5 d-none">
                             <label class="px-2 py-1">Country: </label>
                             <div id="plastic-country-filter-list">
 
                             </div>
+                        </div><div class="row px-5 py-2 docs-wrapper rounded-2">
+                            <div class="col-md-3 d-flex px-5">
+                                <label class="px-2 py-2">Country: </label>
+                                <select class="form-select py-1 mx-1" id="filter-country-2">
+                                    <option value="0">All</option>
+                                    @foreach (DataRow row in countries.Rows)
+                                    {
+                                        <option value="@row["ID"].ToString()">@row["Name"].ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3 d-flex px-5">
+                                <label class="px-2 py-2">City: </label>
+                                <select class="form-select py-1 mx-1" id="filter-city-2">
+                                </select>
+                            </div>
+                            <div class="col-md-3 d-flex px-5">
+                                <label class="px-2 py-2">Year: </label>
+                                <select class="form-select py-1 mx-1" id="filter-year-2">
+                                </select>
+                            </div>
+                            <div class="col-md-3 d-flex px-5">
+                                <button id="button-apply-2" class="btn btn-primary py-2 px-10">Apply</button>
+                            </div>
                         </div>
                         <div id="chart-2" style="height: 350px;"></div>
+                    </div>
+                    <div class="tab-content d-none">
+                        <div class="toolbar" id="kt_toolbar2">
+                            <!--begin::Container-->
+                            <div id="kt_toolbar_container2" class="container-fluid d-inline" data-select2-id="select2-data-kt_toolbar_container">
+                                <!--begin::Page title-->
+                                <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                                    <label>
+                                        <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black"></path>
+                                            </svg>
+                                        </span>
+                                        Filter:
+                                    </label>
+                                    <div class="col-md-5 d-flex px-5">
+                                        <label class="m-auto px-2">
+                                            Year
+                                        </label>
+                                        <select id="filter-plasticwaste-year" class="form-select form-select form-select-solid" data-placeholder="Select an option" style="border-color: #009ef7 !important;" aria-label="Year">
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--end::Page title-->
+                            </div>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Container-->
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped gy-7 gs-7 table-hover" id="datatable-plasticwaste">
+                        </table>
                     </div>
                 </div>
             </div>
@@ -676,11 +796,10 @@
         var chart1;
         var chart2;
         $(document).ready(function () {
-            $("#solid-country-23").prop("checked", true);//Singapore default
-            $("#plastic-country-23").prop("checked", true);//Singapore default
-            createSolidWasteGraph();
-            createPlasticWasteGraph();
-            $("#button-filter-apply-1").click(function () {
+            /*$("#solid-country-23").prop("checked", true);//Singapore default
+        $("#plastic-country-23").prop("checked", true);//Singapore default
+*/
+            /*$("#button-filter-apply-1").click(function () {
                 chart1.destroy();
                 createSolidWasteGraph();
                 $("#kt_drawer_filter_1_close").click();
@@ -689,13 +808,138 @@
                 chart2.destroy();
                 createPlasticWasteGraph();
                 $("#kt_drawer_filter_2_close").click();
+            });*/
+
+            $("#filter-country-1").change(function () {
+                populateCityFilter("solidWaste", this.value);
+                $("#filter-city-1").change();
             });
+            $("#filter-country-2").change(function () {
+                populateCityFilter("plasticWaste", this.value);
+                $("#filter-city-2").change();
+            });
+
+            $("#filter-city-1").change(function () {
+                $.ajax({
+                    url: '/MarineDebris/getDataYears?country=' + $("#filter-country-1").val() + '&city=' + $("#filter-city-1").val(),
+                    type: 'GET',
+                    processData: false,
+                    async: false,
+                    success: function (res) {
+                        var data = JSON.parse(res);
+                        var select = document.getElementById("filter-year-1");
+                        select.innerHTML = "";
+                        var option = document.createElement("option");
+                        option.setAttribute("value", 0);
+                        option.text = "All";
+                        select.add(option);
+                        for (var ctr = 0; ctr < data.length; ctr++) {
+                            var option = document.createElement("option");
+                            option.setAttribute("value", data[ctr]["Year"]);
+                            option.text = data[ctr]["Year"];
+                            select.add(option);
+                        }
+                        select.value = 0;
+                    },
+                    error: function (res) {
+                        console.log(res);
+                    }
+                });
+            });
+            $("#filter-city-2").change(function () {
+                $.ajax({
+                    url: '/MarineDebris/getDataYears?country=' + $("#filter-country-2").val() + '&city=' + $("#filter-city-2").val(),
+                    type: 'GET',
+                    processData: false,
+                    async: false,
+                    success: function (res) {
+                        var data = JSON.parse(res);
+                        var select = document.getElementById("filter-year-2");
+                        select.innerHTML = "";
+                        var option = document.createElement("option");
+                        option.setAttribute("value", 0);
+                        option.text = "All";
+                        select.add(option);
+                        for (var ctr = 0; ctr < data.length; ctr++) {
+                            var option = document.createElement("option");
+                            option.setAttribute("value", data[ctr]["Year"]);
+                            option.text = data[ctr]["Year"];
+                            select.add(option);
+                        }
+                        select.value = 0;
+                    },
+                    error: function (res) {
+                        console.log(res);
+                    }
+                });
+            });
+
+            $("#button-apply-1").click(function () {
+                chart1.destroy();
+                createSolidWasteGraph();
+            });
+            $("#button-apply-2").click(function () {
+                chart2.destroy();
+                createPlasticWasteGraph();
+            });
+
+            /*function populateFilter(id, data) {
+                $("#" + id).empty();
+                var option = document.createElement("option");
+                option.setAttribute("value", "All");
+                option.text = "All";
+                document.getElementById(id).appendChild(option);
+                for (var ctr = 0; ctr < data.length; ctr++) {
+                    var option = document.createElement("option");
+                    option.setAttribute("value", data[ctr]["Year"]);
+                    option.text = data[ctr]["Year"];
+                    document.getElementById(id).appendChild(option);
+                }
+            }*/
+
+            function populateCityFilter(wasteType, country) {
+                $.ajax({
+                    url: '/MarineDebris/getCity?country=' + country,
+                    type: 'GET',
+                    async: false,
+                    processData: false,
+                    success: function (res) {
+                        var data = JSON.parse(res);
+                        var select;
+                        if (wasteType == "solidWaste") {
+                            select = document.getElementById("filter-city-1");
+                        } else if (wasteType == "plasticWaste") {
+                            select = document.getElementById("filter-city-2");
+                        }
+                        select.innerHTML = "";
+                        var option = document.createElement("option");
+                        option.setAttribute("value", -1);
+                        option.text = "-";
+                        select.add(option);
+                        option = document.createElement("option");
+                        option.setAttribute("value", 0);
+                        option.text = "All";
+                        select.add(option);
+                        for (var ctr = 0; ctr < data.length; ctr++) {
+                            var option = document.createElement("option");
+                            option.setAttribute("value", data[ctr]["ID"]);
+                            option.text = data[ctr]["Name"];
+                            select.add(option);
+                        }
+                        select.value = -1;
+                    },
+                    error: function (res) {
+                        console.log(res);
+                    }
+                });
+            }
+
             function createSolidWasteGraph(id, x_axis, series) {
                 $.ajax({
-                    url: '/MarineDebris/getSolidWasteGraphData',
-                    data: $("#form-filter-1").serialize(),
-                    type: 'POST',
+                    url: `/MarineDebris/getSolidWasteGraphData?country=${$("#filter-country-1").val()}&city=${$("#filter-city-1").val()}&year=${$("#filter-year-1").val()}`,
+                    type: 'GET',
                     processData: false,
+                    async: false,
                     success: function (data) {
                         var graphData = JSON.parse(data);
                         var x_axis = [];
@@ -856,7 +1100,8 @@
                                 },
                                 legend: {
                                     position: 'right',
-                                    offsetY: 40
+                                    offsetY: 40,
+                                    alignItems: 'baseline'
                                 },
                             };
 
@@ -885,7 +1130,7 @@
                         console.log(err);
                     },
                 });
-                var country = $('#form-filter-1 [name="country"]');
+                /*var country = $('#form-filter-1 [name="country"]');
                 $("#solid-country-filter-list").html('');
                 for (var ctr = 0; ctr < country.length; ctr++) {
                     var countryElem = '<span class="badge badge-light-dark m-1">' + $(country[ctr]).data("text") + '</span>';
@@ -893,13 +1138,23 @@
                         $("#solid-country-filter-list").append(countryElem);
                     }
                 }
+    
+                var country = $('#form-filter-1 [name="country"]');
+                var countries = [];
+                $.each($("#form-filter-1").serializeArray(), function (i, field) {
+                    if (field.name == "country") {
+                        countries.push(field.value);
+                    }
+                });
+                populateCityFilter("solidWaste", countries);*/
             }
+
             function createPlasticWasteGraph(id, x_axis, series) {
                 $.ajax({
-                    url: '/MarineDebris/getPlasticWasteGraphData',
-                    data: $("#form-filter-2").serialize(),
-                    type: 'POST',
+                    url: `/MarineDebris/getPlasticWasteGraphData?country=${$("#filter-country-2").val()}&city=${$("#filter-city-2").val()}&year=${$("#filter-year-2").val()}`,
+                    type: 'GET',
                     processData: false,
+                    async: false,
                     success: function (data) {
                         var graphData = JSON.parse(data);
                         var x_axis = [];
@@ -1060,7 +1315,8 @@
                                 },
                                 legend: {
                                     position: 'right',
-                                    offsetY: 40
+                                    offsetY: 40,
+                                    horizontalAlign: 'left'
                                 },
                             };
 
@@ -1089,7 +1345,7 @@
                         console.log(err);
                     },
                 })
-                var country = $('#form-filter-2 [name="country"]');
+                /*var country = $('#form-filter-2 [name="country"]');
                 $("#plastic-country-filter-list").html('');
                 for (var ctr = 0; ctr < country.length; ctr++) {
                     var countryElem = '<span class="badge badge-light-dark m-1">' + $(country[ctr]).data("text") + '</span>';
@@ -1097,8 +1353,17 @@
                         $("#plastic-country-filter-list").append(countryElem);
                     }
                 }
+                var country = $('#form-filter-2 [name="country"]');
+                var countries = [];
+                $.each($("#form-filter-2").serializeArray(), function (i, field) {
+                    if (field.name == "country") {
+                        countries.push(field.value);
+                    }
+                });
+                //populateCityFilter("plasticWaste", countries);*/
             }
-            $("#solid-country-all").change(function () {
+            
+            /*$("#solid-country-all").change(function () {
                 if (this.checked) {
                     var clist = document.getElementsByClassName("solid-country-filter");
                     for (var i = 0; i < clist.length; ++i) { clist[i].checked = true; }
@@ -1106,7 +1371,7 @@
                     var clist = document.getElementsByClassName("solid-country-filter");
                     for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
                 }
-                getDocumentData();
+                //getDocumentData();
             });
             $("#solid-type-all").change(function () {
                 if (this.checked) {
@@ -1125,7 +1390,7 @@
                     var clist = document.getElementsByClassName("plastic-country-filter");
                     for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
                 }
-                getDocumentData();
+                //getDocumentData();
             });
             $("#plastic-type-all").change(function () {
                 if (this.checked) {
@@ -1136,17 +1401,69 @@
                     for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
                 }
             });
+    
+            $("#filter-solidwaste-year").change(function () {
+                getSolidWasteTableData(); 
+            });
+            $("#filter-plasticwaste-year").change(function () {
+                getPlasticWasteTableData();
+            });*/
+
             function numFormatter(num) {
-                if (num >= 1000000000) {
-                    return Math.abs(num) > 999999999 ? Math.sign(num) * ((Math.abs(num) / 1000000000).toFixed(3)) + 'B' : Math.sign(num) * Math.abs(num)
+                try {
+                    if (num >= 1000000000) {
+                        return Math.abs(num) > 999999999 ? Math.sign(num) * ((Math.abs(num) / 1000000000).toFixed(3)) + ' B' : Math.sign(num) * Math.abs(num)
+                    }
+                    if (num >= 1000000) {
+                        return Math.abs(num) > 999999 ? Math.sign(num) * ((Math.abs(num) / 1000000).toFixed(3)) + ' M' : Math.sign(num) * Math.abs(num)
+                    }
+                    if (num >= 1000) {
+                        return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(2)) + ' K' : Math.sign(num) * Math.abs(num)
+                    }
+                    return 0;
                 }
-                if (num >= 1000000) {
-                    return Math.abs(num) > 999999 ? Math.sign(num) * ((Math.abs(num) / 1000000).toFixed(3)) + 'M' : Math.sign(num) * Math.abs(num)
-                }
-                if (num >= 1000) {
-                    return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(2)) + 'K' : Math.sign(num) * Math.abs(num)
+                catch {
+                    return 0;
                 }
             }
+
+            /*var slider1 = document.getElementById('solid-waste-year');
+    
+            noUiSlider.create(slider1, {
+                start: [2019, new Date().getFullYear()],
+                connect: true,
+                tooltips: true,
+                step: 1,
+                format: wNumb({
+                    decimals: 0
+                }),
+                range: {
+                    'min': 2000,
+                    'max': new Date().getFullYear()
+                }
+            });
+    
+            var slider2 = document.getElementById('plastic-waste-year');
+    
+            noUiSlider.create(slider2, {
+                start: [2019, new Date().getFullYear()],
+                connect: true,
+                tooltips: true,
+                step: 1,
+                format: wNumb({
+                    decimals: 0
+                }),
+                range: {
+                    'min': 2000,
+                    'max': new Date().getFullYear()
+                }
+            });*/
+
+            $("#filter-country-1").change();
+            $("#filter-country-2").change();
+
+            createSolidWasteGraph();
+            createPlasticWasteGraph();
 
             $(".card").hover(function () {
                 $(this).find(".overlay-wrapper").css("background-size", "150%");

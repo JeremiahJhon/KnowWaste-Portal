@@ -910,7 +910,7 @@ namespace UCOnline.Controllers
             {
                 db.Query = "select [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') from citywastestreams where City_ID in (" + city + ") " + yearFilter + " and WasteCategory_ID = 14 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year]";
                 dtResult = db.ExecuteQuery();
-            }else if (city > 0)
+            }else if (city == 0)
             {
                 if (country == 0)
                 {
