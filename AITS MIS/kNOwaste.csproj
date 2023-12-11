@@ -60,6 +60,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -170,6 +172,255 @@
     <Compile Include="Controllers\ProjectTaskController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Data\academicreport.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\admincity.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\admincountry.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\application.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\backgroundpaper.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\backgroundpapercategory.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\blog.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\blogscategory.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\blogscomment.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\blogscontact.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\blogsmedia.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\casestudy.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\city.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\citypolicy.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\citypopulation.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\cityreference.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\citywastestream.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\conference.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\conferencescategory.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\conferencescomment.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\conferencescontact.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\conferencesregistration.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\contact.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\country.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\countrypolicy.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\countrypolicy_area.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\countrypolicy_type.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\countrypopulation.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\countryreference.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\countrywastestream.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\cours.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\C_logs.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\C_reference.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\C_relation.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\C_union.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dashboard.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\dashboardapplication.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\document.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\documentcategory.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\documenttype.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\event.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\eventregistration.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\eventscategory.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\eventscomment.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\expertroster.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\expertrosterscategory.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\faq.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\forum.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\forumanswer.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\forumcontact.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\geotheme.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\KnowWaste.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KnowWaste.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\KnowWaste.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\KnowWaste.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KnowWaste.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\lawpolicy.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\news.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\newscategory.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\newscomment.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\newsmedia.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\privilege.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\region.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\reportcategory.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\sector.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\seminar.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\seminarscategory.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\seminarscomment.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\seminarscontact.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\seminarsmedia.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\seminarsregistration.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\subregion.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\tallbuildingfeedbackone.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\user.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\userprivilege.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\usertype.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\usertypeapp.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\usertypeappsub.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\videopost.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\videoposts_old.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\view.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\wastecategory.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\wastetype.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\Waste.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -6150,6 +6401,16 @@
     <Content Include="Content\static\AdobeStock_584264594.jpeg" />
     <Content Include="Content\style.css" />
     <Content Include="Content\thematic.css" />
+    <Content Include="Data\KnowWaste.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KnowWaste.edmx</DependentUpon>
+      <LastGenOutput>KnowWaste.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Data\KnowWaste.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KnowWaste.edmx</DependentUpon>
+      <LastGenOutput>KnowWaste.cs</LastGenOutput>
+    </Content>
     <Content Include="Documents\01.png" />
     <Content Include="Documents\02.png" />
     <Content Include="Documents\03.png" />
@@ -6304,6 +6565,13 @@
     <Content Include="Scripts\isotope\isotope-gallery.js" />
     <Content Include="Scripts\isotope\isotope.pkgd.min.js" />
     <Content Include="Scripts\isotope\packery-mode.pkgd.min.js" />
+    <EntityDeploy Include="Data\KnowWaste.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>KnowWaste.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Data\KnowWaste.edmx.diagram">
+      <DependentUpon>KnowWaste.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.6.4.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.4.js" />
     <Content Include="Scripts\jquery-3.6.4.min.js" />
@@ -6560,7 +6828,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\documents\Lawpolicy\" />
     <Folder Include="Content\script\" />
-    <Folder Include="Data\" />
     <Folder Include="Documents\News\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\Search\" />
@@ -7572,6 +7839,9 @@
       <Project>{3d5de530-098d-4e78-8d2b-c01e081584ad}</Project>
       <Name>Web.Framework</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

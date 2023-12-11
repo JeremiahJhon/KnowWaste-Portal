@@ -1,0 +1,3183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KnowWasteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="_logs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tablename" Type="varchar" MaxLength="45" />
+          <Property Name="tableid" Type="int" />
+          <Property Name="columnname" Type="varchar" MaxLength="45" />
+          <Property Name="value" Type="varchar(max)" />
+          <Property Name="action" Type="varchar" MaxLength="45" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="username" Type="varchar" MaxLength="45" />
+          <Property Name="logdate" Type="datetime2" Precision="7" />
+          <Property Name="deleted" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="_reference">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Tablename" Type="varchar" MaxLength="45" />
+          <Property Name="Columnname" Type="varchar" MaxLength="45" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="_relation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Location" Type="smallint" />
+          <Property Name="Tablename" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Tablerel" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="45" />
+          <Property Name="Sort" Type="int" />
+          <Property Name="Deleted" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="_union">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tablename" Type="varchar" MaxLength="45" />
+          <Property Name="Columns" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="academicreport">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="Author" Type="varchar" MaxLength="100" />
+          <Property Name="Thumbnail" Type="varchar" MaxLength="100" />
+          <Property Name="Abstract" Type="varchar(max)" />
+          <Property Name="Document" Type="varchar" MaxLength="100" />
+          <Property Name="Sector_ID" Type="int" />
+          <Property Name="Reportcategory_ID" Type="int" />
+          <Property Name="Posteddate" Type="datetime2" Precision="7" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+          <Property Name="Detail" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="admincity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="int" />
+          <Property Name="Country_ID" Type="int" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="admincountry">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="int" />
+          <Property Name="Region_ID" Type="int" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="application">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="100" />
+          <Property Name="application_id" Type="int" />
+          <Property Name="dateentered" Type="datetime2" Precision="7" />
+          <Property Name="deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="backgroundpaper">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="Author" Type="varchar" MaxLength="100" />
+          <Property Name="Thumbnail" Type="varchar" MaxLength="45" />
+          <Property Name="Abstract" Type="varchar(max)" />
+          <Property Name="Document" Type="varchar" MaxLength="45" />
+          <Property Name="Reportcategory_ID" Type="int" />
+          <Property Name="Posteddate" Type="datetime2" Precision="7" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="backgroundpapercategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="blogs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="2000" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Detail" Type="varchar(max)" />
+          <Property Name="Author" Type="varchar" MaxLength="100" />
+          <Property Name="Blogsdate" Type="datetime2" Precision="7" />
+          <Property Name="Thumbnail" Type="varchar" MaxLength="45" />
+          <Property Name="Country_ID" Type="int" />
+          <Property Name="Geotheme_ID" Type="int" />
+          <Property Name="Viewsblogs_ID" Type="int" />
+          <Property Name="Blogscategory_ID" Type="int" />
+          <Property Name="Blogscomment_ID" Type="int" />
+          <Property Name="Blogsmedia_ID" Type="int" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+          <Property Name="ResultsArchieved" Type="varchar(max)" />
+          <Property Name="ChallengesLessonLearned" Type="varchar(max)" />
+          <Property Name="Replicability" Type="varchar(max)" />
+          <Property Name="Sources" Type="varchar(max)" />
+          <Property Name="Company" Type="varchar" MaxLength="2000" />
+          <Property Name="Email" Type="varchar" MaxLength="70" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="Initiative" Type="varchar" MaxLength="50" />
+          <Property Name="Photo" Type="varchar(max)" />
+          <Property Name="StartDate" Type="varchar" MaxLength="50" />
+          <Property Name="EndDate" Type="datetime2" Precision="7" />
+          <Property Name="Location" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="blogscategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="blogscomment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="1000" />
+          <Property Name="Blogs_ID" Type="int" />
+          <Property Name="Blogscontact_ID" Type="int" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="blogscontact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="45" />
+          <Property Name="Thumbnail" Type="varchar" MaxLength="100" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="blogsmedia">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="1000" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="casestudy">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Thumbnail" Type="varchar" MaxLength="100" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="city">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="500" />
+          <Property Name="Country_ID" Type="int" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="citypolicy">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Legal" Type="varchar(max)" />
+          <Property Name="Year" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="City_ID" Type="int" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="citypopulation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City_ID" Type="int" />
+          <Property Name="Year" Type="varchar" MaxLength="100" />
+          <Property Name="Population" Type="varchar" MaxLength="100" />
+          <Property Name="Urbanpopulation" Type="varchar" MaxLength="100" />
+          <Property Name="Area" Type="varchar" MaxLength="100" />
+          <Property Name="Incomelevel" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Source" Type="varchar(max)" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="cityreferences">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Referencenumber" Type="int" />
+          <Property Name="Reference" Type="varchar(max)" />
+          <Property Name="City_ID" Type="int" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="citywastestreams">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City_ID" Type="int" />
+          <Property Name="Year" Type="varchar" MaxLength="45" />
+          <Property Name="estimated" Type="varchar" MaxLength="1" />
+          <Property Name="Wastecategory_ID" Type="int" />
+          <Property Name="Definitions" Type="varchar(max)" />
+          <Property Name="Definedby" Type="varchar(max)" />
+          <Property Name="Totalgenerated" Type="varchar" MaxLength="200" />
+          <Property Name="Hazardous" Type="varchar" MaxLength="200" />
+          <Property Name="Totalcollected" Type="varchar" MaxLength="200" />
+          <Property Name="Recycled" Type="varchar" MaxLength="200" />
+          <Property Name="Recovered" Type="varchar" MaxLength="200" />
+          <Property Name="Disposal" Type="varchar" MaxLength="200" />
+          <Property Name="Treatment" Type="varchar" MaxLength="200" />
+          <Property Name="Reuse" Type="varchar" MaxLength="200" />
+          <Property Name="Sludge" Type="varchar" MaxLength="200" />
+          <Property Name="Datasource" Type="varchar" MaxLength="200" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+          <Property Name="Reference" Type="varchar(max)" />
+          <Property Name="WasteComposition" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="conferences">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Detail" Type="varchar(max)" />
+          <Property Name="Thumbnail" Type="varchar" MaxLength="45" />
+          <Property Name="Location" Type="varchar" MaxLength="100" />
+          <Property Name="Datestart" Type="datetime2" Precision="7" />
+          <Property Name="Dateend" Type="datetime2" Precision="7" />
+          <Property Name="Country_ID" Type="int" />
+          <Property Name="Geotheme_ID" Type="int" />
+          <Property Name="Conferencescategory_ID" Type="int" />
+          <Property Name="Conferencescontacts_ID" Type="int" />
+          <Property Name="Viewconferences_ID" Type="int" />
+          <Property Name="Conferencescomment_ID" Type="int" />
+          <Property Name="conferencesmedia_ID" Type="int" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+          <Property Name="Referencelink" Type="varchar" MaxLength="4000" />
+        </EntityType>
+        <EntityType Name="conferencescategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="conferencescomment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="1000" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="conferencescontacts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Position" Type="varchar" MaxLength="100" />
+          <Property Name="Address" Type="varchar" MaxLength="100" />
+          <Property Name="Phone" Type="varchar" MaxLength="45" />
+          <Property Name="Country" Type="varchar" MaxLength="100" />
+          <Property Name="Nationality" Type="varchar" MaxLength="100" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="conferencesregistration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="conferences_ID" Type="int" />
+          <Property Name="Dateregistered" Type="datetime2" Precision="7" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="contact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="SubRegion_ID" Type="varchar" MaxLength="45" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="countrypolicy">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Legal" Type="varchar(max)" />
+          <Property Name="Year" Type="varchar" MaxLength="45" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Country_ID" Type="varchar" MaxLength="45" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+          <Property Name="code_number" Type="varchar" MaxLength="100" />
+          <Property Name="Type_ID" Type="int" />
+          <Property Name="Area_ID" Type="int" />
+          <Property Name="WasteCategory_ID" Type="int" />
+          <Property Name="Link" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="countrypolicy_area">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type_ID" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="countrypolicy_type">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="countrypopulation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Country_ID" Type="int" />
+          <Property Name="Population" Type="varchar" MaxLength="100" />
+          <Property Name="Urbanpopulation" Type="varchar" MaxLength="45" />
+          <Property Name="Area" Type="varchar" MaxLength="45" />
+          <Property Name="Incomelevel" Type="varchar" MaxLength="500" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Source" Type="varchar(max)" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="countryreferences">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Referencenumber" Type="varchar" MaxLength="45" />
+          <Property Name="Reference" Type="varchar(max)" />
+          <Property Name="Country_ID" Type="varchar" MaxLength="45" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="countrywastestreams">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="countryreferences_id" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Year" Type="varchar" MaxLength="4" />
+          <Property Name="estimated" Type="varchar" MaxLength="1" />
+          <Property Name="Country_ID" Type="varchar" MaxLength="45" />
+          <Property Name="Wastecategory_ID" Type="varchar" MaxLength="45" />
+          <Property Name="Definitions" Type="varchar(max)" />
+          <Property Name="Definedby" Type="varchar(max)" />
+          <Property Name="Totalgenerated" Type="decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="Hazardous" Type="varchar" MaxLength="1000" />
+          <Property Name="Totalcollected" Type="decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="Recycled" Type="decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="Recovered" Type="decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="Disposal" Type="decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="Treatment" Type="varchar" MaxLength="1000" />
+          <Property Name="Reuse" Type="varchar" MaxLength="1000" />
+          <Property Name="Sludge" Type="varchar" MaxLength="1000" />
+          <Property Name="datasource" Type="varchar(max)" />
+          <Property Name="reference" Type="varchar(max)" />
+          <Property Name="countryreferences_id" Type="smallint" Nullable="false" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+          <Property Name="WasteComposition" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="courses">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="500" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Thumbnail" Type="varchar" MaxLength="500" />
+          <Property Name="Coursenumber" Type="varchar" MaxLength="100" />
+          <Property Name="Duration" Type="varchar" MaxLength="100" />
+          <Property Name="Price" Type="varchar" MaxLength="100" />
+          <Property Name="Level" Type="varchar" MaxLength="200" />
+          <Property Name="Organizer" Type="varchar" MaxLength="1000" />
+          <Property Name="Languages" Type="varchar" MaxLength="500" />
+          <Property Name="Prerequisites" Type="varchar" MaxLength="500" />
+          <Property Name="Startdate" Type="datetime2" Precision="7" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="dashboard">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="dashboardapplication">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dashboard_ID" Type="int" />
+          <Property Name="Application_ID" Type="int" />
+          <Property Name="Permission_ID" Type="int" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="documentcategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="documents">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar(max)" />
+          <Property Name="Documentcategory_ID" Type="int" />
+          <Property Name="City_ID" Type="int" />
+          <Property Name="Region_ID" Type="int" />
+          <Property Name="Country_ID" Type="varchar" MaxLength="100" />
+          <Property Name="Geotheme_ID" Type="int" />
+          <Property Name="Attachment" Type="varchar(max)" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Datasource" Type="varchar(max)" />
+          <Property Name="Thumbnail" Type="varchar(max)" />
+          <Property Name="Keyword" Type="varchar(max)" />
+          <Property Name="Year" Type="varchar(max)" />
+          <Property Name="Publisher" Type="varchar(max)" />
+          <Property Name="Subtitle" Type="varchar(max)" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+          <Property Name="Location" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="documenttype">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Documentcategory_ID" Type="varchar" MaxLength="45" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="eventregistration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Events_ID" Type="int" />
+          <Property Name="Dateregistered" Type="datetime2" Precision="7" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="events">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="500" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Detail" Type="varchar(max)" />
+          <Property Name="Thumbnail" Type="varchar" MaxLength="45" />
+          <Property Name="Location" Type="varchar" MaxLength="100" />
+          <Property Name="Datestart" Type="datetime2" Precision="7" />
+          <Property Name="Dateend" Type="datetime2" Precision="7" />
+          <Property Name="organizer" Type="varchar" MaxLength="100" />
+          <Property Name="Country_ID" Type="int" />
+          <Property Name="Geotheme_ID" Type="int" />
+          <Property Name="Eventscategory_ID" Type="int" />
+          <Property Name="Viewsevents_ID" Type="int" />
+          <Property Name="Eventscomment_ID" Type="int" />
+          <Property Name="Eventsmedia_ID" Type="int" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="smallint" />
+          <Property Name="Referencelink" Type="varchar" MaxLength="4000" />
+        </EntityType>
+        <EntityType Name="eventscategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="eventscomment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="1000" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="expertrosters">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Lastname" Type="varchar" MaxLength="45" />
+          <Property Name="Firstname" Type="varchar" MaxLength="45" />
+          <Property Name="Position" Type="varchar" MaxLength="100" />
+          <Property Name="Organization" Type="varchar" MaxLength="100" />
+          <Property Name="Thumbnail" Type="varchar" MaxLength="100" />
+          <Property Name="Expertise" Type="varchar(max)" />
+          <Property Name="Country_id" Type="varchar" MaxLength="45" />
+          <Property Name="Expertscategory_ID" Type="int" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Viewsexpertrosters_ID" Type="int" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+          <Property Name="Social_Facebook" Type="varchar" MaxLength="100" />
+          <Property Name="Social_Twitter" Type="varchar" MaxLength="100" />
+          <Property Name="Social_Dribble" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="expertrosterscategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="faqs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Questions" Type="varchar(max)" />
+          <Property Name="Answers" Type="varchar(max)" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+          <Property Name="Sector_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="forumanswers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Forum_ID" Type="int" />
+          <Property Name="Answer" Type="varchar(max)" />
+          <Property Name="Contactanswer" Type="varchar" MaxLength="45" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="forumcontact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Designation" Type="varchar" MaxLength="100" />
+          <Property Name="number" Type="varchar" MaxLength="45" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+          <Property Name="thumbnail" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="forums">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar(max)" />
+          <Property Name="description" Type="varchar(max)" />
+          <Property Name="geotheme_id" Type="int" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+          <Property Name="Contactquestion" Type="varchar" MaxLength="45" />
+          <Property Name="ForumDate" Type="datetime2" Precision="7" />
+          <Property Name="ForumContact_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="geotheme">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="500" />
+          <Property Name="Photo" Type="varchar" MaxLength="500" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+          <Property Name="referencelink" Type="varchar" MaxLength="45" />
+          <Property Name="organization" Type="varchar" MaxLength="45" />
+          <Property Name="ordersort" Type="int" />
+        </EntityType>
+        <EntityType Name="lawpolicy">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Thumbnail" Type="varchar" MaxLength="500" />
+          <Property Name="Sector_ID" Type="int" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="news">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Detail" Type="varchar(max)" />
+          <Property Name="NewsDate" Type="datetime2" Precision="7" />
+          <Property Name="Thumbnail" Type="varchar" MaxLength="45" />
+          <Property Name="Author" Type="varchar" MaxLength="45" />
+          <Property Name="Country_ID" Type="int" />
+          <Property Name="Geotheme_ID" Type="int" />
+          <Property Name="Viewsnews_ID" Type="int" />
+          <Property Name="Newscategory_Id" Type="int" />
+          <Property Name="Newscomment_Id" Type="int" />
+          <Property Name="Newsmedia_Id" Type="int" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="newscategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="newscomment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="1000" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="newsmedia">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="privileges">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="region">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="reportcategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="sector">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="seminars">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Detail" Type="varchar(max)" />
+          <Property Name="Thumbnail" Type="varchar" MaxLength="45" />
+          <Property Name="Location" Type="varchar" MaxLength="45" />
+          <Property Name="Datestart" Type="datetime2" Precision="7" />
+          <Property Name="Dateend" Type="datetime2" Precision="7" />
+          <Property Name="Country_ID" Type="int" />
+          <Property Name="Geotheme_ID" Type="int" />
+          <Property Name="Seminarscategory_ID" Type="int" />
+          <Property Name="Seminarscontacts_ID" Type="int" />
+          <Property Name="Viewsseminar_ID" Type="int" />
+          <Property Name="Seminarscomment_ID" Type="int" />
+          <Property Name="Seminarsmedia_ID" Type="int" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+          <Property Name="Referencelink" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="seminarscategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="seminarscomment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="1000" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="seminarscontacts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Seminars_ID" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Position" Type="varchar" MaxLength="100" />
+          <Property Name="Address" Type="varchar" MaxLength="200" />
+          <Property Name="Phone" Type="varchar" MaxLength="40" />
+          <Property Name="Country" Type="varchar" MaxLength="100" />
+          <Property Name="Nationality" Type="varchar" MaxLength="100" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="seminarsmedia">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="seminarsregistration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Seminars_ID" Type="int" />
+          <Property Name="Dateregistered" Type="datetime2" Precision="7" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="subregion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Region_id" Type="varchar" MaxLength="45" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="tallbuildingfeedbackone">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="overalluseful" Type="varchar" MaxLength="45" />
+          <Property Name="technicalcontent" Type="varchar" MaxLength="45" />
+          <Property Name="speakerresult" Type="varchar" MaxLength="45" />
+          <Property Name="venueresult" Type="varchar" MaxLength="45" />
+          <Property Name="networkingresult" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="45" />
+          <Property Name="deleted" Type="smallint" />
+          <Property Name="UserTypeID" Type="int" />
+        </EntityType>
+        <EntityType Name="userprivileges">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="PrivilegeID" Type="int" Nullable="false" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="usertype">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="45" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="usertypeapps">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usertype_id" Type="int" />
+          <Property Name="application_id" Type="int" />
+          <Property Name="dateentered" Type="datetime2" Precision="7" />
+          <Property Name="deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="usertypeappsub">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usertypeapps_id" Type="int" />
+          <Property Name="application_id" Type="int" />
+          <Property Name="dateentered" Type="datetime2" Precision="7" />
+          <Property Name="deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="videoposts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="255" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Link" Type="varchar(max)" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+          <Property Name="Photo" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="videoposts_old">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="255" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="Link" Type="varchar" MaxLength="255" />
+          <Property Name="Deleted" Type="tinyint" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="views">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="viewscount" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="wastecategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Type" Type="int" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+          <Property Name="Parent" Type="int" />
+        </EntityType>
+        <EntityType Name="wastetype">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Wastecategory_ID" Type="varchar" MaxLength="45" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
+        <EntityContainer Name="KnowWasteModelStoreContainer">
+          <EntitySet Name="_logs" EntityType="Self._logs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="_reference" EntityType="Self._reference" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="_relation" EntityType="Self._relation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="_union" EntityType="Self._union" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="academicreport" EntityType="Self.academicreport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="admincity" EntityType="Self.admincity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="admincountry" EntityType="Self.admincountry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="application" EntityType="Self.application" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="backgroundpaper" EntityType="Self.backgroundpaper" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="backgroundpapercategory" EntityType="Self.backgroundpapercategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="blogs" EntityType="Self.blogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="blogscategory" EntityType="Self.blogscategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="blogscomment" EntityType="Self.blogscomment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="blogscontact" EntityType="Self.blogscontact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="blogsmedia" EntityType="Self.blogsmedia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="casestudy" EntityType="Self.casestudy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="city" EntityType="Self.city" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="citypolicy" EntityType="Self.citypolicy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="citypopulation" EntityType="Self.citypopulation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cityreferences" EntityType="Self.cityreferences" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="citywastestreams" EntityType="Self.citywastestreams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="conferences" EntityType="Self.conferences" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="conferencescategory" EntityType="Self.conferencescategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="conferencescomment" EntityType="Self.conferencescomment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="conferencescontacts" EntityType="Self.conferencescontacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="conferencesregistration" EntityType="Self.conferencesregistration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="contact" EntityType="Self.contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="country" EntityType="Self.country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="countrypolicy" EntityType="Self.countrypolicy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="countrypolicy_area" EntityType="Self.countrypolicy_area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="countrypopulation" EntityType="Self.countrypopulation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="countryreferences" EntityType="Self.countryreferences" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="countrywastestreams" EntityType="Self.countrywastestreams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="courses" EntityType="Self.courses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dashboard" EntityType="Self.dashboard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dashboardapplication" EntityType="Self.dashboardapplication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="documentcategory" EntityType="Self.documentcategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="documents" EntityType="Self.documents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="documenttype" EntityType="Self.documenttype" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="eventregistration" EntityType="Self.eventregistration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="events" EntityType="Self.events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="eventscategory" EntityType="Self.eventscategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="eventscomment" EntityType="Self.eventscomment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="expertrosters" EntityType="Self.expertrosters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="expertrosterscategory" EntityType="Self.expertrosterscategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="faqs" EntityType="Self.faqs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="forumanswers" EntityType="Self.forumanswers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="forumcontact" EntityType="Self.forumcontact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="forums" EntityType="Self.forums" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="geotheme" EntityType="Self.geotheme" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lawpolicy" EntityType="Self.lawpolicy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="news" EntityType="Self.news" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="newscategory" EntityType="Self.newscategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="newscomment" EntityType="Self.newscomment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="newsmedia" EntityType="Self.newsmedia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="privileges" EntityType="Self.privileges" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="region" EntityType="Self.region" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="reportcategory" EntityType="Self.reportcategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sector" EntityType="Self.sector" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="seminars" EntityType="Self.seminars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="seminarscategory" EntityType="Self.seminarscategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="seminarscomment" EntityType="Self.seminarscomment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="seminarscontacts" EntityType="Self.seminarscontacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="seminarsmedia" EntityType="Self.seminarsmedia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="seminarsregistration" EntityType="Self.seminarsregistration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="subregion" EntityType="Self.subregion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tallbuildingfeedbackone" EntityType="Self.tallbuildingfeedbackone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="userprivileges" EntityType="Self.userprivileges" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usertype" EntityType="Self.usertype" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usertypeapps" EntityType="Self.usertypeapps" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usertypeappsub" EntityType="Self.usertypeappsub" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="videoposts" EntityType="Self.videoposts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="videoposts_old" EntityType="Self.videoposts_old" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="views" EntityType="Self.views" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wastecategory" EntityType="Self.wastecategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wastetype" EntityType="Self.wastetype" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="countrypolicy_type" EntityType="Self.countrypolicy_type" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [countrypolicy_type].[ID] AS [ID], 
+    [countrypolicy_type].[Name] AS [Name], 
+    [countrypolicy_type].[Dateentered] AS [Dateentered], 
+    [countrypolicy_type].[Deleted] AS [Deleted]
+    FROM [dbo].[countrypolicy_type] AS [countrypolicy_type]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KnowWasteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C_logs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tablename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="tableid" Type="Int32" />
+          <Property Name="columnname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="value" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="action" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="username" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="logdate" Type="DateTime" Precision="7" />
+          <Property Name="deleted" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C_reference">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Tablename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Columnname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C_relation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Location" Type="Int16" />
+          <Property Name="Tablename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tablerel" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Sort" Type="Int32" />
+          <Property Name="Deleted" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C_union">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tablename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Columns" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="academicreport">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Author" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Thumbnail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Abstract" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Document" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Sector_ID" Type="Int32" />
+          <Property Name="Reportcategory_ID" Type="Int32" />
+          <Property Name="Posteddate" Type="DateTime" Precision="7" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+          <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="admincity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="Country_ID" Type="Int32" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="admincountry">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="Region_ID" Type="Int32" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="application">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="application_id" Type="Int32" />
+          <Property Name="dateentered" Type="DateTime" Precision="7" />
+          <Property Name="deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="backgroundpaper">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Author" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Thumbnail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Abstract" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Document" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Reportcategory_ID" Type="Int32" />
+          <Property Name="Posteddate" Type="DateTime" Precision="7" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="backgroundpapercategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="blog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Author" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Blogsdate" Type="DateTime" Precision="7" />
+          <Property Name="Thumbnail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Country_ID" Type="Int32" />
+          <Property Name="Geotheme_ID" Type="Int32" />
+          <Property Name="Viewsblogs_ID" Type="Int32" />
+          <Property Name="Blogscategory_ID" Type="Int32" />
+          <Property Name="Blogscomment_ID" Type="Int32" />
+          <Property Name="Blogsmedia_ID" Type="Int32" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+          <Property Name="ResultsArchieved" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ChallengesLessonLearned" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Replicability" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Sources" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Company" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Initiative" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EndDate" Type="DateTime" Precision="7" />
+          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="blogscategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="blogscomment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Blogs_ID" Type="Int32" />
+          <Property Name="Blogscontact_ID" Type="Int32" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="blogscontact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Thumbnail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="blogsmedia">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="casestudy">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Thumbnail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="city">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Country_ID" Type="Int32" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="citypolicy">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Legal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Year" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="City_ID" Type="Int32" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="citypopulation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City_ID" Type="Int32" />
+          <Property Name="Year" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Population" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Urbanpopulation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Area" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Incomelevel" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Source" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="cityreference">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Referencenumber" Type="Int32" />
+          <Property Name="Reference" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="City_ID" Type="Int32" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="citywastestream">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City_ID" Type="Int32" />
+          <Property Name="Year" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="estimated" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Wastecategory_ID" Type="Int32" />
+          <Property Name="Definitions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Definedby" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Totalgenerated" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Hazardous" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Totalcollected" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Recycled" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Recovered" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Disposal" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Treatment" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Reuse" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Sludge" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Datasource" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+          <Property Name="Reference" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="WasteComposition" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="conference">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Thumbnail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Datestart" Type="DateTime" Precision="7" />
+          <Property Name="Dateend" Type="DateTime" Precision="7" />
+          <Property Name="Country_ID" Type="Int32" />
+          <Property Name="Geotheme_ID" Type="Int32" />
+          <Property Name="Conferencescategory_ID" Type="Int32" />
+          <Property Name="Conferencescontacts_ID" Type="Int32" />
+          <Property Name="Viewconferences_ID" Type="Int32" />
+          <Property Name="Conferencescomment_ID" Type="Int32" />
+          <Property Name="conferencesmedia_ID" Type="Int32" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+          <Property Name="Referencelink" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="conferencescategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="conferencescomment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="conferencescontact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Nationality" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="conferencesregistration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="conferences_ID" Type="Int32" />
+          <Property Name="Dateregistered" Type="DateTime" Precision="7" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="contact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SubRegion_ID" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="countrypolicy">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Legal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Year" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Country_ID" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+          <Property Name="code_number" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Type_ID" Type="Int32" />
+          <Property Name="Area_ID" Type="Int32" />
+          <Property Name="WasteCategory_ID" Type="Int32" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="countrypolicy_area">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type_ID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="countrypopulation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Country_ID" Type="Int32" />
+          <Property Name="Population" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Urbanpopulation" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Area" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Incomelevel" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Source" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="countryreference">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Referencenumber" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Reference" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Country_ID" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="countrywastestream">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="countryreferences_id" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="estimated" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Country_ID" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Wastecategory_ID" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Definitions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Definedby" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Totalgenerated" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="Hazardous" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Totalcollected" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="Recycled" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="Recovered" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="Disposal" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="Treatment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Reuse" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Sludge" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="datasource" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="reference" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="countryreferences_id" Type="Int16" Nullable="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+          <Property Name="WasteComposition" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="cours">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Thumbnail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Coursenumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Duration" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Level" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Organizer" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Languages" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Prerequisites" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Startdate" Type="DateTime" Precision="7" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="dashboard">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="dashboardapplication">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dashboard_ID" Type="Int32" />
+          <Property Name="Application_ID" Type="Int32" />
+          <Property Name="Permission_ID" Type="Int32" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="documentcategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="document">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Documentcategory_ID" Type="Int32" />
+          <Property Name="City_ID" Type="Int32" />
+          <Property Name="Region_ID" Type="Int32" />
+          <Property Name="Country_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Geotheme_ID" Type="Int32" />
+          <Property Name="Attachment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Datasource" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Thumbnail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Keyword" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Year" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Publisher" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Subtitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="documenttype">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Documentcategory_ID" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="eventregistration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Events_ID" Type="Int32" />
+          <Property Name="Dateregistered" Type="DateTime" Precision="7" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="event">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Thumbnail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Datestart" Type="DateTime" Precision="7" />
+          <Property Name="Dateend" Type="DateTime" Precision="7" />
+          <Property Name="organizer" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Country_ID" Type="Int32" />
+          <Property Name="Geotheme_ID" Type="Int32" />
+          <Property Name="Eventscategory_ID" Type="Int32" />
+          <Property Name="Viewsevents_ID" Type="Int32" />
+          <Property Name="Eventscomment_ID" Type="Int32" />
+          <Property Name="Eventsmedia_ID" Type="Int32" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Int16" />
+          <Property Name="Referencelink" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="eventscategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="eventscomment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="expertroster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Lastname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Firstname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Organization" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Thumbnail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Expertise" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Country_id" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Expertscategory_ID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Viewsexpertrosters_ID" Type="Int32" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+          <Property Name="Social_Facebook" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Social_Twitter" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Social_Dribble" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="expertrosterscategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="faq">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Questions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answers" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+          <Property Name="Sector_ID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="forumanswer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Forum_ID" Type="Int32" />
+          <Property Name="Answer" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Contactanswer" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="forumcontact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Designation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="number" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+          <Property Name="thumbnail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="forum">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="geotheme_id" Type="Int32" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+          <Property Name="Contactquestion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ForumDate" Type="DateTime" Precision="7" />
+          <Property Name="ForumContact_ID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="geotheme">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Photo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+          <Property Name="referencelink" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="organization" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ordersort" Type="Int32" />
+        </EntityType>
+        <EntityType Name="lawpolicy">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Thumbnail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Sector_ID" Type="Int32" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="news">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NewsDate" Type="DateTime" Precision="7" />
+          <Property Name="Thumbnail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Author" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Country_ID" Type="Int32" />
+          <Property Name="Geotheme_ID" Type="Int32" />
+          <Property Name="Viewsnews_ID" Type="Int32" />
+          <Property Name="Newscategory_Id" Type="Int32" />
+          <Property Name="Newscomment_Id" Type="Int32" />
+          <Property Name="Newsmedia_Id" Type="Int32" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="newscategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="newscomment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="newsmedia">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="privilege">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="region">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="reportcategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="sector">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="seminar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Thumbnail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Datestart" Type="DateTime" Precision="7" />
+          <Property Name="Dateend" Type="DateTime" Precision="7" />
+          <Property Name="Country_ID" Type="Int32" />
+          <Property Name="Geotheme_ID" Type="Int32" />
+          <Property Name="Seminarscategory_ID" Type="Int32" />
+          <Property Name="Seminarscontacts_ID" Type="Int32" />
+          <Property Name="Viewsseminar_ID" Type="Int32" />
+          <Property Name="Seminarscomment_ID" Type="Int32" />
+          <Property Name="Seminarsmedia_ID" Type="Int32" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+          <Property Name="Referencelink" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="seminarscategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="seminarscomment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="seminarscontact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Seminars_ID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Nationality" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="seminarsmedia">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="seminarsregistration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Seminars_ID" Type="Int32" />
+          <Property Name="Dateregistered" Type="DateTime" Precision="7" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="subregion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Region_id" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="tallbuildingfeedbackone">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="overalluseful" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="technicalcontent" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="speakerresult" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="venueresult" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="networkingresult" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="deleted" Type="Int16" />
+          <Property Name="UserTypeID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="userprivilege">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="PrivilegeID" Type="Int32" Nullable="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="usertype">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="usertypeapp">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usertype_id" Type="Int32" />
+          <Property Name="application_id" Type="Int32" />
+          <Property Name="dateentered" Type="DateTime" Precision="7" />
+          <Property Name="deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="usertypeappsub">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usertypeapps_id" Type="Int32" />
+          <Property Name="application_id" Type="Int32" />
+          <Property Name="dateentered" Type="DateTime" Precision="7" />
+          <Property Name="deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="videopost">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="videoposts_old">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Link" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Deleted" Type="Byte" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+        </EntityType>
+        <EntityType Name="view">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="viewscount" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="wastecategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+          <Property Name="Parent" Type="Int32" />
+        </EntityType>
+        <EntityType Name="wastetype">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Wastecategory_ID" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="countrypolicy_type">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityContainer Name="KnowWasteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C_logs" EntityType="Self.C_logs" />
+          <EntitySet Name="C_reference" EntityType="Self.C_reference" />
+          <EntitySet Name="C_relation" EntityType="Self.C_relation" />
+          <EntitySet Name="C_union" EntityType="Self.C_union" />
+          <EntitySet Name="academicreports" EntityType="Self.academicreport" />
+          <EntitySet Name="admincities" EntityType="Self.admincity" />
+          <EntitySet Name="admincountries" EntityType="Self.admincountry" />
+          <EntitySet Name="applications" EntityType="Self.application" />
+          <EntitySet Name="backgroundpapers" EntityType="Self.backgroundpaper" />
+          <EntitySet Name="backgroundpapercategories" EntityType="Self.backgroundpapercategory" />
+          <EntitySet Name="blogs" EntityType="Self.blog" />
+          <EntitySet Name="blogscategories" EntityType="Self.blogscategory" />
+          <EntitySet Name="blogscomments" EntityType="Self.blogscomment" />
+          <EntitySet Name="blogscontacts" EntityType="Self.blogscontact" />
+          <EntitySet Name="blogsmedias" EntityType="Self.blogsmedia" />
+          <EntitySet Name="casestudies" EntityType="Self.casestudy" />
+          <EntitySet Name="cities" EntityType="Self.city" />
+          <EntitySet Name="citypolicies" EntityType="Self.citypolicy" />
+          <EntitySet Name="citypopulations" EntityType="Self.citypopulation" />
+          <EntitySet Name="cityreferences" EntityType="Self.cityreference" />
+          <EntitySet Name="citywastestreams" EntityType="Self.citywastestream" />
+          <EntitySet Name="conferences" EntityType="Self.conference" />
+          <EntitySet Name="conferencescategories" EntityType="Self.conferencescategory" />
+          <EntitySet Name="conferencescomments" EntityType="Self.conferencescomment" />
+          <EntitySet Name="conferencescontacts" EntityType="Self.conferencescontact" />
+          <EntitySet Name="conferencesregistrations" EntityType="Self.conferencesregistration" />
+          <EntitySet Name="contacts" EntityType="Self.contact" />
+          <EntitySet Name="countries" EntityType="Self.country" />
+          <EntitySet Name="countrypolicies" EntityType="Self.countrypolicy" />
+          <EntitySet Name="countrypolicy_area" EntityType="Self.countrypolicy_area" />
+          <EntitySet Name="countrypopulations" EntityType="Self.countrypopulation" />
+          <EntitySet Name="countryreferences" EntityType="Self.countryreference" />
+          <EntitySet Name="countrywastestreams" EntityType="Self.countrywastestream" />
+          <EntitySet Name="courses" EntityType="Self.cours" />
+          <EntitySet Name="dashboards" EntityType="Self.dashboard" />
+          <EntitySet Name="dashboardapplications" EntityType="Self.dashboardapplication" />
+          <EntitySet Name="documentcategories" EntityType="Self.documentcategory" />
+          <EntitySet Name="documents" EntityType="Self.document" />
+          <EntitySet Name="documenttypes" EntityType="Self.documenttype" />
+          <EntitySet Name="eventregistrations" EntityType="Self.eventregistration" />
+          <EntitySet Name="events" EntityType="Self.event" />
+          <EntitySet Name="eventscategories" EntityType="Self.eventscategory" />
+          <EntitySet Name="eventscomments" EntityType="Self.eventscomment" />
+          <EntitySet Name="expertrosters" EntityType="Self.expertroster" />
+          <EntitySet Name="expertrosterscategories" EntityType="Self.expertrosterscategory" />
+          <EntitySet Name="faqs" EntityType="Self.faq" />
+          <EntitySet Name="forumanswers" EntityType="Self.forumanswer" />
+          <EntitySet Name="forumcontacts" EntityType="Self.forumcontact" />
+          <EntitySet Name="forums" EntityType="Self.forum" />
+          <EntitySet Name="geothemes" EntityType="Self.geotheme" />
+          <EntitySet Name="lawpolicies" EntityType="Self.lawpolicy" />
+          <EntitySet Name="news" EntityType="Self.news" />
+          <EntitySet Name="newscategories" EntityType="Self.newscategory" />
+          <EntitySet Name="newscomments" EntityType="Self.newscomment" />
+          <EntitySet Name="newsmedias" EntityType="Self.newsmedia" />
+          <EntitySet Name="privileges" EntityType="Self.privilege" />
+          <EntitySet Name="regions" EntityType="Self.region" />
+          <EntitySet Name="reportcategories" EntityType="Self.reportcategory" />
+          <EntitySet Name="sectors" EntityType="Self.sector" />
+          <EntitySet Name="seminars" EntityType="Self.seminar" />
+          <EntitySet Name="seminarscategories" EntityType="Self.seminarscategory" />
+          <EntitySet Name="seminarscomments" EntityType="Self.seminarscomment" />
+          <EntitySet Name="seminarscontacts" EntityType="Self.seminarscontact" />
+          <EntitySet Name="seminarsmedias" EntityType="Self.seminarsmedia" />
+          <EntitySet Name="seminarsregistrations" EntityType="Self.seminarsregistration" />
+          <EntitySet Name="subregions" EntityType="Self.subregion" />
+          <EntitySet Name="tallbuildingfeedbackones" EntityType="Self.tallbuildingfeedbackone" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="userprivileges" EntityType="Self.userprivilege" />
+          <EntitySet Name="usertypes" EntityType="Self.usertype" />
+          <EntitySet Name="usertypeapps" EntityType="Self.usertypeapp" />
+          <EntitySet Name="usertypeappsubs" EntityType="Self.usertypeappsub" />
+          <EntitySet Name="videoposts" EntityType="Self.videopost" />
+          <EntitySet Name="videoposts_old" EntityType="Self.videoposts_old" />
+          <EntitySet Name="views" EntityType="Self.view" />
+          <EntitySet Name="wastecategories" EntityType="Self.wastecategory" />
+          <EntitySet Name="wastetypes" EntityType="Self.wastetype" />
+          <EntitySet Name="countrypolicy_type" EntityType="Self.countrypolicy_type" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KnowWasteModelStoreContainer" CdmEntityContainer="KnowWasteEntities">
+          <EntitySetMapping Name="C_logs">
+            <EntityTypeMapping TypeName="KnowWasteModel.C_logs">
+              <MappingFragment StoreEntitySet="_logs">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="tablename" ColumnName="tablename" />
+                <ScalarProperty Name="tableid" ColumnName="tableid" />
+                <ScalarProperty Name="columnname" ColumnName="columnname" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="action" ColumnName="action" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="logdate" ColumnName="logdate" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_reference">
+            <EntityTypeMapping TypeName="KnowWasteModel.C_reference">
+              <MappingFragment StoreEntitySet="_reference">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Tablename" ColumnName="Tablename" />
+                <ScalarProperty Name="Columnname" ColumnName="Columnname" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_relation">
+            <EntityTypeMapping TypeName="KnowWasteModel.C_relation">
+              <MappingFragment StoreEntitySet="_relation">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Tablename" ColumnName="Tablename" />
+                <ScalarProperty Name="Tablerel" ColumnName="Tablerel" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_union">
+            <EntityTypeMapping TypeName="KnowWasteModel.C_union">
+              <MappingFragment StoreEntitySet="_union">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Tablename" ColumnName="Tablename" />
+                <ScalarProperty Name="Columns" ColumnName="Columns" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="academicreports">
+            <EntityTypeMapping TypeName="KnowWasteModel.academicreport">
+              <MappingFragment StoreEntitySet="academicreport">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="Abstract" ColumnName="Abstract" />
+                <ScalarProperty Name="Document" ColumnName="Document" />
+                <ScalarProperty Name="Sector_ID" ColumnName="Sector_ID" />
+                <ScalarProperty Name="Reportcategory_ID" ColumnName="Reportcategory_ID" />
+                <ScalarProperty Name="Posteddate" ColumnName="Posteddate" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="admincities">
+            <EntityTypeMapping TypeName="KnowWasteModel.admincity">
+              <MappingFragment StoreEntitySet="admincity">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="admincountries">
+            <EntityTypeMapping TypeName="KnowWasteModel.admincountry">
+              <MappingFragment StoreEntitySet="admincountry">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Region_ID" ColumnName="Region_ID" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applications">
+            <EntityTypeMapping TypeName="KnowWasteModel.application">
+              <MappingFragment StoreEntitySet="application">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="application_id" ColumnName="application_id" />
+                <ScalarProperty Name="dateentered" ColumnName="dateentered" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="backgroundpapers">
+            <EntityTypeMapping TypeName="KnowWasteModel.backgroundpaper">
+              <MappingFragment StoreEntitySet="backgroundpaper">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="Abstract" ColumnName="Abstract" />
+                <ScalarProperty Name="Document" ColumnName="Document" />
+                <ScalarProperty Name="Reportcategory_ID" ColumnName="Reportcategory_ID" />
+                <ScalarProperty Name="Posteddate" ColumnName="Posteddate" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="backgroundpapercategories">
+            <EntityTypeMapping TypeName="KnowWasteModel.backgroundpapercategory">
+              <MappingFragment StoreEntitySet="backgroundpapercategory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="blogs">
+            <EntityTypeMapping TypeName="KnowWasteModel.blog">
+              <MappingFragment StoreEntitySet="blogs">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Blogsdate" ColumnName="Blogsdate" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+                <ScalarProperty Name="Geotheme_ID" ColumnName="Geotheme_ID" />
+                <ScalarProperty Name="Viewsblogs_ID" ColumnName="Viewsblogs_ID" />
+                <ScalarProperty Name="Blogscategory_ID" ColumnName="Blogscategory_ID" />
+                <ScalarProperty Name="Blogscomment_ID" ColumnName="Blogscomment_ID" />
+                <ScalarProperty Name="Blogsmedia_ID" ColumnName="Blogsmedia_ID" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="ResultsArchieved" ColumnName="ResultsArchieved" />
+                <ScalarProperty Name="ChallengesLessonLearned" ColumnName="ChallengesLessonLearned" />
+                <ScalarProperty Name="Replicability" ColumnName="Replicability" />
+                <ScalarProperty Name="Sources" ColumnName="Sources" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Initiative" ColumnName="Initiative" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="blogscategories">
+            <EntityTypeMapping TypeName="KnowWasteModel.blogscategory">
+              <MappingFragment StoreEntitySet="blogscategory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="blogscomments">
+            <EntityTypeMapping TypeName="KnowWasteModel.blogscomment">
+              <MappingFragment StoreEntitySet="blogscomment">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Blogs_ID" ColumnName="Blogs_ID" />
+                <ScalarProperty Name="Blogscontact_ID" ColumnName="Blogscontact_ID" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="blogscontacts">
+            <EntityTypeMapping TypeName="KnowWasteModel.blogscontact">
+              <MappingFragment StoreEntitySet="blogscontact">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="blogsmedias">
+            <EntityTypeMapping TypeName="KnowWasteModel.blogsmedia">
+              <MappingFragment StoreEntitySet="blogsmedia">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="casestudies">
+            <EntityTypeMapping TypeName="KnowWasteModel.casestudy">
+              <MappingFragment StoreEntitySet="casestudy">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cities">
+            <EntityTypeMapping TypeName="KnowWasteModel.city">
+              <MappingFragment StoreEntitySet="city">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="citypolicies">
+            <EntityTypeMapping TypeName="KnowWasteModel.citypolicy">
+              <MappingFragment StoreEntitySet="citypolicy">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Legal" ColumnName="Legal" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="citypopulations">
+            <EntityTypeMapping TypeName="KnowWasteModel.citypopulation">
+              <MappingFragment StoreEntitySet="citypopulation">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Population" ColumnName="Population" />
+                <ScalarProperty Name="Urbanpopulation" ColumnName="Urbanpopulation" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Incomelevel" ColumnName="Incomelevel" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cityreferences">
+            <EntityTypeMapping TypeName="KnowWasteModel.cityreference">
+              <MappingFragment StoreEntitySet="cityreferences">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Referencenumber" ColumnName="Referencenumber" />
+                <ScalarProperty Name="Reference" ColumnName="Reference" />
+                <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="citywastestreams">
+            <EntityTypeMapping TypeName="KnowWasteModel.citywastestream">
+              <MappingFragment StoreEntitySet="citywastestreams">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="estimated" ColumnName="estimated" />
+                <ScalarProperty Name="Wastecategory_ID" ColumnName="Wastecategory_ID" />
+                <ScalarProperty Name="Definitions" ColumnName="Definitions" />
+                <ScalarProperty Name="Definedby" ColumnName="Definedby" />
+                <ScalarProperty Name="Totalgenerated" ColumnName="Totalgenerated" />
+                <ScalarProperty Name="Hazardous" ColumnName="Hazardous" />
+                <ScalarProperty Name="Totalcollected" ColumnName="Totalcollected" />
+                <ScalarProperty Name="Recycled" ColumnName="Recycled" />
+                <ScalarProperty Name="Recovered" ColumnName="Recovered" />
+                <ScalarProperty Name="Disposal" ColumnName="Disposal" />
+                <ScalarProperty Name="Treatment" ColumnName="Treatment" />
+                <ScalarProperty Name="Reuse" ColumnName="Reuse" />
+                <ScalarProperty Name="Sludge" ColumnName="Sludge" />
+                <ScalarProperty Name="Datasource" ColumnName="Datasource" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Reference" ColumnName="Reference" />
+                <ScalarProperty Name="WasteComposition" ColumnName="WasteComposition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="conferences">
+            <EntityTypeMapping TypeName="KnowWasteModel.conference">
+              <MappingFragment StoreEntitySet="conferences">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Datestart" ColumnName="Datestart" />
+                <ScalarProperty Name="Dateend" ColumnName="Dateend" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+                <ScalarProperty Name="Geotheme_ID" ColumnName="Geotheme_ID" />
+                <ScalarProperty Name="Conferencescategory_ID" ColumnName="Conferencescategory_ID" />
+                <ScalarProperty Name="Conferencescontacts_ID" ColumnName="Conferencescontacts_ID" />
+                <ScalarProperty Name="Viewconferences_ID" ColumnName="Viewconferences_ID" />
+                <ScalarProperty Name="Conferencescomment_ID" ColumnName="Conferencescomment_ID" />
+                <ScalarProperty Name="conferencesmedia_ID" ColumnName="conferencesmedia_ID" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Referencelink" ColumnName="Referencelink" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="conferencescategories">
+            <EntityTypeMapping TypeName="KnowWasteModel.conferencescategory">
+              <MappingFragment StoreEntitySet="conferencescategory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="conferencescomments">
+            <EntityTypeMapping TypeName="KnowWasteModel.conferencescomment">
+              <MappingFragment StoreEntitySet="conferencescomment">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="conferencescontacts">
+            <EntityTypeMapping TypeName="KnowWasteModel.conferencescontact">
+              <MappingFragment StoreEntitySet="conferencescontacts">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="conferencesregistrations">
+            <EntityTypeMapping TypeName="KnowWasteModel.conferencesregistration">
+              <MappingFragment StoreEntitySet="conferencesregistration">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="conferences_ID" ColumnName="conferences_ID" />
+                <ScalarProperty Name="Dateregistered" ColumnName="Dateregistered" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contacts">
+            <EntityTypeMapping TypeName="KnowWasteModel.contact">
+              <MappingFragment StoreEntitySet="contact">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="KnowWasteModel.country">
+              <MappingFragment StoreEntitySet="country">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SubRegion_ID" ColumnName="SubRegion_ID" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countrypolicies">
+            <EntityTypeMapping TypeName="KnowWasteModel.countrypolicy">
+              <MappingFragment StoreEntitySet="countrypolicy">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Legal" ColumnName="Legal" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="code_number" ColumnName="code_number" />
+                <ScalarProperty Name="Type_ID" ColumnName="Type_ID" />
+                <ScalarProperty Name="Area_ID" ColumnName="Area_ID" />
+                <ScalarProperty Name="WasteCategory_ID" ColumnName="WasteCategory_ID" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countrypolicy_area">
+            <EntityTypeMapping TypeName="KnowWasteModel.countrypolicy_area">
+              <MappingFragment StoreEntitySet="countrypolicy_area">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Type_ID" ColumnName="Type_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countrypopulations">
+            <EntityTypeMapping TypeName="KnowWasteModel.countrypopulation">
+              <MappingFragment StoreEntitySet="countrypopulation">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+                <ScalarProperty Name="Population" ColumnName="Population" />
+                <ScalarProperty Name="Urbanpopulation" ColumnName="Urbanpopulation" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Incomelevel" ColumnName="Incomelevel" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countryreferences">
+            <EntityTypeMapping TypeName="KnowWasteModel.countryreference">
+              <MappingFragment StoreEntitySet="countryreferences">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Referencenumber" ColumnName="Referencenumber" />
+                <ScalarProperty Name="Reference" ColumnName="Reference" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countrywastestreams">
+            <EntityTypeMapping TypeName="KnowWasteModel.countrywastestream">
+              <MappingFragment StoreEntitySet="countrywastestreams">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="estimated" ColumnName="estimated" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+                <ScalarProperty Name="Wastecategory_ID" ColumnName="Wastecategory_ID" />
+                <ScalarProperty Name="Definitions" ColumnName="Definitions" />
+                <ScalarProperty Name="Definedby" ColumnName="Definedby" />
+                <ScalarProperty Name="Totalgenerated" ColumnName="Totalgenerated" />
+                <ScalarProperty Name="Hazardous" ColumnName="Hazardous" />
+                <ScalarProperty Name="Totalcollected" ColumnName="Totalcollected" />
+                <ScalarProperty Name="Recycled" ColumnName="Recycled" />
+                <ScalarProperty Name="Recovered" ColumnName="Recovered" />
+                <ScalarProperty Name="Disposal" ColumnName="Disposal" />
+                <ScalarProperty Name="Treatment" ColumnName="Treatment" />
+                <ScalarProperty Name="Reuse" ColumnName="Reuse" />
+                <ScalarProperty Name="Sludge" ColumnName="Sludge" />
+                <ScalarProperty Name="datasource" ColumnName="datasource" />
+                <ScalarProperty Name="reference" ColumnName="reference" />
+                <ScalarProperty Name="countryreferences_id" ColumnName="countryreferences_id" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="WasteComposition" ColumnName="WasteComposition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="courses">
+            <EntityTypeMapping TypeName="KnowWasteModel.cours">
+              <MappingFragment StoreEntitySet="courses">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="Coursenumber" ColumnName="Coursenumber" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Organizer" ColumnName="Organizer" />
+                <ScalarProperty Name="Languages" ColumnName="Languages" />
+                <ScalarProperty Name="Prerequisites" ColumnName="Prerequisites" />
+                <ScalarProperty Name="Startdate" ColumnName="Startdate" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dashboards">
+            <EntityTypeMapping TypeName="KnowWasteModel.dashboard">
+              <MappingFragment StoreEntitySet="dashboard">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dashboardapplications">
+            <EntityTypeMapping TypeName="KnowWasteModel.dashboardapplication">
+              <MappingFragment StoreEntitySet="dashboardapplication">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Dashboard_ID" ColumnName="Dashboard_ID" />
+                <ScalarProperty Name="Application_ID" ColumnName="Application_ID" />
+                <ScalarProperty Name="Permission_ID" ColumnName="Permission_ID" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="documentcategories">
+            <EntityTypeMapping TypeName="KnowWasteModel.documentcategory">
+              <MappingFragment StoreEntitySet="documentcategory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="documents">
+            <EntityTypeMapping TypeName="KnowWasteModel.document">
+              <MappingFragment StoreEntitySet="documents">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Documentcategory_ID" ColumnName="Documentcategory_ID" />
+                <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+                <ScalarProperty Name="Region_ID" ColumnName="Region_ID" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+                <ScalarProperty Name="Geotheme_ID" ColumnName="Geotheme_ID" />
+                <ScalarProperty Name="Attachment" ColumnName="Attachment" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Datasource" ColumnName="Datasource" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="Keyword" ColumnName="Keyword" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+                <ScalarProperty Name="Subtitle" ColumnName="Subtitle" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="documenttypes">
+            <EntityTypeMapping TypeName="KnowWasteModel.documenttype">
+              <MappingFragment StoreEntitySet="documenttype">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Documentcategory_ID" ColumnName="Documentcategory_ID" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eventregistrations">
+            <EntityTypeMapping TypeName="KnowWasteModel.eventregistration">
+              <MappingFragment StoreEntitySet="eventregistration">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Events_ID" ColumnName="Events_ID" />
+                <ScalarProperty Name="Dateregistered" ColumnName="Dateregistered" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="events">
+            <EntityTypeMapping TypeName="KnowWasteModel.event">
+              <MappingFragment StoreEntitySet="events">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Datestart" ColumnName="Datestart" />
+                <ScalarProperty Name="Dateend" ColumnName="Dateend" />
+                <ScalarProperty Name="organizer" ColumnName="organizer" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+                <ScalarProperty Name="Geotheme_ID" ColumnName="Geotheme_ID" />
+                <ScalarProperty Name="Eventscategory_ID" ColumnName="Eventscategory_ID" />
+                <ScalarProperty Name="Viewsevents_ID" ColumnName="Viewsevents_ID" />
+                <ScalarProperty Name="Eventscomment_ID" ColumnName="Eventscomment_ID" />
+                <ScalarProperty Name="Eventsmedia_ID" ColumnName="Eventsmedia_ID" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Referencelink" ColumnName="Referencelink" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eventscategories">
+            <EntityTypeMapping TypeName="KnowWasteModel.eventscategory">
+              <MappingFragment StoreEntitySet="eventscategory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eventscomments">
+            <EntityTypeMapping TypeName="KnowWasteModel.eventscomment">
+              <MappingFragment StoreEntitySet="eventscomment">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="expertrosters">
+            <EntityTypeMapping TypeName="KnowWasteModel.expertroster">
+              <MappingFragment StoreEntitySet="expertrosters">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Organization" ColumnName="Organization" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="Expertise" ColumnName="Expertise" />
+                <ScalarProperty Name="Country_id" ColumnName="Country_id" />
+                <ScalarProperty Name="Expertscategory_ID" ColumnName="Expertscategory_ID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Viewsexpertrosters_ID" ColumnName="Viewsexpertrosters_ID" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Social_Facebook" ColumnName="Social_Facebook" />
+                <ScalarProperty Name="Social_Twitter" ColumnName="Social_Twitter" />
+                <ScalarProperty Name="Social_Dribble" ColumnName="Social_Dribble" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="expertrosterscategories">
+            <EntityTypeMapping TypeName="KnowWasteModel.expertrosterscategory">
+              <MappingFragment StoreEntitySet="expertrosterscategory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="faqs">
+            <EntityTypeMapping TypeName="KnowWasteModel.faq">
+              <MappingFragment StoreEntitySet="faqs">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Questions" ColumnName="Questions" />
+                <ScalarProperty Name="Answers" ColumnName="Answers" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Sector_ID" ColumnName="Sector_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="forumanswers">
+            <EntityTypeMapping TypeName="KnowWasteModel.forumanswer">
+              <MappingFragment StoreEntitySet="forumanswers">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Forum_ID" ColumnName="Forum_ID" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="Contactanswer" ColumnName="Contactanswer" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="forumcontacts">
+            <EntityTypeMapping TypeName="KnowWasteModel.forumcontact">
+              <MappingFragment StoreEntitySet="forumcontact">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="forums">
+            <EntityTypeMapping TypeName="KnowWasteModel.forum">
+              <MappingFragment StoreEntitySet="forums">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="geotheme_id" ColumnName="geotheme_id" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Contactquestion" ColumnName="Contactquestion" />
+                <ScalarProperty Name="ForumDate" ColumnName="ForumDate" />
+                <ScalarProperty Name="ForumContact_ID" ColumnName="ForumContact_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="geothemes">
+            <EntityTypeMapping TypeName="KnowWasteModel.geotheme">
+              <MappingFragment StoreEntitySet="geotheme">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="referencelink" ColumnName="referencelink" />
+                <ScalarProperty Name="organization" ColumnName="organization" />
+                <ScalarProperty Name="ordersort" ColumnName="ordersort" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lawpolicies">
+            <EntityTypeMapping TypeName="KnowWasteModel.lawpolicy">
+              <MappingFragment StoreEntitySet="lawpolicy">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="Sector_ID" ColumnName="Sector_ID" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="news">
+            <EntityTypeMapping TypeName="KnowWasteModel.news">
+              <MappingFragment StoreEntitySet="news">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="NewsDate" ColumnName="NewsDate" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+                <ScalarProperty Name="Geotheme_ID" ColumnName="Geotheme_ID" />
+                <ScalarProperty Name="Viewsnews_ID" ColumnName="Viewsnews_ID" />
+                <ScalarProperty Name="Newscategory_Id" ColumnName="Newscategory_Id" />
+                <ScalarProperty Name="Newscomment_Id" ColumnName="Newscomment_Id" />
+                <ScalarProperty Name="Newsmedia_Id" ColumnName="Newsmedia_Id" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="newscategories">
+            <EntityTypeMapping TypeName="KnowWasteModel.newscategory">
+              <MappingFragment StoreEntitySet="newscategory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="newscomments">
+            <EntityTypeMapping TypeName="KnowWasteModel.newscomment">
+              <MappingFragment StoreEntitySet="newscomment">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="newsmedias">
+            <EntityTypeMapping TypeName="KnowWasteModel.newsmedia">
+              <MappingFragment StoreEntitySet="newsmedia">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="privileges">
+            <EntityTypeMapping TypeName="KnowWasteModel.privilege">
+              <MappingFragment StoreEntitySet="privileges">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="regions">
+            <EntityTypeMapping TypeName="KnowWasteModel.region">
+              <MappingFragment StoreEntitySet="region">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reportcategories">
+            <EntityTypeMapping TypeName="KnowWasteModel.reportcategory">
+              <MappingFragment StoreEntitySet="reportcategory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sectors">
+            <EntityTypeMapping TypeName="KnowWasteModel.sector">
+              <MappingFragment StoreEntitySet="sector">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="seminars">
+            <EntityTypeMapping TypeName="KnowWasteModel.seminar">
+              <MappingFragment StoreEntitySet="seminars">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Datestart" ColumnName="Datestart" />
+                <ScalarProperty Name="Dateend" ColumnName="Dateend" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+                <ScalarProperty Name="Geotheme_ID" ColumnName="Geotheme_ID" />
+                <ScalarProperty Name="Seminarscategory_ID" ColumnName="Seminarscategory_ID" />
+                <ScalarProperty Name="Seminarscontacts_ID" ColumnName="Seminarscontacts_ID" />
+                <ScalarProperty Name="Viewsseminar_ID" ColumnName="Viewsseminar_ID" />
+                <ScalarProperty Name="Seminarscomment_ID" ColumnName="Seminarscomment_ID" />
+                <ScalarProperty Name="Seminarsmedia_ID" ColumnName="Seminarsmedia_ID" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Referencelink" ColumnName="Referencelink" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="seminarscategories">
+            <EntityTypeMapping TypeName="KnowWasteModel.seminarscategory">
+              <MappingFragment StoreEntitySet="seminarscategory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="seminarscomments">
+            <EntityTypeMapping TypeName="KnowWasteModel.seminarscomment">
+              <MappingFragment StoreEntitySet="seminarscomment">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="seminarscontacts">
+            <EntityTypeMapping TypeName="KnowWasteModel.seminarscontact">
+              <MappingFragment StoreEntitySet="seminarscontacts">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Seminars_ID" ColumnName="Seminars_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="seminarsmedias">
+            <EntityTypeMapping TypeName="KnowWasteModel.seminarsmedia">
+              <MappingFragment StoreEntitySet="seminarsmedia">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="seminarsregistrations">
+            <EntityTypeMapping TypeName="KnowWasteModel.seminarsregistration">
+              <MappingFragment StoreEntitySet="seminarsregistration">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Seminars_ID" ColumnName="Seminars_ID" />
+                <ScalarProperty Name="Dateregistered" ColumnName="Dateregistered" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="subregions">
+            <EntityTypeMapping TypeName="KnowWasteModel.subregion">
+              <MappingFragment StoreEntitySet="subregion">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Region_id" ColumnName="Region_id" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tallbuildingfeedbackones">
+            <EntityTypeMapping TypeName="KnowWasteModel.tallbuildingfeedbackone">
+              <MappingFragment StoreEntitySet="tallbuildingfeedbackone">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="overalluseful" ColumnName="overalluseful" />
+                <ScalarProperty Name="technicalcontent" ColumnName="technicalcontent" />
+                <ScalarProperty Name="speakerresult" ColumnName="speakerresult" />
+                <ScalarProperty Name="venueresult" ColumnName="venueresult" />
+                <ScalarProperty Name="networkingresult" ColumnName="networkingresult" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="KnowWasteModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userprivileges">
+            <EntityTypeMapping TypeName="KnowWasteModel.userprivilege">
+              <MappingFragment StoreEntitySet="userprivileges">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PrivilegeID" ColumnName="PrivilegeID" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usertypes">
+            <EntityTypeMapping TypeName="KnowWasteModel.usertype">
+              <MappingFragment StoreEntitySet="usertype">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usertypeapps">
+            <EntityTypeMapping TypeName="KnowWasteModel.usertypeapp">
+              <MappingFragment StoreEntitySet="usertypeapps">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="usertype_id" ColumnName="usertype_id" />
+                <ScalarProperty Name="application_id" ColumnName="application_id" />
+                <ScalarProperty Name="dateentered" ColumnName="dateentered" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usertypeappsubs">
+            <EntityTypeMapping TypeName="KnowWasteModel.usertypeappsub">
+              <MappingFragment StoreEntitySet="usertypeappsub">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="usertypeapps_id" ColumnName="usertypeapps_id" />
+                <ScalarProperty Name="application_id" ColumnName="application_id" />
+                <ScalarProperty Name="dateentered" ColumnName="dateentered" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="videoposts">
+            <EntityTypeMapping TypeName="KnowWasteModel.videopost">
+              <MappingFragment StoreEntitySet="videoposts">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="videoposts_old">
+            <EntityTypeMapping TypeName="KnowWasteModel.videoposts_old">
+              <MappingFragment StoreEntitySet="videoposts_old">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="views">
+            <EntityTypeMapping TypeName="KnowWasteModel.view">
+              <MappingFragment StoreEntitySet="views">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="viewscount" ColumnName="viewscount" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wastecategories">
+            <EntityTypeMapping TypeName="KnowWasteModel.wastecategory">
+              <MappingFragment StoreEntitySet="wastecategory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Parent" ColumnName="Parent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wastetypes">
+            <EntityTypeMapping TypeName="KnowWasteModel.wastetype">
+              <MappingFragment StoreEntitySet="wastetype">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Wastecategory_ID" ColumnName="Wastecategory_ID" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countrypolicy_type">
+            <EntityTypeMapping TypeName="KnowWasteModel.countrypolicy_type">
+              <MappingFragment StoreEntitySet="countrypolicy_type">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
