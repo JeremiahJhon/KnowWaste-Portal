@@ -6560,6 +6560,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\documents\Lawpolicy\" />
     <Folder Include="Content\script\" />
+    <Folder Include="Data\" />
     <Folder Include="Documents\News\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\Search\" />
