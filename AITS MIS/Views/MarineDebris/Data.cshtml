@@ -1028,6 +1028,7 @@
                         array.push(numFormatter(data[ctr]["Recovered"]));
                         array.push(numFormatter(data[ctr]["Disposal"]));
                         array.push('<div hidden><div data-name="SW-popover-content-' + ctr + '" style="font-size: 10px;">' + data[ctr]["Reference"] + '</div></div><button id="SW-ref' + ctr + '" type="button" class="btn btn-primary popover-group py-1 px-2 border" data-bs-toggle="tooltip" data-bs-trigger="focus" data-bs-placement="right" style="border-radius: 20px;position:relative;margin:-10px 0px;"><i class="bi bi-info-lg px-0"></i></button>');
+                        array.push('<div hidden><div data-name="SW-popover-content-1-' + ctr + '" style="font-size: 10px;">' + data[ctr]["Definitions"] + '</div></div><button id="SW-ref-1-' + ctr + '" type="button" class="btn btn-primary popover-group py-1 px-2 border" data-bs-toggle="tooltip" data-bs-trigger="focus" data-bs-placement="right" style="border-radius: 20px;position:relative;margin:-10px 0px;"><i class="bi bi-book px-0"></i></button>');
                         dataSet.push(array);
                     }
 
@@ -1040,7 +1041,8 @@
                             { title: 'Recycled' },
                             { title: 'Recovered' },
                             { title: 'Disposal' },
-                            { title: 'Ref' }
+                            { title: 'Ref' },
+                            { title: 'Definitions' }
                         ],
                         data: dataSet,
                         dom: "<'row'" +
@@ -1067,6 +1069,20 @@
 
                         }
                         var exampleEl = document.getElementById('SW-ref' + ctr)
+                        var popover = new bootstrap.Popover(exampleEl, options)
+                    }
+                    for (var ctr = 0; ctr < data.length; ctr++) {
+                        var options = {
+                            html: true,
+                            title: "Definitions",
+                            //html element
+                            //content: $("#popover-content")
+                            content: $('[data-name="SW-popover-content-1-' + ctr + '"]')
+                            //Doing below won't work. Shows title only
+                            //content: $("#popover-content").html()
+
+                        }
+                        var exampleEl = document.getElementById('SW-ref-1-' + ctr)
                         var popover = new bootstrap.Popover(exampleEl, options)
                     }
                 },
@@ -1099,6 +1115,7 @@
                         array.push(numFormatter(data[ctr]["Recovered"]));
                         array.push(numFormatter(data[ctr]["Disposal"]));
                         array.push('<div hidden><div data-name="PW-popover-content-' + ctr + '" style="font-size: 10px;">' + data[ctr]["Reference"] + '</div></div><button id="PW-ref' + ctr + '" type="button" class="btn btn-primary popover-group py-1 px-2 border" data-bs-toggle="tooltip" data-bs-trigger="focus" data-bs-placement="right" style="border-radius: 20px;position:relative;margin:-10px 0px;"><i class="bi bi-info-lg px-0"></i></button>');
+                        array.push('<div hidden><div data-name="PW-popover-content-2-' + ctr + '" style="font-size: 10px;">' + data[ctr]["Definitions"] + '</div></div><button id="PW-ref-2-' + ctr + '" type="button" class="btn btn-primary popover-group py-1 px-2 border" data-bs-toggle="tooltip" data-bs-trigger="focus" data-bs-placement="right" style="border-radius: 20px;position:relative;margin:-10px 0px;"><i class="bi bi-book px-0"></i></button>');
                         dataSet.push(array);
                     }
 
@@ -1111,7 +1128,8 @@
                             { title: 'Recycled' },
                             { title: 'Recovered' },
                             { title: 'Disposal' },
-                            { title: 'Ref' }
+                            { title: 'Ref' },
+                            { title: 'Definitions' }
                         ],
                         data: dataSet,
                         dom: "<'row'" +
@@ -1138,6 +1156,20 @@
 
                         }
                         var exampleEl = document.getElementById('PW-ref' + ctr)
+                        var popover = new bootstrap.Popover(exampleEl, options)
+                    }
+                    for (var ctr = 0; ctr < data.length; ctr++) {
+                        var options = {
+                            html: true,
+                            title: "Definitions",
+                            //html element
+                            //content: $("#popover-content")
+                            content: $('[data-name="PW-popover-content-2-' + ctr + '"]')
+                            //Doing below won't work. Shows title only
+                            //content: $("#popover-content").html()
+
+                        }
+                        var exampleEl = document.getElementById('PW-ref-2-' + ctr)
                         var popover = new bootstrap.Popover(exampleEl, options)
                     }
                 },
