@@ -151,7 +151,8 @@
                             <div id="plastic-country-filter-list">
 
                             </div>
-                        </div><div class="row px-5 py-2 docs-wrapper rounded-2">
+                        </div>
+                        <div class="row px-5 py-2 docs-wrapper rounded-2 d-none">
                             <div class="col-md-3 d-flex px-5">
                                 <label class="px-2 py-2">Country: </label>
                                 <select class="form-select py-1 mx-1" id="filter-country-2">
@@ -516,6 +517,8 @@
         $("#button-apply-1").click(function () {
             chart1.destroy();
             createSolidWasteGraph();
+            chart2.destroy();
+            createPlasticWasteGraph();
         });
         $("#button-apply-2").click(function () {
             chart2.destroy();
@@ -791,7 +794,7 @@
  
         function createPlasticWasteGraph(id, x_axis, series) {
             $.ajax({
-                url: `/MarineDebris/getPlasticWasteGraphData?country=${$("#filter-country-2").val()}&city=${$("#filter-city-2").val()}&year=${$("#filter-year-2").val()}`,
+                url: `/MarineDebris/getPlasticWasteGraphData?country=${$("#filter-country-1").val()}&city=${$("#filter-city-1").val()}&year=${$("#filter-year-1").val()}`,
                 type: 'GET',
                 processData: false,
                 async: false,
@@ -1095,7 +1098,7 @@
         function getPlasticWasteTableData() {
             if (datatable1 != null) datatable1.destroy();
             $.ajax({
-                url: `/MarineDebris/getPlasticWasteTableData?country=${$("#filter-country-2").val()}&city=${$("#filter-city-2").val()}&year=${$("#filter-year-2").val()}`,
+                url: `/MarineDebris/getPlasticWasteTableData?country=${$("#filter-country-1").val()}&city=${$("#filter-city-1").val()}&year=${$("#filter-year-1").val()}`,
                 type: 'GET',
                 processData: false,
                 async: false,
