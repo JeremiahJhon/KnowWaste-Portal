@@ -103,5 +103,6 @@ namespace UCOnline.Data
         public virtual DbSet<wastecategory> wastecategories { get; set; }
         public virtual DbSet<wastetype> wastetypes { get; set; }
         public virtual DbSet<countrypolicy_type> countrypolicy_type { get; set; }
+        public virtual DbSet<microlearning> microlearnings { get; set; }
     }
 }

@@ -343,6 +343,9 @@
     <Compile Include="Data\lawpolicy.cs">
       <DependentUpon>KnowWaste.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\microlearning.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\news.cs">
       <DependentUpon>KnowWaste.tt</DependentUpon>
     </Compile>

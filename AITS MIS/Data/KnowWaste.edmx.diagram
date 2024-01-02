@@ -83,6 +83,7 @@
         <EntityTypeShape EntityType="KnowWasteModel.wastecategory" Width="1.5" PointX="24.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="KnowWasteModel.wastetype" Width="1.5" PointX="24.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="KnowWasteModel.countrypolicy_type" Width="1.5" PointX="24.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KnowWasteModel.microlearning" Width="1.5" PointX="11.375" PointY="24.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

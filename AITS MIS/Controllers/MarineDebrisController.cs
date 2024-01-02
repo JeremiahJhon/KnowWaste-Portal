@@ -13,11 +13,13 @@ using System.Web.UI.WebControls;
 using UCOnline.Models;
 using Web.Framework.Controllers;
 using Web.Framework.Server;
+using UCOnline.Data;
 
 namespace UCOnline.Controllers
 {
     public class MarineDebrisController : BaseController
     {
+        KnowWasteEntities context = new KnowWasteEntities();
         public MarineDebrisController() : base(new ModelHome())
         {
         }
@@ -213,6 +215,10 @@ namespace UCOnline.Controllers
             DataTable videopostsData = videoposts.SelectQuery();
 
             ViewBag.ELearning = videopostsData;
+
+            var microlearning = context.microlearnings.Where(x => x.Deleted == 0).ToList();
+
+            ViewBag.MicroLearning = microlearning;
 
             return View();
         }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="KnowWasteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="KnowWasteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="_logs">
           <Key>
             <PropertyRef Name="ID" />
@@ -692,6 +692,18 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
           <Property Name="Dateentered" Type="datetime2" Precision="7" />
           <Property Name="Deleted" Type="tinyint" />
         </EntityType>
+        <EntityType Name="microlearning">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="255" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Link" Type="varchar(max)" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+          <Property Name="Photo" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="news">
           <Key>
             <PropertyRef Name="ID" />
@@ -1024,6 +1036,7 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
           <EntitySet Name="forums" EntityType="Self.forums" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="geotheme" EntityType="Self.geotheme" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="lawpolicy" EntityType="Self.lawpolicy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="microlearning" EntityType="Self.microlearning" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="news" EntityType="Self.news" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="newscategory" EntityType="Self.newscategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="newscomment" EntityType="Self.newscomment" Schema="dbo" store:Type="Tables" />
@@ -1059,8 +1072,7 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
     FROM [dbo].[countrypolicy_type] AS [countrypolicy_type]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="KnowWasteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -2108,7 +2120,20 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
           <EntitySet Name="wastecategories" EntityType="Self.wastecategory" />
           <EntitySet Name="wastetypes" EntityType="Self.wastetype" />
           <EntitySet Name="countrypolicy_type" EntityType="Self.countrypolicy_type" />
+          <EntitySet Name="microlearnings" EntityType="KnowWasteModel.microlearning" />
         </EntityContainer>
+        <EntityType Name="microlearning">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3154,6 +3179,19 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="microlearnings">
+            <EntityTypeMapping TypeName="KnowWasteModel.microlearning">
+              <MappingFragment StoreEntitySet="microlearning">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
