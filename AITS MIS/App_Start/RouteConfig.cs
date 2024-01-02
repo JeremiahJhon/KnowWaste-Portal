@@ -18,6 +18,11 @@ namespace UCOnline
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name: "DataSpecial",
+                url: "Data/",
+                defaults: new { controller = "Data", action = "Index", id = UrlParameter.Optional }
+            );
         }
     }
 }

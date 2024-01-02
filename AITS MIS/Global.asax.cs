@@ -125,5 +125,12 @@ namespace UCOnline
             ModelCommon.DocumentPath = Server.MapPath("~/Documents");
             ModelCommon.ImagePath = Server.MapPath("~/Content/Images");
         }
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+            if (Request.Url.AbsolutePath.Equals("/Data/"))
+            {
+                Response.RedirectPermanent("/Data/Index");
+            }
+        }
     }
 }
