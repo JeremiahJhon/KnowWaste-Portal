@@ -6826,6 +6826,7 @@
     <Content Include="Views\MarineDebris\Publications.cshtml" />
     <Content Include="Views\MarineDebris\News.cshtml" />
     <Content Include="Views\MarineDebris\Technology.cshtml" />
+    <Content Include="Views\MarineDebris\MicroLearning.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

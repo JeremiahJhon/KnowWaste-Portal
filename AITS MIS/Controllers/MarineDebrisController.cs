@@ -410,6 +410,17 @@ namespace UCOnline.Controllers
             }
         }
 
+        public ActionResult MicroLearning(int id)
+        {
+            ViewBag.Title = "MICRO LEARNING";
+            ViewBag.MediaPath = "MicroLearning";
+                        
+            var microlearning = context.microlearnings.Where(x => x.ID == id).FirstOrDefault();
+            ViewBag.Data = microlearning;
+
+            return View("MicroLearning");
+        }
+
         public ActionResult News(int? id)
         {
             ViewBag.Title = "NEWS";
