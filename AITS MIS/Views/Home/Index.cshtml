@@ -367,7 +367,7 @@
                                             }
                                             else
                                             {
-                                                <a href="~/MarineDebris/GoodPractices/@row["ID"].ToString()" style="width:200px;height:200px;background-image:url('../Documents/Blogs/@row["Photo"].ToString()'); background-size: cover; border-radius: 2px; margin: auto; display: block;"></a>
+                                                <a href="~/MarineDebris/GoodPractices/@row["ID"].ToString()" style="width:200px;height:200px;background-image:url('../Documents/Blogs/@row["Photo"].ToString().Split(';')[0]'); background-size: cover; border-radius: 2px; margin: auto; display: block;"></a>
                                                 @*<img class="c-overlay-object img-responsive" src="../Documents/@row["Thumbnail"].ToString()" alt="">*@
                                             }
                                         }
