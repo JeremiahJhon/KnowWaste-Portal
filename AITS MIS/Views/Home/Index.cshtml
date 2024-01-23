@@ -1,7 +1,11 @@
 ﻿@{
-    Layout = "~/Views/Shared/Shared.cshtml";
+    Layout = "~/Views/MarineDebris/Shared.cshtml";
 }
-
+@using System.Data;
+@{
+    DataTable blogs = (DataTable)ViewBag.Blogs;
+    DataTable rosters = (DataTable)ViewBag.Rosters;
+}
 <link href="~/Content/home.css" rel="stylesheet" />
 <link href="~/Content/data.css" rel="stylesheet" />
 
@@ -10,9 +14,217 @@
 
 @using System.Data;
 
-<div class="c-layout-page">
+<div class="row">
+    <div class="">
+        <div id="kt_carousel_1_carousel" class="carousel carousel-fade carousel-custom slide" data-bs-ride="carousel" data-bs-interval="4000">
+            <!--begin::Carousel-->
+            <div class="carousel-inner">
+                <!--begin::Item-->
+                <div class="carousel-item active">
+                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0" style="background-image: url(/Content/Images/banner/banner_marine2.jpg); background-repeat: no-repeat; background-size: cover; background-position: 50%; background-attachment: fixed;">
+                        <div class="min-h-650px py-10" style="display: grid; align-items: end;">
+
+                        </div>
+                    </div>
+                </div>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <div class="carousel-item">
+                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0" style="background-image: url(/Content/Images/banner/banner_Ewaste03.jpg); background-repeat: no-repeat; background-size: cover; background-position: 50%; background-attachment: fixed;">
+                        <div class="min-h-650px py-10" style="display: grid; align-items: end;">
+
+                        </div>
+                    </div>
+                </div>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <div class="carousel-item">
+                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0" style="background-image: url(/Content/Images/banner/banner_Ewaste02.jpg); background-repeat: no-repeat; background-size: cover; background-position: 50%; background-attachment: fixed;">
+                        <div class="min-h-650px py-10" style="display: grid; align-items: end;">
+
+                        </div>
+                    </div>
+                </div>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <div class="carousel-item">
+                    <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0" style="background-image: url(/Content/Images/banner/banner_Ewaste04.jpg); background-repeat: no-repeat; background-size: cover; background-position: 50%; background-attachment: fixed;">
+                        <div class="min-h-650px py-10" style="display: grid; align-items: end;">
+
+                        </div>
+                    </div>
+                </div>
+                <!--end::Item-->
+            </div>
+            <!--end::Carousel-->
+        </div>
+    </div>
+</div>
+
+<div class="container my-20">
+    <div class="row">
+        <div class="col-sm-4 p-10">
+            <div class="h-60px w-60px m-auto my-5" style="background-image: url(Content/base/img/content/line-icons/default.png); background-position: 0px -1300%; background-size: cover;"></div>
+            <h1 class="text-center">TO INFORM</h1>
+            <p class="text-center fs-4">
+                An interactive and intuitive sustainable waste and resource management knowledge repository
+            </p>
+        </div>
+        <div class="col-sm-4 p-10">
+            <div class="h-60px w-60px m-auto my-5" style="background-image: url(Content/base/img/content/line-icons/default.png); background-position: 0px -2500%; background-size: cover;"></div>
+            <h1 class="text-center">TO EMPOWER</h1>
+            <p class="text-center fs-4">Knowledge and capacity building on the transfer of sustainable waste and resource management</p>
+        </div>
+        <div class="col-sm-4 p-10">
+            <div class="h-60px w-60px m-auto my-5" style="background-image: url(Content/base/img/content/line-icons/default.png); background-size: cover;"></div>
+            <h1 class="text-center">TO CONNECT</h1>
+            <p class="text-center fs-4">Bringing together sustainable waste and resource management related professional and institutions</p>
+        </div>
+    </div>
+</div>
+
+<div class="row py-10 my-20 px-5">
+    <div class="text-center mb-10">
+        <!--begin::Title-->
+        <h3 class="fs-2hx text-dark title" id="team" data-kt-scroll-offset="{default: 100, lg: 150}">GOOD PRACTICES</h3>
+        <!--end::Title-->
+        <!--begin::Sub-title-->
+        <div class="fs-5 text-muted fw-bold d-none">
+            Description Here - Lorem ipsum dolor sit amet,
+            <br>Details here - consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </div>
+        <!--end::Sub-title=-->
+    </div>
+    <!--end::Heading-->
+    <!--begin::Slider-->
+    <div class="tns tns-default tns-initiazlied">
+        <!--begin::Wrapper-->
+        <div class="tns-outer" id="tns2-ow">
+            <div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">7 to 8</span>  of 7</div><div id="tns2-mw" class="tns-ovh">
+                <div class="tns-inner" id="tns2-iw">
+                    <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="18000" data-tns-controls="true" data-tns-nav="false" data-tns-items="1" data-tns-center="false" data-tns-dots="false" data-tns-prev-button="#kt_team_slider_prev" data-tns-next-button="#kt_team_slider_next" data-tns-responsive="{1200: {items: 4}, 968: {items: 3}}" class="tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns2" style="transform: translate3d(-40%, 0px, 0px);">
+                        @foreach (DataRow row in blogs.Rows)
+                        {
+                            int MaxLength = 70;
+
+                            if (row["Description"].ToString().Length < MaxLength)
+                            {
+                                MaxLength = row["Description"].ToString().Length;
+                            }
+                            <div class="card card-rounded s-border box-shadow text-center tns-item tns-slide-cloned m-10" aria-hidden="true" tabindex="-1">
+                                <div class="h-100">
+                                    <a class="d-block overlay" href="MarineDebris/GoodPractices/@row["ID"].ToString()">
+                                        <!--begin::Image-->
+                                        <div class="overlay-wrapper s-border-top bgi-no-repeat bgi-position-center bgi-size-cover min-h-175px" style="background-image:url('Documents/Blogs/@row["Photo"].ToString().Split(';')[0]')"></div>
+                                        <!--end::Image-->
+                                        <!--begin::Action-->
+                                        <div class="overlay-layer s-border-top bg-dark bg-opacity-50">
+                                            <span class="row text-center text-white fw-bolder fs-2 lh-base d-none">@row["Title"].ToString()</span>
+                                            <br />
+                                            <i class="bi bi-eye-fill fs-2x text-white"></i>
+                                        </div>
+                                        <!--end::Action-->
+                                    </a>
+                                    <!--begin::Body-->
+                                    <a href="MarineDebris/GoodPractices/@row["ID"].ToString()" class="m-0 p-5">
+                                        <!--begin::Title-->
+                                        <div href="MarineDebris/GoodPractices/@row["ID"].ToString()" class="px-2 fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">@row["Title"].ToString()</div>
+                                        <!--end::Title-->
+                                        <!--begin::Text-->
+                                        <div class="px-2 fw-bold fs-6 text-gray-600 text-dark my-4 d-none">@Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span class="text-primary" href="MarineDebris/GoodPractices/@row["ID"].ToString()">see more</span></div>
+                                        <!--end::Text-->
+                                        <div class="fs-6 fw-bolder d-none">
+                                            <span class="text-gray-500 text-hover-primary" style="white-space: normal; text-align: left;">@row["Country"].ToString()</span>
+                                        </div>
+                                        <!--begin::Content-->
+                                        <div class="px-2 fs-6 fw-bolder d-none">
+                                            <!--begin::Author-->
+                                            <span class="text-gray-700 text-hover-primary">@row["Author"].ToString()</span>
+                                            <!--end::Author-->
+                                            <!--begin::Date-->
+                                            <span class="text-muted d-none">on Mar 21 2021</span>
+                                            <!--end::Date-->
+                                        </div>
+                                        <!--end::Content-->
+                                    </a>
+                                    <!--end::Body-->
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end::Wrapper-->
+        <!--begin::Button-->
+        <button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_prev" aria-controls="tns2" tabindex="-1" data-controls="prev">
+            <!--begin::Svg Icon | path: icons/duotune/arrows/arr074.svg-->
+            <span class="svg-icon svg-icon-3x">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M11.2657 11.4343L15.45 7.25C15.8642 6.83579 15.8642 6.16421 15.45 5.75C15.0358 5.33579 14.3642 5.33579 13.95 5.75L8.40712 11.2929C8.01659 11.6834 8.01659 12.3166 8.40712 12.7071L13.95 18.25C14.3642 18.6642 15.0358 18.6642 15.45 18.25C15.8642 17.8358 15.8642 17.1642 15.45 16.75L11.2657 12.5657C10.9533 12.2533 10.9533 11.7467 11.2657 11.4343Z" fill="black"></path>
+                </svg>
+            </span>
+            <!--end::Svg Icon-->
+        </button>
+        <!--end::Button-->
+        <!--begin::Button-->
+        <button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_next" aria-controls="tns2" tabindex="-1" data-controls="next">
+            <!--begin::Svg Icon | path: icons/duotune/arrows/arr071.svg-->
+            <span class="svg-icon svg-icon-3x">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M12.6343 12.5657L8.45001 16.75C8.0358 17.1642 8.0358 17.8358 8.45001 18.25C8.86423 18.6642 9.5358 18.6642 9.95001 18.25L15.4929 12.7071C15.8834 12.3166 15.8834 11.6834 15.4929 11.2929L9.95001 5.75C9.5358 5.33579 8.86423 5.33579 8.45001 5.75C8.0358 6.16421 8.0358 6.83579 8.45001 7.25L12.6343 11.4343C12.9467 11.7467 12.9467 12.2533 12.6343 12.5657Z" fill="black"></path>
+                </svg>
+            </span>
+            <!--end::Svg Icon-->
+        </button>
+        <!--end::Button-->
+    </div>
+    <!--end::Slider-->
+</div>
+
+<div class="container h-700px my-20">
+    <div class="col-md-12 pt-10">
+        <div class="mb-7 text-center pt-15">
+            <!--begin::Title-->
+            <h1 class="text-dark fs-1 mb-15 p-2 fw-boldest">EXPERT ROSTERS</h1>
+            <!--begin::Slider-->
+            <div class="tns tns-default tns-initiazlied m-auto">
+                <!--begin::Wrapper-->
+                <div class="tns-outer" id="tns1-ow">
+                    <div id="tns1-mw" class="tns-ovh">
+                        <div class="tns-inner" id="tns1-iw">
+                            <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="true" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="5000" data-tns-controls="false" data-tns-nav="true" data-tns-items="1" data-tns-center="false" data-tns-dots="true" data-tns-dots-position="bottom" data-tns-responsive="{1200: {items: 4}, 968: {items: 3}}" class="tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns1" style="transform: translate3d(-40%, 0px, 0px);">
+                                @foreach (DataRow row in rosters.Rows)
+                                {
+                                    <div class="document-card h-100">
+                                        <a class="d-block overlay mw-200px m-auto mb-5" href="MarineDebris/Documents/@row["ID"].ToString()">
+                                            <!--begin::Image-->
+                                            <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover min-h-200px" style="background-image:url('Documents/@row["Thumbnail"].ToString()')"></div>
+                                            <!--end::Image-->
+                                        </a>
+                                        <a href="MarineDebris/Documents/@row["ID"].ToString()" class="fw-bolder my-5 text-gray-700" style="font-size: 20px !important;">@row["Firstname"].ToString() @row["Lastname"].ToString()</a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end::Wrapper-->
+            </div>
+            <!--end::Slider-->
+        </div>
+    </div>
+</div>
+
+<div class="text-center mb-5 mb-lg-10 d-none">
+    <!--begin::Title-->
+    <h3 class="fs-2hx text-dark mb-5" id="portfolio" data-kt-scroll-offset="{default: 100, lg: 150}" style="color: #2577BC!important; ">@ViewBag.Title</h3>
+    <!--end::Title-->
+</div>
+
+<div class="container px-10 c-layout-page">
     <section class="c-layout-revo-slider c-layout-revo-slider-4">
-        <div class="tp-banner-container c-theme">
+        <div class="tp-banner-container c-theme d-none">
             <div class="tp-banner rev_slider" data-version="5.0">
                 <ul>
                     <!--BEGIN: SLIDE #1 -->
@@ -104,7 +316,7 @@
         </div>
     </section>
 
-    <div class="c-content-box c-size-md c-bg-white">
+    <div class="c-content-box c-size-md c-bg-white d-none">
         <div class="container">
             <div class="row">
                 <div class="col-sm-4">
@@ -343,7 +555,7 @@
             </div>
         </div>*@
 
-    <div class="experts c-content-box c-size-md c-bg-grey-1" style="background-color: white!important; padding: 50px 0px">
+    <div class="experts c-content-box c-size-md c-bg-grey-1 d-none" style="background-color: white!important; padding: 50px 0px">
         <div class="container">
             <div class="c-content-person-1-slider" data-slider="owl" data-items="4" data-auto-play="3000">
                 <div class="c-content-title-1">
@@ -352,8 +564,6 @@
                 </div>
                 <div class="owl-carousel owl-theme c-theme">
                     @{
-                        DataTable blogs = (DataTable)ViewBag.Blogs;
-
                         foreach (DataRow row in blogs.Rows)
                         {
                             <div class="item">
@@ -388,7 +598,7 @@
         </div>
     </div>
 
-    <div class="experts c-content-box c-size-md c-bg-grey-1">
+    <div class="experts c-content-box c-size-md c-bg-grey-1 d-none">
         <div class="container">
             <div class="c-content-person-1-slider" data-slider="owl" data-items="6" data-auto-play="4000">
                 <div class="c-content-title-1">

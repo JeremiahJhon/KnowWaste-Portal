@@ -48,6 +48,9 @@
                             <span class="badge badge-light-success fw-bolder my-2" style="white-space: normal; text-align: left;">Author: @doc["Author"].ToString()</span>
                             <span class="badge badge-light fw-bolder my-2" style="white-space: normal; text-align: left;">Date Created: @doc["BlogDate"].ToString()</span>
                         </div>
+                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4 @(ViewBag.Title == "GOOD PRACTICES" ? "d-none" : "")" style="text-align: justify;">
+                            @Html.Raw(doc["Description"].ToString())
+                        </div>
                         <div class="tns tns-default tns-initiazlied mw-600px m-auto d-none">
                             <!--begin::Wrapper-->
                             <div class="tns-outer" id="tns1-ow">
@@ -81,7 +84,7 @@
                                 }
                             </div>
                             <div class="carousel-inner">
-                                @for (int ctr = 0; ctr < images.Length;  ctr++)
+                                @for (int ctr = 0; ctr < images.Length; ctr++)
                                 {
                                     if (images[ctr].Length > 0)
                                     {
@@ -101,7 +104,7 @@
                             </button>
                         </div>
                         <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base @(ViewBag.Title == "GOOD PRACTICES" ? "" : "d-none")">Background</span>
-                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">
+                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4 @(ViewBag.Title == "GOOD PRACTICES" ? "" : "d-none")" style="text-align: justify;">
                             @Html.Raw(doc["Description"].ToString())
                         </div>
                         <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base @(doc["ResultsAchieved"].ToString() == "" || doc["ResultsAchieved"].ToString() == null ? "d-none" : "")">Result Achieved</span>

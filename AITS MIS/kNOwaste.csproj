@@ -428,6 +428,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\Utility.cs" />
     <Compile Include="Models\ModelPages.cs" />
     <Compile Include="Models\ModelAbout.cs" />
     <Compile Include="Models\ModelRegion.cs" />
@@ -6827,6 +6828,7 @@
     <Content Include="Views\MarineDebris\News.cshtml" />
     <Content Include="Views\MarineDebris\Technology.cshtml" />
     <Content Include="Views\MarineDebris\MicroLearning.cshtml" />
+    <Content Include="Views\Home\Index - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -7818,7 +7820,6 @@
     <Content Include="Views\CountryReferences\Index.cshtml" />
     <Content Include="Views\Data\Index.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
-    <Content Include="Views\Home\Index - Copy.cshtml" />
     <Content Include="Views\Courses\Index.cshtml" />
     <Content Include="Views\Contact\About.cshtml" />
     <Content Include="Views\Thematicarea\Index.cshtml" />

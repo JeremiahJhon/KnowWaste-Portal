@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.Mvc;
+using UCOnline.Data;
 using UCOnline.Models;
 using Web.Framework.Controllers;
 using Web.Framework.Server;
+using kNowaste.Helper;
 
 namespace UCOnline.Controllers
 {
     public class HomeController : BaseController
     {
+        KnowWasteEntities context = new KnowWasteEntities();
         public HomeController() : base(new ModelHome())
         {
         }
@@ -106,13 +110,30 @@ namespace UCOnline.Controllers
 
             ViewBag.Region = region.GetCombobox();
 
-            ServerBase blogs = new ServerBase("blogs");
-            blogs.SelectLimit(10);
-            blogs.SelectFilter("Blogscategory_ID = 1");
-            blogs.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
-            DataTable blogsData = blogs.SelectQuery();
+            var JoinResult = from a in context.blogs.Where(x => x.Blogscategory_ID == 1).OrderByDescending(x => x.ID).Take(10)
+                             join b in context.countries.Where(x => x.SubRegion_ID != null && x.SubRegion_ID != "")
+                             on a.Country_ID equals b.ID
+                             select new
+                             {
+                                    a.ID,
+                                    a.Title,
+                                    a.Description,
+                                    a.Detail,
+                                    a.Author,
+                                    a.Thumbnail,
+                                    Country = b.Name,
+                                    a.ResultsArchieved,
+                                    a.ChallengesLessonLearned,
+                                    a.Replicability,
+                                    a.Sources,
+                                    a.Company,
+                                    a.Email,
+                                    a.Phone,
+                                    a.Initiative,
+                                    a.Photo,
+                             };
 
-            ViewBag.Blogs = blogsData;
+            ViewBag.Blogs = Utility.LinqToDataTable(JoinResult);
 
             return View();
         }
