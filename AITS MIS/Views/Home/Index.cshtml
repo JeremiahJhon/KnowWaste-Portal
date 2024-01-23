@@ -199,7 +199,7 @@
                                     <div class="document-card h-100">
                                         <a class="d-block overlay mw-200px m-auto mb-5" href="MarineDebris/Documents/@row["ID"].ToString()">
                                             <!--begin::Image-->
-                                            <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover min-h-200px" style="background-image:url('Documents/@row["Thumbnail"].ToString()')"></div>
+                                            <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover min-h-200px" style="background-image:url('Documents/@row["Thumbnail"].ToString().Split(';')[0]')"></div>
                                             <!--end::Image-->
                                         </a>
                                         <a href="MarineDebris/Documents/@row["ID"].ToString()" class="fw-bolder my-5 text-gray-700" style="font-size: 20px !important;">@row["Firstname"].ToString() @row["Lastname"].ToString()</a>
