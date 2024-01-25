@@ -193,13 +193,13 @@
                 <div class="tns-outer" id="tns1-ow">
                     <div id="tns1-mw" class="tns-ovh">
                         <div class="tns-inner" id="tns1-iw">
-                            <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="true" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="5000" data-tns-controls="false" data-tns-nav="true" data-tns-items="1" data-tns-center="false" data-tns-dots="true" data-tns-dots-position="bottom" data-tns-responsive="{1200: {items: 4}, 968: {items: 3}}" class="tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns1" style="transform: translate3d(-40%, 0px, 0px);">
+                            <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="true" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="10000" data-tns-controls="false" data-tns-nav="true" data-tns-items="1" data-tns-center="false" data-tns-dots="true" data-tns-dots-position="bottom" data-tns-responsive="{1200: {items: 4}, 968: {items: 3}}" class="tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns1" style="transform: translate3d(-40%, 0px, 0px);">
                                 @foreach (DataRow row in rosters.Rows)
                                 {
                                     <div class="document-card h-100">
                                         <a class="d-block overlay mw-200px m-auto mb-5" href="../Experts#@row["ID"].ToString()">
                                             <!--begin::Image-->
-                                            <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover min-h-200px" style="background-image:url('Documents/@row["Thumbnail"].ToString().Split(';')[0]')"></div>
+                                            <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover min-h-200px" style="background-image:url('Documents/@row["Thumbnail"].ToString().Split(';')[0]'); border-radius: 15px;"></div>
                                             <!--end::Image-->
                                         </a>
                                         <a href="../Experts#@row["ID"].ToString()" class="fw-bolder my-5 text-gray-700" style="font-size: 20px !important;">@row["Firstname"].ToString() @row["Lastname"].ToString()</a>
