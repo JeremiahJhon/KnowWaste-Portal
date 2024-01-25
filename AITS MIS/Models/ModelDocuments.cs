@@ -218,13 +218,13 @@ namespace kNOwaste.Models
                 //    thumbnail = string.Format("<div class='doc-thumbnail'><i class='fa fa-{0}'></i></div>", icon);
 
 
-                output.Append("<div>");
+                output.Append("<div class='m-0'>");
                 //output.AppendFormat(thumbnail);
 
                 output.Append("<div class='doc-item'>");
-                output.AppendFormat("<h3 class='c-title c-fonts-uppercase c-font-bold c-font-22 c-font-dark'><a href='../thematicarea?doc={1}'>{0}</a></h3>", row["title"], row["id"]);
-                output.AppendFormat("<p class='doc-info c-btn-uppercase c-font-14 c-font-thin c-theme-font'>{0} | {1}</p>", row["year"], row["publisher"]);
-                output.AppendFormat("<div class='doc-desc'>{0}</div>", row["description"]);
+                output.AppendFormat("<h4 class='fs-1 text-gray-800 w-bolder mb-1 pt-5'><a href='../thematicarea?doc={1}'>{0}</a></h4>", row["title"], row["id"]);
+                output.AppendFormat("<span class='fw-semibold fs-4 text-gray-600 mb-1'>{0} | {1}</span>", row["year"], row["publisher"]);
+                output.AppendFormat("<p class='fw-semibold fs-4 text-gray-600 mb-1'>{0}</p>", row["description"]);
 
                 output.Append("<div class='doc-links'>");
                 //output.Append(attachment);
