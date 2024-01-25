@@ -110,8 +110,8 @@ namespace UCOnline.Controllers
 
             ViewBag.Region = region.GetCombobox();
 
-            var JoinResult = from a in context.blogs.Where(x => x.Blogscategory_ID == 1).OrderByDescending(x => x.ID).Take(10)
-                             join b in context.countries.Where(x => x.SubRegion_ID != null && x.SubRegion_ID != "")
+            var JoinResult = from a in context.blogs.Where(x => x.Blogscategory_ID == 1 && x.Deleted == 0).OrderByDescending(x => x.ID).Take(10)
+                             join b in context.countries.Where(x => x.SubRegion_ID != null && x.SubRegion_ID != "" && x.Deleted == 0)
                              on a.Country_ID equals b.ID
                              select new
                              {
