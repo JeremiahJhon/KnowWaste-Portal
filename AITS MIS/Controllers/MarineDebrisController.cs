@@ -250,7 +250,7 @@ namespace UCOnline.Controllers
                 if (docData.Rows.Count == 1)
                 {
                     ServerBase country = new ServerBase("Country");
-                    country.SelectFilter("ID = " + docData.Rows[0]["Country_ID"].ToString());
+                    country.SelectFilter("ID in (" + docData.Rows[0]["Country_ID"].ToString() + ")");
                     DataTable countryData = country.SelectQuery();
                     ServerBase category = new ServerBase("DocumentCategory");
                     category.SelectFilter("ID = " + docData.Rows[0]["DocumentCategory_ID"].ToString());

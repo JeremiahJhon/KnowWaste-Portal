@@ -64,10 +64,10 @@
                             @Html.Raw(doc["Description"].ToString())
                         </div>
                         <div class="w-100">
-                            <a href="Documents/@doc["Attachment"].ToString()" class="btn btn-primary m-2 @(doc["Attachment"].ToString() == "" || doc["Attachment"].ToString() == null ? "d-none" : "")" style="float: right;">
+                            <a href="Documents/@doc["Attachment"].ToString().Split(';')[0]" class="btn btn-primary m-2 @(doc["Attachment"].ToString() == "" || doc["Attachment"].ToString() == null ? "d-none" : "")" style="float: right;">
                                 <i class="bi bi-file-earmark-pdf"></i> Document
                             </a>
-                            <a href="Documents/@doc["Datasource"].ToString()" class="btn btn-light-primary m-2 @(doc["Datasource"].ToString() == "" || doc["Datasource"].ToString() == null ? "d-none" : "")" style="float: right;">
+                            <a href="Documents/@doc["Datasource"].ToString().Split(';')[0]" class="btn btn-light-primary m-2 @(doc["Datasource"].ToString() == "" || doc["Datasource"].ToString() == null ? "d-none" : "")" style="float: right;">
                                 <i class="bi bi-link"></i> Source
                             </a>
                         </div>
