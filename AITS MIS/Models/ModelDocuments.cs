@@ -224,7 +224,7 @@ namespace kNOwaste.Models
                 output.Append("<div class='doc-item'>");
                 output.AppendFormat("<h4 class='fs-1 text-gray-800 w-bolder mb-1 pt-5'><a href='../thematicarea?doc={1}'>{0}</a></h4>", row["title"], row["id"]);
                 output.AppendFormat("<span class='fw-semibold fs-4 text-gray-600 mb-1'>{0} | {1}</span>", row["year"], row["publisher"]);
-                output.AppendFormat("<p class='fw-semibold fs-4 text-gray-600 mb-1'>{0}</p>", row["description"]);
+                output.AppendFormat("<div class='fw-semibold fs-5 text-black mb-1'>{0}</div>", row["description"]);
 
                 output.Append("<div class='doc-links'>");
                 //output.Append(attachment);
