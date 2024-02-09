@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Web.Framework.HTML
 {
@@ -81,44 +82,24 @@ namespace Web.Framework.HTML
 
                 string pageurl = string.Format("{0}&guid={1}&partial=1&p=", url, guid);
 
-                output.Append("<div class='page'><ul class='collapse inline'>");
-
-                //First
-                output.Append("<li>");
-
-                if (page != 1)
-                    output.AppendFormat("<li><a class='json' href='{0}1'><i class='fa fa-step-backward'></i></a></li>", pageurl);
-                else
-                    output.Append("<li><i class='fa fa-step-backward'></i></li>");
+                output.Append("<ul class=\"pagination\">");
 
                 //Previous
-                if (page != 1)
-                    output.AppendFormat("<li><a class='json' href='{0}{1}'><i class='fa fa-backward'></i></a></li>", pageurl, page - 1);
-                else
-                    output.Append("<li><i class='fa fa-backward'></i></li>");
+                output.AppendFormat("<li class=\"page-item previous disabled\"><a href=\"#\" class=\"page-link\"><i class=\"previous\"></i></a></li>");
+
 
                 //Numbers
                 for (int number = start; number <= end; number++)
                 {
                     if (page == number)
-                        output.AppendFormat("<li><span>{0}</span></li>", number.ToString());
+                        output.AppendFormat("<li class=\"page-item active\"><a href=\"#\" class=\"page-link\">{0}</a></li>", number.ToString());
                     else
-                        output.AppendFormat("<li><a class='json' href='{0}{1}'>{1}</a></li>", pageurl, number);
+                        output.AppendFormat("<li class=\"page-item \"><a href=\"{0}{1}\" class=\"page-link\">{1}</a></li>", pageurl, number);
                 }
 
                 //Next
                 if (page != count)
-                    output.AppendFormat("<li><a class='json' href='{0}{1}'><i class='fa fa-forward'></i></a></li>", pageurl, page + 1);
-                else
-                    output.Append("<li><i class='fa fa-forward'></i></li>");
-
-                //Last
-                if (page != count)
-                    output.AppendFormat("<li><a class='json' href='{0}{1}'><i class='fa fa-step-forward'></i></a></li>", pageurl, count);
-                else
-                    output.Append("<li><i class='fa fa-step-forward'></i></li>");
-
-                output.Append("</ul></div>");
+                    output.AppendFormat("<li class=\"page - item next\"><a href=\"#\"  class=\"page-link\"><i class=\"next\"></i></a></li>");
 
             }
 

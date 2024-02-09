@@ -81,13 +81,13 @@ namespace kNOwaste.Models
                     var document = row["attachment"].ToString();
 
                     if (document.Contains(".pdf"))
-                        icon = "file-pdf-o";
+                        icon = "bi bi-file-earmark-pdf";
                     else if (document.Contains(".doc"))
-                        icon = "file-word-o";
+                        icon = "bi bi-file-earmark-word";
                     else
-                        icon = "file-o";
+                        icon = "bi bi-file-earmark";
 
-                    attachment = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='../Documents/{0}' target='_blank'><i class='fa fa-{1}'></i> View Document</a>", row["attachment"], icon);
+                    attachment = string.Format("<a class='btn btn-light-success w-auto px-5' href='../Documents/{0}' target='_blank'><i class='pe-2 fs-2 {1}'></i> View Document</a>", row["attachment"], icon);
                 }
 
                 if(row["datasource"].ToString() != "")
@@ -95,35 +95,35 @@ namespace kNOwaste.Models
                     var dsource = row["datasource"].ToString();
 
                     if (dsource.Contains(".htm"))
-                        icon = "file-code-o";
+                        icon = "bi bi-file-earmark-code";
                     else if (dsource.Contains(".pdf"))
-                        icon = "file-pdf-o";
+                        icon = "bi bi-file-earmark-pdf";
                     else
-                        icon = "file-powerpoint-o";
+                        icon = "bi bi-file-earmark-ppt";
                 }
 
                 if(row["attachment"].ToString() == "" && row["datasource"].ToString() == "")
                 {
-                    icon = "file-o";
+                    icon = "bi bi-file-earmark";
                 }
 
                 var source = "";
 
                 if (row["datasource"].ToString() != "")
-                    source = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-bg-blue-1 c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='{0}' target='_blank'><i class='fa fa-external-link'></i> View Source</a>", row["datasource"]);
+                    source = string.Format("<a class='btn btn-light-primary w-auto px-5'href='{0}' target='_blank'><i class='pe-2 fs-2 {1}'></i> View Source</a>", row["datasource"], icon);
 
                 var thumbnail = "";
 
                 if (row["thumbnail"].ToString() != "")
-                    thumbnail = string.Format("<div class='doc-thumbnail'><img src='../Documents/{0}'/></div>", row["thumbnail"].ToString());
+                    thumbnail = string.Format("<div class='col-md-2 mb-10'><img class='w-100 pe-5' src='../Documents/{0}'/></div>", row["thumbnail"].ToString());
                 else
-                    thumbnail = string.Format("<div class='doc-thumbnail'><i class='fa fa-{0}'></i></div>", icon);
+                    thumbnail = string.Format("<div class='col-md-2 mb-10'><i class='d-block text-center {0}' style='font-size: 100px;'></i></div>", icon);
 
 
-                output.Append("<div class='doc-container c-margin-b-40'>");
+                output.Append("<div class='row mb-10'>");
                 output.AppendFormat(thumbnail);
 
-                output.Append("<div class='doc-item'>");
+                output.Append("<div class='col-md-10 mb-10'>");
                 output.AppendFormat("<h3 class='c-title c-fonts-uppercase c-font-bold c-font-22 c-font-dark'>{0}</h3>", row["title"]);
                 output.AppendFormat("<p class='c-btn-uppercase c-font-14 c-font-thin c-theme-font'>{0} | {1}</p>", row["year"], row["publisher"]);
                 output.AppendFormat("<p>{0}</p>", row["description"]);
