@@ -401,179 +401,418 @@
 
     <div class="row d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px">
         <div class="row w-100 mb-md-10">
-            <div class="col-md-12 px-2 mb-20">
-                <div class="w-100 h-100 d-flex flex-column bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
-                    <div class="col-md-12 mb-7 text-center">
+            <div class="row mt-20">
+                <div class="landing-dark-bg h-250px">
+                    <div class="container py-lg-20">
                         <!--begin::Title-->
-                        <h1 class="text-dark mb-5 fw-boldest">Solid Waste</h1>
+                        <!--begin::Title-->
+                        <h3 class="text-white lh-base fw-bolder">
+                            <span class="text-gray-800">MARINE DEBRIS</span>
+                            @*<span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
+                        </span>*@
+                        </h3>
+                        <h1 class="text-white lh-base fw-bolder fs-2x fs-lg-3x">
+                            <span class="text-white">DATA</span>
+                            @*<span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
+                        </span>*@
+                        </h1>
                         <!--end::Title-->
-                        <!--begin::Description-->
-                        <div class="text-gray-400 fw-bold mb-5 d-none">Short description here</div>
-                        <div class="d-flex flex-center mb-10 d-none">
-                            <button id="kt_drawer_filter_1_button" class="btn btn-primary py-2 px-4">
-                                <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black"></path>
-                                    </svg>
-                                </span>Filter
-                            </button>
-                            <select class="form-select py-2 mx-1 w-25" id="filter-city-1_">
-                            </select>
-                            <div id="solid-waste-year" class="noUi-sm w-50"></div>
-                        </div>
-                        <div class="row px-5 py-2 docs-wrapper rounded-2">
-                            <div class="col-md-3 d-flex px-5">
-                                <label class="px-2 py-2">Country: </label>
-                                <select class="form-select py-1 mx-1" id="filter-country-1">
-                                    <option value="0">All</option>
-                                    @foreach (DataRow row in countries.Rows)
-                                    {
-                                        <option value="@row["ID"].ToString()">@row["Name"].ToString()</option>
-                                    }
-                                </select>
-                            </div>
-                            <div class="col-md-3 d-flex px-5">
-                                <label class="px-2 py-2">City: </label>
-                                <select class="form-select py-1 mx-1" id="filter-city-1">
-                                </select>
-                            </div>
-                            <div class="col-md-3 d-flex px-5">
-                                <label class="px-2 py-2">Year: </label>
-                                <select class="form-select py-1 mx-1" id="filter-year-1">
-                                </select>
-                            </div>
-                            <div class="col-md-3 d-flex px-5">
-                                <button id="button-apply-1" class="btn btn-primary py-2 px-10">Apply</button>
-                            </div>
-                        </div>
-                        <div class="d-flex px-5 d-none">
-                            <label class="px-2 py-1">Country: </label>
-                            <div id="solid-country-filter-list">
-                            </div>
-                        </div>
-                        <div id="chart-1" style="height: 350px;"></div>
-                    </div>
-                    <div class="tab-content d-none">
-                        <div class="toolbar" id="kt_toolbar1">
-                            <!--begin::Container-->
-                            <div id="kt_toolbar_container1" class="container-fluid d-inline" data-select2-id="select2-data-kt_toolbar_container">
-                                <!--begin::Page title-->
-                                <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                                    <label>
-                                        <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black"></path>
-                                            </svg>
-                                        </span>
-                                        Filter:
-                                    </label>
-                                    <div class="col-md-5 d-flex px-5">
-                                        <label class="m-auto px-2">
-                                            Year
-                                        </label>
-                                        <select id="filter-solidwaste-year" class="form-select form-select form-select-solid" data-placeholder="Select an option" style="border-color: #009ef7 !important;" aria-label="Year">
-                                        </select>
-                                    </div>
-                                </div>
-                                <!--end::Page title-->
-                            </div>
-                            <!--end::Actions-->
-                        </div>
-                        <!--end::Container-->
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-striped gy-7 gs-7 table-hover" id="datatable-solidwaste">
-                        </table>
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 px-2 mb-20">
-                <div class="w-100 h-100 d-flex flex-column bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
-                    <div class="col-md-12 mb-7 text-center">
-                        <!--begin::Title-->
-                        <h1 class="text-dark mb-5 fw-boldest">Plastic Waste</h1>
-                        <!--end::Title-->
-                        <!--begin::Description-->
-                        <div class="text-gray-400 fw-bold mb-5 d-none">Short description here</div>
-                        <div class="d-flex flex-center mb-10 d-none">
-                            <button id="kt_drawer_filter_2_button" class="btn btn-primary py-2 px-4">
-                                <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black"></path>
-                                    </svg>
-                                </span>Filter
-                            </button>
-                            <select class="form-select py-2 mx-1 w-25" id="filter-city-2_">
-                            </select>
-                        </div>
-                        <div class="d-flex flex-center my-15 d-none">
-                            <div id="plastic-waste-year" class="noUi-sm w-75"></div>
-                        </div>
-                        <div class="d-flex px-5 d-none">
-                            <label class="px-2 py-1">Country: </label>
-                            <div id="plastic-country-filter-list">
 
-                            </div>
-                        </div><div class="row px-5 py-2 docs-wrapper rounded-2">
-                            <div class="col-md-3 d-flex px-5">
-                                <label class="px-2 py-2">Country: </label>
-                                <select class="form-select py-1 mx-1" id="filter-country-2">
-                                    <option value="0">All</option>
-                                    @foreach (DataRow row in countries.Rows)
-                                    {
-                                        <option value="@row["ID"].ToString()">@row["Name"].ToString()</option>
-                                    }
-                                </select>
-                            </div>
-                            <div class="col-md-3 d-flex px-5">
-                                <label class="px-2 py-2">City: </label>
-                                <select class="form-select py-1 mx-1" id="filter-city-2">
-                                </select>
-                            </div>
-                            <div class="col-md-3 d-flex px-5">
-                                <label class="px-2 py-2">Year: </label>
-                                <select class="form-select py-1 mx-1" id="filter-year-2">
-                                </select>
-                            </div>
-                            <div class="col-md-3 d-flex px-5">
-                                <button id="button-apply-2" class="btn btn-primary py-2 px-10">Apply</button>
+            <div class="row mt-lg-n20 mx-20">
+                <div class="row d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px">
+                    <div class="row w-100 mb-md-10">
+                        <div class="col-md-12 px-2 mb-20">
+                            <div class="w-100 h-100 d-flex flex-column bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
+                                <div class="col-md-12 mb-7 text-center">
+                                    <!--begin::Title-->
+                                    <h1 class="text-dark mb-5 fw-boldest">Solid Waste</h1>
+                                    <!--end::Title-->
+                                    <!--begin::Description-->
+                                    <div class="text-gray-400 fw-bold mb-5 d-none">Short description here</div>
+                                    <div class="d-flex flex-center mb-10 d-none">
+                                        <button id="kt_drawer_filter_1_button" class="btn btn-primary py-2 px-4">
+                                            <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black"></path>
+                                                </svg>
+                                            </span>Filter
+                                        </button>
+                                        <select class="form-select py-2 mx-1 w-25" id="filter-city-1_">
+                                        </select>
+                                        <div id="solid-waste-year" class="noUi-sm w-50"></div>
+                                    </div>
+                                    <div class="row px-5 py-2 docs-wrapper rounded-2">
+                                        <div class="col-md-3 d-flex px-5">
+                                            <label class="px-2 py-2">Country: </label>
+                                            <select class="form-select py-1 mx-1" id="filter-country-1">
+                                                <option value="0">All</option>
+                                                @foreach (DataRow row in countries.Rows)
+                                                {
+                                                    <option value="@row["ID"].ToString()">@row["Name"].ToString()</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 d-flex px-5">
+                                            <label class="px-2 py-2">City: </label>
+                                            <select class="form-select py-1 mx-1" id="filter-city-1">
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 d-flex px-5">
+                                            <label class="px-2 py-2">Year: </label>
+                                            <select class="form-select py-1 mx-1" id="filter-year-1">
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 d-flex px-5">
+                                            <button id="button-apply-1" class="btn btn-primary py-2 px-10">Apply</button>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex px-5 d-none">
+                                        <label class="px-2 py-1">Country: </label>
+                                        <div id="solid-country-filter-list">
+                                        </div>
+                                    </div>
+                                    <div id="chart-1" style="height: 350px;"></div>
+                                </div>
+                                <div class="tab-content d-none">
+                                    <div class="toolbar" id="kt_toolbar1">
+                                        <!--begin::Container-->
+                                        <div id="kt_toolbar_container1" class="container-fluid d-inline" data-select2-id="select2-data-kt_toolbar_container">
+                                            <!--begin::Page title-->
+                                            <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                                                <label>
+                                                    <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                            <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black"></path>
+                                                        </svg>
+                                                    </span>
+                                                    Filter:
+                                                </label>
+                                                <div class="col-md-5 d-flex px-5">
+                                                    <label class="m-auto px-2">
+                                                        Year
+                                                    </label>
+                                                    <select id="filter-solidwaste-year" class="form-select form-select form-select-solid" data-placeholder="Select an option" style="border-color: #009ef7 !important;" aria-label="Year">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!--end::Page title-->
+                                        </div>
+                                        <!--end::Actions-->
+                                    </div>
+                                    <!--end::Container-->
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped gy-7 gs-7 table-hover" id="datatable-solidwaste">
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                        <div id="chart-2" style="height: 350px;"></div>
-                    </div>
-                    <div class="tab-content d-none">
-                        <div class="toolbar" id="kt_toolbar2">
-                            <!--begin::Container-->
-                            <div id="kt_toolbar_container2" class="container-fluid d-inline" data-select2-id="select2-data-kt_toolbar_container">
-                                <!--begin::Page title-->
-                                <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                                    <label>
-                                        <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black"></path>
-                                            </svg>
-                                        </span>
-                                        Filter:
-                                    </label>
-                                    <div class="col-md-5 d-flex px-5">
-                                        <label class="m-auto px-2">
-                                            Year
-                                        </label>
-                                        <select id="filter-plasticwaste-year" class="form-select form-select form-select-solid" data-placeholder="Select an option" style="border-color: #009ef7 !important;" aria-label="Year">
+                        <div class="col-md-12 px-2 mb-20">
+                            <div class="w-100 h-100 d-flex flex-column bg-body py-15 px-10" style="filter: drop-shadow(0px 0px 5px rgba(68, 81, 96, 0.1))">
+                                <div class="col-md-12 mb-7 text-center">
+                                    <!--begin::Title-->
+                                    <h1 class="text-dark mb-5 fw-boldest">Plastic Waste</h1>
+                                    <!--end::Title-->
+                                    <!--begin::Description-->
+                                    <div class="text-gray-400 fw-bold mb-5 d-none">Short description here</div>
+                                    <div class="d-flex flex-center mb-10 d-none">
+                                        <button id="kt_drawer_filter_2_button" class="btn btn-primary py-2 px-4">
+                                            <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black"></path>
+                                                </svg>
+                                            </span>Filter
+                                        </button>
+                                        <select class="form-select py-2 mx-1 w-25" id="filter-city-2_">
                                         </select>
                                     </div>
+                                    <div class="d-flex flex-center my-15 d-none">
+                                        <div id="plastic-waste-year" class="noUi-sm w-75"></div>
+                                    </div>
+                                    <div class="d-flex px-5 d-none">
+                                        <label class="px-2 py-1">Country: </label>
+                                        <div id="plastic-country-filter-list">
+
+                                        </div>
+                                    </div>
+                                    <div class="row px-5 py-2 docs-wrapper rounded-2 d-none">
+                                        <div class="col-md-3 d-flex px-5">
+                                            <label class="px-2 py-2">Country: </label>
+                                            <select class="form-select py-1 mx-1" id="filter-country-2">
+                                                <option value="0">All</option>
+                                                @foreach (DataRow row in countries.Rows)
+                                                {
+                                                    <option value="@row["ID"].ToString()">@row["Name"].ToString()</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 d-flex px-5">
+                                            <label class="px-2 py-2">City: </label>
+                                            <select class="form-select py-1 mx-1" id="filter-city-2">
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 d-flex px-5">
+                                            <label class="px-2 py-2">Year: </label>
+                                            <select class="form-select py-1 mx-1" id="filter-year-2">
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 d-flex px-5">
+                                            <button id="button-apply-2" class="btn btn-primary py-2 px-10">Apply</button>
+                                        </div>
+                                    </div>
+                                    <div id="chart-2" style="height: 350px;"></div>
                                 </div>
-                                <!--end::Page title-->
+                                <div class="tab-content d-none">
+                                    <div class="toolbar" id="kt_toolbar2">
+                                        <!--begin::Container-->
+                                        <div id="kt_toolbar_container2" class="container-fluid d-inline" data-select2-id="select2-data-kt_toolbar_container">
+                                            <!--begin::Page title-->
+                                            <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                                                <label>
+                                                    <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                            <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="black"></path>
+                                                        </svg>
+                                                    </span>
+                                                    Filter:
+                                                </label>
+                                                <div class="col-md-5 d-flex px-5">
+                                                    <label class="m-auto px-2">
+                                                        Year
+                                                    </label>
+                                                    <select id="filter-plasticwaste-year" class="form-select form-select form-select-solid" data-placeholder="Select an option" style="border-color: #009ef7 !important;" aria-label="Year">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!--end::Page title-->
+                                        </div>
+                                        <!--end::Actions-->
+                                    </div>
+                                    <!--end::Container-->
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped gy-7 gs-7 table-hover" id="datatable-plasticwaste">
+                                    </table>
+                                </div>
                             </div>
-                            <!--end::Actions-->
                         </div>
-                        <!--end::Container-->
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-striped gy-7 gs-7 table-hover" id="datatable-plasticwaste">
-                        </table>
                     </div>
                 </div>
+            </div>
+
+            <div id="kt_drawer_filter_1_basic" class="bg-white drawer drawer-end" data-kt-drawer="true" data-kt-drawer-activate="true" data-kt-drawer-toggle="#kt_drawer_filter_1_button" data-kt-drawer-close="#kt_drawer_filter_1_close" data-kt-drawer-width="250px">
+                <!--begin::Card-->
+                <div class="card w-100 rounded-0">
+                    <!--begin::Card header-->
+                    <div class="card-header pe-5">
+                        <!--begin::Title-->
+                        <div class="card-title">
+                            <!--begin::User-->
+                            <div class="d-flex justify-content-center flex-column me-3">
+                                <a href="#" class="fs-4 fw-bolder text-gray-900 text-hover-primary me-1 lh-1">Filter Data</a>
+                            </div>
+                            <!--end::User-->
+                        </div>
+                        <!--end::Title-->
+                        <!--begin::Card toolbar-->
+                        <div class="card-toolbar">
+                            <!--begin::Close-->
+                            <div class="btn btn-sm btn-icon btn-active-light-primary" id="kt_drawer_filter_1_close">
+                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                <span class="svg-icon svg-icon-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black"></rect>
+                                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black"></rect>
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                            </div>
+                            <!--end::Close-->
+                        </div>
+                        <!--end::Card toolbar-->
+                    </div>
+                    <!--end::Card header-->
+                    <!--begin::Card body-->
+                    <div class="card-body hover-scroll-overlay-y pt-2">
+                        <form id="form-filter-1">
+                            <div class="m-5 mb-10" ">
+                                <h3 class="mb-3">Country</h3>
+                                <div class="w-100">
+                                    <div class="form-check form-switch form-check-custom form-check-solid m-2 mb-5">
+                                        <input class="form-check-input h-20px w-30px" name="solid-country-all" type="checkbox" value="All" id="solid-country-all" />
+                                        <label class="form-check-label" for="solid-country-all">
+                                            All
+                                        </label>
+                                    </div>
+                                    @foreach (DataRow row in countries.Rows)
+                                    {
+                                        <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                            <input class="form-check-input h-20px w-30px solid-country-filter" name="country" type="checkbox" value="@row["ID"].ToString()" id="solid-country-@row["ID"].ToString()" data-text="@row["Name"].ToString()" />
+                                            <label class="form-check-label" for="country-@row["ID"].ToString()">
+                                                @row["Name"].ToString()
+                                            </label>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="m-5 mb-10">
+                                <h3 class="mb-3">Type</h3>
+                                <div class="w-100">
+                                    <div class="form-check form-switch form-check-custom form-check-solid m-2 mb-5">
+                                        <input class="form-check-input h-20px w-30px" name="solid-type-all" type="checkbox" value="All" id="solid-type-all" checked="checked" />
+                                        <label class="form-check-label" for="solid-type-all">
+                                            All
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                        <input class="form-check-input h-20px w-30px solid-type-filter" name="type" type="checkbox" value="Generated" id="type-generated" checked="checked">
+                                        <label class="form-check-label" for="type-generated">
+                                            Generated
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                        <input class="form-check-input h-20px w-30px solid-type-filter" name="type" type="checkbox" value="Collected" id="type-collected" checked="checked">
+                                        <label class="form-check-label" for="type-collected">
+                                            Collected
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                        <input class="form-check-input h-20px w-30px solid-type-filter" name="type" type="checkbox" value="Recycled" id="type-recycled" checked="checked">
+                                        <label class="form-check-label" for="type-recycled">
+                                            Recycled
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                        <input class="form-check-input h-20px w-30px solid-type-filter" name="type" type="checkbox" value="Recovered" id="type-recovered" checked="checked">
+                                        <label class="form-check-label" for="type-recovered">
+                                            Recovered
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                        <input class="form-check-input h-20px w-30px solid-type-filter" name="type" type="checkbox" value="Disposal" id="type-disposal" checked="checked">
+                                        <label class="form-check-label" for="type-disposal">
+                                            Disposal
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!--end::Card body-->
+                    <div class="card-footer pe-5">
+                        <button type="button" class="btn btn-success" id="button-filter-apply-1">Apply</button>
+                    </div>
+                </div>
+                <!--end::Card-->
+            </div>
+
+            <div id="kt_drawer_filter_2_basic" class="bg-white drawer drawer-end" data-kt-drawer="true" data-kt-drawer-activate="true" data-kt-drawer-toggle="#kt_drawer_filter_2_button" data-kt-drawer-close="#kt_drawer_filter_2_close" data-kt-drawer-width="250px">
+                <!--begin::Card-->
+                <div class="card w-100 rounded-0">
+                    <!--begin::Card header-->
+                    <div class="card-header pe-5">
+                        <!--begin::Title-->
+                        <div class="card-title">
+                            <!--begin::User-->
+                            <div class="d-flex justify-content-center flex-column me-3">
+                                <a href="#" class="fs-4 fw-bolder text-gray-900 text-hover-primary me-1 lh-1">Filter Data</a>
+                            </div>
+                            <!--end::User-->
+                        </div>
+                        <!--end::Title-->
+                        <!--begin::Card toolbar-->
+                        <div class="card-toolbar">
+                            <!--begin::Close-->
+                            <div class="btn btn-sm btn-icon btn-active-light-primary" id="kt_drawer_filter_2_close">
+                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                <span class="svg-icon svg-icon-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black"></rect>
+                                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black"></rect>
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                            </div>
+                            <!--end::Close-->
+                        </div>
+                        <!--end::Card toolbar-->
+                    </div>
+                    <!--end::Card header-->
+                    <!--begin::Card body-->
+                    <div class="card-body hover-scroll-overlay-y pt-2">
+                        <form id="form-filter-2">
+                            <div class="m-5 mb-10" ">
+                                <h3 class="mb-3">Country</h3>
+                                <div class="w-100">
+                                    <div class="form-check form-switch form-check-custom form-check-solid m-2 mb-5">
+                                        <input class="form-check-input h-20px w-30px" name="plastic-country-all" type="checkbox" value="All" id="plastic-country-all" />
+                                        <label class="form-check-label" for="plastic-country-all">
+                                            All
+                                        </label>
+                                    </div>
+                                    @foreach (DataRow row in countries.Rows)
+                                    {
+                                        <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                            <input class="form-check-input h-20px w-30px plastic-country-filter" name="country" type="checkbox" value="@row["ID"].ToString()" id="plastic-country-@row["ID"].ToString()" data-text="@row["Name"].ToString()" />
+                                            <label class="form-check-label" for="country-@row["ID"].ToString()">
+                                                @row["Name"].ToString()
+                                            </label>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="m-5 mb-10">
+                                <h3 class="mb-3">Type</h3>
+                                <div class="w-100">
+                                    <div class="form-check form-switch form-check-custom form-check-solid m-2 mb-5">
+                                        <input class="form-check-input h-20px w-30px" name="plastic-type-all" type="checkbox" value="All" id="plastic-type-all" checked="checked" />
+                                        <label class="form-check-label" for="plastic-type-all">
+                                            All
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                        <input class="form-check-input h-20px w-30px plastic-type-filter" name="type" type="checkbox" value="Generated" id="type-generated" checked="checked">
+                                        <label class="form-check-label" for="type-generated">
+                                            Generated
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                        <input class="form-check-input h-20px w-30px plastic-type-filter" name="type" type="checkbox" value="Collected" id="type-collected" checked="checked">
+                                        <label class="form-check-label" for="type-collected">
+                                            Collected
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                        <input class="form-check-input h-20px w-30px plastic-type-filter" name="type" type="checkbox" value="Recycled" id="type-recycled" checked="checked">
+                                        <label class="form-check-label" for="type-recycled">
+                                            Recycled
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                        <input class="form-check-input h-20px w-30px plastic-type-filter" name="type" type="checkbox" value="Recovered" id="type-recovered" checked="checked">
+                                        <label class="form-check-label" for="type-recovered">
+                                            Recovered
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-switch form-check-custom form-check-solid m-2">
+                                        <input class="form-check-input h-20px w-30px plastic-type-filter" name="type" type="checkbox" value="Disposal" id="type-disposal" checked="checked">
+                                        <label class="form-check-label" for="type-disposal">
+                                            Disposal
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!--end::Card body-->
+                    <div class="card-footer pe-5">
+                        <button type="button" class="btn btn-success" id="button-filter-apply-2">Apply</button>
+                    </div>
+                </div>
+                <!--end::Card-->
             </div>
         </div>
     </div>
@@ -795,9 +1034,11 @@
     <script>
         var chart1;
         var chart2;
+        var datatable1;
+        var datatable2;
         $(document).ready(function () {
             /*$("#solid-country-23").prop("checked", true);//Singapore default
-        $("#plastic-country-23").prop("checked", true);//Singapore default
+            $("#plastic-country-23").prop("checked", true);//Singapore default
 */
             /*$("#button-filter-apply-1").click(function () {
                 chart1.destroy();
@@ -877,6 +1118,8 @@
             $("#button-apply-1").click(function () {
                 chart1.destroy();
                 createSolidWasteGraph();
+                chart2.destroy();
+                createPlasticWasteGraph();
             });
             $("#button-apply-2").click(function () {
                 chart2.destroy();
@@ -941,6 +1184,7 @@
                     processData: false,
                     async: false,
                     success: function (data) {
+                        getSolidWasteTableData();
                         var graphData = JSON.parse(data);
                         var x_axis = [];
                         var series = [];
@@ -1138,7 +1382,7 @@
                         $("#solid-country-filter-list").append(countryElem);
                     }
                 }
-    
+
                 var country = $('#form-filter-1 [name="country"]');
                 var countries = [];
                 $.each($("#form-filter-1").serializeArray(), function (i, field) {
@@ -1151,11 +1395,12 @@
 
             function createPlasticWasteGraph(id, x_axis, series) {
                 $.ajax({
-                    url: `/MarineDebris/getPlasticWasteGraphData?country=${$("#filter-country-2").val()}&city=${$("#filter-city-2").val()}&year=${$("#filter-year-2").val()}`,
+                    url: `/MarineDebris/getPlasticWasteGraphData?country=${$("#filter-country-1").val()}&city=${$("#filter-city-1").val()}&year=${$("#filter-year-1").val()}`,
                     type: 'GET',
                     processData: false,
                     async: false,
                     success: function (data) {
+                        getPlasticWasteTableData();
                         var graphData = JSON.parse(data);
                         var x_axis = [];
                         var series = [];
@@ -1362,7 +1607,182 @@
                 });
                 //populateCityFilter("plasticWaste", countries);*/
             }
-            
+
+            function getSolidWasteTableData() {
+                if (datatable2 != null) datatable2.destroy();
+                $.ajax({
+                    url: `/MarineDebris/getSolidWasteTableData?country=${$("#filter-country-1").val()}&city=${$("#filter-city-1").val()}&year=${$("#filter-year-1").val()}`,
+                    type: 'GET',
+                    processData: false,
+                    async: false,
+                    success: function (res) {
+                        var data = JSON.parse(res);
+                        console.log(data);
+                        dataSet = [];
+                        var column = "Country";
+                        if ($("#filter-city-1").val() >= 0) column = "City";
+                        for (var ctr = 0; ctr < data.length; ctr++) {
+                            array = [];
+                            if ($("#filter-city-1").val() >= 0) array.push(data[ctr]["City"]);
+                            else array.push(data[ctr]["Country"]);
+                            array.push(data[ctr]["Year"]);
+                            array.push(numFormatter(data[ctr]["Generated"]));
+                            array.push(numFormatter(data[ctr]["Collected"]));
+                            array.push(numFormatter(data[ctr]["Recycled"]));
+                            array.push(numFormatter(data[ctr]["Recovered"]));
+                            array.push(numFormatter(data[ctr]["Disposal"]));
+                            array.push('<div hidden><div data-name="SW-popover-content-' + ctr + '" style="font-size: 10px;">' + data[ctr]["Reference"] + '</div></div><button id="SW-ref' + ctr + '" type="button" class="btn btn-primary popover-group py-1 px-2 border" data-bs-toggle="tooltip" data-bs-trigger="focus" data-bs-placement="right" style="border-radius: 20px;position:relative;margin:-10px 0px;"><i class="bi bi-info-lg px-0"></i></button>');
+                            array.push('<div hidden><div data-name="SW-popover-content-1-' + ctr + '" style="font-size: 10px;">' + data[ctr]["Definitions"] + '</div></div><button id="SW-ref-1-' + ctr + '" type="button" class="btn btn-primary popover-group py-1 px-2 border" data-bs-toggle="tooltip" data-bs-trigger="focus" data-bs-placement="right" style="border-radius: 20px;position:relative;margin:-10px 0px;"><i class="bi bi-book px-0"></i></button>');
+                            dataSet.push(array);
+                        }
+
+                        datatable2 = $("#datatable-solidwaste").DataTable({
+                            columns: [
+                                { title: column },
+                                { title: 'Year' },
+                                { title: 'Generated' },
+                                { title: 'Collected' },
+                                { title: 'Recycled' },
+                                { title: 'Recovered' },
+                                { title: 'Disposal' },
+                                { title: 'Ref' },
+                                { title: 'Definitions' }
+                            ],
+                            data: dataSet,
+                            dom: "<'row'" +
+                                "<'col-sm-8 d-flex align-items-center justify-content-start'f>" +
+                                "<'col-sm-4 d-flex align-items-center justify-content-end'l>" +
+                                ">" +
+
+                                "<'table-responsive'tr>" +
+
+                                "<'row'" +
+                                "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                                "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                                ">"
+                        });
+                        for (var ctr = 0; ctr < data.length; ctr++) {
+                            var options = {
+                                html: true,
+                                title: "References",
+                                //html element
+                                //content: $("#popover-content")
+                                content: $('[data-name="SW-popover-content-' + ctr + '"]')
+                                //Doing below won't work. Shows title only
+                                //content: $("#popover-content").html()
+
+                            }
+                            var exampleEl = document.getElementById('SW-ref' + ctr)
+                            var popover = new bootstrap.Popover(exampleEl, options)
+                        }
+                        for (var ctr = 0; ctr < data.length; ctr++) {
+                            var options = {
+                                html: true,
+                                title: "Definitions",
+                                //html element
+                                //content: $("#popover-content")
+                                content: $('[data-name="SW-popover-content-1-' + ctr + '"]')
+                                //Doing below won't work. Shows title only
+                                //content: $("#popover-content").html()
+
+                            }
+                            var exampleEl = document.getElementById('SW-ref-1-' + ctr)
+                            var popover = new bootstrap.Popover(exampleEl, options)
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    },
+                })
+            }
+
+            function getPlasticWasteTableData() {
+                if (datatable1 != null) datatable1.destroy();
+                $.ajax({
+                    url: `/MarineDebris/getPlasticWasteTableData?country=${$("#filter-country-1").val()}&city=${$("#filter-city-1").val()}&year=${$("#filter-year-1").val()}`,
+                    type: 'GET',
+                    processData: false,
+                    async: false,
+                    success: function (res) {
+                        var data = JSON.parse(res);
+                        dataSet = [];
+                        var column = "Country";
+                        if ($("#filter-city-1").val() >= 0) column = "City";
+                        for (var ctr = 0; ctr < data.length; ctr++) {
+                            array = [];
+                            if ($("#filter-city-1").val() >= 0) array.push(data[ctr]["City"]);
+                            else array.push(data[ctr]["Country"]);
+                            array.push(data[ctr]["Year"]);
+                            array.push(numFormatter(data[ctr]["Generated"]));
+                            array.push(numFormatter(data[ctr]["Collected"]));
+                            array.push(numFormatter(data[ctr]["Recycled"]));
+                            array.push(numFormatter(data[ctr]["Recovered"]));
+                            array.push(numFormatter(data[ctr]["Disposal"]));
+                            array.push('<div hidden><div data-name="PW-popover-content-' + ctr + '" style="font-size: 10px;">' + data[ctr]["Reference"] + '</div></div><button id="PW-ref' + ctr + '" type="button" class="btn btn-primary popover-group py-1 px-2 border" data-bs-toggle="tooltip" data-bs-trigger="focus" data-bs-placement="right" style="border-radius: 20px;position:relative;margin:-10px 0px;"><i class="bi bi-info-lg px-0"></i></button>');
+                            array.push('<div hidden><div data-name="PW-popover-content-2-' + ctr + '" style="font-size: 10px;">' + data[ctr]["Definitions"] + '</div></div><button id="PW-ref-2-' + ctr + '" type="button" class="btn btn-primary popover-group py-1 px-2 border" data-bs-toggle="tooltip" data-bs-trigger="focus" data-bs-placement="right" style="border-radius: 20px;position:relative;margin:-10px 0px;"><i class="bi bi-book px-0"></i></button>');
+                            dataSet.push(array);
+                        }
+
+                        datatable1 = $("#datatable-plasticwaste").DataTable({
+                            columns: [
+                                { title: column },
+                                { title: 'Year' },
+                                { title: 'Generated' },
+                                { title: 'Collected' },
+                                { title: 'Recycled' },
+                                { title: 'Recovered' },
+                                { title: 'Disposal' },
+                                { title: 'Ref' },
+                                { title: 'Definitions' }
+                            ],
+                            data: dataSet,
+                            dom: "<'row'" +
+                                "<'col-sm-8 d-flex align-items-center justify-content-start'f>" +
+                                "<'col-sm-4 d-flex align-items-center justify-content-end'l>" +
+                                ">" +
+
+                                "<'table-responsive'tr>" +
+
+                                "<'row'" +
+                                "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                                "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                                ">"
+                        });
+                        for (var ctr = 0; ctr < data.length; ctr++) {
+                            var options = {
+                                html: true,
+                                title: "References",
+                                //html element
+                                //content: $("#popover-content")
+                                content: $('[data-name="PW-popover-content-' + ctr + '"]')
+                                //Doing below won't work. Shows title only
+                                //content: $("#popover-content").html()
+
+                            }
+                            var exampleEl = document.getElementById('PW-ref' + ctr)
+                            var popover = new bootstrap.Popover(exampleEl, options)
+                        }
+                        for (var ctr = 0; ctr < data.length; ctr++) {
+                            var options = {
+                                html: true,
+                                title: "Definitions",
+                                //html element
+                                //content: $("#popover-content")
+                                content: $('[data-name="PW-popover-content-2-' + ctr + '"]')
+                                //Doing below won't work. Shows title only
+                                //content: $("#popover-content").html()
+
+                            }
+                            var exampleEl = document.getElementById('PW-ref-2-' + ctr)
+                            var popover = new bootstrap.Popover(exampleEl, options)
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    },
+                });
+            }
+
             /*$("#solid-country-all").change(function () {
                 if (this.checked) {
                     var clist = document.getElementsByClassName("solid-country-filter");
@@ -1401,9 +1821,9 @@
                     for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
                 }
             });
-    
+
             $("#filter-solidwaste-year").change(function () {
-                getSolidWasteTableData(); 
+                getSolidWasteTableData();
             });
             $("#filter-plasticwaste-year").change(function () {
                 getPlasticWasteTableData();
@@ -1428,7 +1848,7 @@
             }
 
             /*var slider1 = document.getElementById('solid-waste-year');
-    
+
             noUiSlider.create(slider1, {
                 start: [2019, new Date().getFullYear()],
                 connect: true,
@@ -1442,9 +1862,9 @@
                     'max': new Date().getFullYear()
                 }
             });
-    
+
             var slider2 = document.getElementById('plastic-waste-year');
-    
+
             noUiSlider.create(slider2, {
                 start: [2019, new Date().getFullYear()],
                 connect: true,
@@ -1464,36 +1884,5 @@
 
             createSolidWasteGraph();
             createPlasticWasteGraph();
-
-            $(".card").hover(function () {
-                $(this).find(".overlay-wrapper").css("background-size", "150%");
-                $(this).css("background-color", "#23A2D722");
-
-            },
-                function () {
-                    $(this).find(".overlay-wrapper").css("background-size", "cover");
-                    $(this).css("background-color", "");
-                });
-
-            $(".document-card").hover(function () {
-                $(this).find(".overlay-wrapper").css("background-size", "150%");
-
-            },
-                function () {
-                    $(this).find(".overlay-wrapper").css("background-size", "cover");
-                });
-            $("#elearning-title").animate({ left: 200, opacity: "show" }, 1500);
-            window.onload = function () {
-                var el = document.getElementById(window.location.hash.replace("#", ""));
-                try {
-                    el.scrollIntoView(true);
-                } catch { }
-            }
-            window.addEventListener('load', function () {
-                var el = document.getElementById(window.location.hash.replace("#", ""));
-                try {
-                    el.scrollIntoView(true);
-                } catch { }
-            })
         });
     </script>
