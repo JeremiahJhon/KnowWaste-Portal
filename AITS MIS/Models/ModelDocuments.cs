@@ -110,7 +110,7 @@ namespace kNOwaste.Models
                 var source = "";
 
                 if (row["datasource"].ToString() != "")
-                    source = string.Format("<a class='btn btn-light-primary w-auto px-5'href='{0}' target='_blank'><i class='pe-2 fs-2 {1}'></i> View Source</a>", row["datasource"], icon);
+                    source = string.Format("<a class='btn btn-light-primary w-auto px-5' href='{0}' target='_blank'><i class='pe-2 fs-2 {1}'></i> View Source</a>", row["datasource"].ToString().StartsWith("www.") ? row["datasource"].ToString().Replace("www.","http://www.") : row["datasource"].ToString(), icon);
 
                 var thumbnail = "";
 
@@ -124,7 +124,7 @@ namespace kNOwaste.Models
                 output.AppendFormat(thumbnail);
 
                 output.Append("<div class='col-md-10 mb-10'>");
-                output.AppendFormat("<h3 class='c-title c-fonts-uppercase c-font-bold c-font-22 c-font-dark'>{0}</h3>", row["title"]);
+                output.AppendFormat("<h3><a href='../thematicarea?doc={1}' class='c-title c-fonts-uppercase c-font-bold c-font-22 c-font-dark'>{0}</a></h3>", row["title"], row["id"]);
                 output.AppendFormat("<p class='c-btn-uppercase c-font-14 c-font-thin c-theme-font'>{0} | {1}</p>", row["year"], row["publisher"]);
                 output.AppendFormat("<p>{0}</p>", row["description"]);
 
