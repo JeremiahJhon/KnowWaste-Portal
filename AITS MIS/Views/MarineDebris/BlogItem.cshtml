@@ -16,12 +16,12 @@
             <h3 class="text-white lh-base fw-bolder">
                 <span class="text-gray-800">MARINE DEBRIS</span>
                 @*<span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
-            </span>*@
+                    </span>*@
             </h3>
             <h1 class="text-white lh-base fw-bolder fs-2x fs-lg-3x">
                 <span class="text-white">@ViewBag.Title</span>
                 @*<span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
-            </span>*@
+                    </span>*@
             </h1>
         </div>
     </div>
@@ -89,7 +89,7 @@
                                     if (images[ctr].Length > 0)
                                     {
                                         <div class="carousel-item @(ctr == 0 ? "active" : "")">
-                                            <img src="Documents/@mediaPath/@images[ctr]" class="d-block @(ViewBag.Title == "GOOD PRACTICES" ? "w-100" : "mh-500px w-auto mx-auto")" alt="...">
+                                            <img src="Documents/@mediaPath/@images[ctr]" class="d-block @(ViewBag.Title == "GOOD PRACTICES" ? "w-100" : "mh-500px w-auto mx-auto")" alt="..." data-bs-toggle="modal" data-bs-target="#kt_modal_@ctr">
                                         </div>
                                     }
                                 }
@@ -124,11 +124,11 @@
                             @Html.Raw(doc["Sources"].ToString())
                         </div>
                         @*<span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base">Company</span>
-        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">
-            @doc["Company"].ToString()
-            <br/>
-            @doc["Email"].ToString()
-        </div>*@
+                            <div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">
+                                @doc["Company"].ToString()
+                                <br/>
+                                @doc["Email"].ToString()
+                            </div>*@
                     </div>
                 </div>
             </div>
@@ -138,6 +138,28 @@
     </div>
     <!--end::Container-->
 </div>
+@for (int ctr = 0; ctr < images.Length; ctr++)
+{
+    <div class="modal bg-white fade" tabindex="-1" id="kt_modal_@ctr">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content shadow-none bg-dark">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title"></h5>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="bi bi-x fs-1 text-light text"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <div class="modal-body">
+                    <img src="Documents/@mediaPath/@images[ctr]" class="d-block h-100 w-auto mx-auto" alt="..." />
+                </div>
+            </div>
+        </div>
+    </div>
+}
 <script src="\Scripts\jquery-3.6.4.min.js"></script>
 <script>
     $(document).ready(function () {
