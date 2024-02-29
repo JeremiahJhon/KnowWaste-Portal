@@ -108,19 +108,19 @@
                             @Html.Raw(doc["Description"].ToString())
                         </div>
                         <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base @(doc["ResultsAchieved"].ToString() == "" || doc["ResultsAchieved"].ToString() == null ? "d-none" : "")">Result Achieved</span>
-                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4 @(doc["ResultsAchieved"].ToString() == "" || doc["ResultsAchieved"].ToString() == null ? "d-none" : "")" " style="text-align: justify;">
+                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4 @(doc["ResultsAchieved"].ToString() == "" || doc["ResultsAchieved"].ToString() == null ? "d-none" : "")" style="text-align: justify;">
                             @Html.Raw(doc["ResultsAchieved"].ToString())
                         </div>
-                        <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base @(doc["ChallengesLessonLearned"].ToString() == "" || doc["ChallengesLessonLearned"].ToString() == null ? "d-none" : "")" ">Challenges and Lesson Learned</span>
-                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4 @(doc["ChallengesLessonLearned"].ToString() == "" || doc["ChallengesLessonLearned"].ToString() == null ? "d-none" : "")" " style="text-align: justify;">
+                        <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base @(doc["ChallengesLessonLearned"].ToString() == "" || doc["ChallengesLessonLearned"].ToString() == null ? "d-none" : "")">Challenges and Lesson Learned</span>
+                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4 @(doc["ChallengesLessonLearned"].ToString() == "" || doc["ChallengesLessonLearned"].ToString() == null ? "d-none" : "")" style="text-align: justify;">
                             @Html.Raw(doc["ChallengesLessonLearned"].ToString())
                         </div>
-                        <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base @(doc["Replicability"].ToString() == "" || doc["Replicability"].ToString() == null ? "d-none" : "")" ">Replicability</span>
-                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4 @(doc["Replicability"].ToString() == "" || doc["Replicability"].ToString() == null ? "d-none" : "")" " style="text-align: justify;">
+                        <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base @(doc["Replicability"].ToString() == "" || doc["Replicability"].ToString() == null ? "d-none" : "")">Replicability</span>
+                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4 @(doc["Replicability"].ToString() == "" || doc["Replicability"].ToString() == null ? "d-none" : "")" style="text-align: justify;">
                             @Html.Raw(doc["Replicability"].ToString())
                         </div>
                         <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base @(doc["Sources"].ToString() == "" || doc["Sources"].ToString() == null ? "d-none" : "")" ">Sources</span>
-                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4 @(doc["Sources"].ToString() == "" || doc["Sources"].ToString() == null ? "d-none" : "")" " style="text-align: justify;">
+                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4 @(doc["Sources"].ToString() == "" || doc["Sources"].ToString() == null ? "d-none" : "")" style="text-align: justify;">
                             @Html.Raw(doc["Sources"].ToString())
                         </div>
                         @*<span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base">Company</span>
