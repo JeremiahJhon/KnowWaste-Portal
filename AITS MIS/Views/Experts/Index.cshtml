@@ -66,13 +66,13 @@
                                         </div>
                                     </div>
                                                             @{
-                                                if (row["Thumbnail"].ToString().Split(';')[0] == "")
+                                                if (row["Thumbnail"].ToString() == "")
                                                 {
                                                     <img class="image-circle c-overlay-object img-responsive" src="../Documents/anonymous.jpg" alt="">
                                                 }
                                                 else
                                                 {
-                                                    <img class="image-circle c-overlay-object img-responsive" src="../Documents/@row["Thumbnail"].ToString().Split(';')[0]" alt="">
+                                                    <img class="image-circle c-overlay-object img-responsive" src="../Documents/@row["Thumbnail"].ToString()" alt="">
                                                 }
                                             }
                                 </div>
