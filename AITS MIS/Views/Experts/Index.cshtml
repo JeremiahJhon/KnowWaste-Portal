@@ -58,7 +58,7 @@
                                                 }
                                                 else
                                                 {
-                                                    <a href="../Documents/@row["Thumbnail"].ToString()" data-lightbox="fancybox" data-fancybox-group="gallery-4">
+                                                    <a href="../Documents/@row["Thumbnail"].ToString().Split(';')[0]" data-lightbox="fancybox" data-fancybox-group="gallery-4">
                                                         <i class="icon-magnifier"></i>
                                                     </a>
                                                 }
@@ -66,13 +66,13 @@
                                         </div>
                                     </div>
                                                             @{
-                                                if (row["Thumbnail"].ToString() == "")
+                                                if (row["Thumbnail"].ToString().Split(';')[0] == "")
                                                 {
                                                     <img class="image-circle c-overlay-object img-responsive" src="../Documents/anonymous.jpg" alt="">
                                                 }
                                                 else
                                                 {
-                                                    <img class="image-circle c-overlay-object img-responsive" src="../Documents/@row["Thumbnail"].ToString()" alt="">
+                                                    <img class="image-circle c-overlay-object img-responsive" src="../Documents/@row["Thumbnail"].ToString().Split(';')[0]" alt="">
                                                 }
                                             }
                                 </div>
