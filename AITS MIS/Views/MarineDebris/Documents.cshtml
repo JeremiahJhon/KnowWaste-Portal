@@ -165,10 +165,10 @@
                                 htmlString += '</div>';
                                 htmlString += '<div class="w-100">';
                                 if (documentsData[key][ctr]["Attachment"]) {
-                                    htmlString += '<a href="Documents/' + documentsData[key][ctr]["Attachment"] + '" class="btn btn-primary m-2" style="float: right;"><i class="bi bi-file-earmark-pdf"></i>Document</a>';
+                                    htmlString += '<a href="Documents/' + documentsData[key][ctr]["Attachment"].split(';')[0] + '" class="btn btn-primary m-2" style="float: right;"><i class="bi bi-file-earmark-pdf"></i>Document</a>';
                                 }
                                 if (documentsData[key][ctr]["Datasource"]) {
-                                    htmlString += '<a href="' + documentsData[key][ctr]["Datasource"] + '" class="btn btn-light-primary m-2" style="float: right;"><i class="bi bi-link"></i>Source</a>';
+                                    htmlString += '<a href="' + documentsData[key][ctr]["Datasource"].split(';')[0] + '" class="btn btn-light-primary m-2" style="float: right;"><i class="bi bi-link"></i>Source</a>';
                                 }
                                 htmlString += '</div>';
 

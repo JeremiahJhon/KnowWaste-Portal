@@ -43,7 +43,7 @@
             <div class="col-md-3 mb-10">
                 <!--begin::Feature post-->
                 <div class="card h-100 m-5 box-shadow">
-                    <a class="d-block overlay" target="_blank" href="~/Documents/@row["Attachment"].ToString()">
+                    <a class="d-block overlay" target="_blank" href="~/Documents/@row["Attachment"].ToString().Split(';')[0]">
                         <!--begin::Image-->
                         <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card min-h-175px" style="background-image:url('Documents/@row["Thumbnail"].ToString()')"></div>
                         <!--end::Image-->
@@ -56,7 +56,7 @@
                         <!--end::Action-->
                     </a>
                     <!--begin::Body-->
-                    <a href="~/Documents/@row["Attachment"].ToString()" target="_blank" class="m-0 p-5">
+                    <a href="~/Documents/@row["Attachment"].ToString().Split(';')[0]" target="_blank" class="m-0 p-5">
                         <!--begin::Title-->
                         <div class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">@row["Title"].ToString()</div>
                         <!--end::Title-->

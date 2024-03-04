@@ -684,7 +684,7 @@ namespace UCOnline.Controllers
 
                     ViewBag.Data = dtResult.Rows[0];
 
-                    return View("BlogItem");
+                    return View("TechItem");
                 }
                 else
                 {
