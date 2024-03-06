@@ -781,7 +781,7 @@ namespace UCOnline.Controllers
                 _3RproMar.SelectOrder("Year", Web.Framework.Enums.EnumOrder.DESCENDING);
                 DataTable _3RproMarData = _3RproMar.SelectQuery();*/
 
-                var _3RproMarData = context.documents.Where(x => x.Documentcategory_ID == 4).OrderByDescending(x => x.Year);
+                var _3RproMarData = context.documents.Where(x => x.Documentcategory_ID == 4 && x.Deleted == 0).OrderByDescending(x => x.Year);
 
                 /*ServerBase country_ = new ServerBase("Country");
                 country_.SelectFilter("SubRegion_ID is not null and SubRegion_ID <> ''"); // 3 = Asia
