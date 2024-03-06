@@ -14,6 +14,7 @@ using UCOnline.Models;
 using Web.Framework.Controllers;
 using Web.Framework.Server;
 using UCOnline.Data;
+using kNowaste.Helper;
 
 namespace UCOnline.Controllers
 {
@@ -775,48 +776,43 @@ namespace UCOnline.Controllers
 
             if (id == null)
             {
-                ServerBase _3RproMar = new ServerBase("documents");
+                /*ServerBase _3RproMar = new ServerBase("documents");
                 _3RproMar.SelectFilter("documentcategory_id = 4"); //3RproMar
-                _3RproMar.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
-                DataTable _3RproMarData = _3RproMar.SelectQuery();
+                _3RproMar.SelectOrder("Year", Web.Framework.Enums.EnumOrder.DESCENDING);
+                DataTable _3RproMarData = _3RproMar.SelectQuery();*/
 
-                ServerBase country_ = new ServerBase("Country");
+                var _3RproMarData = context.documents.Where(x => x.Documentcategory_ID == 4).OrderByDescending(x => x.Year);
+
+                /*ServerBase country_ = new ServerBase("Country");
                 country_.SelectFilter("SubRegion_ID is not null and SubRegion_ID <> ''"); // 3 = Asia
-                DataTable countryData = country_.SelectQuery();
+                DataTable countryData = country_.SelectQuery();*/
 
-                DataTable dtResult = new DataTable();
-                dtResult.Columns.Add("ID", typeof(int));
-                dtResult.Columns.Add("Title", typeof(string));
-                dtResult.Columns.Add("Country", typeof(string));
-                dtResult.Columns.Add("Attachment", typeof(string));
-                dtResult.Columns.Add("Description", typeof(string));
-                dtResult.Columns.Add("Datasource", typeof(string));
-                dtResult.Columns.Add("Thumbnail", typeof(string));
-                dtResult.Columns.Add("Keyword", typeof(string));
-                dtResult.Columns.Add("Year", typeof(string));
-                dtResult.Columns.Add("Publisher", typeof(string));
-                dtResult.Columns.Add("Subtitle", typeof(string));
+                var countryData = context.countries.Where(x => x.SubRegion_ID != null && x.SubRegion_ID != "");
 
                 var JoinResult = from a in _3RproMarData.AsEnumerable()
                                  join b in countryData.AsEnumerable()
-                                 on a.Field<String>("Country_ID").ToString() equals b.Field<int>("ID").ToString()
-                                 select dtResult.LoadDataRow(new object[]
-                                    {
-                                        a.Field<int>("ID"),
-                                        a.Field<string>("Title"),
-                                        b.Field<string>("Name"),
-                                        a.Field<string>("Attachment"),
-                                        a.Field<string>("Description"),
-                                        a.Field<string>("Datasource"),
-                                        a.Field<string>("Thumbnail"),
-                                        a.Field<string>("Keyword"),
-                                        a.Field<string>("Year"),
-                                        a.Field<string>("Publisher"),
-                                        a.Field<string>("Subtitle"),
-                                    }, false);
-                JoinResult.CopyToDataTable();
+                                 on a.Country_ID equals b.ID.ToString()
+                                 select new
+                                 {
+                                    a.ID,
+                                    a.Title,
+                                    a.Location,
+                                    Country = b.Name,
+                                    a.Attachment,
+                                    a.Description,
+                                    a.Datasource,
+                                    a.Thumbnail,
+                                    a.Keyword,
+                                    a.Year,
+                                    a.Publisher,
+                                    a.Subtitle,
+                                };
 
-                ViewBag._3RproMar = dtResult;
+                ViewBag._3RproMar = Utility.LinqToDataTable(JoinResult); ;
+
+                var year = _3RproMarData.Select(x => x.Year).Distinct().OrderByDescending(y => y).ToList();
+
+                ViewBag.Year = year;
 
                 return View();
             }
