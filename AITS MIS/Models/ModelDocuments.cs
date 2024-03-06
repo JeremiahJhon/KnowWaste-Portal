@@ -87,7 +87,7 @@ namespace kNOwaste.Models
                     else
                         icon = "bi bi-file-earmark";
 
-                    attachment = string.Format("<a class='btn btn-light-success w-auto px-5' href='../Documents/{0}' target='_blank'><i class='pe-2 fs-2 {1}'></i> View Document</a>", row["attachment"], icon);
+                    attachment = string.Format("<a class='btn btn-light-success w-auto px-5' href='../Documents/{0}' target='_blank'><i class='pe-2 fs-2 {1}'></i> View Document</a>", row["attachment"].ToString().Split(';')[0], icon);
                 }
 
                 if(row["datasource"].ToString() != "")
@@ -110,7 +110,7 @@ namespace kNOwaste.Models
                 var source = "";
 
                 if (row["datasource"].ToString() != "")
-                    source = string.Format("<a class='btn btn-light-primary w-auto px-5' href='{0}' target='_blank'><i class='pe-2 fs-2 {1}'></i> View Source</a>", row["datasource"].ToString().StartsWith("www.") ? row["datasource"].ToString().Replace("www.","http://www.") : row["datasource"].ToString(), icon);
+                    source = string.Format("<a class='btn btn-light-primary w-auto px-5' href='{0}' target='_blank'><i class='pe-2 fs-2 {1}'></i> View Source</a>", row["datasource"].ToString().StartsWith("www.") ? row["datasource"].ToString().Split(';')[0].Replace("www.","http://www.") : row["datasource"].ToString().Split(';')[0], icon);
 
                 var thumbnail = "";
 
@@ -299,13 +299,13 @@ namespace kNOwaste.Models
                     else
                         icon = "file-o";
 
-                    attachment = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='../Documents/{0}' target='_blank'><i class='fa fa-{1}'></i> View Document</a>", row["attachment"], icon);
+                    attachment = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='../Documents/{0}' target='_blank'><i class='fa fa-{1}'></i> View Document</a>", row["attachment"].ToString().Split(';')[0], icon);
                 }
 
                 var source = "";
 
                 if (row["datasource"].ToString() != "")
-                    source = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-bg-blue-1 c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='{0}' target='_blank'><i class='fa fa-external-link'></i> View Source</a>", row["datasource"]);
+                    source = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-bg-blue-1 c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='{0}' target='_blank'><i class='fa fa-external-link'></i> View Source</a>", row["datasource"].ToString().Split(';')[0]);
 
                 var thumbnail = "";
 

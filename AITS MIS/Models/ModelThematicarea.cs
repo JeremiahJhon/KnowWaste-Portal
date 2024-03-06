@@ -128,7 +128,7 @@ namespace UCOnline.Models
                     else
                         icon = "file-o";
 
-                    attachment = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='../Documents/{0}' target='_blank'><i class='fa fa-{1}'></i> View Document</a>", row["attachment"], icon);
+                    attachment = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='../Documents/{0}' target='_blank'><i class='fa fa-{1}'></i> View Document</a>", row["attachment"].ToString().Split(';')[0], icon);
                 }
 
                 if (row["datasource"].ToString() != "")
@@ -151,7 +151,7 @@ namespace UCOnline.Models
                 var source = "";
 
                 if (row["datasource"].ToString() != "")
-                    source = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-bg-blue-1 c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='{0}' target='_blank'><i class='fa fa-external-link'></i> View Source</a>", row["datasource"]);
+                    source = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-bg-blue-1 c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='{0}' target='_blank'><i class='fa fa-external-link'></i> View Source</a>", row["datasource"].ToString().Split(';')[0]);
 
                 var thumbnail = "";
 
@@ -238,7 +238,7 @@ namespace UCOnline.Models
                         else
                             icon = "file-o";
 
-                        attachment = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='../Documents/{0}' target='_blank'><i class='fa fa-{1}'></i> View Document</a>", row["attachment"], icon);
+                        attachment = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='../Documents/{0}' target='_blank'><i class='fa fa-{1}'></i> View Document</a>", row["attachment"].ToString().Split(';')[0], icon);
                     }
 
                     if (row["datasource"].ToString() != "")
@@ -261,7 +261,7 @@ namespace UCOnline.Models
                     var source = "";
 
                     if (row["datasource"].ToString() != "")
-                        source = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-bg-blue-1 c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='{0}' target='_blank'><i class='fa fa-external-link'></i> View Source</a>", row["datasource"]);
+                        source = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-bg-blue-1 c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='{0}' target='_blank'><i class='fa fa-external-link'></i> View Source</a>", row["datasource"].ToString().Split(';')[0]);
 
                     var thumbnail = "";
 
@@ -350,7 +350,7 @@ namespace UCOnline.Models
                         else
                             icon = "file-o";
 
-                        attachment = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='../Documents/{0}' target='_blank'><i class='fa fa-{1}'></i> View Document</a>", row["attachment"], icon);
+                        attachment = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='../Documents/{0}' target='_blank'><i class='fa fa-{1}'></i> View Document</a>", row["attachment"].ToString().Split(';')[0], icon);
                     }
 
                     if (row["datasource"].ToString() != "")
@@ -373,7 +373,7 @@ namespace UCOnline.Models
                     var source = "";
 
                     if (row["datasource"].ToString() != "")
-                        source = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-bg-blue-1 c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='{0}' target='_blank'><i class='fa fa-external-link'></i> View Source</a>", row["datasource"]);
+                        source = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-bg-blue-1 c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='{0}' target='_blank'><i class='fa fa-external-link'></i> View Source</a>", row["datasource"].ToString().Split(';')[0]);
 
                     var thumbnail = "";
 
@@ -466,7 +466,7 @@ namespace UCOnline.Models
                         else
                             icon = "file-o";
 
-                        attachment = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='../Documents/{0}' target='_blank'><i class='fa fa-{1}'></i> View Document</a>", row["attachment"], icon);
+                        attachment = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='../Documents/{0}' target='_blank'><i class='fa fa-{1}'></i> View Document</a>", row["attachment"].ToString().Split(';')[0], icon);
                     }
 
                     if (row["datasource"].ToString() != "")
@@ -489,7 +489,7 @@ namespace UCOnline.Models
                     var source = "";
 
                     if (row["datasource"].ToString() != "")
-                        source = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-bg-blue-1 c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='{0}' target='_blank'><i class='fa fa-external-link'></i> View Source</a>", row["datasource"]);
+                        source = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-bg-blue-1 c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='{0}' target='_blank'><i class='fa fa-external-link'></i> View Source</a>", row["datasource"].ToString().Split(';')[0]);
 
                     var thumbnail = "";
 
@@ -577,13 +577,13 @@ namespace UCOnline.Models
                     else
                         icon = "file-o";
 
-                    attachment = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='../Documents/{0}' target='_blank'><i class='fa fa-{1}'></i> View Document</a>", row["attachment"], icon);
+                    attachment = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='../Documents/{0}' target='_blank'><i class='fa fa-{1}'></i> View Document</a>", row["attachment"].ToString().Split(';')[0], icon);
                 }
 
                 var source = "";
 
                 if (row["datasource"].ToString() != "")
-                    source = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-bg-blue-1 c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='{0}' target='_blank'><i class='fa fa-external-link'></i> View Source</a>", row["datasource"]);
+                    source = string.Format("<a class='btn btn-special c-btn-uppercase btn-md c-btn-bold c-btn-square c-bg-blue-1 c-theme-btn wow animate fadeIn' style='visibility: visible; animation-name: fadeIn;' href='{0}' target='_blank'><i class='fa fa-external-link'></i> View Source</a>", row["datasource"].ToString().Split(';')[0]);
 
                 var thumbnail = "";
 
