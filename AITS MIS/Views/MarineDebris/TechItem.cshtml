@@ -59,7 +59,7 @@
                                     if (images[ctr].Length > 0)
                                     {
                                         <div class="carousel-item @(ctr == 0 ? "active" : "")">
-                                            <img src="Documents/@mediaPath/@images[ctr]" class="d-block mh-500px w-auto mx-auto" alt="..." data-bs-toggle="modal" data-bs-target="#kt_modal_@ctr">
+                                            <img src="Documents/@mediaPath/@images[ctr]" class="d-block mw-300px mh-300px w-auto mx-auto" alt="..." data-bs-toggle="modal" data-bs-target="#kt_modal_@ctr">
                                         </div>
                                     }
                                 }
@@ -73,13 +73,13 @@
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
-                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4 mx-10" style="text-align: justify;">
+                        <div class="fw-bold fs-5 text-gray-600 text-dark mx-10" style="text-align: justify;">
                             <span class="fs-1 text-dark fw-bolder text-hover-primary text-dark lh-base">@doc["Title"].ToString()</span>
                             <div class="mb-10">
                                 <span class="badge badge-light-success fw-bolder my-2" style="white-space: normal; text-align: left;">Author: @doc["Author"].ToString()</span>
                                 <span class="badge badge-light fw-bolder my-2" style="white-space: normal; text-align: left;">Date Created: @doc["BlogDate"].ToString()</span>
                             </div>
-                            <div class="content mb-10">
+                            <div class="mb-10">
                                 @Html.Raw(doc["Description"].ToString())
                             </div>
                             <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base @(doc["Sources"].ToString() == "" || doc["Sources"].ToString() == null ? "d-none" : "")" ">Sources</span>
