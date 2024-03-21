@@ -75,10 +75,11 @@
                         </div>
                         <div class="fw-bold fs-5 text-gray-600 text-dark mx-10" style="text-align: justify;">
                             <span class="fs-1 text-dark fw-bolder text-hover-primary text-dark lh-base">@doc["Title"].ToString()</span>
-                            <div class="mb-10">
+                            <div>
                                 <span class="badge badge-light-success fw-bolder my-2" style="white-space: normal; text-align: left;">Author: @doc["Author"].ToString()</span>
                                 <span class="badge badge-light fw-bolder my-2" style="white-space: normal; text-align: left;">Date Created: @doc["BlogDate"].ToString()</span>
                             </div>
+                            <div id="shareBlock" class="my-3"></div>
                             <div class="mb-10">
                                 @Html.Raw(doc["Description"].ToString())
                             </div>
@@ -121,6 +122,9 @@
 <script src="\Scripts\jquery-3.6.4.min.js"></script>
 <script>
     $(document).ready(function () {
-
+        $('#shareBlock').cShare({
+            description: '',
+            showButtons: ['fb', 'linkedin', 'line', 'twitter', 'email']
+        });
     });
 </script>
