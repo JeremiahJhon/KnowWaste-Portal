@@ -6585,6 +6585,8 @@
     <Content Include="Scripts\jquery-3.6.4.slim.js" />
     <Content Include="Scripts\jquery-3.6.4.slim.min.js" />
     <Content Include="Scripts\jquery-migrate.min.js" />
+    <Content Include="Scripts\jquery.c-share.js" />
+    <Content Include="Scripts\jquery.c-share.min.js" />
     <Content Include="Scripts\jquery.easing.min.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\marine-debris.js" />
