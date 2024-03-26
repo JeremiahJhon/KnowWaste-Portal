@@ -336,7 +336,7 @@ namespace UCOnline.Models
                 var attachment = "";
                 var icon = "";
 
-                if (row["documentcategory_ID"].ToString() == "2")
+                if (row["documentcategory_ID"].ToString() == "2" || row["documentcategory_ID"].ToString() == "4")
                 {
 
                     if (row["attachment"].ToString() != "")

@@ -15,12 +15,12 @@
             <h3 class="text-white lh-base fw-bolder">
                 <span class="text-gray-800">MARINE DEBRIS</span>
                 @*<span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
-            </span>*@
+                    </span>*@
             </h3>
             <h1 class="text-white lh-base fw-bolder fs-2x fs-lg-3x">
                 <span class="text-white">@ViewBag.Title</span>
                 @*<span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
-            </span>*@
+                    </span>*@
             </h1>
         </div>
     </div>
@@ -76,7 +76,7 @@
                                 }
                             </div>
                             <div class="carousel-inner">
-                                @for (int ctr = 0; ctr < images.Length;  ctr++)
+                                @for (int ctr = 0; ctr < images.Length; ctr++)
                                 {
                                     if (images[ctr].Length > 0)
                                     {
@@ -95,6 +95,7 @@
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
+                        <div id="shareBlock" class="my-3"></div>
                         <div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">
                             @Html.Raw(ViewBag.Data.Description)
                         </div>
@@ -107,3 +108,12 @@
     </div>
     <!--end::Container-->
 </div>
+<script src="\Scripts\jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#shareBlock').cShare({
+            description: '',
+            showButtons: ['fb', 'linkedin', 'line', 'twitter', 'email']
+        });
+    });
+</script>

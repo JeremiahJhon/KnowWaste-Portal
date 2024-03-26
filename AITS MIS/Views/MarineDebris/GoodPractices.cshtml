@@ -60,10 +60,10 @@
                             <span class="text-gray-500 text-hover-primary" style="white-space: normal; text-align: left;">@row["Country"].ToString()</span>
                         </div>
                         <!--begin::Text-->
-                        <div class="fw-bold fs-5 text-gray-600 text-dark my-4">@Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span class="text-hover-primary">see more</span></div>
+                        <div class="fw-bold fs-5 text-gray-600 text-dark my-4 d-none">@Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span class="text-hover-primary">see more</span></div>
                         <!--end::Text-->
                         <!--begin::Content-->
-                        <div class="fs-6 fw-bolder">
+                        <div class="fs-6 fw-bolder d-none">
                             <!--begin::Author-->
                             <span class="text-gray-700 text-hover-primary">@row["Author"].ToString()</span>
                             <!--end::Author-->
