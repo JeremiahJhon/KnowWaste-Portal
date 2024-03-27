@@ -6403,6 +6403,9 @@
     <Content Include="Content\conference.css" />
     <Content Include="Content\seminar.css" />
     <Content Include="Content\static\AdobeStock_584264594.jpeg" />
+    <Content Include="Content\static\beach-5043177.jpg" />
+    <Content Include="Content\static\beach-6100209.jpg" />
+    <Content Include="Content\static\beach-869195.jpg" />
     <Content Include="Content\static\bg-documents.jpg" />
     <Content Include="Content\static\bg-gp-1.jpg" />
     <Content Include="Content\static\bg-gp-2.jpg" />

@@ -21,7 +21,7 @@ namespace UCOnline.Models
         public ModelExperts() : base("expertrosters", "Expert Rosters")
         {
             QuerySetting.SortOrder = Web.Framework.Enums.EnumOrder.ASCENDING;
-            QuerySetting.SortColumn = "Lastname";
+            QuerySetting.SortColumn = "Firstname";
             QuerySetting.QueryAll = true;
 
             ViewSetting.SHOWEDITOR = true;
