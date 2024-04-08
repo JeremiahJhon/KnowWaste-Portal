@@ -19,8 +19,8 @@
     .main-image {
         position: relative;
         padding: 12px;
-        width: 100%;
-        height: 300px;
+        width: 75%;
+        height: auto;
     }
 
     .main-image:before {
@@ -70,42 +70,40 @@
                     <!--end::Title-->
                 </div>
                 <!--end::Heading-->
-                <div class="row d-flex">
-                    <div class="row p-20">
-                        <div class="w-100">
-                            <span class="badge badge-white fw-bolder my-2 @(doc["Subtitle"].ToString() == "" || doc["Subtitle"].ToString() == null ? "d-none" : "")" style="white-space: normal; text-align: left;">@doc["Subtitle"].ToString()</span>
-                            <span class="d-none badge badge-light-primary fw-bolder my-2 @(doc["Year"].ToString() == "" || doc["Year"].ToString() == null ? "d-none" : "")" style="white-space: normal; text-align: left;">Year: @doc["Year"].ToString()</span>
-                            <span class="d-none badge badge-light-success fw-bolder my-2 @(doc["Publisher"].ToString() == "" || doc["Publisher"].ToString() == null ? "d-none" : "")" style="white-space: normal; text-align: left;">Publisher: @doc["Publisher"].ToString()</span>
-                            <span class="d-none badge badge-light fw-bolder my-2 @(doc["Keyword"].ToString() == "" || doc["Keyword"].ToString() == null ? "d-none" : "")" style="white-space: normal; text-align: left;">Keyword: @doc["Keyword"].ToString()</span>
+                <div class="row">
+                    <div class="w-100">
+                        <span class="badge badge-white fw-bolder my-2 @(doc["Subtitle"].ToString() == "" || doc["Subtitle"].ToString() == null ? "d-none" : "")" style="white-space: normal; text-align: left;">@doc["Subtitle"].ToString()</span>
+                        <span class="d-none badge badge-light-primary fw-bolder my-2 @(doc["Year"].ToString() == "" || doc["Year"].ToString() == null ? "d-none" : "")" style="white-space: normal; text-align: left;">Year: @doc["Year"].ToString()</span>
+                        <span class="d-none badge badge-light-success fw-bolder my-2 @(doc["Publisher"].ToString() == "" || doc["Publisher"].ToString() == null ? "d-none" : "")" style="white-space: normal; text-align: left;">Publisher: @doc["Publisher"].ToString()</span>
+                        <span class="d-none badge badge-light fw-bolder my-2 @(doc["Keyword"].ToString() == "" || doc["Keyword"].ToString() == null ? "d-none" : "")" style="white-space: normal; text-align: left;">Keyword: @doc["Keyword"].ToString()</span>
+                    </div>
+                    <div class="d-flex">
+                        <div class="main-image">
+                            <div class="image border border-gray-500" style="background-image: url('Documents/@doc["Thumbnail"].ToString()'); "></div>
                         </div>
-                        <div class="d-flex">
-                            <div class="main-image">
-                                <div class="image border border-gray-500" style="background-image: url('Documents/@doc["Thumbnail"].ToString()'); "></div>
-                            </div>
 
-                            <div class="m-2">
-                                <span class="fs-3 text-dark fw-bolder text-hover-primary text-dark lh-base">@doc["Title"].ToString()</span>
-                                <div>Publisher: @doc["Publisher"].ToString()</div>
-                                <div>Year: @doc["Year"].ToString()</div>
-                                <div>Country: @ViewData["Country"].ToString()</div>
-                                <div>Category: @ViewData["Category"].ToString()</div>
-                                <div>Waste Theme: @ViewData["Geotheme"].ToString()</div>
-                                <div>Keyword: @doc["Keyword"].ToString()</div>
+                        <div class="m-2">
+                            <span class="fs-3 text-dark fw-bolder text-hover-primary text-dark lh-base">@doc["Title"].ToString()</span>
+                            <div>Publisher: @doc["Publisher"].ToString()</div>
+                            <div>Year: @doc["Year"].ToString()</div>
+                            <div>Country: @ViewData["Country"].ToString()</div>
+                            <div>Category: @ViewData["Category"].ToString()</div>
+                            <div>Waste Theme: @ViewData["Geotheme"].ToString()</div>
+                            <div>Keyword: @doc["Keyword"].ToString()</div>
 
-                                <div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">
-                                    @Html.Raw(doc["Description"].ToString())
-                                </div>
-                                <div id="shareBlock" class="my-3"></div>
+                            <div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">
+                                @Html.Raw(doc["Description"].ToString())
                             </div>
+                            <div id="shareBlock" class="my-3"></div>
                         </div>
-                        <div class="w-100">
-                            <a href="Documents/@doc["Attachment"].ToString().Split(';')[0]" class="btn btn-primary m-2 @(doc["Attachment"].ToString() == "" || doc["Attachment"].ToString() == null ? "d-none" : "")" style="float: right;">
-                                <i class="bi bi-file-earmark-pdf"></i> Document
-                            </a>
-                            <a href="@doc["Datasource"].ToString().Split(';')[0]" class="btn btn-light-primary m-2 @(doc["Datasource"].ToString() == "" || doc["Datasource"].ToString() == null ? "d-none" : "")" style="float: right;">
-                                <i class="bi bi-link"></i> Source
-                            </a>
-                        </div>
+                    </div>
+                    <div class="w-100">
+                        <a href="Documents/@doc["Attachment"].ToString().Split(';')[0]" class="btn btn-primary m-2 @(doc["Attachment"].ToString() == "" || doc["Attachment"].ToString() == null ? "d-none" : "")" style="float: right;">
+                            <i class="bi bi-file-earmark-pdf"></i> Document
+                        </a>
+                        <a href="@doc["Datasource"].ToString().Split(';')[0]" class="btn btn-light-primary m-2 @(doc["Datasource"].ToString() == "" || doc["Datasource"].ToString() == null ? "d-none" : "")" style="float: right;">
+                            <i class="bi bi-link"></i> Source
+                        </a>
                     </div>
                 </div>
             </div>
