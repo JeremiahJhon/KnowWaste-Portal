@@ -211,6 +211,9 @@
                         <table class="table table-striped gy-7 gs-7 table-hover" id="datatable-plasticwaste">
                         </table>
                     </div>
+                    <div class="col-md-3 d-flex px-5">
+                        <button id="button-download" class="btn btn-primary py-2 px-10">Download Data</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -449,6 +452,11 @@
             createPlasticWasteGraph();
             $("#kt_drawer_filter_2_close").click();
         });*/
+
+        $("#button-download").click(function () {
+            console.log("download");
+            window.location.href = `/Data/ExportToCsv?country=${$("#filter-country-1").val()}&city=${$("#filter-city-1").val()}&year=${$("#filter-year-1").val()}`;
+        });
 
         $("#filter-country-1").change(function () {
             populateCityFilter("solidWaste", this.value);
