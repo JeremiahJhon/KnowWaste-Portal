@@ -892,7 +892,7 @@ namespace UCOnline.Controllers
                 foreach(DataRow row in dtResult.Rows)
                 {
                     try
-                    {
+                    { 
                         total += Convert.ToDouble(row[col.ToString()].ToString());
                     }
                     catch

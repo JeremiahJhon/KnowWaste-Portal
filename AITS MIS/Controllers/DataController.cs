@@ -1,7 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using UCOnline.Entity;
@@ -172,6 +176,171 @@ namespace UCOnline.Controllers
             waste = stream.GetObject();
 
             return Json(waste, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult ExportToCsv(int country, int city, int year)
+        {
+            DataSet ds = new DataSet();
+            ds.Tables.Add(getSolidWasteTableData(country, city, year));
+            ds.Tables.Add(getPlasticWasteTableData(country, city, year));
+
+            string csvContent = DataSetToCsv(ds);
+
+            // Return the CSV file as a FileResult for download
+            byte[] byteArray = Encoding.UTF8.GetBytes(csvContent);
+            MemoryStream csvStream = new MemoryStream(byteArray);
+
+            return File(csvStream, "text/csv", "wastedata.csv");
+        }
+
+        private string DataTableToCsv(DataTable dt)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            // Write column headers
+            foreach (DataColumn column in dt.Columns)
+            {
+                sb.Append('"' + column.ColumnName.Replace("\"", "\"\"") + '"' + ",");
+            }
+            sb.AppendLine();
+
+            // Write rows
+            foreach (DataRow row in dt.Rows)
+            {
+                foreach (DataColumn column in dt.Columns)
+                {
+                    sb.Append('"' + row[column].ToString().Replace("\"", "\"\"") + '"' + ",");
+                }
+                sb.AppendLine();
+            }
+
+            return sb.ToString();
+        }
+
+        static string DataSetToCsv(DataSet dataSet)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (DataTable dataTable in dataSet.Tables)
+            {
+                // Write table name as a CSV section header
+                sb.AppendLine(dataTable.TableName);
+
+                // Write column headers
+                foreach (DataColumn column in dataTable.Columns)
+                {
+                    sb.Append('"' + column.ColumnName.Replace("\"", "\"\"") + '"' + ",");
+                }
+                sb.AppendLine();
+
+                // Write rows
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    foreach (DataColumn column in dataTable.Columns)
+                    {
+                        sb.Append('"' + row[column].ToString().Replace("\"", "\"\"") + '"' + ",");
+                    }
+                    sb.AppendLine();
+                }
+
+                // Add an empty line between tables
+                sb.AppendLine();
+            }
+
+            return sb.ToString();
+        }
+
+        private DataTable getSolidWasteTableData(int country, int city, int year)
+        {
+            MSSQLServer db = new MSSQLServer();
+            DataTable dtResult = new DataTable();
+            string yearFilter = "";
+            if (year > 0) yearFilter = " and [Year] = " + year.ToString();
+            string countryFilter = "";
+            if (country > 0) countryFilter = "select ID from city where [Country_ID] = " + country.ToString();
+
+            if (city > 0)
+            {
+                db.Query = "select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from citywastestreams a inner join city b on a.city_id = b.id where a.city_id in (" + city + ") " + yearFilter + " and a.WasteCategory_ID = 1 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                dtResult = db.ExecuteQuery();
+            }
+            else if (city == 0)
+            {
+                if (country == 0)
+                {
+                    db.Query = "select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from citywastestreams a inner join city b on a.city_id = b.id where a.city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and a.City_ID in (" + city + ") " + yearFilter + " and a.WasteCategory_ID = 1 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    dtResult = db.ExecuteQuery();
+                }
+                else
+                {
+                    db.Query = "select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from citywastestreams a inner join city b on a.city_id = b.id where a.city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and a.City_ID in (" + countryFilter + ") " + yearFilter + " and a.WasteCategory_ID = 1 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    dtResult = db.ExecuteQuery();
+                }
+            }
+            else
+            {
+                if (country == 0)
+                {
+                    db.Query = "select b.Name as Country,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from countrywastestreams a inner join country b on a.country_id = b.id where a.Country_ID in (select id from country where subregion_id = 3) and a.WasteCategory_ID = 1 " + yearFilter + " and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    dtResult = db.ExecuteQuery();
+                }
+                else
+                {
+                    db.Query = "select b.Name as Country,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from countrywastestreams a inner join country b on a.country_id = b.id where a.Country_ID in (select id from country where subregion_id = 3) and a.Country_ID in (" + country + ") " + yearFilter + " and a.WasteCategory_ID = 1 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    dtResult = db.ExecuteQuery();
+                }
+            }
+
+            dtResult.TableName = "Solid Waste Data";
+
+            return dtResult;
+        }
+
+        private DataTable getPlasticWasteTableData(int country, int city, int year)
+        {
+            MSSQLServer db = new MSSQLServer();
+            DataTable dtResult = new DataTable();
+            string yearFilter = "";
+            if (year > 0) yearFilter = " and [Year] = " + year.ToString();
+            string countryFilter = "";
+            if (country > 0) countryFilter = "select ID from city where [Country_ID] = " + country.ToString();
+
+            if (city > 0)
+            {
+                db.Query = "select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from countrywastestreams a inner join city b on a.city_id = b.id where a.city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and a.City_ID in (" + city + ") " + yearFilter + " and a.WasteCategory_ID = 14 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                dtResult = db.ExecuteQuery();
+            }
+            else if (city == 0)
+            {
+                if (country == 0)
+                {
+                    db.Query = "select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from citywastestreams a inner join city b on a.city_id = b.id where a.city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and a.City_ID in (" + city + ") " + yearFilter + " and a.WasteCategory_ID = 14 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    dtResult = db.ExecuteQuery();
+                }
+                else
+                {
+                    db.Query = "select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from citywastestreams a inner join city b on a.city_id = b.id where a.city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and a.City_ID in (" + countryFilter + ") " + yearFilter + " and a.WasteCategory_ID = 14 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    dtResult = db.ExecuteQuery();
+                }
+            }
+            else
+            {
+                if (country == 0)
+                {
+                    db.Query = "select b.Name as Country,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from countrywastestreams a inner join country b on a.country_id = b.id where a.country_id in (select id from country where subregion_id = 3) and a.WasteCategory_ID = 14 " + yearFilter + " and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    dtResult = db.ExecuteQuery();
+                }
+                else
+                {
+                    db.Query = "select b.Name as Country,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from countrywastestreams a inner join country b on a.country_id = b.id where a.country_id in (select id from country where subregion_id = 3) and a.Country_ID in (" + country + ") " + yearFilter + " and a.WasteCategory_ID = 14 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    dtResult = db.ExecuteQuery();
+                }
+            }
+
+            dtResult.TableName = "Plastic Waste Data";
+
+            return dtResult;
         }
     }
 }

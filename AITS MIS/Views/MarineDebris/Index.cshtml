@@ -22,7 +22,7 @@
                 <!--begin::Item-->
                 <div class="carousel-item active">
                     <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0" style="background-image: url(Content/marine-debris/AdobeStock_388696870.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%; background-attachment: fixed;">
-                        <div class="min-h-650px py-10" style="display: grid; align-items: end;">
+                        <div class="min-h-750px py-10" style="display: grid; align-items: end;">
                             <div class="fs-40px text-white carousel-text py-20">
                                 <div class="carousel-text-line-top"></div>
                                 REDUCE, REUSE, RECYCLE
@@ -36,7 +36,7 @@
                 <!--begin::Item-->
                 <div class="carousel-item">
                     <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0" style="background-image: url(Content/marine-debris/AdobeStock_578026176.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%; background-attachment: fixed;">
-                        <div class="min-h-650px py-10" style="display: grid; align-items: end;">
+                        <div class="min-h-750px py-10" style="display: grid; align-items: end;">
                             <div class="fs-40px text-white carousel-text py-20">
                                 <div class="carousel-text-line-top"></div>
                                 CHANGE
@@ -50,7 +50,7 @@
                 <!--begin::Item-->
                 <div class="carousel-item">
                     <div class="text-center px-0 pt-0 pt-lg-0 px-lg-0" style="background-image: url(Content/marine-debris/AdobeStock_205485738.jpeg); background-repeat: no-repeat; background-size: cover; background-position: 50%; background-attachment: fixed;">
-                        <div class="min-h-650px py-10" style="display: grid; align-items: end;">
+                        <div class="min-h-750px py-10" style="display: grid; align-items: end;">
                             <div class="fs-40px text-white carousel-text py-20">
                                 <div class="carousel-text-line-top"></div>
                                 MARINE DEBRIS
@@ -576,6 +576,9 @@
                                     <table class="table table-striped gy-7 gs-7 table-hover" id="datatable-plasticwaste">
                                     </table>
                                 </div>
+                                <div class="col-md-3 d-flex px-5">
+                                    <button id="button-download" class="btn btn-primary py-2 px-10">Download Data</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1029,6 +1032,11 @@
                 createPlasticWasteGraph();
                 $("#kt_drawer_filter_2_close").click();
             });*/
+
+            $("#button-download").click(function () {
+                console.log("download");
+                window.location.href = `/Data/ExportToCsv?country=${$("#filter-country-1").val()}&city=${$("#filter-city-1").val()}&year=${$("#filter-year-1").val()}`;
+            });
 
             $("#filter-country-1").change(function () {
                 populateCityFilter("solidWaste", this.value);
@@ -1592,7 +1600,7 @@
                 $.ajax({
                     url: `/MarineDebris/getSolidWasteTableData?country=${$("#filter-country-1").val()}&city=${$("#filter-city-1").val()}&year=${$("#filter-year-1").val()}`,
                     type: 'GET',
-                    processData: false,
+                    processData: false, 
                     async: false,
                     success: function (res) {
                         var data = JSON.parse(res);
