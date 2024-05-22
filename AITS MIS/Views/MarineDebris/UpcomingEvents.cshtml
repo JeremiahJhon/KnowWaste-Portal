@@ -1,0 +1,96 @@
+﻿@{
+    Layout = "~/Views/MarineDebris/Shared.cshtml";
+}
+@using System.Data;
+
+@{
+    DataTable blogs = (DataTable)ViewBag.Data;
+}
+<div class="row mt-20">
+    <div class="landing-dark-bg h-250px">
+        <div class="container py-lg-20">
+            <!--begin::Title-->
+            <!--begin::Title-->
+            <h3 class="text-white lh-base fw-bolder">
+                <span class="text-gray-800">MARINE DEBRIS</span>
+                @*<span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
+            </span>*@
+            </h3>
+            <h1 class="text-white lh-base fw-bolder fs-2x fs-lg-3x">
+                <span class="text-white">UPCOMING EVENTS</span>
+                @*<span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
+            </span>*@
+            </h1>
+            <!--end::Title-->
+        </div>
+    </div>
+</div>
+
+<div class="container mt-lg-n20">
+    <div class="row">
+        @foreach (DataRow row in blogs.Rows)
+        {
+            int MaxLength = 100;
+
+            if (row["Description"].ToString().Length < MaxLength)
+            {
+                MaxLength = row["Description"].ToString().Length;
+            }
+            <div class="col-md-3 mb-10">
+                <!--begin::Feature post-->
+                <div class="card h-100 m-5 box-shadow">
+                    <a class="d-block overlay" href="MarineDebris/UpcomingEvents/@row["ID"].ToString()">
+                        <!--begin::Image-->
+                        <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card min-h-175px" style="background-image: url('Documents/UpcomingEvents/@row["Photo"].ToString().Split(';')[0]')"></div>
+                        <!--end::Image-->
+                        <!--begin::Action-->
+                        <div class="overlay-layer bg-dark bg-opacity-50">
+                            <span class="row text-center text-white fw-bolder fs-2 lh-base d-none">@row["Title"].ToString()</span>
+                            <br />
+                            <i class="bi bi-eye-fill fs-2x text-white"></i>
+                        </div>
+                        <!--end::Action-->
+                    </a>
+                    <!--begin::Body-->
+                    <a href="MarineDebris/UpcomingEvents/@row["ID"].ToString()" class="m-0 p-5">
+                        <!--begin::Title-->
+                        <div class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">@row["Title"].ToString()</div>
+                        <!--end::Title-->
+                        <div class="fs-6 fw-bolder">
+                            <span class="text-gray-500 text-hover-primary" style="white-space: normal; text-align: left;">@row["Country"].ToString()</span>
+                        </div>
+                        <!--begin::Text-->
+                        <div class="fw-bold fs-5 text-gray-600 text-dark my-4">@Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span class="text-hover-primary">see more</span></div>
+                        <!--end::Text-->
+                        <!--begin::Content-->
+                        <div class="fs-6 fw-bolder">
+                            <!--begin::Author-->
+                            <span class="text-gray-700 text-hover-primary">@row["Author"].ToString()</span>
+                            <!--end::Author-->
+                            <!--begin::Date-->
+                            <span class="text-muted d-none">on Mar 21 2021</span>
+                            <!--end::Date-->
+                        </div>
+                        <!--end::Content-->
+                    </a>
+                    <!--end::Body-->
+                </div>
+                <!--end::Feature post-->
+            </div>
+        }
+    </div>
+</div>
+<script src="\Scripts\jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".card").hover(function () {
+            $(this).children(".overlay").children(".overlay-wrapper").css("background-size", "150%");
+            $(this).css("background-color", "#23A2D722");
+
+        },
+        function () {
+            $(this).children(".overlay").children(".overlay-wrapper").css("background-size", "cover");
+            $(this).css("background-color", "");
+        });
+    });
+</script>

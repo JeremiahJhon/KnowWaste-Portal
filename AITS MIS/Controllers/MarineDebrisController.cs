@@ -844,6 +844,142 @@ namespace UCOnline.Controllers
             }
         }
 
+        public ActionResult UpcomingEvents(int? id)
+        {
+            ViewBag.Title = "UPCOMING EVENTS";
+            ViewBag.MediaPath = "Upcoming Events";
+
+            if (id == null)
+            {
+                ServerBase blogs = new ServerBase("blogs");
+                blogs.SelectFilter("Blogscategory_ID = 4");
+                blogs.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
+                DataTable blogsData = blogs.SelectQuery();
+
+                if (blogsData.Rows.Count == 0)
+                {
+                    return RedirectToAction("Index", "Pages");
+                }
+
+                ServerBase country_ = new ServerBase("Country");
+                country_.SelectFilter("SubRegion_ID is not null and SubRegion_ID <> ''"); // 3 = Asia
+                DataTable countryData = country_.SelectQuery();
+
+                DataTable dtResult = new DataTable();
+                dtResult.Columns.Add("ID", typeof(int));
+                dtResult.Columns.Add("Title", typeof(string));
+                dtResult.Columns.Add("Description", typeof(string));
+                dtResult.Columns.Add("Detail", typeof(string));
+                dtResult.Columns.Add("Author", typeof(string));
+                dtResult.Columns.Add("Thumbnail", typeof(string));
+                dtResult.Columns.Add("Country", typeof(string));
+                dtResult.Columns.Add("ResultsAchieved", typeof(string));
+                dtResult.Columns.Add("ChallengesLessonLearned", typeof(string));
+                dtResult.Columns.Add("Replicability", typeof(string));
+                dtResult.Columns.Add("Sources", typeof(string));
+                dtResult.Columns.Add("Company", typeof(string));
+                dtResult.Columns.Add("Email", typeof(string));
+                dtResult.Columns.Add("Phone", typeof(string));
+                dtResult.Columns.Add("Initiative", typeof(string));
+                dtResult.Columns.Add("Photo", typeof(string));
+                dtResult.Columns.Add("BlogDate", typeof(string));
+
+                var JoinResult = from a in blogsData.AsEnumerable()
+                                 join b in countryData.AsEnumerable()
+                                 on a.Field<int>("Country_ID").ToString() equals b.Field<int>("ID").ToString()
+                                 select dtResult.LoadDataRow(new object[]
+                                 {
+                                    a.Field<int>("ID"),
+                                    a.Field<string>("Title"),
+                                    a.Field<string>("Description"),
+                                    a.Field<string>("Detail"),
+                                    a.Field<string>("Author"),
+                                    a.Field<string>("Thumbnail"),
+                                    b.Field<string>("Name"),
+                                    a.Field<string>("ResultsArchieved"),
+                                    a.Field<string>("ChallengesLessonLearned"),
+                                    a.Field<string>("Replicability"),
+                                    a.Field<string>("Sources"),
+                                    a.Field<string>("Company"),
+                                    a.Field<string>("Email"),
+                                    a.Field<string>("Phone"),
+                                    a.Field<string>("Initiative"),
+                                    a.Field<string>("Photo"),
+                                    a.Field<DateTime>("Blogsdate").ToString(),
+                                 }, false);
+                JoinResult.CopyToDataTable();
+
+                ViewBag.Data = dtResult;
+
+                return View();
+            }
+            else
+            {
+                ServerBase blogs = new ServerBase("blogs");
+                blogs.SelectFilter("ID = " + id.ToString());
+                DataTable blogsData = blogs.SelectQuery();
+
+                if (blogsData.Rows.Count == 1)
+                {
+                    ServerBase country_ = new ServerBase("Country");
+                    country_.SelectFilter("SubRegion_ID is not null and SubRegion_ID <> ''"); // 3 = Asia
+                    DataTable countryData = country_.SelectQuery();
+
+                    DataTable dtResult = new DataTable();
+                    dtResult.Columns.Add("ID", typeof(int));
+                    dtResult.Columns.Add("Title", typeof(string));
+                    dtResult.Columns.Add("Description", typeof(string));
+                    dtResult.Columns.Add("Detail", typeof(string));
+                    dtResult.Columns.Add("Author", typeof(string));
+                    dtResult.Columns.Add("Thumbnail", typeof(string));
+                    dtResult.Columns.Add("Country", typeof(string));
+                    dtResult.Columns.Add("ResultsAchieved", typeof(string));
+                    dtResult.Columns.Add("ChallengesLessonLearned", typeof(string));
+                    dtResult.Columns.Add("Replicability", typeof(string));
+                    dtResult.Columns.Add("Sources", typeof(string));
+                    dtResult.Columns.Add("Company", typeof(string));
+                    dtResult.Columns.Add("Email", typeof(string));
+                    dtResult.Columns.Add("Phone", typeof(string));
+                    dtResult.Columns.Add("Initiative", typeof(string));
+                    dtResult.Columns.Add("Photo", typeof(string));
+                    dtResult.Columns.Add("BlogDate", typeof(string));
+
+                    var JoinResult = from a in blogsData.AsEnumerable()
+                                     join b in countryData.AsEnumerable()
+                                     on a.Field<int>("Country_ID").ToString() equals b.Field<int>("ID").ToString()
+                                     select dtResult.LoadDataRow(new object[]
+                                     {
+                                    a.Field<int>("ID"),
+                                    a.Field<string>("Title"),
+                                    a.Field<string>("Description"),
+                                    a.Field<string>("Detail"),
+                                    a.Field<string>("Author"),
+                                    a.Field<string>("Thumbnail"),
+                                    b.Field<string>("Name"),
+                                    a.Field<string>("ResultsArchieved"),
+                                    a.Field<string>("ChallengesLessonLearned"),
+                                    a.Field<string>("Replicability"),
+                                    a.Field<string>("Sources"),
+                                    a.Field<string>("Company"),
+                                    a.Field<string>("Email"),
+                                    a.Field<string>("Phone"),
+                                    a.Field<string>("Initiative"),
+                                    a.Field<string>("Photo"),
+                                    a.Field<DateTime>("Blogsdate").ToString(),
+                                     }, false);
+                    JoinResult.CopyToDataTable();
+
+                    ViewBag.Data = dtResult.Rows[0];
+
+                    return View("BlogItem");
+                }
+                else
+                {
+                    return View("Empty", "Pages");
+                }
+            }
+        }
+
         [HttpGet]
         public String getSolidWasteGraphData(int country,int city,int year)
         {

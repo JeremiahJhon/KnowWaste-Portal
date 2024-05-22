@@ -430,6 +430,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\Utility.cs" />
+    <Compile Include="Models\ModelUpcomingEvents.cs" />
     <Compile Include="Models\ModelPages.cs" />
     <Compile Include="Models\ModelAbout.cs" />
     <Compile Include="Models\ModelRegion.cs" />
@@ -6840,6 +6841,7 @@
     <Content Include="Views\Home\Index - Copy.cshtml" />
     <Content Include="Views\Reports\Index - Copy.cshtml" />
     <Content Include="Views\MarineDebris\TechItem.cshtml" />
+    <Content Include="Views\MarineDebris\UpcomingEvents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
