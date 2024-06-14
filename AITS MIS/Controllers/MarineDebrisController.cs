@@ -847,16 +847,15 @@ namespace UCOnline.Controllers
         public ActionResult UpcomingEvents(int? id)
         {
             ViewBag.Title = "UPCOMING EVENTS";
-            ViewBag.MediaPath = "Upcoming Events";
+            ViewBag.MediaPath = "UpcomingEvents";
 
             if (id == null)
             {
-                ServerBase blogs = new ServerBase("blogs");
-                blogs.SelectFilter("Blogscategory_ID = 4");
-                blogs.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
-                DataTable blogsData = blogs.SelectQuery();
+                ServerBase upcomingevents = new ServerBase("upcomingevents");
+                upcomingevents.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
+                DataTable upcomingeventsData = upcomingevents.SelectQuery();
 
-                if (blogsData.Rows.Count == 0)
+                if (upcomingeventsData.Rows.Count == 0)
                 {
                     return RedirectToAction("Index", "Pages");
                 }
@@ -884,7 +883,7 @@ namespace UCOnline.Controllers
                 dtResult.Columns.Add("Photo", typeof(string));
                 dtResult.Columns.Add("BlogDate", typeof(string));
 
-                var JoinResult = from a in blogsData.AsEnumerable()
+                var JoinResult = from a in upcomingeventsData.AsEnumerable()
                                  join b in countryData.AsEnumerable()
                                  on a.Field<int>("Country_ID").ToString() equals b.Field<int>("ID").ToString()
                                  select dtResult.LoadDataRow(new object[]
@@ -915,11 +914,11 @@ namespace UCOnline.Controllers
             }
             else
             {
-                ServerBase blogs = new ServerBase("blogs");
-                blogs.SelectFilter("ID = " + id.ToString());
-                DataTable blogsData = blogs.SelectQuery();
+                ServerBase upcomingevents = new ServerBase("upcomingevents");
+                upcomingevents.SelectFilter("ID = " + id.ToString());
+                DataTable upcomingeventsData = upcomingevents.SelectQuery();
 
-                if (blogsData.Rows.Count == 1)
+                if (upcomingeventsData.Rows.Count == 1)
                 {
                     ServerBase country_ = new ServerBase("Country");
                     country_.SelectFilter("SubRegion_ID is not null and SubRegion_ID <> ''"); // 3 = Asia
@@ -944,7 +943,7 @@ namespace UCOnline.Controllers
                     dtResult.Columns.Add("Photo", typeof(string));
                     dtResult.Columns.Add("BlogDate", typeof(string));
 
-                    var JoinResult = from a in blogsData.AsEnumerable()
+                    var JoinResult = from a in upcomingeventsData.AsEnumerable()
                                      join b in countryData.AsEnumerable()
                                      on a.Field<int>("Country_ID").ToString() equals b.Field<int>("ID").ToString()
                                      select dtResult.LoadDataRow(new object[]
@@ -971,7 +970,7 @@ namespace UCOnline.Controllers
 
                     ViewBag.Data = dtResult.Rows[0];
 
-                    return View("BlogItem");
+                    return View("UpcomingEventsItem");
                 }
                 else
                 {
