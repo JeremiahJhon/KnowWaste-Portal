@@ -6842,6 +6842,7 @@
     <Content Include="Views\Reports\Index - Copy.cshtml" />
     <Content Include="Views\MarineDebris\TechItem.cshtml" />
     <Content Include="Views\MarineDebris\UpcomingEvents.cshtml" />
+    <Content Include="Views\MarineDebris\UpcomingEventsItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
