@@ -40,9 +40,6 @@
                 <!--begin::Feature post-->
                 <div class="card h-100 m-5 box-shadow">
                     <a class="d-block overlay" href="MarineDebris/UpcomingEvents/@row["ID"].ToString()">
-                        <!--begin::Image-->
-                        <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card min-h-175px" style="background-image: url('Documents/UpcomingEvents/@row["Photo"].ToString().Split(';')[0]')"></div>
-                        <!--end::Image-->
                         <!--begin::Action-->
                         <div class="overlay-layer bg-dark bg-opacity-50">
                             <span class="row text-center text-white fw-bolder fs-2 lh-base d-none">@row["Title"].ToString()</span>
@@ -54,13 +51,13 @@
                     <!--begin::Body-->
                     <a href="MarineDebris/UpcomingEvents/@row["ID"].ToString()" class="m-0 p-5">
                         <!--begin::Title-->
-                        <div class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">@row["Title"].ToString()</div>
+                        <div class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">@row["BlogDate"].ToString()</div>
                         <!--end::Title-->
                         <div class="fs-6 fw-bolder">
-                            <span class="text-gray-500 text-hover-primary" style="white-space: normal; text-align: left;">@row["Country"].ToString()</span>
+                            <span class="text-gray-500 text-hover-primary" style="white-space: normal; text-align: left;">@(@row["Location"].ToString() != "" ? row["Location"].ToString() + ", " : "")@row["Country"].ToString()</span>
                         </div>
                         <!--begin::Text-->
-                        <div class="fw-bold fs-5 text-gray-600 text-dark my-4">@Html.Raw(row["Description"].ToString().Substring(0, MaxLength))...<span class="text-hover-primary">see more</span></div>
+                        <div class="fw-bold fs-5 text-gray-600 text-dark my-4">@Html.Raw(row["Title"].ToString())<span class="text-hover-primary">see more</span></div>
                         <!--end::Text-->
                         <!--begin::Content-->
                         <div class="fs-6 fw-bolder">

@@ -461,6 +461,7 @@ namespace UCOnline.Controllers
                 dtResult.Columns.Add("Initiative", typeof(string));
                 dtResult.Columns.Add("Photo", typeof(string));
                 dtResult.Columns.Add("BlogDate", typeof(string));
+                dtResult.Columns.Add("Location", typeof(string));
 
                 var JoinResult = from a in blogsData.AsEnumerable()
                                  join b in countryData.AsEnumerable()
@@ -483,7 +484,8 @@ namespace UCOnline.Controllers
                                     a.Field<string>("Phone"),
                                     a.Field<string>("Initiative"),
                                     a.Field<string>("Photo"),
-                                    a.Field<DateTime>("Blogsdate").ToString(),
+                                    a.Field<string>("StartDate"),
+                                    a.Field<string>("Location"),
                                  }, false);
                 JoinResult.CopyToDataTable();
 
@@ -521,6 +523,7 @@ namespace UCOnline.Controllers
                     dtResult.Columns.Add("Initiative", typeof(string));
                     dtResult.Columns.Add("Photo", typeof(string));
                     dtResult.Columns.Add("BlogDate", typeof(string));
+                    dtResult.Columns.Add("Location", typeof(string));
 
                     var JoinResult = from a in blogsData.AsEnumerable()
                                      join b in countryData.AsEnumerable()
@@ -543,7 +546,8 @@ namespace UCOnline.Controllers
                                     a.Field<string>("Phone"),
                                     a.Field<string>("Initiative"),
                                     a.Field<string>("Photo"),
-                                    a.Field<DateTime>("Blogsdate").ToString(),
+                                    a.Field<string>("StartDate"),
+                                    a.Field<string>("Location"),
                                      }, false);
                     JoinResult.CopyToDataTable();
 
@@ -882,6 +886,7 @@ namespace UCOnline.Controllers
                 dtResult.Columns.Add("Initiative", typeof(string));
                 dtResult.Columns.Add("Photo", typeof(string));
                 dtResult.Columns.Add("BlogDate", typeof(string));
+                dtResult.Columns.Add("Location", typeof(string));
 
                 var JoinResult = from a in upcomingeventsData.AsEnumerable()
                                  join b in countryData.AsEnumerable()
@@ -904,7 +909,8 @@ namespace UCOnline.Controllers
                                     a.Field<string>("Phone"),
                                     a.Field<string>("Initiative"),
                                     a.Field<string>("Photo"),
-                                    a.Field<DateTime>("Blogsdate").ToString(),
+                                    a.Field<string>("StartDate"),
+                                    a.Field<string>("Location"),
                                  }, false);
                 JoinResult.CopyToDataTable();
 
@@ -942,6 +948,7 @@ namespace UCOnline.Controllers
                     dtResult.Columns.Add("Initiative", typeof(string));
                     dtResult.Columns.Add("Photo", typeof(string));
                     dtResult.Columns.Add("BlogDate", typeof(string));
+                    dtResult.Columns.Add("Location", typeof(string));
 
                     var JoinResult = from a in upcomingeventsData.AsEnumerable()
                                      join b in countryData.AsEnumerable()
@@ -964,7 +971,8 @@ namespace UCOnline.Controllers
                                     a.Field<string>("Phone"),
                                     a.Field<string>("Initiative"),
                                     a.Field<string>("Photo"),
-                                    a.Field<DateTime>("Blogsdate").ToString(),
+                                    a.Field<string>("StartDate"),
+                                    a.Field<string>("Location"),
                                      }, false);
                     JoinResult.CopyToDataTable();
 
