@@ -429,12 +429,11 @@ namespace UCOnline.Controllers
 
             if (id == null)
             {
-                ServerBase blogs = new ServerBase("blogs");
-                blogs.SelectFilter("Blogscategory_ID = 2");
-                blogs.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
-                DataTable blogsData = blogs.SelectQuery();
+                ServerBase news = new ServerBase("news");
+                news.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
+                DataTable newsData = news.SelectQuery();
 
-                if (blogsData.Rows.Count == 0)
+                if (newsData.Rows.Count == 0)
                 {
                     return RedirectToAction("Index", "Pages");
                 }
@@ -463,7 +462,7 @@ namespace UCOnline.Controllers
                 dtResult.Columns.Add("BlogDate", typeof(string));
                 dtResult.Columns.Add("Location", typeof(string));
 
-                var JoinResult = from a in blogsData.AsEnumerable()
+                var JoinResult = from a in newsData.AsEnumerable()
                                  join b in countryData.AsEnumerable()
                                  on a.Field<int>("Country_ID").ToString() equals b.Field<int>("ID").ToString()
                                  select dtResult.LoadDataRow(new object[]
@@ -495,11 +494,11 @@ namespace UCOnline.Controllers
             }
             else
             {
-                ServerBase blogs = new ServerBase("blogs");
-                blogs.SelectFilter("ID = " + id.ToString());
-                DataTable blogsData = blogs.SelectQuery();
+                ServerBase news = new ServerBase("news");
+                news.SelectFilter("ID = " + id.ToString());
+                DataTable newsData = news.SelectQuery();
 
-                if (blogsData.Rows.Count == 1)
+                if (newsData.Rows.Count == 1)
                 {
                     ServerBase country_ = new ServerBase("Country");
                     country_.SelectFilter("SubRegion_ID is not null and SubRegion_ID <> ''"); // 3 = Asia
@@ -525,7 +524,7 @@ namespace UCOnline.Controllers
                     dtResult.Columns.Add("BlogDate", typeof(string));
                     dtResult.Columns.Add("Location", typeof(string));
 
-                    var JoinResult = from a in blogsData.AsEnumerable()
+                    var JoinResult = from a in newsData.AsEnumerable()
                                      join b in countryData.AsEnumerable()
                                      on a.Field<int>("Country_ID").ToString() equals b.Field<int>("ID").ToString()
                                      select dtResult.LoadDataRow(new object[]
@@ -553,7 +552,7 @@ namespace UCOnline.Controllers
 
                     ViewBag.Data = dtResult.Rows[0];
 
-                    return View("BlogItem");
+                    return View("NewsItem");
                 }
                 else
                 {

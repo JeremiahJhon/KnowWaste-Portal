@@ -12,34 +12,22 @@ namespace UCOnline.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class news
+    public partial class C_news
     {
         public int ID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Detail { get; set; }
-        public string Author { get; set; }
-        public Nullable<System.DateTime> Blogsdate { get; set; }
+        public Nullable<System.DateTime> NewsDate { get; set; }
         public string Thumbnail { get; set; }
+        public string Author { get; set; }
         public Nullable<int> Country_ID { get; set; }
         public Nullable<int> Geotheme_ID { get; set; }
-        public Nullable<int> Viewsblogs_ID { get; set; }
-        public Nullable<int> Blogscategory_ID { get; set; }
-        public Nullable<int> Blogscomment_ID { get; set; }
-        public Nullable<int> Blogsmedia_ID { get; set; }
+        public Nullable<int> Viewsnews_ID { get; set; }
+        public Nullable<int> Newscategory_Id { get; set; }
+        public Nullable<int> Newscomment_Id { get; set; }
+        public Nullable<int> Newsmedia_Id { get; set; }
         public Nullable<System.DateTime> Dateentered { get; set; }
         public Nullable<byte> Deleted { get; set; }
-        public string ResultsArchieved { get; set; }
-        public string ChallengesLessonLearned { get; set; }
-        public string Replicability { get; set; }
-        public string Sources { get; set; }
-        public string Company { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public string Initiative { get; set; }
-        public string Photo { get; set; }
-        public string StartDate { get; set; }
-        public Nullable<System.DateTime> EndDate { get; set; }
-        public string Location { get; set; }
     }
 }

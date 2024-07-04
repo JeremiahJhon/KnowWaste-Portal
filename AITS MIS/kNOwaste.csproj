@@ -269,6 +269,9 @@
     <Compile Include="Data\C_logs.cs">
       <DependentUpon>KnowWaste.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\C_news.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\C_reference.cs">
       <DependentUpon>KnowWaste.tt</DependentUpon>
     </Compile>
@@ -393,6 +396,9 @@
       <DependentUpon>KnowWaste.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\tallbuildingfeedbackone.cs">
+      <DependentUpon>KnowWaste.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\upcomingevents.cs">
       <DependentUpon>KnowWaste.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\user.cs">
@@ -6843,6 +6849,7 @@
     <Content Include="Views\MarineDebris\TechItem.cshtml" />
     <Content Include="Views\MarineDebris\UpcomingEvents.cshtml" />
     <Content Include="Views\MarineDebris\UpcomingEventsItem.cshtml" />
+    <Content Include="Views\MarineDebris\NewsItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -76,7 +76,6 @@ namespace UCOnline.Data
         public virtual DbSet<forum> forums { get; set; }
         public virtual DbSet<geotheme> geothemes { get; set; }
         public virtual DbSet<lawpolicy> lawpolicies { get; set; }
-        public virtual DbSet<news> news { get; set; }
         public virtual DbSet<newscategory> newscategories { get; set; }
         public virtual DbSet<newscomment> newscomments { get; set; }
         public virtual DbSet<newsmedia> newsmedias { get; set; }
@@ -104,5 +103,8 @@ namespace UCOnline.Data
         public virtual DbSet<wastetype> wastetypes { get; set; }
         public virtual DbSet<countrypolicy_type> countrypolicy_type { get; set; }
         public virtual DbSet<microlearning> microlearnings { get; set; }
+        public virtual DbSet<C_news> C_news { get; set; }
+        public virtual DbSet<upcomingevents> upcomingevents { get; set; }
+        public virtual DbSet<news> news { get; set; }
     }
 }

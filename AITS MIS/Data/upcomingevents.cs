@@ -12,7 +12,7 @@ namespace UCOnline.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class news
+    public partial class upcomingevents
     {
         public int ID { get; set; }
         public string Title { get; set; }

@@ -1,0 +1,171 @@
+﻿@{
+    Layout = "~/Views/MarineDebris/Shared.cshtml";
+}
+@using System.Data;
+
+@{
+    DataRow doc = (DataRow)ViewBag.Data;
+    string[] images = doc["Photo"].ToString().Split(';');
+    string mediaPath = ViewBag.MediaPath;
+}
+<div class="row mt-20">
+    <div class="landing-dark-bg h-250px">
+        <div class="container py-lg-20">
+            <!--begin::Title-->
+            <!--begin::Title-->
+            <h3 class="text-white lh-base fw-bolder">
+                <span class="text-gray-800">MARINE DEBRIS</span>
+                @*<span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
+                    </span>*@
+            </h3>
+            <h1 class="text-white lh-base fw-bolder fs-2x fs-lg-3x">
+                <span class="text-white">@ViewBag.Title</span>
+                @*<span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
+                    </span>*@
+            </h1>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-lg-n20">
+    <!--begin::Container-->
+    <div class="container">
+        <!--begin::Card-->
+        <div class="card" style="filter: drop-shadow(0px 0px 10px rgba(68, 81, 96, 0.08))">
+            <!--begin::Card body-->
+            <div class="card-body p-lg-20">
+                <!--begin::Heading-->
+                <div class="text-center mb-5 mb-lg-10">
+                    <!--begin::Title-->
+                    <h3 class="fs-2hx text-dark mb-5" id="portfolio" data-kt-scroll-offset="{default: 100, lg: 150}" style="color: #2577BC!important; ">@doc["Title"].ToString()</h3>
+                    <!--end::Title-->
+                </div>
+                <!--end::Heading-->
+                <div class="row d-flex">
+                    <div class="row pb-20 pt-10">
+                        <span class="fs-1 text-dark fw-bolder text-hover-primary text-dark lh-base d-none">@doc["Title"].ToString()</span>
+                        <div class="w-100">
+                            <span class="badge badge-light-success fw-bolder my-2" style="white-space: normal; text-align: left;">Author: @doc["Author"].ToString()</span>
+                            <span class="badge badge-light fw-bolder my-2" style="white-space: normal; text-align: left;">Date Created: @doc["BlogDate"].ToString()</span>
+                        </div>
+                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">
+                            @Html.Raw(doc["Description"].ToString())
+                        </div>
+                        <div class="tns tns-default tns-initiazlied mw-600px m-auto d-none">
+                            <!--begin::Wrapper-->
+                            <div class="tns-outer" id="tns1-ow">
+                                <div id="tns1-mw" class="tns-ovh">
+                                    <div class="tns-inner" id="tns1-iw">
+                                        <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="true" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="5000" data-tns-controls="false" data-tns-nav="true" data-tns-items="1" data-tns-center="true" data-tns-dots="true" data-tns-nav-position="bottom" data-tns-responsive="{1200: {items: 1}, 968: {items: 1}}" class="tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns1" style="transform: translate3d(-40%, 0px, 0px);">
+                                            @foreach (string image in images)
+                                            {
+                                                if (image.Length > 0)
+                                                {
+                                                    <div class="document-card h-400px min-h-400px mh-400px">
+                                                        <img class="mt-10 h-100" src="Documents/@mediaPath/@image" />
+                                                    </div>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Wrapper-->
+                        </div>
+                        <div id="carouselFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                @for (int ctr = 0; ctr < images.Length; ctr++)
+                                {
+                                    if (images[ctr].Length > 0)
+                                    {
+                                        <button type="button" data-bs-target="#carouselFade" @(ctr == 0 ? "class=active aria-current=true" : "") data-bs-slide-to="@ctr" aria-label="Slide @(ctr + 1) "></button>
+                                    }
+                                }
+                            </div>
+                            <div class="carousel-inner">
+                                @for (int ctr = 0; ctr < images.Length; ctr++)
+                                {
+                                    if (images[ctr].Length > 0)
+                                    {
+                                        <div class="carousel-item @(ctr == 0 ? "active" : "")">
+                                            <img src="Documents/@mediaPath/@images[ctr]" class="d-block mh-500px w-auto mx-auto" alt="..." data-bs-toggle="modal" data-bs-target="#kt_modal_@ctr">
+                                        </div>
+                                    }
+                                }
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselFade" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselFade" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                        <div id="shareBlock" class="my-3"></div>
+                        <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base d-none">Background</span>
+                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4 d-none" style="text-align: justify;">
+                            @Html.Raw(doc["Description"].ToString())
+                        </div>
+                        <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base @(doc["ResultsAchieved"].ToString() == "" || doc["ResultsAchieved"].ToString() == null ? "d-none" : "")">Result Achieved</span>
+                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4 @(doc["ResultsAchieved"].ToString() == "" || doc["ResultsAchieved"].ToString() == null ? "d-none" : "")" style="text-align: justify;">
+                            @Html.Raw(doc["ResultsAchieved"].ToString())
+                        </div>
+                        <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base @(doc["ChallengesLessonLearned"].ToString() == "" || doc["ChallengesLessonLearned"].ToString() == null ? "d-none" : "")">Challenges and Lesson Learned</span>
+                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4 @(doc["ChallengesLessonLearned"].ToString() == "" || doc["ChallengesLessonLearned"].ToString() == null ? "d-none" : "")" style="text-align: justify;">
+                            @Html.Raw(doc["ChallengesLessonLearned"].ToString())
+                        </div>
+                        <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base @(doc["Replicability"].ToString() == "" || doc["Replicability"].ToString() == null ? "d-none" : "")">Replicability</span>
+                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4 @(doc["Replicability"].ToString() == "" || doc["Replicability"].ToString() == null ? "d-none" : "")" style="text-align: justify;">
+                            @Html.Raw(doc["Replicability"].ToString())
+                        </div>
+                        <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base @(doc["Sources"].ToString() == "" || doc["Sources"].ToString() == null ? "d-none" : "")" ">Sources</span>
+                        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4 @(doc["Sources"].ToString() == "" || doc["Sources"].ToString() == null ? "d-none" : "")" style="text-align: justify;">
+                            @Html.Raw(doc["Sources"].ToString())
+                        </div>
+                        @*<span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base">Company</span>
+        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">
+            @doc["Company"].ToString()
+            <br/>
+            @doc["Email"].ToString()
+        </div>*@
+                    </div>
+                </div>
+            </div>
+            <!--end::Card body-->
+        </div>
+        <!--end::Card-->
+    </div>
+    <!--end::Container-->
+</div>
+@for (int ctr = 0; ctr < images.Length; ctr++)
+{
+    <div class="modal bg-white fade" tabindex="-1" id="kt_modal_@ctr">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content shadow-none bg-dark">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title"></h5>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="bi bi-x fs-1 text-light text"></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <div class="modal-body">
+                    <img src="Documents/@mediaPath/@images[ctr]" class="d-block h-100 w-auto mx-auto" alt="..." />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script src="\Scripts\jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#shareBlock').cShare({
+            description: '',
+            showButtons: ['fb', 'linkedin', 'line', 'twitter', 'email']
+        });
+    });
+</script>

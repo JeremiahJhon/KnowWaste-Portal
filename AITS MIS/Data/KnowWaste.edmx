@@ -20,6 +20,26 @@
           <Property Name="logdate" Type="datetime2" Precision="7" />
           <Property Name="deleted" Type="tinyint" Nullable="false" />
         </EntityType>
+        <EntityType Name="_news">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Detail" Type="varchar(max)" />
+          <Property Name="NewsDate" Type="datetime2" Precision="7" />
+          <Property Name="Thumbnail" Type="varchar" MaxLength="45" />
+          <Property Name="Author" Type="varchar" MaxLength="45" />
+          <Property Name="Country_ID" Type="int" />
+          <Property Name="Geotheme_ID" Type="int" />
+          <Property Name="Viewsnews_ID" Type="int" />
+          <Property Name="Newscategory_Id" Type="int" />
+          <Property Name="Newscomment_Id" Type="int" />
+          <Property Name="Newsmedia_Id" Type="int" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+        </EntityType>
         <EntityType Name="_reference">
           <Key>
             <PropertyRef Name="ID" />
@@ -709,20 +729,32 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="Title" Type="varchar" MaxLength="2000" />
           <Property Name="Description" Type="varchar(max)" />
           <Property Name="Detail" Type="varchar(max)" />
-          <Property Name="NewsDate" Type="datetime2" Precision="7" />
+          <Property Name="Author" Type="varchar" MaxLength="100" />
+          <Property Name="Blogsdate" Type="datetime2" Precision="7" />
           <Property Name="Thumbnail" Type="varchar" MaxLength="45" />
-          <Property Name="Author" Type="varchar" MaxLength="45" />
           <Property Name="Country_ID" Type="int" />
           <Property Name="Geotheme_ID" Type="int" />
-          <Property Name="Viewsnews_ID" Type="int" />
-          <Property Name="Newscategory_Id" Type="int" />
-          <Property Name="Newscomment_Id" Type="int" />
-          <Property Name="Newsmedia_Id" Type="int" />
+          <Property Name="Viewsblogs_ID" Type="int" />
+          <Property Name="Blogscategory_ID" Type="int" />
+          <Property Name="Blogscomment_ID" Type="int" />
+          <Property Name="Blogsmedia_ID" Type="int" />
           <Property Name="Dateentered" Type="datetime2" Precision="7" />
           <Property Name="Deleted" Type="tinyint" />
+          <Property Name="ResultsArchieved" Type="varchar(max)" />
+          <Property Name="ChallengesLessonLearned" Type="varchar(max)" />
+          <Property Name="Replicability" Type="varchar(max)" />
+          <Property Name="Sources" Type="varchar(max)" />
+          <Property Name="Company" Type="varchar" MaxLength="2000" />
+          <Property Name="Email" Type="varchar" MaxLength="70" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="Initiative" Type="varchar" MaxLength="50" />
+          <Property Name="Photo" Type="varchar(max)" />
+          <Property Name="StartDate" Type="varchar" MaxLength="50" />
+          <Property Name="EndDate" Type="datetime2" Precision="7" />
+          <Property Name="Location" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="newscategory">
           <Key>
@@ -883,6 +915,38 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
           <Property Name="venueresult" Type="varchar" MaxLength="45" />
           <Property Name="networkingresult" Type="varchar" MaxLength="45" />
         </EntityType>
+        <EntityType Name="upcomingevents">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="2000" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Detail" Type="varchar(max)" />
+          <Property Name="Author" Type="varchar" MaxLength="100" />
+          <Property Name="Blogsdate" Type="datetime2" Precision="7" />
+          <Property Name="Thumbnail" Type="varchar" MaxLength="45" />
+          <Property Name="Country_ID" Type="int" />
+          <Property Name="Geotheme_ID" Type="int" />
+          <Property Name="Viewsblogs_ID" Type="int" />
+          <Property Name="Blogscategory_ID" Type="int" />
+          <Property Name="Blogscomment_ID" Type="int" />
+          <Property Name="Blogsmedia_ID" Type="int" />
+          <Property Name="Dateentered" Type="datetime2" Precision="7" />
+          <Property Name="Deleted" Type="tinyint" />
+          <Property Name="ResultsArchieved" Type="varchar(max)" />
+          <Property Name="ChallengesLessonLearned" Type="varchar(max)" />
+          <Property Name="Replicability" Type="varchar(max)" />
+          <Property Name="Sources" Type="varchar(max)" />
+          <Property Name="Company" Type="varchar" MaxLength="2000" />
+          <Property Name="Email" Type="varchar" MaxLength="70" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="Initiative" Type="varchar" MaxLength="50" />
+          <Property Name="Photo" Type="varchar(max)" />
+          <Property Name="StartDate" Type="varchar" MaxLength="50" />
+          <Property Name="EndDate" Type="datetime2" Precision="7" />
+          <Property Name="Location" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="user">
           <Key>
             <PropertyRef Name="id" />
@@ -986,6 +1050,7 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
         </EntityType>
         <EntityContainer Name="KnowWasteModelStoreContainer">
           <EntitySet Name="_logs" EntityType="Self._logs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="_news" EntityType="Self._news" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="_reference" EntityType="Self._reference" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="_relation" EntityType="Self._relation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="_union" EntityType="Self._union" Schema="dbo" store:Type="Tables" />
@@ -1053,6 +1118,7 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
           <EntitySet Name="seminarsregistration" EntityType="Self.seminarsregistration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="subregion" EntityType="Self.subregion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tallbuildingfeedbackone" EntityType="Self.tallbuildingfeedbackone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="upcomingevents" EntityType="Self.upcomingevents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="userprivileges" EntityType="Self.userprivileges" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usertype" EntityType="Self.usertype" Schema="dbo" store:Type="Tables" />
@@ -1752,26 +1818,6 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
           <Property Name="Dateentered" Type="DateTime" Precision="7" />
           <Property Name="Deleted" Type="Byte" />
         </EntityType>
-        <EntityType Name="news">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="NewsDate" Type="DateTime" Precision="7" />
-          <Property Name="Thumbnail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Author" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Country_ID" Type="Int32" />
-          <Property Name="Geotheme_ID" Type="Int32" />
-          <Property Name="Viewsnews_ID" Type="Int32" />
-          <Property Name="Newscategory_Id" Type="Int32" />
-          <Property Name="Newscomment_Id" Type="Int32" />
-          <Property Name="Newsmedia_Id" Type="Int32" />
-          <Property Name="Dateentered" Type="DateTime" Precision="7" />
-          <Property Name="Deleted" Type="Byte" />
-        </EntityType>
         <EntityType Name="newscategory">
           <Key>
             <PropertyRef Name="ID" />
@@ -2093,7 +2139,6 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
           <EntitySet Name="forums" EntityType="Self.forum" />
           <EntitySet Name="geothemes" EntityType="Self.geotheme" />
           <EntitySet Name="lawpolicies" EntityType="Self.lawpolicy" />
-          <EntitySet Name="news" EntityType="Self.news" />
           <EntitySet Name="newscategories" EntityType="Self.newscategory" />
           <EntitySet Name="newscomments" EntityType="Self.newscomment" />
           <EntitySet Name="newsmedias" EntityType="Self.newsmedia" />
@@ -2121,6 +2166,9 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
           <EntitySet Name="wastetypes" EntityType="Self.wastetype" />
           <EntitySet Name="countrypolicy_type" EntityType="Self.countrypolicy_type" />
           <EntitySet Name="microlearnings" EntityType="KnowWasteModel.microlearning" />
+          <EntitySet Name="C_news" EntityType="KnowWasteModel.C_news" />
+          <EntitySet Name="upcomingevents" EntityType="KnowWasteModel.upcomingevents" />
+          <EntitySet Name="news" EntityType="KnowWasteModel.news" />
         </EntityContainer>
         <EntityType Name="microlearning">
           <Key>
@@ -2133,6 +2181,90 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
           <Property Name="Dateentered" Type="DateTime" Precision="7" />
           <Property Name="Deleted" Type="Byte" />
           <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="C_news">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NewsDate" Type="DateTime" Precision="7" />
+          <Property Name="Thumbnail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Author" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Country_ID" Type="Int32" />
+          <Property Name="Geotheme_ID" Type="Int32" />
+          <Property Name="Viewsnews_ID" Type="Int32" />
+          <Property Name="Newscategory_Id" Type="Int32" />
+          <Property Name="Newscomment_Id" Type="Int32" />
+          <Property Name="Newsmedia_Id" Type="Int32" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+        </EntityType>
+        <EntityType Name="upcomingevents">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Author" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Blogsdate" Type="DateTime" Precision="7" />
+          <Property Name="Thumbnail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Country_ID" Type="Int32" />
+          <Property Name="Geotheme_ID" Type="Int32" />
+          <Property Name="Viewsblogs_ID" Type="Int32" />
+          <Property Name="Blogscategory_ID" Type="Int32" />
+          <Property Name="Blogscomment_ID" Type="Int32" />
+          <Property Name="Blogsmedia_ID" Type="Int32" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+          <Property Name="ResultsArchieved" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ChallengesLessonLearned" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Replicability" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Sources" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Company" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Initiative" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EndDate" Type="DateTime" Precision="7" />
+          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="news">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Author" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Blogsdate" Type="DateTime" Precision="7" />
+          <Property Name="Thumbnail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Country_ID" Type="Int32" />
+          <Property Name="Geotheme_ID" Type="Int32" />
+          <Property Name="Viewsblogs_ID" Type="Int32" />
+          <Property Name="Blogscategory_ID" Type="Int32" />
+          <Property Name="Blogscomment_ID" Type="Int32" />
+          <Property Name="Blogsmedia_ID" Type="Int32" />
+          <Property Name="Dateentered" Type="DateTime" Precision="7" />
+          <Property Name="Deleted" Type="Byte" />
+          <Property Name="ResultsArchieved" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ChallengesLessonLearned" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Replicability" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Sources" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Company" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Initiative" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EndDate" Type="DateTime" Precision="7" />
+          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2866,27 +2998,6 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="news">
-            <EntityTypeMapping TypeName="KnowWasteModel.news">
-              <MappingFragment StoreEntitySet="news">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Detail" ColumnName="Detail" />
-                <ScalarProperty Name="NewsDate" ColumnName="NewsDate" />
-                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
-                <ScalarProperty Name="Author" ColumnName="Author" />
-                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
-                <ScalarProperty Name="Geotheme_ID" ColumnName="Geotheme_ID" />
-                <ScalarProperty Name="Viewsnews_ID" ColumnName="Viewsnews_ID" />
-                <ScalarProperty Name="Newscategory_Id" ColumnName="Newscategory_Id" />
-                <ScalarProperty Name="Newscomment_Id" ColumnName="Newscomment_Id" />
-                <ScalarProperty Name="Newsmedia_Id" ColumnName="Newsmedia_Id" />
-                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
-                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="newscategories">
             <EntityTypeMapping TypeName="KnowWasteModel.newscategory">
               <MappingFragment StoreEntitySet="newscategory">
@@ -3195,6 +3306,93 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="C_news">
+            <EntityTypeMapping TypeName="KnowWasteModel.C_news">
+              <MappingFragment StoreEntitySet="_news">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Newsmedia_Id" ColumnName="Newsmedia_Id" />
+                <ScalarProperty Name="Newscomment_Id" ColumnName="Newscomment_Id" />
+                <ScalarProperty Name="Newscategory_Id" ColumnName="Newscategory_Id" />
+                <ScalarProperty Name="Viewsnews_ID" ColumnName="Viewsnews_ID" />
+                <ScalarProperty Name="Geotheme_ID" ColumnName="Geotheme_ID" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="NewsDate" ColumnName="NewsDate" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="upcomingevents">
+            <EntityTypeMapping TypeName="KnowWasteModel.upcomingevents">
+              <MappingFragment StoreEntitySet="upcomingevents">
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Initiative" ColumnName="Initiative" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Sources" ColumnName="Sources" />
+                <ScalarProperty Name="Replicability" ColumnName="Replicability" />
+                <ScalarProperty Name="ChallengesLessonLearned" ColumnName="ChallengesLessonLearned" />
+                <ScalarProperty Name="ResultsArchieved" ColumnName="ResultsArchieved" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Blogsmedia_ID" ColumnName="Blogsmedia_ID" />
+                <ScalarProperty Name="Blogscomment_ID" ColumnName="Blogscomment_ID" />
+                <ScalarProperty Name="Blogscategory_ID" ColumnName="Blogscategory_ID" />
+                <ScalarProperty Name="Viewsblogs_ID" ColumnName="Viewsblogs_ID" />
+                <ScalarProperty Name="Geotheme_ID" ColumnName="Geotheme_ID" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="Blogsdate" ColumnName="Blogsdate" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="news">
+            <EntityTypeMapping TypeName="KnowWasteModel.news">
+              <MappingFragment StoreEntitySet="news">
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Initiative" ColumnName="Initiative" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Sources" ColumnName="Sources" />
+                <ScalarProperty Name="Replicability" ColumnName="Replicability" />
+                <ScalarProperty Name="ChallengesLessonLearned" ColumnName="ChallengesLessonLearned" />
+                <ScalarProperty Name="ResultsArchieved" ColumnName="ResultsArchieved" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Dateentered" ColumnName="Dateentered" />
+                <ScalarProperty Name="Blogsmedia_ID" ColumnName="Blogsmedia_ID" />
+                <ScalarProperty Name="Blogscomment_ID" ColumnName="Blogscomment_ID" />
+                <ScalarProperty Name="Blogscategory_ID" ColumnName="Blogscategory_ID" />
+                <ScalarProperty Name="Viewsblogs_ID" ColumnName="Viewsblogs_ID" />
+                <ScalarProperty Name="Geotheme_ID" ColumnName="Geotheme_ID" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="Blogsdate" ColumnName="Blogsdate" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -3209,8 +3407,8 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
