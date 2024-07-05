@@ -194,7 +194,7 @@ namespace UCOnline.Models
             string year = null;
 
             StringBuilder output = new StringBuilder();
-            output.Append("<select class='year'>");
+            output.Append("<select class='year' id='yearFilter'>");
             output.AppendFormat("<option value='0'>All</option>");
 
             var i = 0;

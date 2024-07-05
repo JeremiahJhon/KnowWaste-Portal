@@ -25,7 +25,7 @@
     </div>
     <div class="c-content-box c-size-md c-bg-white">
         <div class="container">
-            <div id="country-filter"><div style="display:none;"><span>Region:</span> @Html.Raw(ViewBag.Region)</div><div><span>Sub Region:</span> @Html.Raw(ViewBag.SubRegion)</div><div><span>Country:</span> @Html.Raw(ViewBag.Country)</div><div><span>Year:</span> @Html.Raw(ViewBag.Year)</div></div>
+            <div id="country-filter"><div style="display: none;"><span>Region:</span> @Html.Raw(ViewBag.Region)</div><div><span>Sub Region:</span> @Html.Raw(ViewBag.SubRegion)</div><div><span>Country:</span> @Html.Raw(ViewBag.Country)</div><div><span>Year:</span> @Html.Raw(ViewBag.Year)</div></div>
             <div id="charts">
                 <div class="progressicon"><img src="~/Content/Images/misc/progress.gif" /></div>
                 <div id="mapcontainer" class="hidden">
@@ -115,3 +115,78 @@
         </div>
     </div>
 </div>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#subregionFilter').change(function () {
+                populateCountryFilter($('#subregionFilter').val());
+                populateYearsFilter($('#countryFilter').val());
+            });
+            $('#countryFilter').change(function () {
+                populateYearsFilter($('#countryFilter').val());
+            });
+        });
+
+        function populateCountryFilter(subregion) {
+            $.ajax({
+                url: `/MarineDebris/getCountry?subregion=${subregion}`,
+                type: 'GET',
+                async: false,
+                processData: false,
+                success: function (res) {
+                    var data = JSON.parse(res);
+                    var select = document.getElementById("countryFilter");
+                    select.innerHTML = "";
+                    var option = document.createElement("option");
+                    option.setAttribute("value", -1);
+                    option.text = "-";
+                    select.add(option);
+                    option = document.createElement("option");
+                    option.setAttribute("value", 0);
+                    option.text = "All";
+                    select.add(option);
+                    for (var ctr = 0; ctr < data.length; ctr++) {
+                        var option = document.createElement("option");
+                        option.setAttribute("value", data[ctr]["ID"]);
+                        option.text = data[ctr]["Name"];
+                        select.add(option);
+                    }
+                    select.value = 0;
+                },
+                error: function (res) {
+                    console.log(res);
+                }
+            });
+        }
+
+        function populateYearsFilter(country) {
+            $.ajax({
+                url: `/MarineDebris/getYears?country=${country}`,
+                type: 'GET',
+                processData: false,
+                async: false,
+                success: function (res) {
+                    console.log(res)
+                    var data = JSON.parse(res);
+                    var select = document.getElementById("yearFilter");
+                    select.innerHTML = "";
+                    var option = document.createElement("option");
+                    option.setAttribute("value", 0);
+                    option.text = "All";
+                    select.add(option);
+                    for (var ctr = 0; ctr < data.length; ctr++) {
+                        var option = document.createElement("option");
+                        option.setAttribute("value", data[ctr]);
+                        option.text = data[ctr];
+                        select.add(option);
+                    }
+                    select.value = 0;
+                },
+                error: function (res) {
+                    console.log(res);
+                }
+            });
+        }
+    </script>
+}

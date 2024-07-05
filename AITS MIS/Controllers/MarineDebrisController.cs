@@ -1311,13 +1311,37 @@ namespace UCOnline.Controllers
         }
 
         [HttpGet]
-        public String getCity(string country)
+        public String getCountry(int subregion)
+        {
+            var countryData = context.countries.Where(x => x.SubRegion_ID == subregion.ToString() && x.Deleted == (byte)0);
+
+            return JsonConvert.SerializeObject(countryData);
+        }
+
+        [HttpGet]
+        public String getCity(int country)
         {
             ServerBase country_ = new ServerBase("City");
-            country_.SelectFilter("Country_ID in (" + country + ")"); // 3 = Asia
+            country_.SelectFilter("Country_ID in (" + country.ToString() + ")"); // 3 = Asia
             DataTable countryData = country_.SelectQuery();
 
             return JsonConvert.SerializeObject(countryData);
+        }
+
+        [HttpGet]
+        public String getYears(int country)
+        {
+            string[] yearData;
+            if(country == 0)
+            {
+                yearData = context.countrywastestreams.Where(x => x.Deleted == (byte)0).Select(x => x.Year).Distinct().OrderByDescending(year => year).ToArray();
+            }
+            else
+            {
+                yearData = context.countrywastestreams.Where(x => x.Country_ID == country.ToString() && x.Deleted == (byte)0).Select(x => x.Year).Distinct().OrderByDescending(year => year).ToArray();
+            }
+
+            return JsonConvert.SerializeObject(yearData);
         }
 
         [HttpGet]

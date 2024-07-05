@@ -39,7 +39,7 @@ function GetData() {
 
     //Subregion
     $("#country-filter select.subregion").change(function () {
-        var pathname = "/Data"; //window.location.pathname;
+        var pathname = "/Data/Data"; //window.location.pathname;
         if (pathname === "/")
             pathname = "/Home";
 
@@ -48,11 +48,14 @@ function GetData() {
         countryid = $("#country-filter select.country option:selected").val();
         year = $("#country-filter select.year option:selected").val();
 
-        window.location.href = ".." + pathname + "?regionid=" + regionid + "&subregionid=" + subregionid + "&countryid=" + countryid + "&year=" + year;
+        const URL = pathname + "?regionid=" + regionid + "&subregionid=" + subregionid + "&countryid=" + countryid + "&year=" + year;
+        $.get(URL, function (data, status) {
+            DrawBarChart(data);
+        });
     });
 
     $("#country-filter select.country").change(function () {
-        var pathname = "/Data"; //window.location.pathname;
+        var pathname = "/Data/Data"; //window.location.pathname;
         if (pathname === "/")
             pathname = "/Home";
 
@@ -61,11 +64,14 @@ function GetData() {
         countryid = $("#country-filter select.country option:selected").val();
         year = $("#country-filter select.year option:selected").val();
 
-        window.location.href = ".." + pathname + "?regionid=" + regionid + "&subregionid=" + subregionid + "&countryid=" + countryid + "&year=" + year;
+        const URL = pathname + "?regionid=" + regionid + "&subregionid=" + subregionid + "&countryid=" + countryid + "&year=" + year;
+        $.get(URL, function (data, status) {
+            DrawBarChart(data);
+        });
     });
 
     $("#country-filter select.year").change(function () {
-        var pathname = "/Data"; //window.location.pathname;
+        var pathname = "/Data/Data"; //window.location.pathname;
         if (pathname === "/")
             pathname = "/Home";
 
@@ -74,7 +80,10 @@ function GetData() {
         countryid = $("#country-filter select.country option:selected").val();
         year = $("#country-filter select.year option:selected").val();
 
-        window.location.href = ".." + pathname + "?regionid=" + regionid + "&subregionid=" + subregionid + "&countryid=" + countryid + "&year=" + year;
+        const URL = pathname + "?regionid=" + regionid + "&subregionid=" + subregionid + "&countryid=" + countryid + "&year=" + year;
+        $.get(URL, function (data, status) {
+            DrawBarChart(data);
+        });
     });
 }
 

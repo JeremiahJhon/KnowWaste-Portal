@@ -53,7 +53,7 @@ namespace UCOnline.Models
 
             DataTable data = GetData();
 
-            output.Append("<select class='country'>");
+            output.Append("<select class='country' id='countryFilter'>");
             output.AppendFormat("<option value='0'>All</option>");
 
             foreach (DataRow row in data.Rows)

@@ -50,7 +50,7 @@ namespace UCOnline.Models
 
             DataTable data = GetData();
 
-            output.Append("<select class='subregion'>");
+            output.Append("<select class='subregion' id='subregionFilter'>");
 
             foreach (DataRow row in data.Rows)
             {
