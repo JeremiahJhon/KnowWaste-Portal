@@ -50,7 +50,8 @@ function GetData() {
 
         const URL = pathname + "?regionid=" + regionid + "&subregionid=" + subregionid + "&countryid=" + countryid + "&year=" + year;
         $.get(URL, function (data, status) {
-            DrawBarChart(data);
+            DrawChart(data);
+            refreshBody(regionid, subregionid, countryid, year);
         });
     });
 
@@ -66,7 +67,8 @@ function GetData() {
 
         const URL = pathname + "?regionid=" + regionid + "&subregionid=" + subregionid + "&countryid=" + countryid + "&year=" + year;
         $.get(URL, function (data, status) {
-            DrawBarChart(data);
+            DrawChart(data);
+            refreshBody(regionid, subregionid, countryid, year);
         });
     });
 
@@ -82,8 +84,15 @@ function GetData() {
 
         const URL = pathname + "?regionid=" + regionid + "&subregionid=" + subregionid + "&countryid=" + countryid + "&year=" + year;
         $.get(URL, function (data, status) {
-            DrawBarChart(data);
+            DrawChart(data);
+            refreshBody(regionid, subregionid, countryid, year);
         });
+    });
+}
+
+function refreshBody(regionid, subregionid, countryid, year) {
+    $('#DataBody').html();
+    $('#DataBody').load("/Data/Body?regionid=" + regionid + "&subregionid=" + subregionid + "&countryid=" + countryid + "&year=" + year, function (response, status, xhr) {
     });
 }
 

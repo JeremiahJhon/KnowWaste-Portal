@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using UCOnline.Data;
 using UCOnline.Entity;
 using UCOnline.Models;
 using Web.Framework.Controllers;
@@ -32,82 +33,19 @@ namespace UCOnline.Controllers
             if (regionid == null)
                 regionid = "3";
 
-            ServerBase server = new ServerBase("subregion");
-            server.SelectFilter("region_id", regionid);
-
-            DataTable data = server.SelectQuery();
-
-            var handle = true;
-
-            foreach (DataRow row in data.Rows)
-                if (row["id"].ToString() == subregionid)
-                {
-                    handle = false;
-                    break;
-                }
-
-            if (handle && data.Rows.Count != 0)
-                subregionid = data.Rows[0]["id"].ToString();
-
-            if (countryid == null && subregionid != null)
-                countryid = "2";
-
-            server = new ServerBase("country");
-            server.SelectFilter("subregion_id", subregionid);
-
-            data = server.SelectQuery();
-
-            handle = true;
-
-            if (countryid != "0")
-            {
-                foreach (DataRow row in data.Rows)
-                    if (row["id"].ToString() == countryid)
-                    {
-                        handle = false;
-                        break;
-                    }
-
-                if (handle && data.Rows.Count != 0 && subregionid != null)
-                    countryid = data.Rows[0]["id"].ToString();
-            }
-
             var year = Request.QueryString["year"];
 
-            var wstream = new ModelWasteStream();
+            return refresh(regionid, subregionid, countryid, year);
+        }
 
-            if (year == null)
-                wstream.GetYear(countryid, ref year);
+        [HttpGet]
+        public string Body(string regionid, string subregionid, string countryid, string year)
+        {
+            refresh(regionid, subregionid, countryid, year);
 
-            if (subregionid != null)
-            {
-                if (countryid != null)
-                {
-                    ViewBag.Year = wstream.GetYear(countryid, ref year);
+            String body = ViewBag.Body;
 
-                    ((ModelData)Model).Year = year;
-                    ((ModelData)Model).CountryID = countryid;
-
-                    //List of Countries
-                    var country = new ModelCountry();
-                    country.SubRegionID = subregionid;
-                    country.CountyID = countryid;
-                    ViewBag.Country = country.GetCombobox();
-                }
-
-                //List Subregions
-                var subregion = new ModelSubRegion();
-                subregion.RegionID = regionid;
-                subregion.SubRegionID = subregionid;
-                ViewBag.SubRegion = subregion.GetCombobox();
-            }
-
-            //List of Regions
-            var region = new ModelRegion();
-            region.RegionID = regionid;
-            ViewBag.Region = region.GetCombobox();
-
-            return base.Index();
+            return body;
         }
 
         [HttpGet]
@@ -341,6 +279,82 @@ namespace UCOnline.Controllers
             dtResult.TableName = "Plastic Waste Data";
 
             return dtResult;
+        }
+
+        private ActionResult refresh(string regionid, string subregionid, string countryid, string year)
+        {
+            ServerBase server = new ServerBase("subregion");
+            server.SelectFilter("region_id", regionid);
+
+            DataTable data = server.SelectQuery();
+
+            var handle = true;
+
+            foreach (DataRow row in data.Rows)
+                if (row["id"].ToString() == subregionid)
+                {
+                    handle = false;
+                    break;
+                }
+
+            if (handle && data.Rows.Count != 0)
+                subregionid = data.Rows[0]["id"].ToString();
+            if (countryid == null && subregionid != null)
+                countryid = "2";
+
+            server = new ServerBase("country");
+            server.SelectFilter("subregion_id", subregionid);
+
+            data = server.SelectQuery();
+            handle = true;
+
+            if (countryid != "0")
+            {
+                foreach (DataRow row in data.Rows)
+                    if (row["id"].ToString() == countryid)
+                    {
+                        handle = false;
+                        break;
+                    }
+
+                if (handle && data.Rows.Count != 0 && subregionid != null)
+                    countryid = data.Rows[0]["id"].ToString();
+            }
+
+            var wstream = new ModelWasteStream();
+
+            if (year == null)
+                wstream.GetYear(countryid, ref year);
+
+            if (subregionid != null)
+            {
+                if (countryid != null)
+                {
+                    ViewBag.Year = wstream.GetYear(countryid, ref year);
+
+                    ((ModelData)Model).Year = year;
+                    ((ModelData)Model).CountryID = countryid;
+
+                    //List of Countries
+                    var country = new ModelCountry();
+                    country.SubRegionID = subregionid;
+                    country.CountyID = countryid;
+                    ViewBag.Country = country.GetCombobox();
+                }
+
+                //List Subregions
+                var subregion = new ModelSubRegion();
+                subregion.RegionID = regionid;
+                subregion.SubRegionID = subregionid;
+                ViewBag.SubRegion = subregion.GetCombobox();
+            }
+
+            //List of Regions
+            var region = new ModelRegion();
+            region.RegionID = regionid;
+            ViewBag.Region = region.GetCombobox();
+
+            return base.Index();
         }
     }
 }
