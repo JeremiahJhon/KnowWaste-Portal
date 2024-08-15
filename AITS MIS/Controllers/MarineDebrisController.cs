@@ -996,21 +996,27 @@ namespace UCOnline.Controllers
             string countryFilter = "";
             if (country > 0) countryFilter = "select ID from city where [Country_ID] = " + country.ToString();
 
+            string limit = "top 100";
+            if (IsMobileDevice(Request))
+            {
+                limit = "top 5";
+            }
+
             if (city > 0)
             {
-                db.Query = "select [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') from citywastestreams where city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and City_ID in (" + city + ") " + yearFilter + " and WasteCategory_ID = 1 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year]";
+                db.Query = $"select * from (select {limit} [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from citywastestreams where city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and City_ID in (" + city + ") " + yearFilter + " and WasteCategory_ID = 1 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year] desc) as lastfive order by Year asc";
                 dtResult = db.ExecuteQuery();
             }
             else if (city == 0)
             {
                 if (country == 0)
                 {
-                    db.Query = "select [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') from citywastestreams where city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and City_ID in (" + city + ") " + yearFilter + " and WasteCategory_ID = 1 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year]";
+                    db.Query = $"select * from (select {limit} [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from citywastestreams where city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and City_ID in (" + city + ") " + yearFilter + " and WasteCategory_ID = 1 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year] desc) as lastfive order by Year asc";
                     dtResult = db.ExecuteQuery();
                 }
                 else
                 {
-                    db.Query = "select [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') from citywastestreams where city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and City_ID in (" + countryFilter + ") " + yearFilter + " and WasteCategory_ID = 1 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year]";
+                    db.Query = $"select * from (select {limit} [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from citywastestreams where city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and City_ID in (" + countryFilter + ") " + yearFilter + " and WasteCategory_ID = 1 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year] desc) as lastfive order by Year asc";
                     dtResult = db.ExecuteQuery();
                 }
             }
@@ -1018,12 +1024,12 @@ namespace UCOnline.Controllers
             {
                 if (country == 0)
                 {
-                    db.Query = "select [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') from countrywastestreams where country_id in (select id from country where subregion_id = 3) " + yearFilter + " and WasteCategory_ID = 1 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year]";
+                    db.Query = $"select * from (select {limit} [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from countrywastestreams where country_id in (select id from country where subregion_id = 3) " + yearFilter + " and WasteCategory_ID = 1 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year] desc) as lastfive order by Year asc";
                     dtResult = db.ExecuteQuery();
                 }
                 else
                 {
-                    db.Query = "select [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') from countrywastestreams where country_id in (select id from country where subregion_id = 3) " + yearFilter + " and Country_ID in (" + country + ") and WasteCategory_ID = 1 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year]";
+                    db.Query = $"select * from (select {limit} [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from countrywastestreams where country_id in (select id from country where subregion_id = 3) " + yearFilter + " and Country_ID in (" + country + ") and WasteCategory_ID = 1 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year] desc) as lastfive order by Year asc";
                     dtResult = db.ExecuteQuery();
                 }
             }
@@ -1061,20 +1067,26 @@ namespace UCOnline.Controllers
             string countryFilter = "";
             if (country > 0) countryFilter = "select ID from city where [Country_ID] = " + country.ToString();
 
+            string limit = "top 100";
+            if (IsMobileDevice(Request))
+            {
+                limit = "top 5";
+            }
+
             if (city > 0)
             {
-                db.Query = "select [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') from citywastestreams where city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and City_ID in (" + city + ") " + yearFilter + " and WasteCategory_ID = 14 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year]";
+                db.Query = $"select * from (select {limit} [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from citywastestreams where city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and City_ID in (" + city + ") " + yearFilter + " and WasteCategory_ID = 14 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year] desc) as lastfive order by Year asc";
                 dtResult = db.ExecuteQuery();
             }else if (city == 0)
             {
                 if (country == 0)
                 {
-                    db.Query = "select [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') from citywastestreams where city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and City_ID in (" + city + ") " + yearFilter + " and WasteCategory_ID = 14 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year]";
+                    db.Query = $"select * from (select {limit} [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from citywastestreams where city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and City_ID in (" + city + ") " + yearFilter + " and WasteCategory_ID = 14 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year] desc) as lastfive order by Year asc";
                     dtResult = db.ExecuteQuery();
                 }
                 else
                 {
-                    db.Query = "select [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') from citywastestreams where city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and City_ID in (" + countryFilter + ") " + yearFilter + " and WasteCategory_ID = 14 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year]";
+                    db.Query = $"select * from (select {limit} [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from citywastestreams where city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and City_ID in (" + countryFilter + ") " + yearFilter + " and WasteCategory_ID = 14 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year] desc) as lastfive order by Year asc";
                     dtResult = db.ExecuteQuery();
                 }
             }
@@ -1082,12 +1094,12 @@ namespace UCOnline.Controllers
             {
                 if (country == 0)
                 {
-                    db.Query = "select [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') from countrywastestreams where country_id in (select id from country where subregion_id = 3) " + yearFilter + " and WasteCategory_ID = 14 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year]";
+                    db.Query = $"select * from (select {limit} [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from countrywastestreams where country_id in (select id from country where subregion_id = 3) " + yearFilter + " and WasteCategory_ID = 14 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year] desc) as lastfive order by Year asc";
                     dtResult = db.ExecuteQuery();
                 }
                 else
                 {
-                    db.Query = "select [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') from countrywastestreams where country_id in (select id from country where subregion_id = 3) " + yearFilter + " and Country_ID in (" + country + ") and WasteCategory_ID = 14 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year]";
+                    db.Query = $"select * from (select {limit} [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from countrywastestreams where country_id in (select id from country where subregion_id = 3) " + yearFilter + " and Country_ID in (" + country + ") and WasteCategory_ID = 14 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year] desc) as lastfive order by Year asc";
                     dtResult = db.ExecuteQuery();
                 }
             }
@@ -1127,19 +1139,19 @@ namespace UCOnline.Controllers
 
             if (city > 0)
             {
-                db.Query = "select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from citywastestreams a inner join city b on a.city_id = b.id where a.city_id in (" + city + ") " + yearFilter + " and a.WasteCategory_ID = 1 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                db.Query = $"select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from citywastestreams a inner join city b on a.city_id = b.id where a.city_id in (" + city + ") " + yearFilter + " and a.WasteCategory_ID = 1 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
                 dtResult = db.ExecuteQuery();
             }
             else if (city == 0)
             {
                 if (country == 0)
                 {
-                    db.Query = "select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from citywastestreams a inner join city b on a.city_id = b.id where a.city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and a.City_ID in (" + city + ") " + yearFilter + " and a.WasteCategory_ID = 1 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    db.Query = $"select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from citywastestreams a inner join city b on a.city_id = b.id where a.city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and a.City_ID in (" + city + ") " + yearFilter + " and a.WasteCategory_ID = 1 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
                     dtResult = db.ExecuteQuery();
                 }
                 else
                 {
-                    db.Query = "select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from citywastestreams a inner join city b on a.city_id = b.id where a.city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and a.City_ID in (" + countryFilter + ") " + yearFilter + " and a.WasteCategory_ID = 1 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    db.Query = $"select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from citywastestreams a inner join city b on a.city_id = b.id where a.city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and a.City_ID in (" + countryFilter + ") " + yearFilter + " and a.WasteCategory_ID = 1 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
                     dtResult = db.ExecuteQuery();
                 }
             }
@@ -1147,12 +1159,12 @@ namespace UCOnline.Controllers
             {
                 if (country == 0)
                 {
-                    db.Query = "select b.Name as Country,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from countrywastestreams a inner join country b on a.country_id = b.id where a.Country_ID in (select id from country where subregion_id = 3) and a.WasteCategory_ID = 1 " + yearFilter + " and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    db.Query = $"select b.Name as Country,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from countrywastestreams a inner join country b on a.country_id = b.id where a.Country_ID in (select id from country where subregion_id = 3) and a.WasteCategory_ID = 1 " + yearFilter + " and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
                     dtResult = db.ExecuteQuery();
                 }
                 else
                 {
-                    db.Query = "select b.Name as Country,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from countrywastestreams a inner join country b on a.country_id = b.id where a.Country_ID in (select id from country where subregion_id = 3) and a.Country_ID in (" + country + ") " + yearFilter + " and a.WasteCategory_ID = 1 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    db.Query = $"select b.Name as Country,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from countrywastestreams a inner join country b on a.country_id = b.id where a.Country_ID in (select id from country where subregion_id = 3) and a.Country_ID in (" + country + ") " + yearFilter + " and a.WasteCategory_ID = 1 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
                     dtResult = db.ExecuteQuery();
                 }
             }
@@ -1174,17 +1186,17 @@ namespace UCOnline.Controllers
 
             if (city > 0)
             {
-                db.Query = "select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from countrywastestreams a inner join city b on a.city_id = b.id where a.city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and a.City_ID in (" + city + ") " + yearFilter + " and a.WasteCategory_ID = 14 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                db.Query = $"select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from countrywastestreams a inner join city b on a.city_id = b.id where a.city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and a.City_ID in (" + city + ") " + yearFilter + " and a.WasteCategory_ID = 14 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
                 dtResult = db.ExecuteQuery();
             }else if (city == 0)
             {
                 if (country == 0)
                 {
-                    db.Query = "select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from citywastestreams a inner join city b on a.city_id = b.id where a.city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and a.City_ID in (" + city + ") " + yearFilter + " and a.WasteCategory_ID = 14 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    db.Query = $"select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from citywastestreams a inner join city b on a.city_id = b.id where a.city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and a.City_ID in (" + city + ") " + yearFilter + " and a.WasteCategory_ID = 14 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
                     dtResult = db.ExecuteQuery();
                 }
                 else {
-                    db.Query = "select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from citywastestreams a inner join city b on a.city_id = b.id where a.city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and a.City_ID in (" + countryFilter + ") " + yearFilter + " and a.WasteCategory_ID = 14 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    db.Query = $"select b.Name as City,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from citywastestreams a inner join city b on a.city_id = b.id where a.city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and a.City_ID in (" + countryFilter + ") " + yearFilter + " and a.WasteCategory_ID = 14 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
                     dtResult = db.ExecuteQuery();
                 }
             }
@@ -1192,12 +1204,12 @@ namespace UCOnline.Controllers
             {
                 if (country == 0)
                 {
-                    db.Query = "select b.Name as Country,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from countrywastestreams a inner join country b on a.country_id = b.id where a.country_id in (select id from country where subregion_id = 3) and a.WasteCategory_ID = 14 " + yearFilter + " and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    db.Query = $"select b.Name as Country,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from countrywastestreams a inner join country b on a.country_id = b.id where a.country_id in (select id from country where subregion_id = 3) and a.WasteCategory_ID = 14 " + yearFilter + " and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
                     dtResult = db.ExecuteQuery();
                 }
                 else
                 {
-                    db.Query = "select b.Name as Country,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from countrywastestreams a inner join country b on a.country_id = b.id where a.country_id in (select id from country where subregion_id = 3) and a.Country_ID in (" + country + ") " + yearFilter + " and a.WasteCategory_ID = 14 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year]";
+                    db.Query = $"select b.Name as Country,a.[Year],SUM(cast(a.Totalgenerated as decimal(10,2))) as Generated,SUM(cast(a.Totalcollected as decimal(10,2))) as Collected,SUM(cast(a.Recycled as decimal(10,2))) as Recycled,SUM(cast(a.Recovered as decimal(10,2))) as Recovered,SUM(cast(a.Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference,STRING_AGG(Definitions,'') as Definitions from countrywastestreams a inner join country b on a.country_id = b.id where a.country_id in (select id from country where subregion_id = 3) and a.Country_ID in (" + country + ") " + yearFilter + " and a.WasteCategory_ID = 14 and a.Deleted = 0 and ([year] is not null and [year] <> '') group by b.Name,a.[Year] order by b.Name,a.[Year] desc";
                     dtResult = db.ExecuteQuery();
                 }
             }
@@ -1384,6 +1396,17 @@ namespace UCOnline.Controllers
                     return JsonConvert.SerializeObject(cwData);
                 }
             }
+        }
+        private bool IsMobileDevice(HttpRequestBase request)
+        {
+            string userAgent = request.UserAgent?.ToLower() ?? string.Empty;
+
+            // List of mobile devices or OS indicators
+            string[] mobileDevices = new[] {
+                "iphone", "ipod", "ipad", "android", "windows phone", "blackberry", "opera mini", "mobile"
+            };
+
+            return mobileDevices.Any(device => userAgent.Contains(device));
         }
     }
 }
