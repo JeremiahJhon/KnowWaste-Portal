@@ -6936,6 +6936,7 @@
     <Content Include="Views\MarineDebris\UpcomingEvents.cshtml" />
     <Content Include="Views\MarineDebris\UpcomingEventsItem.cshtml" />
     <Content Include="Views\MarineDebris\NewsItem.cshtml" />
+    <Content Include="Views\Shared\_Breadcrumbs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

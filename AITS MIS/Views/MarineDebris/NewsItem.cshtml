@@ -7,25 +7,10 @@
     DataRow doc = (DataRow)ViewBag.Data;
     string[] images = doc["Photo"].ToString().Split(';');
     string mediaPath = ViewBag.MediaPath;
+    string page = ViewBag.Title;
 }
-<div class="row mt-20">
-    <div class="landing-dark-bg h-250px">
-        <div class="container py-lg-20">
-            <!--begin::Title-->
-            <!--begin::Title-->
-            <h3 class="text-white lh-base fw-bolder">
-                <span class="text-gray-800">MARINE DEBRIS</span>
-                @*<span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
-                    </span>*@
-            </h3>
-            <h1 class="text-white lh-base fw-bolder fs-2x fs-lg-3x">
-                <span class="text-white">@ViewBag.Title</span>
-                @*<span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
-                    </span>*@
-            </h1>
-        </div>
-    </div>
-</div>
+
+@{ Html.RenderPartial("_Breadcrumbs", page); }
 
 <div class="container mt-lg-n20">
     <!--begin::Container-->
@@ -124,11 +109,11 @@
                             @Html.Raw(doc["Sources"].ToString())
                         </div>
                         @*<span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base">Company</span>
-        <div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">
-            @doc["Company"].ToString()
-            <br/>
-            @doc["Email"].ToString()
-        </div>*@
+                            <div class="fw-bold fs-5 text-gray-600 text-dark mt-4" style="text-align: justify;">
+                                @doc["Company"].ToString()
+                                <br/>
+                                @doc["Email"].ToString()
+                            </div>*@
                     </div>
                 </div>
             </div>

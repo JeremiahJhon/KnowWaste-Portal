@@ -8,26 +8,10 @@
     DataTable areas = (DataTable)ViewBag.Area;
     DataTable countryPolicies = (DataTable)ViewBag.CountryPolicy;
     DataTable template = (DataTable)ViewBag.Template;
+    string page = "POLICIES AND REGULATIONS";
 }
-<div class="row mt-20">
-    <div class="landing-dark-bg h-250px">
-        <div class="container py-lg-20">
-            <!--begin::Title-->
-            <!--begin::Title-->
-            <h3 class="text-white lh-base fw-bolder">
-                <span class="text-gray-800">MARINE DEBRIS</span>
-                @*<span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
-            </span>*@
-            </h3>
-            <h1 class="text-white lh-base fw-bolder fs-2x fs-lg-3x">
-                <span class="text-white">POLICIES AND REGULATIONS</span>
-                @*<span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
-            </span>*@
-            </h1>
-            <!--end::Title-->
-        </div>
-    </div>
-</div>
+
+@{ Html.RenderPartial("_Breadcrumbs", page); }
 
 <div class="container mt-lg-n20">
     <!--begin::Card-->

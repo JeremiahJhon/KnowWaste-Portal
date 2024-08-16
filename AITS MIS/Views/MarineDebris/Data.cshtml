@@ -5,40 +5,27 @@
 
 @{
     DataTable countries = (DataTable)ViewBag.Country;
+    string page = "DATA";
 }
 <style>
-    .apexcharts-legend{
+    .apexcharts-legend {
         align-items: baseline !important;
     }
+
     .table.gy-7 td, .table.gy-7 th {
         padding-top: 1rem;
         padding-bottom: 1rem;
     }
+
     .table > thead {
         border-bottom: solid 2px #ccc;
         font-weight: 800;
         font-size: 14px;
     }
 </style>
-<div class="row mt-20">
-    <div class="landing-dark-bg h-250px">
-        <div class="container py-lg-20">
-            <!--begin::Title-->
-            <!--begin::Title-->
-            <h3 class="text-white lh-base fw-bolder">
-                <span class="text-gray-800">MARINE DEBRIS</span>
-                @*<span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
-            </span>*@
-            </h3>
-            <h1 class="text-white lh-base fw-bolder fs-2x fs-lg-3x">
-                <span class="text-white">DATA</span>
-                @*<span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
-            </span>*@
-            </h1>
-            <!--end::Title-->
-        </div>
-    </div>
-</div>
+
+
+@{ Html.RenderPartial("_Breadcrumbs", page); }
 
 <div class="row mt-lg-n20">
     <div class="row d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px">
@@ -262,7 +249,7 @@
                     <h3 class="mb-3">Country</h3>
                     <div class="w-100">
                         <div class="form-check form-switch form-check-custom form-check-solid m-2 mb-5">
-                            <input class="form-check-input h-20px w-30px" name="solid-country-all" type="checkbox" value="All" id="solid-country-all"  />
+                            <input class="form-check-input h-20px w-30px" name="solid-country-all" type="checkbox" value="All" id="solid-country-all" />
                             <label class="form-check-label" for="solid-country-all">
                                 All
                             </label>
@@ -589,7 +576,7 @@
 
         function createSolidWasteGraph(id, x_axis, series) {
             $.ajax({
-                url: `/MarineDebris/getSolidWasteGraphData?country=${$("#filter-country-1").val()}&city=${$("#filter-city-1").val()}&year=${$("#filter-year-1").val() }`,
+                url: `/MarineDebris/getSolidWasteGraphData?country=${$("#filter-country-1").val()}&city=${$("#filter-city-1").val()}&year=${$("#filter-year-1").val()}`,
                 type: 'GET',
                 processData: false,
                 async: false,
@@ -804,7 +791,7 @@
             });
             populateCityFilter("solidWaste", countries);*/
         }
- 
+
         function createPlasticWasteGraph(id, x_axis, series) {
             $.ajax({
                 url: `/MarineDebris/getPlasticWasteGraphData?country=${$("#filter-country-1").val()}&city=${$("#filter-city-1").val()}&year=${$("#filter-year-1").val()}`,
@@ -1237,7 +1224,7 @@
         });
 
         $("#filter-solidwaste-year").change(function () {
-            getSolidWasteTableData(); 
+            getSolidWasteTableData();
         });
         $("#filter-plasticwaste-year").change(function () {
             getPlasticWasteTableData();
