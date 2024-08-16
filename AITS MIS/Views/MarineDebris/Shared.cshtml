@@ -46,7 +46,7 @@ License: For each use you must have a valid license purchased only from above li
 <!--begin::Body-->
 <body id="kt_body" data-bs-spy="scroll" data-bs-target="#kt_landing_menu" data-bs-offset="200" class="position-relative">
     <!--begin::Main-->
-    <div class="h-100">
+    <div class="container px-0 mx-0 w-100 mw-100 min-h-100" style="flex-direction: column;display: flex;" >
         <!--begin::Header Section-->
         <div class="mb-0" id="home">
             <!--begin::Wrapper-->
@@ -292,42 +292,6 @@ License: For each use you must have a valid license purchased only from above li
                                                         METAL RECYCLING
                                                     </a>
                                                 </div>
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu item-->
-                                                <!--<div class="menu-item px-3">
-                <a href="#" class="menu-link fs-7 px-3">
-                    Waste and Agriculture Biomass
-                </a>
-            </div>-->
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu item-->
-                                                <!--<div class="menu-item px-3">
-                <a href="#" class="menu-link fs-7 px-3">
-                    Integrated Solid Waste Management
-                </a>
-            </div>-->
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu item-->
-                                                <!--<div class="menu-item px-3">
-                <a href="#" class="menu-link fs-7 px-3">
-                    E-Waste Management
-                </a>
-            </div>-->
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu item-->
-                                                <!--<div class="menu-item px-3">
-                <a href="#" class="menu-link fs-7 px-3">
-                    Waste Minimalization
-                </a>
-            </div>-->
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu item-->
-                                                <!--<div class="menu-item px-3">
-                <a href="#" class="menu-link fs-7 px-3">
-                    Hazardous Waste Management
-                </a>
-            </div>-->
-                                                <!--end::Menu item-->
                                             </div>
                                             <!--end::Menu-->
                                         </div>
@@ -391,12 +355,6 @@ License: For each use you must have a valid license purchased only from above li
                                     <!--end::Menu-->
                                 </div>
                             </div>
-                            <!--end::Menu wrapper-->
-                            <!--begin::Toolbar-->
-                            @*<div class="flex-equal text-end ms-1">
-                                    <a href="../../demo1/dist/authentication/flows/basic/sign-in.html" class="btn btn-success">Sign In</a>
-                                </div>*@
-                            <!--end::Toolbar-->
                         </div>
                         <!--end::Wrapper-->
                     </div>
@@ -411,122 +369,12 @@ License: For each use you must have a valid license purchased only from above li
             <div class="gcse-searchresults" data-gname="storesearch"></div>
         </div>
         <!--end::Header Section-->
-        <div style="padding-bottom:150px;">
-            @RenderBody()
+        <div class="content">
+            @RenderBody() 
         </div>
         <!--begin::Footer Section-->
-        <div class="mb-0 position-fixed w-100 bottom-0">
-            <!--begin::Curve top-->
-            @*<div class="landing-curve landing-dark-color">
-                    <svg viewBox="15 -1 1470 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 48C4.93573 47.6644 8.85984 47.3311 12.7725 47H1489.16C1493.1 47.3311 1497.04 47.6644 1501 48V47H1489.16C914.668 -1.34764 587.282 -1.61174 12.7725 47H1V48Z" fill="currentColor"></path>
-                    </svg>
-                </div>*@
-            <!--end::Curve top-->
-            <!--begin::Wrapper-->
+        <div class="mb-0 w-100 mt-auto">
             <div class="pt-10">
-                <!--begin::Container-->
-                <!--<div class="container">-->
-                <!--begin::Row-->
-                <!--<div class="row py-10 py-lg-20">-->
-                <!--begin::Col-->
-                <!--<div class="col-lg-6 pe-lg-16 mb-10 mb-lg-0">-->
-                <!--begin::Navs-->
-                <!--<div class="d-flex justify-content">-->
-                <!--begin::Links-->
-                <!--<div class="d-flex fw-bold flex-column me-20">-->
-                <!--begin::Subtitle-->
-                <!--<h4 class="fw-bolder text-gray-400 mb-6">Address</h4>-->
-                <!--end::Subtitle-->
-                <!--begin::Link-->
-                <!--<span class="text-white opacity-75 fs-5 mb-6">
-                    Regional Resource Centre for Asia and the Pacific<br />
-                    Waste and Resource Management<br />
-                    Asian Institute of Technology<br />
-                    P.O Box (4)<br />
-                    3rd Floor, Outreach Building<br />
-                    58 Moo 9 Km 42<br />
-                    Paholyothin Highway<br />
-                    Pathumthani 12120<br />
-                    Thailand<br />
-                </span>-->
-                <!--end::Link-->
-                <!--begin::Link-->
-                <!--<a href="mailto:warm@rrcap.ait.ac.th" class="text-white opacity-75 text-hover-primary fs-5 mb-6">warm@rrcap.ait.ac.th</a>-->
-                <!--end::Link-->
-                <!--begin::Subtitle-->
-                <!--<h4 class="fw-bolder text-gray-400 mb-6">Follow us</h4>-->
-                <!--end::Subtitle-->
-                <!--begin::Link-->
-                <!--<div class="d-flex">
-                    <a class="px-2" href="https://www.facebook.com/rrcap.ait/">
-                        <img src="assets/media/svg/brand-logos/facebook-4.svg" class="h-20px me-2" alt="" />
-                    </a>
-                    <a class="px-2" href="https://twitter.com/kwk_platform">
-                        <img src="assets/media/svg/brand-logos/twitter.svg" class="h-20px me-2" alt="" />
-                    </a>
-                    <a class="px-2" href="https://www.instagram.com/kwk.platform/">
-                        <img src="assets/media/svg/brand-logos/instagram-2-1.svg" class="h-20px me-2" alt="" />
-                    </a>
-                    <a class="px-2" href="https://th.linkedin.com/company/ait-rrcap">
-                        <img src="assets/media/svg/brand-logos/linkedin.svg" class="h-20px me-2" alt="" />
-                    </a>
-                    <a class="px-2" href="https://www.youtube.com/channel/UCqQkxaQvhJ6qyRw_HDVmEqQ">
-                        <img src="assets/media/svg/brand-logos/youtube.svg" class="h-20px me-2" alt="" />
-                    </a>
-                </div>-->
-                <!--end::Link-->
-                <!--</div>-->
-                <!--end::Links-->
-                <!--</div>-->
-                <!--end::Navs-->
-                <!--</div>-->
-                <!--end::Col-->
-                <!--begin::Col-->
-                <!--<div class="col-lg-6 ps-lg-16">-->
-                <!--begin::Navs-->
-                <!--<div class="d-flex justify-content-center">-->
-                <!--begin::Links-->
-                <!--<div class="d-flex fw-bold flex-column me-20 d-none">-->
-                <!--begin::Subtitle-->
-                <!--<h4 class="fw-bolder text-gray-400 mb-6">About</h4>-->
-                <!--end::Subtitle-->
-                <!--begin::Link-->
-                <!--<a href="#" class="text-white opacity-75 text-hover-primary fs-5 mb-6">Library</a>-->
-                <!--end::Link-->
-                <!--begin::Link-->
-                <!--<a href="#" class="text-white opacity-75 text-hover-primary fs-5 mb-6">Stories and Research Briefs</a>-->
-                <!--end::Link-->
-                <!--begin::Link-->
-                <!--<a href="#" class="text-white opacity-75 text-hover-primary fs-5 mb-6">Updates and Events</a>-->
-                <!--end::Link-->
-                <!--</div>-->
-                <!--end::Links-->
-                <!--begin::Links-->
-                <!--<div class="d-flex fw-bold flex-column ms-lg-20">-->
-                <!--begin::Subtitle-->
-                <!--<h4 class="fw-bolder text-gray-400 mb-6">Legal</h4>-->
-                <!--end::Subtitle-->
-                <!--begin::Link-->
-                <!--<a href="#" class="mb-6">
-                    <span class="text-white opacity-75 text-hover-primary fs-5 mb-6">Privacy Policy</span>
-                </a>-->
-                <!--end::Link-->
-                <!--begin::Link-->
-                <!--<a href="#" class="mb-6">
-                    <span class="text-white opacity-75 text-hover-primary fs-5 mb-6">Sitemap</span>
-                </a>-->
-                <!--end::Link-->
-                <!--</div>-->
-                <!--end::Links-->
-                <!--</div>-->
-                <!--end::Navs-->
-                <!--</div>-->
-                <!--end::Col-->
-                <!--</div>-->
-                <!--end::Row-->
-                <!--</div>-->
-                <!--end::Container-->
                 <div class="container d-none">
                     <div class="rounded bg-white p-9 mb-10" style="background-color: #23A2D7;">
                         <img src="Content/marine-debris/AIT-RRCAP.png" class="h-40px mb-5" alt="" />
