@@ -25,7 +25,7 @@
                 <div class="card h-100 m-5 box-shadow">
                     <a class="d-block overlay" href="MarineDebris/News/@row["ID"].ToString()">
                         <!--begin::Image-->
-                        <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card min-h-175px" style="background-image: url('Documents/News/@row["Photo"].ToString().Split(';')[0]')"></div>
+                        <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-contain card min-h-175px" style="background-image: url('Documents/News/@row["Photo"].ToString().Split(';')[0]')"></div>
                         <!--end::Image-->
                         <!--begin::Action-->
                         <div class="overlay-layer bg-dark bg-opacity-50">
@@ -73,7 +73,7 @@
 
         },
             function () {
-                $(this).children(".overlay").children(".overlay-wrapper").css("background-size", "cover");
+                $(this).children(".overlay").children(".overlay-wrapper").css("background-size", "contain");
                 $(this).css("background-color", "");
             });
     });
