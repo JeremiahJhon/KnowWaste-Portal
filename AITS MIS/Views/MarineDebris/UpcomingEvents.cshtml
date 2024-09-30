@@ -14,6 +14,14 @@
     <div class="row">
         @foreach (DataRow row in blogs.Rows)
         {
+            string[] blogDate = row["BlogDate"].ToString().Split('-');
+            if(blogDate.Count() > 1)
+            {
+                if(Convert.ToDateTime(blogDate[1].Trim()) < DateTime.Now)
+                {
+                    break;
+                }
+            }
             int MaxLength = 100;
 
             if (row["Description"].ToString().Length < MaxLength)
