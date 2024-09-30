@@ -23,7 +23,7 @@
             <div class="col-md-3 mb-10">
                 <!--begin::Feature post-->
                 <div class="card h-100 m-5 box-shadow">
-                    <a class="d-block overlay" href="MarineDebris/News/@row["ID"].ToString()">
+                    <a class="d-block overlay thumbnail-hover" href="MarineDebris/News/@row["ID"].ToString()">
                         <!--begin::Image-->
                         <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-contain card min-h-175px" style="background-image: url('Documents/News/@row["Photo"].ToString().Split(';')[0]')"></div>
                         <!--end::Image-->
@@ -67,13 +67,19 @@
 <script src="\Scripts\jquery-3.6.4.min.js"></script>
 <script>
     $(document).ready(function () {
+        $(".thumbnail-hover").hover(function () {
+            $(this).children(".overlay-wrapper").css("background-size", "150%");
+
+        },
+            function () {
+                $(this).children(".overlay-wrapper").css("background-size", "contain");
+            });
+
         $(".card").hover(function () {
-            $(this).children(".overlay").children(".overlay-wrapper").css("background-size", "150%");
             $(this).css("background-color", "#23A2D722");
 
         },
             function () {
-                $(this).children(".overlay").children(".overlay-wrapper").css("background-size", "contain");
                 $(this).css("background-color", "");
             });
     });
