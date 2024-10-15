@@ -424,6 +424,8 @@
 
 <script src="\Scripts\jquery-3.6.4.min.js"></script>
 <script>
+    const isMobile = navigator.userAgentData.mobile || window.orientation > -1; //resolves true/false
+    
     var chart1;
     var chart2;
     var datatable1;
@@ -742,9 +744,7 @@
                                 text: 'No Data'
                             },
                             legend: {
-                                position: 'right',
-                                offsetY: 40,
-                                alignItems: 'baseline'
+                                position: isMobile ? 'bottom' :'right',
                             },
                         };
 
@@ -960,9 +960,7 @@
                                 text: 'No Data'
                             },
                             legend: {
-                                position: 'right',
-                                offsetY: 40,
-                                horizontalAlign: 'left'
+                                position: isMobile ? 'bottom' : 'right',
                             },
                         };
 
