@@ -6,6 +6,7 @@
 @{
     DataTable blogs = (DataTable)ViewBag.Data;
     string page = "UPCOMING EVENTS";
+    int itemsCount = 0;
 }
 
 @{ Html.RenderPartial("_Breadcrumbs", page); }
@@ -15,9 +16,9 @@
         @foreach (DataRow row in blogs.Rows)
         {
             string[] blogDate = row["BlogDate"].ToString().Split('-');
-            if(blogDate.Count() > 1)
+            if (blogDate.Count() > 1)
             {
-                if(Convert.ToDateTime(blogDate[1].Trim()) < DateTime.Now)
+                if (Convert.ToDateTime(blogDate[1].Trim()) < DateTime.Now)
                 {
                     break;
                 }
@@ -28,6 +29,7 @@
             {
                 MaxLength = row["Description"].ToString().Length;
             }
+            itemsCount++;
             <div class="col-md-3 mb-10">
                 <!--begin::Feature post-->
                 <div class="card h-100 m-5 box-shadow">
@@ -68,6 +70,12 @@
             </div>
         }
     </div>
+    @if (itemsCount == 0)
+    {
+        <div class="w-100 text-center mt-20 pt-20">
+            <h2>NO EVENTS</h2>
+        </div>
+    }
 </div>
 <script src="\Scripts\jquery-3.6.4.min.js"></script>
 <script>
