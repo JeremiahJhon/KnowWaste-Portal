@@ -274,7 +274,7 @@ namespace UCOnline.Controllers
                 }
             }
         }
-        
+
         public ActionResult GoodPractices(int? id)
         {
             ViewBag.Title = "GOOD PRACTICES";
@@ -415,7 +415,7 @@ namespace UCOnline.Controllers
         {
             ViewBag.Title = "MICRO LEARNING";
             ViewBag.MediaPath = "MicroLearning";
-                        
+
             var microlearning = context.microlearnings.Where(x => x.ID == id).FirstOrDefault();
             ViewBag.Data = microlearning;
 
@@ -706,6 +706,7 @@ namespace UCOnline.Controllers
             ServerBase _3RproMar = new ServerBase("documents");
             _3RproMar.SelectFilter("(Publisher like '%RRC.AP%' or Publisher like '%ERIA%' or Publisher like '%NIVA%' or Publisher like '%GIZ%' or Documentcategory_ID = 4) and CAST(Year as int) >= 2010");
             _3RproMar.SelectOrder("Year", Web.Framework.Enums.EnumOrder.DESCENDING);
+            _3RproMar.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
             DataTable _3RproMarData = _3RproMar.SelectQuery();
 
             ServerBase country_ = new ServerBase("Country");
@@ -1040,7 +1041,7 @@ namespace UCOnline.Controllers
                 foreach(DataRow row in dtResult.Rows)
                 {
                     try
-                    { 
+                    {
                         total += Convert.ToDouble(row[col.ToString()].ToString());
                     }
                     catch
