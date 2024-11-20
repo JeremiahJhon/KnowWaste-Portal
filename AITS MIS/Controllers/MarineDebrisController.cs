@@ -262,7 +262,7 @@ namespace UCOnline.Controllers
 
                     ViewBag.Document = docData.Rows[0];
 
-                    ViewData["Country"] = countryData.Rows[0]["Name"].ToString();
+                    ViewData["Country"] = CountryNames(docData.Rows[0]["Country_ID"].ToString());
                     ViewData["Category"] = categoryData.Rows[0]["Name"].ToString();
                     ViewData["Geotheme"] = geothemeData.Rows[0]["Name"].ToString();
 
@@ -718,6 +718,7 @@ namespace UCOnline.Controllers
             dtResult.Columns.Add("Title", typeof(string));
             dtResult.Columns.Add("Location", typeof(string));
             dtResult.Columns.Add("Country", typeof(string));
+            dtResult.Columns.Add("Countries", typeof(string));
             dtResult.Columns.Add("Attachment", typeof(string));
             dtResult.Columns.Add("Description", typeof(string));
             dtResult.Columns.Add("Datasource", typeof(string));
@@ -727,6 +728,7 @@ namespace UCOnline.Controllers
             dtResult.Columns.Add("Publisher", typeof(string));
             dtResult.Columns.Add("Subtitle", typeof(string));
 
+            string Countries;
             var JoinResult = from a in _3RproMarData.AsEnumerable()
                                 join b in countryData.AsEnumerable()
                                 on a.Field<String>("Country_ID").ToString().Split(',')[0] equals b.Field<int>("ID").ToString()
@@ -736,6 +738,7 @@ namespace UCOnline.Controllers
                                     a.Field<string>("Title"),
                                     a.Field<string>("Location"),
                                     b.Field<string>("Name"),
+                                    Countries = CountryNames(a.Field<String>("Country_ID")),
                                     a.Field<string>("Attachment"),
                                     a.Field<string>("Description"),
                                     a.Field<string>("Datasource"),
@@ -772,6 +775,17 @@ namespace UCOnline.Controllers
             //        return View("Empty", "Pages");
             //    }
             //}
+        }
+
+        private string CountryNames(string countryIDs)
+        {
+            string result = string.Empty;
+
+            int[] countryArray = countryIDs.Split(',').Select(int.Parse).ToArray();
+
+            result = string.Join(", ", context.countries.Where(x => countryArray.Contains(x.ID)).Select(x => x.Name));
+
+            return result;
         }
 
         public ActionResult _3RproMar(int? id)
