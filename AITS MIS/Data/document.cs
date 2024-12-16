@@ -32,5 +32,7 @@ namespace UCOnline.Data
         public Nullable<System.DateTime> Dateentered { get; set; }
         public Nullable<byte> Deleted { get; set; }
         public string Location { get; set; }
+        public Nullable<bool> IsPublications { get; set; }
+        public Nullable<bool> Is3rpromar { get; set; }
     }
 }

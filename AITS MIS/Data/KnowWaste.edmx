@@ -545,6 +545,8 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
           <Property Name="Dateentered" Type="datetime2" Precision="7" />
           <Property Name="Deleted" Type="tinyint" />
           <Property Name="Location" Type="varchar" MaxLength="100" />
+          <Property Name="IsPublications" Type="bit" />
+          <Property Name="Is3rpromar" Type="bit" />
         </EntityType>
         <EntityType Name="documenttype">
           <Key>
@@ -1651,6 +1653,8 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
           <Property Name="Dateentered" Type="DateTime" Precision="7" />
           <Property Name="Deleted" Type="Byte" />
           <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsPublications" Type="Boolean" />
+          <Property Name="Is3rpromar" Type="Boolean" />
         </EntityType>
         <EntityType Name="documenttype">
           <Key>
@@ -2798,6 +2802,8 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
           <EntitySetMapping Name="documents">
             <EntityTypeMapping TypeName="KnowWasteModel.document">
               <MappingFragment StoreEntitySet="documents">
+                <ScalarProperty Name="Is3rpromar" ColumnName="Is3rpromar" />
+                <ScalarProperty Name="IsPublications" ColumnName="IsPublications" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Documentcategory_ID" ColumnName="Documentcategory_ID" />

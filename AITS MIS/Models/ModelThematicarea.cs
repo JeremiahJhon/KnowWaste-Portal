@@ -277,6 +277,7 @@ namespace UCOnline.Models
                     output.Append("<div class='doc-item'>");
                     output.AppendFormat("<h3 class='c-title c-fonts-uppercase c-font-bold c-font-22 c-font-dark'>{0}</h3>", row["title"]);
                     output.AppendFormat("<p class='c-btn-uppercase c-font-14 c-font-thin c-theme-font'>{0} | {1}</p>", row["year"], row["publisher"]);
+                    output.AppendFormat("<p class='c-font-14 c-font-thin'>Keywords: {0}</p>", row["Keyword"]);
                     output.AppendFormat("<p>{0}</p>", row["description"]);
 
                     output.Append("<div class='doc-links'>");
@@ -389,6 +390,7 @@ namespace UCOnline.Models
                     output.Append("<div class='doc-item'>");
                     output.AppendFormat("<h3 class='c-title c-fonts-uppercase c-font-bold c-font-22 c-font-dark'>{0}</h3>", row["title"]);
                     output.AppendFormat("<p class='c-btn-uppercase c-font-14 c-font-thin c-theme-font'>{0} | {1}</p>", row["year"], row["publisher"]);
+                    output.AppendFormat("<p class='c-font-14 c-font-thin'>Keywords: {0}</p>", row["Keyword"]);
                     output.AppendFormat("<p>{0}</p>", row["description"]);
 
                     output.Append("<div class='doc-links'>");
@@ -505,6 +507,7 @@ namespace UCOnline.Models
                     output.Append("<div class='doc-item'>");
                     output.AppendFormat("<h3 class='c-title c-fonts-uppercase c-font-bold c-font-22 c-font-dark'>{0}</h3>", row["title"]);
                     output.AppendFormat("<p class='c-btn-uppercase c-font-14 c-font-thin c-theme-font'>{0} | {1}</p>", row["year"], row["publisher"]);
+                    output.AppendFormat("<p class='c-font-14 c-font-thin'>Keywords: {0}</p>", row["Keyword"]);
                     output.AppendFormat("<p>{0}</p>", row["description"]);
 
                     output.Append("<div class='doc-links'>");

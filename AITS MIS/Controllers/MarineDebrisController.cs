@@ -704,7 +704,7 @@ namespace UCOnline.Controllers
             //if (id == null)
             //{
             ServerBase _3RproMar = new ServerBase("documents");
-            _3RproMar.SelectFilter("(Publisher like '%RRC.AP%' or Publisher like '%ERIA%' or Publisher like '%NIVA%' or Publisher like '%GIZ%' or Documentcategory_ID = 4) and CAST(Year as int) >= 2010");
+            _3RproMar.SelectFilter("(Publisher like '%RRC.AP%' or Publisher like '%ERIA%' or Publisher like '%NIVA%' or Publisher like '%GIZ%' or Documentcategory_ID = 4 or IsPublications = 1) and CAST(Year as int) >= 2010");
             _3RproMar.SelectOrder("Year", Web.Framework.Enums.EnumOrder.DESCENDING);
             _3RproMar.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
             DataTable _3RproMarData = _3RproMar.SelectQuery();
@@ -799,7 +799,7 @@ namespace UCOnline.Controllers
                 _3RproMar.SelectOrder("Year", Web.Framework.Enums.EnumOrder.DESCENDING);
                 DataTable _3RproMarData = _3RproMar.SelectQuery();*/
 
-                var _3RproMarData = context.documents.Where(x => x.Documentcategory_ID == 4 && x.Deleted == 0).OrderByDescending(x => x.Year);
+                var _3RproMarData = context.documents.Where(x => (x.Documentcategory_ID == 4 || x.Is3rpromar == true) && x.Deleted == 0).OrderByDescending(x => x.Year);
 
                 /*ServerBase country_ = new ServerBase("Country");
                 country_.SelectFilter("SubRegion_ID is not null and SubRegion_ID <> ''"); // 3 = Asia
