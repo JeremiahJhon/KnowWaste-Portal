@@ -1026,7 +1026,7 @@ namespace UCOnline.Controllers
             {
                 if (country == 0)
                 {
-                    db.Query = $"select * from (select {limit} [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from citywastestreams where city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and City_ID in (" + city + ") " + yearFilter + " and WasteCategory_ID = 1 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year] desc) as lastfive order by Year asc";
+                    db.Query = $"select * from (select {limit} [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from citywastestreams where city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) " + yearFilter + " and WasteCategory_ID = 1 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year] desc) as lastfive order by Year asc";
                     dtResult = db.ExecuteQuery();
                 }
                 else
@@ -1096,7 +1096,7 @@ namespace UCOnline.Controllers
             {
                 if (country == 0)
                 {
-                    db.Query = $"select * from (select {limit} [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from citywastestreams where city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) and City_ID in (" + city + ") " + yearFilter + " and WasteCategory_ID = 14 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year] desc) as lastfive order by Year asc";
+                    db.Query = $"select * from (select {limit} [Year],SUM(cast(Totalgenerated as decimal(10,2))) as Generated,SUM(cast(Totalcollected as decimal(10,2))) as Collected,SUM(cast(Recycled as decimal(10,2))) as Recycled,SUM(cast(Recovered as decimal(10,2))) as Recovered,SUM(cast(Disposal as decimal(10,2))) as Disposal,STRING_AGG(reference,'') as Reference from citywastestreams where city_id in (SELECT id from city where Country_ID in (select id from country where subregion_id = 3)) " + yearFilter + " and WasteCategory_ID = 14 and Deleted = 0 and ([year] is not null and [year] <> '') group by [year] order by [year] desc) as lastfive order by Year asc";
                     dtResult = db.ExecuteQuery();
                 }
                 else
