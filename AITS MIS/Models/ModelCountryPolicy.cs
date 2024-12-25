@@ -147,6 +147,7 @@ namespace UCOnline.Models
             dtResult.Columns.Add("Area_ID", typeof(int));
             dtResult.Columns.Add("Area", typeof(string));
             dtResult.Columns.Add("Link", typeof(string));
+            dtResult.Columns.Add("FileUpload", typeof(string));
 
             if (countryPolicyData.Rows.Count == 0)
             {
@@ -179,6 +180,7 @@ namespace UCOnline.Models
                                 a.Field<int>("Area_ID"),
                                 ad == null ? "" : ad.Field<string>("Name"),
                                 a.Field<string>("Link"),
+                                a.Field<string>("FileUpload"),
                              }, false);
             JoinResult.CopyToDataTable();
             return dtResult;
