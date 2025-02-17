@@ -298,6 +298,15 @@
           <Property Name="Deleted" Type="tinyint" />
           <Property Name="Reference" Type="varchar(max)" />
           <Property Name="WasteComposition" Type="varchar(max)" />
+          <Property Name="Totalgenerated_" Type="varchar" MaxLength="200" />
+          <Property Name="Hazardous_" Type="varchar" MaxLength="200" />
+          <Property Name="Totalcollected_" Type="varchar" MaxLength="200" />
+          <Property Name="Recycled_" Type="varchar" MaxLength="200" />
+          <Property Name="Recovered_" Type="varchar" MaxLength="200" />
+          <Property Name="Disposal_" Type="varchar" MaxLength="200" />
+          <Property Name="Treatment_" Type="varchar" MaxLength="200" />
+          <Property Name="Reuse_" Type="varchar" MaxLength="200" />
+          <Property Name="Sludge_" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="conferences">
           <Key>
@@ -398,6 +407,7 @@
           <Property Name="Area_ID" Type="int" />
           <Property Name="WasteCategory_ID" Type="int" />
           <Property Name="Link" Type="varchar(max)" />
+          <Property Name="fileupload" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="countrypolicy_area">
           <Key>
@@ -460,19 +470,19 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
           <Property Name="Definitions" Type="varchar(max)" />
           <Property Name="Definedby" Type="varchar(max)" />
           <Property Name="Totalgenerated" Type="decimal" Precision="20" Scale="2" Nullable="false" />
-          <Property Name="Hazardous" Type="varchar" MaxLength="1000" />
+          <Property Name="Hazardous" Type="decimal" Precision="20" Scale="2" />
           <Property Name="Totalcollected" Type="decimal" Precision="20" Scale="2" Nullable="false" />
           <Property Name="Recycled" Type="decimal" Precision="20" Scale="2" Nullable="false" />
           <Property Name="Recovered" Type="decimal" Precision="20" Scale="2" Nullable="false" />
           <Property Name="Disposal" Type="decimal" Precision="20" Scale="2" Nullable="false" />
-          <Property Name="Treatment" Type="varchar" MaxLength="1000" />
-          <Property Name="Reuse" Type="varchar" MaxLength="1000" />
-          <Property Name="Sludge" Type="varchar" MaxLength="1000" />
+          <Property Name="Treatment" Type="decimal" Precision="20" Scale="2" />
+          <Property Name="Reuse" Type="decimal" Precision="20" Scale="2" />
+          <Property Name="Sludge" Type="decimal" Precision="20" Scale="2" />
           <Property Name="datasource" Type="varchar(max)" />
           <Property Name="reference" Type="varchar(max)" />
           <Property Name="countryreferences_id" Type="smallint" Nullable="false" />
           <Property Name="Dateentered" Type="datetime2" Precision="7" />
-          <Property Name="Deleted" Type="tinyint" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
           <Property Name="WasteComposition" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="courses">
@@ -1417,6 +1427,15 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
           <Property Name="Deleted" Type="Byte" />
           <Property Name="Reference" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="WasteComposition" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Totalgenerated_" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Hazardous_" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Totalcollected_" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Recycled_" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Recovered_" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Disposal_" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Treatment_" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Reuse_" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Sludge_" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="conference">
           <Key>
@@ -1517,6 +1536,7 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
           <Property Name="Area_ID" Type="Int32" />
           <Property Name="WasteCategory_ID" Type="Int32" />
           <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="fileupload" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="countrypolicy_area">
           <Key>
@@ -1568,19 +1588,19 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
           <Property Name="Definitions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Definedby" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Totalgenerated" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
-          <Property Name="Hazardous" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Hazardous" Type="Decimal" />
           <Property Name="Totalcollected" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
           <Property Name="Recycled" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
           <Property Name="Recovered" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
           <Property Name="Disposal" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
-          <Property Name="Treatment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="Reuse" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="Sludge" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Treatment" Type="Decimal" />
+          <Property Name="Reuse" Type="Decimal" />
+          <Property Name="Sludge" Type="Decimal" />
           <Property Name="datasource" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="reference" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="countryreferences_id" Type="Int16" Nullable="false" />
           <Property Name="Dateentered" Type="DateTime" Precision="7" />
-          <Property Name="Deleted" Type="Byte" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <Property Name="WasteComposition" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="cours">
@@ -2547,6 +2567,15 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
           <EntitySetMapping Name="citywastestreams">
             <EntityTypeMapping TypeName="KnowWasteModel.citywastestream">
               <MappingFragment StoreEntitySet="citywastestreams">
+                <ScalarProperty Name="Sludge_" ColumnName="Sludge_" />
+                <ScalarProperty Name="Reuse_" ColumnName="Reuse_" />
+                <ScalarProperty Name="Treatment_" ColumnName="Treatment_" />
+                <ScalarProperty Name="Disposal_" ColumnName="Disposal_" />
+                <ScalarProperty Name="Recovered_" ColumnName="Recovered_" />
+                <ScalarProperty Name="Recycled_" ColumnName="Recycled_" />
+                <ScalarProperty Name="Totalcollected_" ColumnName="Totalcollected_" />
+                <ScalarProperty Name="Hazardous_" ColumnName="Hazardous_" />
+                <ScalarProperty Name="Totalgenerated_" ColumnName="Totalgenerated_" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="City_ID" ColumnName="City_ID" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
@@ -2664,6 +2693,7 @@ warning 6002: The table/view 'KnowWaste.dbo.countrypolicy_type' does not have a 
           <EntitySetMapping Name="countrypolicies">
             <EntityTypeMapping TypeName="KnowWasteModel.countrypolicy">
               <MappingFragment StoreEntitySet="countrypolicy">
+                <ScalarProperty Name="fileupload" ColumnName="fileupload" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Legal" ColumnName="Legal" />
                 <ScalarProperty Name="Year" ColumnName="Year" />

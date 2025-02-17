@@ -22,19 +22,19 @@ namespace UCOnline.Data
         public string Definitions { get; set; }
         public string Definedby { get; set; }
         public decimal Totalgenerated { get; set; }
-        public string Hazardous { get; set; }
+        public Nullable<decimal> Hazardous { get; set; }
         public decimal Totalcollected { get; set; }
         public decimal Recycled { get; set; }
         public decimal Recovered { get; set; }
         public decimal Disposal { get; set; }
-        public string Treatment { get; set; }
-        public string Reuse { get; set; }
-        public string Sludge { get; set; }
+        public Nullable<decimal> Treatment { get; set; }
+        public Nullable<decimal> Reuse { get; set; }
+        public Nullable<decimal> Sludge { get; set; }
         public string datasource { get; set; }
         public string reference { get; set; }
         public short countryreferences_id { get; set; }
         public Nullable<System.DateTime> Dateentered { get; set; }
-        public Nullable<byte> Deleted { get; set; }
+        public bool Deleted { get; set; }
         public string WasteComposition { get; set; }
     }
 }

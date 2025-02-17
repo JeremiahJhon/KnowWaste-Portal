@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -18,9 +19,10 @@ namespace UCOnline.Controllers
 {
     public class DataController :  BaseController
     {
+        KnowWasteEntities context = new KnowWasteEntities();
         public DataController() : base(new ModelData())
         {
-            ViewBag.Title = "Data and Trends - kNOw.Waste Management Platform";            
+            ViewBag.Title = "Data and Trends - kNOw.Waste Management Platform";
         }
 
         public override ActionResult Index()
@@ -356,5 +358,100 @@ namespace UCOnline.Controllers
 
             return base.Index();
         }
+
+        [HttpGet]
+        public ActionResult getPopulationData(int country, int year)
+        {
+            var query = from cp in context.countrypopulations
+                        where cp.Country_ID == country
+                              && cp.Deleted == 0
+                        select new ModelPopulationData
+                        {
+                            Population = cp.Population,
+                            UrbanPopulation = cp.Urbanpopulation,
+                            Area = cp.Area,
+                            IncomeLevel =cp.Incomelevel,
+                            Description = cp.Description
+                        };
+            ModelPopulationDataList populationDataList = new ModelPopulationDataList
+            {
+                PopulationDataItems = query.ToList()
+            };
+            return PartialView("PopulationData", populationDataList);
+        }
+
+        [HttpGet]
+        public ActionResult getWasteData(int subregion, int country, int year)
+        {
+            var query = from cw in context.countrywastestreams
+                        join wc in context.wastecategories on cw.Wastecategory_ID equals wc.ID.ToString()
+                        where cw.Country_ID == country.ToString()
+                                && cw.Year == "2014"
+                                && cw.Deleted == false
+                                && wc.Deleted == 0
+                                && (cw.Totalgenerated > 0
+                                    || cw.Hazardous > 0
+                                    || cw.Recycled > 0
+                                    || cw.Recovered > 0
+                                    || cw.Disposal > 0
+                                    || cw.Treatment > 0
+                                    || cw.Reuse > 0
+                                    || cw.Sludge > 0)
+                        group cw by wc.Name into g
+                        select new
+                        {
+                            WasteCategory = g.Key,
+                            Generated = g.Sum(x => x.Totalgenerated),
+                            Hazardous = g.Sum(x => x.Hazardous ?? 0),
+                            Recycled = g.Sum(x => x.Recycled),
+                            Recovered = g.Sum(x => x.Recovered),
+                            Disposal = g.Sum(x => x.Disposal),
+                            Treatment = g.Sum(x => x.Treatment ?? 0),
+                            Reuse = g.Sum(x => x.Reuse ?? 0),
+                            Sludge = g.Sum(x => x.Sludge ?? 0),
+                            Ref = g.Select(x => x.reference).Distinct()
+                        };
+
+            var result = query.ToList().Select(x => new ModelWasteData
+            {
+                WasteCategory = x.WasteCategory,
+                Generated = x.Generated,
+                Hazardous = x.Hazardous,
+                Recycled = x.Recycled,
+                Recovered = x.Recovered,
+                Disposal = x.Disposal,
+                Treatment = x.Treatment,
+                Reuse = x.Reuse,
+                Sludge = x.Sludge,
+                Ref = string.Join(", ", x.Ref)
+            }).ToList();
+
+            ModelWasteDataList wasteDataList = new ModelWasteDataList
+            {
+                WasteDataItems = result.ToList()
+            };
+
+            return PartialView("WasteData", wasteDataList);
+        }
+
+        [HttpGet]
+        public ActionResult getPolicyData(int country, int year)
+        {
+            var query = from cp in context.countrypolicies
+                        where cp.Country_ID == country.ToString()
+                              && cp.Deleted == 0
+                        select new ModelPolicyData
+                        {
+                            Legal = cp.Legal,
+                            Year = cp.Year,
+                            Description = cp.Description
+                        };
+            ModelPolicyDataList policyDataList = new ModelPolicyDataList
+            {
+                PolicyDataItems = query.ToList()
+            };
+            return PartialView("PolicyData", policyDataList);
+        }
+
     }
 }

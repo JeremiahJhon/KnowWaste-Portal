@@ -35,5 +35,14 @@ namespace UCOnline.Data
         public Nullable<byte> Deleted { get; set; }
         public string Reference { get; set; }
         public string WasteComposition { get; set; }
+        public string Totalgenerated_ { get; set; }
+        public string Hazardous_ { get; set; }
+        public string Totalcollected_ { get; set; }
+        public string Recycled_ { get; set; }
+        public string Recovered_ { get; set; }
+        public string Disposal_ { get; set; }
+        public string Treatment_ { get; set; }
+        public string Reuse_ { get; set; }
+        public string Sludge_ { get; set; }
     }
 }

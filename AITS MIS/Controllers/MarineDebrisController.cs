@@ -1361,11 +1361,11 @@ namespace UCOnline.Controllers
             string[] yearData;
             if(country == 0)
             {
-                yearData = context.countrywastestreams.Where(x => x.Deleted == (byte)0).Select(x => x.Year).Distinct().OrderByDescending(year => year).ToArray();
+                yearData = context.countrywastestreams.Where(x => x.Deleted == false).Select(x => x.Year).Distinct().OrderByDescending(year => year).ToArray();
             }
             else
             {
-                yearData = context.countrywastestreams.Where(x => x.Country_ID == country.ToString() && x.Deleted == (byte)0).Select(x => x.Year).Distinct().OrderByDescending(year => year).ToArray();
+                yearData = context.countrywastestreams.Where(x => x.Country_ID == country.ToString() && x.Deleted == false).Select(x => x.Year).Distinct().OrderByDescending(year => year).ToArray();
             }
 
             return JsonConvert.SerializeObject(yearData);

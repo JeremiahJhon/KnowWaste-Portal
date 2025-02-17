@@ -81,4 +81,50 @@ namespace UCOnline.Models
             }
         }
     }
+
+    public class ModelWasteDataList
+    {
+        public List<ModelWasteData> WasteDataItems { get; set; }
+    }
+
+    public class ModelWasteData
+    {
+        public string WasteCategory { get; set; }
+        public decimal Generated { get; set; }
+        public decimal Hazardous { get; set; }
+        public decimal Collected { get; set; }
+        public decimal Recycled { get; set; }
+        public decimal Recovered { get; set; }
+        public decimal Disposal { get; set; }
+        public decimal Treatment { get; set; }
+        public decimal Reuse { get; set; }
+        public decimal Sludge { get; set; }
+        public string Ref { get; set; }
+    }
+
+    public class ModelPopulationDataList
+    {
+        public List<ModelPopulationData> PopulationDataItems { get; set; }
+    }
+
+    public class ModelPopulationData
+    {
+        public string Population { get; set; }
+        public string UrbanPopulation { get; set; }
+        public string Area { get; set; }
+        public string IncomeLevel { get; set; }
+        public string Description { get; set; }
+    }
+
+    public class ModelPolicyDataList
+    {
+        public List<ModelPolicyData> PolicyDataItems { get; set; }
+    }
+
+    public class ModelPolicyData
+    {
+        public string Legal { get; set; }
+        public string Year { get; set; }
+        public string Description { get; set; }
+    }
 }

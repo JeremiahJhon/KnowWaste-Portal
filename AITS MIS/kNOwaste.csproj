@@ -6492,6 +6492,7 @@
     <Content Include="Content\course.css" />
     <Content Include="Content\conference.css" />
     <Content Include="Content\seminar.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\static\AdobeStock_584264594.jpeg" />
     <Content Include="Content\static\beach-5043177.jpg" />
     <Content Include="Content\static\beach-6100209.jpg" />
@@ -6501,6 +6502,7 @@
     <Content Include="Content\static\bg-gp-2.jpg" />
     <Content Include="Content\style.css" />
     <Content Include="Content\thematic.css" />
+    <Content Include="Content\Tipped\tipped.min.css" />
     <Content Include="Data\KnowWaste.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>KnowWaste.edmx</DependentUpon>
@@ -6908,6 +6910,7 @@
     <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.form.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Tipped\tipped.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -6937,6 +6940,12 @@
     <Content Include="Views\MarineDebris\UpcomingEventsItem.cshtml" />
     <Content Include="Views\MarineDebris\NewsItem.cshtml" />
     <Content Include="Views\Shared\_Breadcrumbs.cshtml" />
+    <Content Include="Views\MarineDebris\Shared2.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Data\WasteData.cshtml" />
+    <Content Include="Views\Data\PopulationData.cshtml" />
+    <Content Include="Views\Data\PolicyData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

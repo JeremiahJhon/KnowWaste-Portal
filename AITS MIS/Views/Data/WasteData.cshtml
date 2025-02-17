@@ -1,0 +1,64 @@
+﻿@using UCOnline.Models;
+@model ModelWasteDataList
+<style>
+    thead {
+        border-top: solid 1px #ccc !important;
+        border-bottom: solid 2px #ccc !important;
+    }
+    tbody tr {
+        border-bottom: solid 1px #ccc !important;
+    }
+
+    .table tbody tr:last-child {
+        border-bottom: solid 1px #ccc !important;
+    }
+</style>
+<h3 class="text-uppercase fw-800">Waste Data</h3>
+<h4>(Unit: Thousand T/Year)</h4>
+<table id="datatableWasteData" class="table table-striped stripe row-border">
+    <thead>
+        <tr class="fw-bold fs-6 text-gray-800">
+            <th>WASTECATEGORY</th>
+            <th>GENERATED</th>
+            <th>HAZARDOUS</th>
+            <th>COLLECTED</th>
+            <th>RECYCLED</th>
+            <th>RECOVERED</th>
+            <th>DISPOSAL</th>
+            <th>TREATMENT</th>
+            <th>REUSE</th>
+            <th>SLUDGE</th>
+            <th>REF</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.WasteDataItems)
+        {
+            <tr>
+                <td>@item.WasteCategory</td>
+                <td>@item.Generated.ToString("#,##0.#0")</td>
+                <td>@item.Hazardous.ToString("#,##0.#0")</td>
+                <td>@item.Collected.ToString("#,##0.#0")</td>
+                <td>@item.Recycled.ToString("#,##0.#0")</td>
+                <td>@item.Recovered.ToString("#,##0.#0")</td>
+                <td>@item.Disposal.ToString("#,##0.#0")</td>
+                <td>@item.Treatment.ToString("#,##0.#0")</td>
+                <td>@item.Reuse.ToString("#,##0.#0")</td>
+                <td>@item.Sludge.ToString("#,##0.#0")</td>
+                <td>
+                    @if (!String.IsNullOrWhiteSpace(item.Ref))
+                    {
+                        <i class="bi bi-info-circle-fill fs-1 custom-tooltip" id="tooltip-@Model.WasteDataItems.IndexOf(item)" data-id="@Model.WasteDataItems.IndexOf(item)" style="color: #23A2D7;"></i>
+                        <div hidden id="tooltip-content-@Model.WasteDataItems.IndexOf(item)">@Html.Raw(item.Ref)</div>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script src="~/Scripts/Tipped/tipped.js"></script>
+<script>
+    $('.custom-tooltip').each(function (index, element) {
+        Tipped.create("#" + $(element)[0].id, $("#tooltip-content-" + $(element).data("id")).html());
+    });
+</script>

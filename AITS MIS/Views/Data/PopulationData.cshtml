@@ -1,0 +1,54 @@
+﻿@using UCOnline.Models;
+@model ModelPopulationDataList
+<style>
+    thead {
+        border-top: solid 1px #ccc !important;
+        border-bottom: solid 2px #ccc !important;
+    }
+
+    tbody tr {
+        border-bottom: solid 1px #ccc !important;
+    }
+
+    .table tbody tr:last-child {
+        border-bottom: solid 1px #ccc !important;
+    }
+</style>
+<h3 class="text-uppercase fw-800" id="CountryPopulation"></h3>
+<table id="datatablePopulationData" class="table table-striped stripe row-border">
+    <thead>
+        <tr class="fw-bold fs-6 text-gray-800">
+            <th>POPULATION</th>
+            <th>URBAN POPULATION</th>
+            <th>AREA (KM<sup>2</sup>) </th>
+            <th>INCOME LEVEL ($)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PopulationDataItems)
+        {
+            <tr>
+                <td>@item.Population</td>
+                <td>@item.UrbanPopulation</td>
+                <td>@item.Area</td>
+                <td>@item.IncomeLevel</td>
+                <td>
+                    @if (!String.IsNullOrWhiteSpace(item.Description))
+                    {
+                        <i class="bi bi-info-circle-fill fs-1 custom-tooltip" id="tooltip-@Model.PopulationDataItems.IndexOf(item)" data-id="@Model.PopulationDataItems.IndexOf(item)" style="color: #23A2D7;"></i>
+                        <div hidden id="tooltip-content-@Model.PopulationDataItems.IndexOf(item)">@Html.Raw(item.Description)</div>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script src="~/Scripts/Tipped/tipped.js"></script>
+<script>
+    $('.custom-tooltip').each(function (index, element) {
+        Tipped.create("#" + $(element)[0].id, $("#tooltip-content-" + $(element).data("id")).html());
+    });
+    var selectedText = $('#countryFilter option:selected').text();
+    $("#CountryPopulation").html(selectedText);
+</script>

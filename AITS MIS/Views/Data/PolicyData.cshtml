@@ -1,0 +1,17 @@
+﻿@using UCOnline.Models;
+@model ModelPolicyDataList
+<h3 class="text-uppercase fw-800">Legal Framework and Policy</h3>
+@foreach (var item in Model.PolicyDataItems)
+{
+    <div class="doc-item">
+        <h4 class="fs-3 text-gray-600 w-bolder mb-1 pt-5">
+            @item.Legal
+        </h4>
+        <span class="fw-semibold fs-4 text-gray-600 mb-1">@item.Year</span>
+        <div class="fw-semibold fs-5 text-black mb-1">
+            @Html.Raw(item.Description)
+        </div>
+        <div class="doc-links">
+        </div>
+    </div>
+}

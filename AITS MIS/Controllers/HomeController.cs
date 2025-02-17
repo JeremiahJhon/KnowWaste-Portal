@@ -24,7 +24,7 @@ namespace UCOnline.Controllers
         {
             ViewBag.Title = "kNOw.Waste Management Platform";
             ViewBag.ThematicmenuHome = ((ModelHome)Model).ShowThematicMenuHome();
-            ViewBag.Seminar = new ModelSeminars().GetData(1);                                
+            ViewBag.Seminar = new ModelSeminars().GetData(1);
             ViewBag.Conferences = new ModelConferences().GetData(1);
             ViewBag.Rosters = new ModelExperts().GetData();
             //ViewBag.News = new ModelNews().GetData(2);

@@ -122,10 +122,10 @@ function DrawChart(data) {
 
     DrawFirstPieChart(data);
     DrawSecondPieChart(data);
-    
+
     if (year === "0") { // && countryid !== "0") {
         $("#combochartcontainer").addClass("hidden");
-        
+
         $("#combochartallyearcontainer").removeClass("hidden");
         DrawBarChartAllYear(data);
     }
@@ -371,7 +371,7 @@ function DrawFirstPieChart(data) {
                 var piechart = new google.visualization.ComboChart(document.getElementById('piechart'));
                 piechart.draw(pie, pieoptions);
 
-                
+
                 handle = false;
                 break;
             }
@@ -576,7 +576,7 @@ function DrawSecondPieChart(data) {
     }
 
     var handle = true;
-    
+
     for (var i = 1; i < dta.length; i++) {
         if (dta[i] !== 0) {
             handle = false;
