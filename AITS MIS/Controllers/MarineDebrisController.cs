@@ -431,7 +431,7 @@ namespace UCOnline.Controllers
             {
                 ServerBase news = new ServerBase("news");
                 news.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
-                news.SelectFilter("Publish = 1");
+                news.SelectFilter("Deleted = 0 AND Publish = 1");
                 DataTable newsData = news.SelectQuery();
 
                 if (newsData.Rows.Count == 0)
@@ -496,7 +496,7 @@ namespace UCOnline.Controllers
             else
             {
                 ServerBase news = new ServerBase("news");
-                news.SelectFilter("ID = " + id.ToString());
+                news.SelectFilter("Deleted = 0 AND Publish = 1 AND ID = " + id.ToString());
                 DataTable newsData = news.SelectQuery();
 
                 if (newsData.Rows.Count == 1)
