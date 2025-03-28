@@ -431,6 +431,7 @@ namespace UCOnline.Controllers
             {
                 ServerBase news = new ServerBase("news");
                 news.SelectOrder("ID", Web.Framework.Enums.EnumOrder.DESCENDING);
+                news.SelectFilter("Publish = 1");
                 DataTable newsData = news.SelectQuery();
 
                 if (newsData.Rows.Count == 0)
