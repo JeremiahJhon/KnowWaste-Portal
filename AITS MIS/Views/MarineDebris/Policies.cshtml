@@ -120,7 +120,7 @@
                         <!--begin::Container-->
                         <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack" data-select2-id="select2-data-kt_toolbar_container">
                             <!--begin::Page title-->
-                            <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0 w-100">
                                 <label>
                                     <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -129,7 +129,7 @@
                                     </span>
                                     Filter:
                                 </label>
-                                <div class="col-md-5 d-flex px-5">
+                                <div class="col d-flex px-5">
                                     <label class="m-auto px-2">
                                         Country
                                     </label>
@@ -143,7 +143,7 @@
                                         }
                                     </select>
                                 </div>
-                                <div class="col-md-6 d-flex px-5">
+                                <div class="col d-flex px-5">
                                     <label class="m-auto px-2">
                                         Area
                                     </label>
@@ -156,6 +156,11 @@
                                             }
                                         }
                                     </select>
+                                </div>
+                                <div class="col d-flex px-5">
+                                    <btn id="btnSearch" class="btn btn-primary py-3">
+                                        Search
+                                    </btn>
                                 </div>
                             </div>
                             <!--end::Page title-->
@@ -191,7 +196,7 @@
                                         }
                                         <td class="data-action" style="padding: 10px;">
                                             <div class="action-list" style="display: inline-flex;">
-                                                <a href="@countryPolicy["Link"].ToString()" class="btn btn-primary mt-5 py-3" data-id="@countryPolicy["id"].ToString()">
+                                                <a href="@countryPolicy["Link"].ToString()" class="btn btn-primary mt-5 py-3" data-id="@countryPolicy["id"].ToString()" target="_blank">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
                                                         <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z" />
                                                         <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z" />
@@ -199,7 +204,7 @@
                                                 </a>
                                                 @if (countryPolicy["FileUpload"] != null && countryPolicy["FileUpload"].ToString() != "")
                                                 {
-                                                    <a href="Policy/@countryPolicy["FileUpload"].ToString()" class="btn btn-warning mt-5 py-3 ms-2" data-id="@countryPolicy["id"].ToString()">
+                                                    <a href="Policy/@countryPolicy["FileUpload"].ToString()" class="btn btn-warning mt-5 py-3 ms-2" data-id="@countryPolicy["id"].ToString()" target="_blank">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16">
                                                             <path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293z" />
                                                             <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
@@ -237,6 +242,9 @@
             GetDataTable();
         });
         $("#filter-Area").change(function () {
+            GetDataTable();
+        });
+        $("#btnSearch").change(function () {
             GetDataTable();
         });
         function GetDataTable() {
