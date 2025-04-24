@@ -1052,7 +1052,7 @@
 
             $("#filter-city-1").change(function () {
                 $.ajax({
-                    url: '/MarineDebris/getDataYears?country=' + $("#filter-country-1").val() + '&city=' + $("#filter-city-1").val(),
+                    url: `/MarineDebris/getDataYears?country=${$("#filter-country-1").val()}&city=${$("#filter-city-1").val()}&wasteCategoryID=1`,
                     type: 'GET',
                     processData: false,
                     async: false,
@@ -1079,7 +1079,7 @@
             });
             $("#filter-city-2").change(function () {
                 $.ajax({
-                    url: '/MarineDebris/getDataYears?country=' + $("#filter-country-2").val() + '&city=' + $("#filter-city-2").val(),
+                    url: `/MarineDebris/getDataYears?country=${$("#filter-country-2").val()}&city=${$("#filter-city-2").val()}&wasteCategoryID=14`,
                     type: 'GET',
                     processData: false,
                     async: false,
