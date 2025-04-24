@@ -1828,6 +1828,9 @@
                     if (num >= 1000) {
                         return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(2)) + ' K' : Math.sign(num) * Math.abs(num)
                     }
+                    if (num > 0) {
+                        return num;
+                    }
                     return 0;
                 }
                 catch {
