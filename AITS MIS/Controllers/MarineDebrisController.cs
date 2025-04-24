@@ -1373,45 +1373,30 @@ namespace UCOnline.Controllers
         }
 
         [HttpGet]
-        public String getDataYears(int country, int city)
+        public String getDataYears(int country, int city, int wasteCategoryID)
         {
-            if(city > 0)
+            string[] yearData;
+            if (city > 0)
             {
-                ServerBase cw = new ServerBase("CityWastestreams");
-                cw.SelectFilter("City_ID in (" + city.ToString() + ")");
-                cw.SelectOrder("Year", Web.Framework.Enums.EnumOrder.ASCENDING);
-                DataTable cwData = cw.SelectDistinct("Year");
-
-                return JsonConvert.SerializeObject(cwData);
-            }else if (city == 0)
+                yearData = context.citywastestreams.Where(x => x.Deleted == 0 && x.Wastecategory_ID == wasteCategoryID && x.City_ID == city).Select(x => x.Year).Distinct().OrderBy(year => year).ToArray();
+            }
+            else if (city == 0)
             {
-                ServerBase cw = new ServerBase("CityWastestreams");
-                cw.SelectFilter("City_ID in (" + city.ToString() + ")");
-                cw.SelectOrder("Year", Web.Framework.Enums.EnumOrder.ASCENDING);
-                DataTable cwData = cw.SelectDistinct("Year");
-
-                return JsonConvert.SerializeObject(cwData);
+                yearData = context.citywastestreams.Where(x => x.Deleted == 0 && x.Wastecategory_ID == wasteCategoryID).Select(x => x.Year).Distinct().OrderBy(year => year).ToArray();
             }
             else
             {
                 if(country == 0)
                 {
-                    ServerBase cw = new ServerBase("CountryWastestreams");
-                    cw.SelectOrder("Year", Web.Framework.Enums.EnumOrder.ASCENDING);
-                    DataTable cwData = cw.SelectDistinct("Year");
-
-                    return JsonConvert.SerializeObject(cwData);
+                    yearData = context.countrywastestreams.Where(x => x.Deleted == false && x.Wastecategory_ID == wasteCategoryID.ToString()).Select(x => x.Year).Distinct().OrderBy(year => year).ToArray();
                 }
                 else
                 {
-                    ServerBase cw = new ServerBase("CountryWastestreams");
-                    cw.SelectFilter("Country_ID in (" + country + ")");
-                    cw.SelectOrder("Year", Web.Framework.Enums.EnumOrder.ASCENDING);
-                    DataTable cwData = cw.SelectDistinct("Year");
-
-                    return JsonConvert.SerializeObject(cwData);
+                    yearData = context.countrywastestreams.Where(x => x.Deleted == false && x.Wastecategory_ID == wasteCategoryID.ToString() && x.Country_ID == country.ToString()).Select(x => x.Year).Distinct().OrderBy(year => year).ToArray();
                 }
             }
+
+            return JsonConvert.SerializeObject(yearData);
         }
         private bool IsMobileDevice(HttpRequestBase request)
         {
