@@ -270,7 +270,7 @@ namespace UCOnline.Controllers
                 }
                 else
                 {
-                    return View("Empty","Pages");
+                    return RedirectToAction("Index", "Pages");
                 }
             }
         }
@@ -406,7 +406,7 @@ namespace UCOnline.Controllers
                 }
                 else
                 {
-                    return View("Empty", "Pages");
+                    return RedirectToAction("Index", "Pages");
                 }
             }
         }
@@ -557,7 +557,7 @@ namespace UCOnline.Controllers
                 }
                 else
                 {
-                    return View("Empty", "Pages");
+                    return RedirectToAction("Index", "Pages");
                 }
             }
         }
@@ -693,7 +693,7 @@ namespace UCOnline.Controllers
                 }
                 else
                 {
-                    return View("Empty", "Pages");
+                    return RedirectToAction("Index", "Pages");
                 }
             }
         }
@@ -997,7 +997,7 @@ namespace UCOnline.Controllers
                 }
                 else
                 {
-                    return View("Empty", "Pages");
+                    return RedirectToAction("Index", "Pages");
                 }
             }
         }
