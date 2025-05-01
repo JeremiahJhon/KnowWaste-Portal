@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = "~/Views/MarineDebris/Shared.cshtml";
+    Layout = "~/Views/MarineDebris/SharedNew.cshtml";
 }
 @using System.Data;
 
@@ -421,7 +421,7 @@
     </div>
     <!--end::Card-->
 </div>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>    
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
     const isMobile = navigator.userAgentData.mobile || window.orientation > -1; //resolves true/false
@@ -446,7 +446,6 @@
         });*/
 
         $("#button-download").click(function () {
-            console.log("download");
             window.location.href = `/Data/ExportToCsv?country=${$("#filter-country-1").val()}&city=${$("#filter-city-1").val()}&year=${$("#filter-year-1").val()}`;
         });
 
@@ -987,22 +986,6 @@
                     console.log(err);
                 },
             })
-            /*var country = $('#form-filter-2 [name="country"]');
-            $("#plastic-country-filter-list").html('');
-            for (var ctr = 0; ctr < country.length; ctr++) {
-                var countryElem = '<span class="badge badge-light-dark m-1">' + $(country[ctr]).data("text") + '</span>';
-                if (country[ctr].checked) {
-                    $("#plastic-country-filter-list").append(countryElem);
-                }
-            }
-            var country = $('#form-filter-2 [name="country"]');
-            var countries = [];
-            $.each($("#form-filter-2").serializeArray(), function (i, field) {
-                if (field.name == "country") {
-                    countries.push(field.value);
-                }
-            });
-            //populateCityFilter("plasticWaste", countries);*/
         }
 
         function getSolidWasteTableData() {
@@ -1014,7 +997,6 @@
                 async: false,
                 success: function (res) {
                     var data = JSON.parse(res);
-                    console.log(data);
                     dataSet = [];
                     var column = "Country";
                     if ($("#filter-city-1").val() >= 0) column = "City";
@@ -1070,7 +1052,9 @@
 
                         }
                         var exampleEl = document.getElementById('SW-ref' + ctr)
-                        var popover = new bootstrap.Popover(exampleEl, options)
+                        if (exampleEl != null) {
+                            var popover = new bootstrap.Popover(exampleEl, options)
+                        }
                     }
                     for (var ctr = 0; ctr < data.length; ctr++) {
                         var options = {
@@ -1084,7 +1068,9 @@
 
                         }
                         var exampleEl = document.getElementById('SW-ref-1-' + ctr)
-                        var popover = new bootstrap.Popover(exampleEl, options)
+                        if (exampleEl != null) {
+                            var popover = new bootstrap.Popover(exampleEl, options)
+                        }
                     }
                 },
                 error: function (err) {
@@ -1157,7 +1143,9 @@
 
                         }
                         var exampleEl = document.getElementById('PW-ref' + ctr)
-                        var popover = new bootstrap.Popover(exampleEl, options)
+                        if (exampleEl != null) {
+                            var popover = new bootstrap.Popover(exampleEl, options)
+                        }
                     }
                     for (var ctr = 0; ctr < data.length; ctr++) {
                         var options = {
@@ -1171,7 +1159,9 @@
 
                         }
                         var exampleEl = document.getElementById('PW-ref-2-' + ctr)
-                        var popover = new bootstrap.Popover(exampleEl, options)
+                        if (exampleEl != null) {
+                            var popover = new bootstrap.Popover(exampleEl, options)
+                        }
                     }
                 },
                 error: function (err) {
@@ -1179,52 +1169,6 @@
                 },
             });
         }
-
-        /*$("#solid-country-all").change(function () {
-            if (this.checked) {
-                var clist = document.getElementsByClassName("solid-country-filter");
-                for (var i = 0; i < clist.length; ++i) { clist[i].checked = true; }
-            } else {
-                var clist = document.getElementsByClassName("solid-country-filter");
-                for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
-            }
-            //getDocumentData();
-        });
-        $("#solid-type-all").change(function () {
-            if (this.checked) {
-                var clist = document.getElementsByClassName("solid-type-filter");
-                for (var i = 0; i < clist.length; ++i) { clist[i].checked = true; }
-            } else {
-                var clist = document.getElementsByClassName("solid-type-filter");
-                for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
-            }
-        });
-        $("#plastic-country-all").change(function () {
-            if (this.checked) {
-                var clist = document.getElementsByClassName("plastic-country-filter");
-                for (var i = 0; i < clist.length; ++i) { clist[i].checked = true; }
-            } else {
-                var clist = document.getElementsByClassName("plastic-country-filter");
-                for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
-            }
-            //getDocumentData();
-        });
-        $("#plastic-type-all").change(function () {
-            if (this.checked) {
-                var clist = document.getElementsByClassName("plastic-type-filter");
-                for (var i = 0; i < clist.length; ++i) { clist[i].checked = true; }
-            } else {
-                var clist = document.getElementsByClassName("plastic-type-filter");
-                for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
-            }
-        });
-
-        $("#filter-solidwaste-year").change(function () {
-            getSolidWasteTableData();
-        });
-        $("#filter-plasticwaste-year").change(function () {
-            getPlasticWasteTableData();
-        });*/
 
         function numFormatter(num) {
             try {
@@ -1246,38 +1190,6 @@
                 return 0;
             }
         }
-
-        /*var slider1 = document.getElementById('solid-waste-year');
-
-        noUiSlider.create(slider1, {
-            start: [2019, new Date().getFullYear()],
-            connect: true,
-            tooltips: true,
-            step: 1,
-            format: wNumb({
-                decimals: 0
-            }),
-            range: {
-                'min': 2000,
-                'max': new Date().getFullYear()
-            }
-        });
-
-        var slider2 = document.getElementById('plastic-waste-year');
-
-        noUiSlider.create(slider2, {
-            start: [2019, new Date().getFullYear()],
-            connect: true,
-            tooltips: true,
-            step: 1,
-            format: wNumb({
-                decimals: 0
-            }),
-            range: {
-                'min': 2000,
-                'max': new Date().getFullYear()
-            }
-        });*/
 
         $("#filter-country-1").change();
         $("#filter-country-2").change();

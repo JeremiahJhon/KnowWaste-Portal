@@ -6947,6 +6947,8 @@
     <Content Include="Views\Data\WasteData.cshtml" />
     <Content Include="Views\Data\PopulationData.cshtml" />
     <Content Include="Views\Data\PolicyData.cshtml" />
+    <Content Include="Views\MarineDebris\SharedNew.cshtml" />
+    <Content Include="Views\Shared\_BreadcrumbsNew.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
