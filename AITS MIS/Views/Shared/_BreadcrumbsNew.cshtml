@@ -1,0 +1,33 @@
+﻿@model string
+<style>
+    .custom_breadcrumb {
+        height: 120px;
+        padding-top: 50px;
+    }
+    /* For desktop screens */
+    @@media only screen and (min-width: 1024px) {
+        .custom_breadcrumb {
+            height: 250px;
+            padding-top: 0px;
+        }
+    }
+</style>
+<div class="row mt-20">
+    <div class="landing-dark-bg custom_breadcrumb">
+        <div class="container py-lg-20">
+            <!--begin::Title-->
+            <!--begin::Title-->
+            <h3 class="text-white lh-base fw-bolder">
+                <span class="text-gray-800">MARINE DEBRIS</span>
+                @*<span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
+                    </span>*@
+            </h3>
+            <h1 class="text-white lh-base fw-bolder fs-2x fs-lg-3x">
+                <span class="text-white">@Model</span>
+                @*<span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
+                    </span>*@
+            </h1>
+            <!--end::Title-->
+        </div>
+    </div>
+</div>
