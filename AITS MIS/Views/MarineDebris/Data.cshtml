@@ -1184,6 +1184,9 @@
                 if (num > 0) {
                     return num;
                 }
+                if (num == null) {
+                    return "---"
+                }
                 return 0;
             }
             catch {
