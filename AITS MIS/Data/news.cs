@@ -41,5 +41,6 @@ namespace UCOnline.Data
         public string StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public string Location { get; set; }
+        public Nullable<bool> Publish { get; set; }
     }
 }

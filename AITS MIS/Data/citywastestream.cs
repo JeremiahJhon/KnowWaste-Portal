@@ -21,15 +21,15 @@ namespace UCOnline.Data
         public Nullable<int> Wastecategory_ID { get; set; }
         public string Definitions { get; set; }
         public string Definedby { get; set; }
-        public string Totalgenerated { get; set; }
-        public string Hazardous { get; set; }
-        public string Totalcollected { get; set; }
-        public string Recycled { get; set; }
-        public string Recovered { get; set; }
-        public string Disposal { get; set; }
-        public string Treatment { get; set; }
-        public string Reuse { get; set; }
-        public string Sludge { get; set; }
+        public Nullable<decimal> Totalgenerated { get; set; }
+        public Nullable<decimal> Hazardous { get; set; }
+        public Nullable<decimal> Totalcollected { get; set; }
+        public Nullable<decimal> Recycled { get; set; }
+        public Nullable<decimal> Recovered { get; set; }
+        public Nullable<decimal> Disposal { get; set; }
+        public Nullable<decimal> Treatment { get; set; }
+        public Nullable<decimal> Reuse { get; set; }
+        public Nullable<decimal> Sludge { get; set; }
         public string Datasource { get; set; }
         public Nullable<System.DateTime> Dateentered { get; set; }
         public Nullable<byte> Deleted { get; set; }

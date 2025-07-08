@@ -26,6 +26,6 @@ namespace UCOnline.Data
         public Nullable<int> Area_ID { get; set; }
         public Nullable<int> WasteCategory_ID { get; set; }
         public string Link { get; set; }
-        public string fileupload { get; set; }
+        public string FileUpload { get; set; }
     }
 }
