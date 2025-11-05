@@ -1,0 +1,105 @@
+﻿@model KnowWaste.Models.Documents
+@{
+    Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
+}
+<section class="breadcrumb">
+    <div class="container container-md container-md py-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item text-uppercase"><a href="marine debris.html">Marine Debris</a></li>
+                <li class="breadcrumb-item active text-uppercase" aria-current="page">3Rpromar reports</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+<!-- 3Rpromar Section -->
+<section class="ptb-5 ">
+    <div class="container container-md container-md pb-120">
+        <div class="text-center pb-4">
+            <h1 class="section-title pb-3 text-uppercase text-start">
+                3Rpromar reports</h2>
+                <p class="text-muted text-start">The “Reduce, Reuse, Recycle to Protect the Marine Environment and Coral Reefs” (3RproMar) project supports ASEAN countries in tackling marine litter through improved waste management. As the Knowledge Partner for 3RproMar, we share resources, technical guidance, and best practices developed through this initiative. This page provides updates and learning materials that strengthen capacity and foster regional collaboration to protect marine ecosystems.</p>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-3 col-lg-3">
+                <div class="mb-3 custom-sidebar">
+                    <strong class="m-0 pe-3" style="padding-bottom: 4px;">Country: </strong>
+                    <select class="form-select mt-2 w-100" id="countrySelect" onclick="refreshData();">
+                        <option selected value="0">All</option>
+                        @foreach (ViewModels.Country country in Model.Countries)
+                        {
+                            <option value="@country.ID">@country.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="mb-3 custom-sidebar">
+                    <strong class="m-0 pe-3" style="padding-bottom: 4px;">Year: </strong>
+                    <select class="form-select mt-2 w-100" id="yearSelect" onclick="refreshData();">
+                        <option selected value="0">All</option>
+                        @foreach (string year in Model.Years)
+                        {
+                            <option value="@year">@year</option>
+                        }
+                    </select>
+                </div>
+                <div class="mb-3 custom-sidebar">
+                    <strong class="m-0 pe-3" style="padding-bottom: 4px;">Publisher: </strong>
+                    <div class="form-check mt-2">
+                        <input class="form-check-input publisher-select" type="radio" name="radioPublisher" data-val="All" checked>
+                        <label class="form-check-label">
+                            All
+                        </label>
+                    </div>
+                    @foreach (string publisher in Model.Publishers)
+                    {
+                        <div class="form-check mt-2">
+                            <input class="form-check-input publisher-select" type="radio" name="radioPublisher" data-val="@publisher">
+                            <label class="form-check-label">
+                                @publisher
+                            </label>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="col-12 col-md-9 col-lg-9">
+                <div class="d-flex justify-content-end align-items-center mb-5">
+                    <!-- <form class="d-flex ">
+                        <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" id="searchInput">
+                    </form> -->
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="wrapper" id="3RpromarData">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            refreshData();
+
+            $(".publisher-select").change(function () {
+                refreshData();
+            });
+        });
+
+        function refreshData() {
+            const countryID = $("#countrySelect").val();
+            const year = $("#yearSelect").val();
+            const publisher = encodeURI($(".publisher-select:checked").data("val").toString());
+            const url = `/New/_3RproMar/RefreshData?countryID=${countryID}&year=${year}&publisher=${publisher}`;
+            const data = [];
+            $("#3RpromarData").load(url);
+        }
+    </script>
+}

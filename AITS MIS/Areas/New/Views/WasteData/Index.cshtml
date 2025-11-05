@@ -1,0 +1,525 @@
+﻿@*@model KnowWaste.Models.WasteData*@
+@{
+    Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
+}
+<!-- Breadcrumb -->
+<section class="breadcrumb">
+    <div class="container py-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item text-uppercase"><a href="#">Topic</a></li>
+                <li class="breadcrumb-item active text-uppercase" aria-current="page">Waste Data</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- content -->
+<section class="ptb-5 ">
+    <div class="container pb-120">
+        <div class="pb-4">
+            <h1 class="section-title pb-3 text-uppercase">
+                Waste Data</h2>
+                <p class="text-muted text-start">This page highlights successful and replicable practices from across the ASEAN region that address waste management and marine litter. By sharing these case studies, we aim to inspire action and encourage learning for improved circular economy and 3R (Reduce, Reuse, Recycle) approaches. If you have a good practice that could help others and would like to see it featured, please email us at warm@rrcap.ait.ac.th — we welcome your contributions.</p>
+        </div>
+        <div class="d-flex flex-wrap">
+            <div class="d-flex align-items-center pb-5 me-4">
+                <p class="m-0 pe-3">Sub region</p>
+                <select class="form-select w-auto" id="countrySelect">
+                    <option selected disabled>Select sub region</option>
+                </select>
+            </div>
+            <div class="d-flex align-items-center pb-5 me-4">
+                <p class="m-0 pe-3">Country</p>
+                <select class="form-select w-auto" id="countrySelect">
+                    <option selected disabled>Select a country</option>
+                </select>
+            </div>
+            <div class="d-flex align-items-center pb-5 me-4">
+                <p class="m-0 pe-3">Year</p>
+                <select class="form-select w-auto" id="countrySelect">
+                    <option selected disabled>All</option>
+                </select>
+            </div>
+        </div>
+        <div class="kpi-wrapper">
+            <div class="country-title">
+                <h2 class="text-blue text-uppercase">Japan</h2>
+            </div>
+            <div class="row mb-5">
+                <div class="col-12 col-md-3 col-lg-3">
+                    <div class="d-flex justify-content-between custom-sidebar">
+                        <div>
+                            <h4 class="text-blue">126,820,000</h4>
+                            <p class="m-0">Population</p>
+                        </div>
+                        <div><img src="icons/crowd-of-users.png" alt="" height="60px"></div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-3 col-lg-3">
+                    <div class="d-flex justify-content-between custom-sidebar">
+                        <div>
+                            <h4 class="text-blue">93.5</h4>
+                            <p class="m-0">Urban Population</p>
+                        </div>
+                        <div><img src="icons/crowd-of-users.png" alt="" height="60px"></div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-3 col-lg-3">
+                    <div class="d-flex justify-content-between custom-sidebar">
+                        <div>
+                            <h4 class="text-blue">377,962</h4>
+                            <p class="m-0">Area</p>
+                        </div>
+                        <div><img src="icons/map_14948265.png" alt="" height="60px"></div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-3 col-lg-3">
+                    <div class="d-flex justify-content-between custom-sidebar">
+                        <div>
+                            <h4 class="text-blue">36,700</h4>
+                            <p class="m-0">Income Level $</p>
+                        </div>
+                        <div><img src="icons/save-money.png" alt="" height="60px"></div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="custom-border p-4 mb-4">
+                <div class="graph-wrapper mb-5">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="m-0 text-blue">Solid Wastes</h4>
+                        <select class="form-select w-auto" id="countrySelect">
+                            <option selected>Solid waste</option>
+                            <option>Waste Water</option>
+                            <option>Gaseous emission</option>
+                        </select>
+                    </div>
+                    <div id="chart1"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-6">
+                <div class="custom-border p-4 mb-4">
+                    <div class="graph-wrapper mb-5">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h4 class="m-0 text-blue">Municipal Waste</h4>
+                            <select class="form-select w-50" id="waste-type">
+                                <option selected>Municipal Waste</option>
+                                <option>Agricultural Waste</option>
+                                <option>Construction &amp; Demolition Waste</option>
+                                <option>E-Waste</option>
+                                <option>Industrial Waste</option>
+                                <option>Mining Waste</option>
+                                <option>Healthcare Waste</option>
+                            </select>
+                        </div>
+                        <div id="chart2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-6">
+                <div class="custom-border p-4 mb-4">
+                    <div class="graph-wrapper mb-5">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h4 class="m-0 text-blue">Generated Waste</h4>
+                            <select class="form-select w-50" id="countrySelect">
+                                <option selected>Generated</option>
+                                <option>Hazardous</option>
+                                <option>Collected</option>
+                                <option>Recycled</option>
+                                <option>Recovered</option>
+                                <option>Disposal</option>
+                                <option>Treatment</option>
+                                <option>Reuse</option>
+                                <option>Sludge</option>
+                            </select>
+                        </div>
+                        <div id="chart3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="custom-border p-4 mb-4">
+            <div class="d-flex justify-content-between align-item-center">
+                <h4 class="text-blue mb-4">Waste Data</h4>
+            </div>
+
+            <div class="custom-table table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Waste Category</th>
+                            <th scope="col">Generated</th>
+                            <th scope="col">Hazardous</th>
+                            <th scope="col">Collected</th>
+                            <th scope="col">Recycled</th>
+                            <th scope="col">Recovered</th>
+                            <th scope="col">Disposal</th>
+                            <th scope="col">Treatment</th>
+                            <th scope="col">Reuse</th>
+                            <th scope="col">Sludge</th>
+                            <th scope="col">Ref</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <!-- <th scope="row">1</th> -->
+                            <td>Brunei Darussalam</td>
+                            <td>2014</td>
+                            <td>210</td>
+                            <td>168</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><i class="bi bi-info-circle"></i></td>
+
+                        </tr>
+                        <tr>
+                            <!-- <th scope="row">2</th> -->
+                            <td>Brunei Darussalam</td>
+                            <td>2019</td>
+                            <td>297.22K</td>
+                            <td> </td>
+                            <td></td>
+                            <td>33.59K</td>
+                            <td> 263.63</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><i class="bi bi-info-circle"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <div class="custom-border p-4 mb-4">
+            <h4 class="text-blue text-uppercase mb-4">Legal framework and Policy</h4>
+            <div class="accordion " id="accordionExample">
+                <div class="accordion-item custom-accordion-item">
+                    <h2 class="accordion-header ">
+                        <button class="accordion-button bg-white px-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <strong>Waste Management and Public Cleansing Act</strong>
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show ">
+                        <div class="accordion-body bg-white px-0 text-muted">
+                            <p>TONTOTON works in Sihanoukville, Cambodia to prevent plastic waste from entering the environment by creating a community-based solution for the management of plastics through a certified plastic credit system. </p>
+
+                            <p>They work with the local, informal waste pickers to collect the plastic from the environment and their household partnerships and take them to be processed at their Material Recovery Facility.</p>
+
+                            <p>
+                                Its main objectives are:
+                                <ul>
+                                    <li>To directly remove plastics from entering the ocean</li>
+                                    <li>To provide stable incomes for and empower marginalized communities, and</li>
+                                    <li>To create a circular economy by providing a market TONTOTON has been identified as UNESCO Green Citizens project, the first in Cambodia. TONTOTON is also the first plastic neutralizing program to be certified under the Ocean Bound Plastic Neutrality Standard.</li>
+                                </ul>
+                            </p>
+
+                            <p>They also have operations in Vietnam.</p>
+                        </div>
+                    </div>
+                </div>
+                <hr class="mt-0">
+                <div class="accordion-item custom-accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button bg-white collapsed px-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <strong>Act on the Promotion of Effective Utilization of Resources</strong>
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse">
+                        <div class="accordion-body bg-white px-0 text-muted">
+                            It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        </div>
+                    </div>
+                </div>
+                <hr class="mt-0">
+                <div class="accordion-item custom-accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button bg-white collapsed px-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <strong>Containers and Packaging Recycling Act (enacted in 1995)</strong>
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse">
+                        <div class="accordion-body bg-white px-0 text-muted">
+                            It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        </div>
+                    </div>
+                </div>
+                <hr class="mt-0">
+                <div class="accordion-item custom-accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button bg-white collapsed px-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            <strong>Home Appliance Recycling Act (enacted in 1998)</strong>
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse">
+                        <div class="accordion-body bg-white px-0 text-muted">
+                            It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        </div>
+                    </div>
+                </div>
+                <hr class="mt-0">
+                <div class="accordion-item custom-accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button bg-white collapsed px-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            <strong>Food Recycling Act (enacted in 2000)</strong>
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse">
+                        <div class="accordion-body bg-white px-0 text-muted">
+                            It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        </div>
+                    </div>
+                </div>
+                <hr class="mt-0">
+                <div class="accordion-item custom-accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button bg-white collapsed px-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            <strong>Construction Recycling Act (enacted in 2000)</strong>
+                        </button>
+                    </h2>
+                    <div id="collapseSix" class="accordion-collapse collapse">
+                        <div class="accordion-body bg-white px-0 text-muted">
+                            It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- apexchart  -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<!-- chart code -->
+<script>
+    // Chart 1
+    var options1 = {
+            series: [
+            {
+              name: 'Q1 Budget',
+
+              data: [44000, 55000, 41000, 67000, 22000, 43000]
+            },
+            {
+              name: 'Q1 Actual',
+
+              data: [48000, 50000, 40000, 65000, 25000, 40000]
+            },
+            {
+              name: 'Q2 Budget',
+
+              data: [13000, 36000, 20000, 8000, 13000, 27000]
+            },
+            {
+              name: 'Q2 Actual',
+
+              data: [20000, 40000, 25000, 10000, 12000, 28000]
+            }
+          ],
+            chart: {
+            type: 'bar',
+            height: 350,
+            stacked: true,
+          },
+          stroke: {
+            width: 1,
+            colors: ['#fff']
+          },
+          dataLabels: {
+            formatter: (val) => {
+              return val / 1000 + 'K'
+            }
+          },
+          plotOptions: {
+            bar: {
+              horizontal: false
+            }
+          },
+          xaxis: {
+            categories: [
+              'Online advertising',
+              'Sales Training',
+              'Print advertising',
+              'Catalogs',
+              'Meetings',
+              'Public relations'
+            ]
+          },
+          fill: {
+            opacity: 1
+          },
+          colors: ['#80c7fd', '#008FFB', '#80f1cb', '#00E396'],
+          yaxis: {
+            labels: {
+              formatter: (val) => {
+                return val / 1000 + 'K'
+              }
+            }
+          },
+          legend: {
+            position: 'bottom',
+            horizontalAlign: 'center'
+          }
+          };
+
+
+    var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
+
+    chart1.render();
+
+    // Chart 2
+
+    var options2 = {
+          series: [
+          {
+            name: 'Q1 Budget',
+            data: [44000, 55000, 41000, 67000, 22000, 43000]
+          },
+          {
+            name: 'Q1 Actual',
+            data: [48000, 50000, 40000, 65000, 25000, 40000]
+          },
+          {
+            name: 'Q2 Budget',
+            data: [13000, 36000, 20000, 8000, 13000, 27000]
+          },
+          {
+            name: 'Q2 Actual',
+            data: [20000, 40000, 25000, 10000, 12000, 28000]
+          }
+        ],
+          chart: {
+          type: 'bar',
+          height: 350,
+          stacked: true,
+        },
+        stroke: {
+          width: 1,
+          colors: ['#fff']
+        },
+        dataLabels: {
+          formatter: (val) => {
+            return val / 1000 + 'K'
+          }
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false
+          }
+        },
+        xaxis: {
+          categories: [
+            'Online advertising',
+            'Sales Training',
+            'Print advertising',
+            'Catalogs',
+            'Meetings',
+            'Public relations'
+          ]
+        },
+        fill: {
+          opacity: 1
+        },
+        colors: ['#80c7fd', '#008FFB', '#80f1cb', '#00E396'],
+        yaxis: {
+          labels: {
+            formatter: (val) => {
+              return val / 1000 + 'K'
+            }
+          }
+        },
+        legend: {
+          position: 'bottom',
+          horizontalAlign: 'center'
+        }
+        };
+
+    var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+    chart2.render();
+
+    // Chart 3
+    var options3 = {
+          series: [
+          {
+            name: 'Q1 Budget',
+            data: [44000, 55000, 41000, 67000, 22000, 43000]
+          },
+          {
+            name: 'Q1 Actual',
+            data: [48000, 50000, 40000, 65000, 25000, 40000]
+          },
+          {
+            name: 'Q2 Budget',
+            data: [13000, 36000, 20000, 8000, 13000, 27000]
+          },
+          {
+            name: 'Q2 Actual',
+            data: [20000, 40000, 25000, 10000, 12000, 28000]
+          }
+        ],
+          chart: {
+          type: 'bar',
+          height: 350,
+          stacked: true,
+        },
+        stroke: {
+          width: 1,
+          colors: ['#fff']
+        },
+        dataLabels: {
+          formatter: (val) => {
+            return val / 1000 + 'K'
+          }
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false
+          }
+        },
+        xaxis: {
+          categories: [
+            'Online advertising',
+            'Sales Training',
+            'Print advertising',
+            'Catalogs',
+            'Meetings',
+            'Public relations'
+          ]
+        },
+        fill: {
+          opacity: 1
+        },
+        colors: ['#80c7fd', '#008FFB', '#80f1cb', '#00E396'],
+        yaxis: {
+          labels: {
+            formatter: (val) => {
+              return val / 1000 + 'K'
+            }
+          }
+        },
+        legend: {
+          position: 'bottom',
+          horizontalAlign: 'center'
+        }
+        };
+
+    var chart3 = new ApexCharts(document.querySelector("#chart3"), options3);
+    chart3.render();
+</script>

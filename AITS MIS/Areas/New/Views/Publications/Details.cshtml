@@ -1,0 +1,57 @@
+﻿@model ViewModels.Document
+@{
+    Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
+}
+
+<section class="breadcrumb">
+    <div class="container container-md container-md py-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item text-uppercase"><a href="New/Publications">Publication</a></li>
+                <li class="breadcrumb-item active text-uppercase" aria-current="page">@Model.Title</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- 3promar Section -->
+<section class="ptb-5 ">
+    <div class="container container-md container-md pb-120">
+
+        <div class="p-4 mb-4 bg-light br-8">
+            <!-- <small class="text-blue text-uppercase">Code No:</small> -->
+            <div class="d-flex">
+                <div class="col-2 pe-3">
+                    <img src="~/Documents/@Model.Thumbnail" style="width: 100%;">
+                </div>
+
+                <div class="col-10">
+                    <h3 class="mb-3">@Model.Title</h3>
+                    <div class="text-muted">
+                        <p class="fw-medium mb-0">Publisher: <span class="fw-light w-75">@Model.Publisher</span></p>
+                        <p class="fw-medium mb-0">Year: <span class="fw-light">@Model.Year</span></p>
+                        <p class="fw-medium mb-0">Country: <span class="fw-light">@Model.Country</span></p>
+                        <p class="fw-medium mb-0">Category: <span class="fw-light">@Model.Category</span></p>
+                        <p class="fw-medium mb-0">Waste Theme: <span class="fw-light">@Model.GeoTheme</span></p>
+                        <p class="fw-medium mb-0">Keywords: <span class="fw-light">@Model.Keywords</span></p>
+                        <p class="fw-medium mb-0">
+                            Share: <span>
+                                <a href="http://" target="_blank" class="text-muted"><i class="bi bi-facebook me-1"></i></a>
+                                <a href="http://" target="_blank" class="text-muted"><i class="bi bi-linkedin me-1"></i></a>
+                                <a href="http://" target="_blank" class="text-muted"><i class="bi bi-twitter-x me-1"></i></a>
+                                <a href="http://" target="_blank" class="text-muted"><i class="bi bi-envelope-fill me-1"></i></a>
+
+
+
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <hr class="text-black">
+            <div class="text-muted">@Html.Raw(Model.Description)</div>
+            <a href="~/Documents/@Model.Attachment.Split(';')[0]" class="btn btn-link px-0" target="_blank">Open Document →</a>
+        </div>
+
+    </div>
+</section>

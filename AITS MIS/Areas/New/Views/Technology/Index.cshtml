@@ -1,0 +1,51 @@
+﻿@model KnowWaste.Models.Technology
+@{
+    Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
+}
+<section class="breadcrumb">
+    <div class="container py-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item text-uppercase"><a href="New/MarineDebris">Marine Debris</a></li>
+                <li class="breadcrumb-item active text-uppercase" aria-current="page">Technology</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="ptb-5 ">
+    <div class="container pb-120">
+        <div class=" pb-4">
+            <h1 class="section-title pb-3 text-uppercase">
+                Technology</h1>
+                <p class="text-muted text-start">This section features innovative technological solutions that can transform waste management and reduce marine litter across ASEAN. From community-based recycling systems to cutting-edge industrial technologies, these examples demonstrate how technology can drive sustainable change. If you would like to showcase your technology on this page and help inspire others, please email us at warm@rrcap.ait.ac.th.</p>
+        </div>
+        <div class="d-flex align-items-center pb-5">
+            <p class="m-0 pe-3">Filter by Country</p>
+            <select class="form-select" id="countrySelect" onclick="refreshData()" style="width: 30%;">
+                <option selected value="0">All</option>
+                @foreach (ViewModels.Country country in Model.Countries)
+                {
+                    <option value="@country.ID">@country.Name</option>
+                }
+            </select>
+        </div>
+        <div class="row g-4 gy-5" id="TechnologyData">
+        </div>
+    </div>
+</section>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            refreshData();
+        });
+
+        function refreshData() {
+            const countryID = $("#countrySelect").val();
+            const url = `/New/Technology/RefreshData?countryID=${countryID}`;
+            const data = [];
+            $("#TechnologyData").load(url);
+        }
+    </script>
+}

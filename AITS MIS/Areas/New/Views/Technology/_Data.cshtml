@@ -1,0 +1,16 @@
+﻿@model KnowWaste.Models.Technology
+
+@foreach (ViewModels.Technology item in Model.TechnologyList)
+{
+    <div class="col-md-4">
+        <div class="card h-100 s-border box-shadow">
+            <img src="~/Documents/Technology/@item.Thumbnail.Split(';')[0]" class="card-img-top" alt="@item.Title" height="250px">
+            <div class="card-body">
+                <h5 class="card-title mb-0">@item.Title</h5>
+                <small>Date Created: @Convert.ToDateTime(item.Date).ToString("d MMMM yyyy")</small>
+                <p class="card-text text-truncate-3 text-muted mt-3">@Html.Raw(item.Description)</p>
+                <a href="New/Technology/Details/@item.ID" class="btn btn-link px-0">Start Reading →</a>
+            </div>
+        </div>
+    </div>
+}

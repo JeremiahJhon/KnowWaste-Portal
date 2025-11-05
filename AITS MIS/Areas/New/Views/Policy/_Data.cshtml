@@ -1,0 +1,29 @@
+﻿@model KnowWaste.Models.Policy
+
+<div class="d-flex justify-content-between align-items-center mb-5">
+    <form class="d-flex ">
+        <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" id="searchInput">
+    </form>
+    <nav aria-label="Page navigation example" class="pagination">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="wrapper">
+    @foreach (ViewModels.Policy item in Model.Policies)
+    {
+        <div class="custom-border p-4 mb-4 policy-item" data-area="@item.PolicyArea">
+            <small class="text-blue text-uppercase">Code No:</small>
+            <h4 class="m-0">@item.Legal</h4>
+            <small>@item.Country | @item.Year</small>
+            <p class="pt-3" style="display: -webkit-box; -webkit-line-clamp: 4;  -webkit-box-orient: vertical; overflow: hidden; ">@Html.Raw(item.Description)</p>
+
+            <a href="@item.Source" target="_blank" class="btn btn-link px-0">Go to Source</a>
+        </div>
+    }
+</div>

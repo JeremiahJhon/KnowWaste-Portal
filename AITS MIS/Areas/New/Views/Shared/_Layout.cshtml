@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<!--begin::Head-->
+<head>
+    <base href="/">
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="The Know Waste Knowledge (KWK) Platform provides a platform for information and knowledge sharing to support inform decision-making on marine debris in ASEAN. The platform was created with the objective of generating and consolidating data and information on sustainable waste management, as well as transforming data into comprehensible outputs for key stakeholders to use. The KWK platform also provides information on international waste management projects, as well as offers capacity- building support for stakeholders through e-Learning content." />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700&amp;subset=all' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+
+    @Html.Partial("css/style")
+    @Html.Partial("css/bootstrap5") 
+    @RenderSection("css", false)
+    <link href="~/Content/new-style/style.css" rel="stylesheet" />
+   
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JKZ2HGXCX9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-JKZ2HGXCX9');
+    </script>
+</head>
+<body class="d-flex flex-column h-100">
+
+    <header>
+        @Html.Partial("_Nav")
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    @Html.Partial("_Footer")
+
+    @Html.Partial("js/jquery")
+    @Html.Partial("js/bootstrap5")
+    @RenderSection("scripts", false)
+</body>
+</html>

@@ -1,0 +1,139 @@
+﻿@model KnowWaste.Models.Home
+@{
+    Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
+}
+<!-- Hero Section -->
+<section class="text-white text-center ">
+    <div id="carouselExampleCaptions" class="carousel slide w-100">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner ">
+            <div class="carousel-item active h-600">
+                <img src="Content/imgs/news.png" class="d-block w-100" alt="..." style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="carousel-caption d-none d-md-block hero-overlay">
+                    <!-- <h6 class="text-blue text-uppercase">Latest News</h6> -->
+                    <h4 class="text-white">From Insight to Action — Building a Cleaner, Circular ASEAN.</h4>
+
+                </div>
+            </div>
+
+            <div class="carousel-item  h-600">
+                <img src="Content/imgs/news.png" class="d-block w-100" alt="..." style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="carousel-caption d-none d-md-block hero-overlay">
+                    <!-- <h6 class="text-blue text-uppercase">Latest News</h6> -->
+                    <h4 class="text-white">Connecting Policy, Practice, and People for a Waste-Free Future.</h4>
+
+                </div>
+            </div>
+
+            <div class="carousel-item  h-600">
+                <img src="Content/imgs/news.png" class="d-block w-100" alt="..." style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="carousel-caption d-none d-md-block hero-overlay">
+                    <!-- <h6 class="text-blue text-uppercase">Latest News</h6> -->
+                    <h4 class="text-white">Turning Data into Impact for Sustainable Waste Management.</h4>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="ptb-120 ">
+    <div class=container container-md container-lg>
+        <div class="abt-sec text-center pb-120">
+            <h2 class="section-title pb-3 text-uppercase">How it started</h2>
+            <p class="text-muted">The kNOwWaste Knowledge Platform was developed through a Project Cooperation Agreement funding by UNEP on 2016. The platform provides data and information on holistic waste management to stakeholders in Asia and the Pacific region. The platform was developed with the following aims: generate and consolidate data or information on holistic waste management, transform data into easily comprehensible outputs for use by key stakeholders, map out and disseminate information on international waste management projects under the GPWM and UNEP projects as well as other international partners, and provide capacity building support through dissemination of data or information support for relevant stakeholders on holistic waste and waste management system.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class=" d-flex justify-content-between align-items-start p-2">
+                    <img src="Content/imgs/to-inform.png" alt="" class="me-2">
+                    <div>
+                        <h5>To Inform</h5>
+                        <p>An interactive and intuitive sustainable waste and resource management knowledge repository</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Cards -->
+            <div class="col-md-4">
+                <div class=" d-flex justify-content-between align-items-start p-2">
+                    <img src="Content/imgs/to-empower.png" alt="" class="me-2">
+                    <div>
+                        <h5>To empower</h5>
+                        <p>An interactive and intuitive sustainable waste and resource management knowledge repository</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class=" d-flex justify-content-between align-items-start p-2">
+                    <img src="Content/imgs/to-connect.png" alt="" class="me-2">
+                    <div>
+                        <h5>To Connect</h5>
+                        <p>An interactive and intuitive sustainable waste and resource management knowledge repository</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- network -->
+<section class="ptb-120 bg-pattern text-center position-relative">
+    <img src="/Content/imgs/wave-top.png" class="wave-top" alt="Wave Divider" />
+    <div class="container container-md container-lg">
+        <h2 class="section-title">NETWORKS OF PRACTICE</h2>
+        <div class="row  mt-4 bg-white p-5">
+            <div class="col-12 col-md-6 col-lg-6">
+                <img src="/Content/imgs/partner1.png" class="mx-3 my-2" alt="IKHAPP">
+                <p>International Knowledge Hub Against Plastic Pollution</p>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6">
+                <img src="/Content/imgs/partner2.png" class="mx-3 my-2" alt="RKC-MPD">
+                <p>
+                    Regional Knowledge Centre for Marine Plastic
+                    Debris RKC-MPD ERIA
+                </p>
+            </div>
+        </div>
+    </div>
+    <img src="/Content/imgs/wave-bottom.png" class="swiggle-img" alt="Wave Divider" />
+</section>
+
+<section class="ptb-120">
+    <div class="container container-md container-lg">
+        <h2 class="section-title text-center mb-4">GOOD PRACTICES</h2>
+        <p class="text-center text-muted mb-5">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like </p>
+        <div class="row g-4">
+            @foreach (ViewModels.GoodPractice item in Model.BlogList.Take(3))
+            {
+                <div class="col-md-4">
+                    <div class="card h-100 card card-rounded s-border box-shadow tns-item tns-slide-cloned m-10">
+                        <img src="Documents/Blogs/@item.Thumbnail.Split(';')[0]" class="card-img-top" alt="@item.Title">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Title</h5>
+                            <small>@item.Country</small>
+                            <div class="card-text text-truncate-3">@Html.Raw(item.Description)</div>
+                            <a href="New/GoodPractices/Details/@item.ID" class="btn btn-link px-0">Start Reading →</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="text-center mt-4">
+            <a href="New/GoodPractices" class="btn btn-primary">View More</a>
+        </div>
+    </div>
+</section>

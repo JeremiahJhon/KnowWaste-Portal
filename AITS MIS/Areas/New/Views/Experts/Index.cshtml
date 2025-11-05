@@ -1,0 +1,69 @@
+﻿@model KnowWaste.Models.Experts
+@{
+    Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
+}
+<section class="breadcrumb">
+    <div class=" container container-md container-lg py-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item text-uppercase"><a href="marine debris.html">About</a></li>
+                <li class="breadcrumb-item active text-uppercase" aria-current="page">Experts</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+
+<!-- Hero Section -->
+<!-- About Section -->
+<section class="py-3 ">
+    <div class="container">
+        @foreach (ViewModels.Expert item in Model.ExpertList)
+        {
+            <div class="row mb-5">
+                <div class="section-title pb-3 col-12 col-md-2 col-lg-2 text-start">
+                    <img src="Documents/@item.Thumbnail" alt="" style="border-radius: 50%; height: 170px; width: 170px;">
+                </div>
+                <div class="col-12 col-md-10 col-lg-10">
+                    <h5 class="m-0">@item.Name</h5>
+                    <small class="text-muted">@item.Position</small><br>
+                    @Html.Raw(item.Description)
+                </div>
+            </div>
+        }
+        <div class="row mb-5">
+            <div class="section-title pb-3 col-12 col-md-2 col-lg-2 text-start">
+                <img src="Content/imgs/expert1.png" alt="" style="border-radius: 50%; height: 170px; width: 170px;">
+            </div>
+            <div class="col-12 col-md-10 col-lg-10">
+                <h5 class="m-0">Agamuthu Pariatamby</h5>
+                <small class="text-muted">Senior Professor</small><br>
+                <p class="mt-3 text-muted">Dr Agamuthu FASc, is a Senior Professor (with 48 years of experience) in the Jeffrey Sachs Center on Sustainable Development at Sunway University (SU). He is also the Associate Dean (Research and Postgraduate Studies) at the School of Interdisciplinary Sciences, SU. He is a Global top 2% Scientist in Environmental Sciences by Stanford University.</p>
+                <p class="text-muted">He is a Fellow of the Academy of Sciences, Malaysia. He is appointed as the High-Level End Foreign Expert for the Ministry of Science and Technology, China and is also a Visiting Professor for Zhejiang University of Technology in Hangzhou, China. He is the Chairman of the International Consultant Committee of Waste to Energy, based in Zhejiang University. </p>
+                <p class="text-muted">He was an Associate Editor/ Senior Editor in Chief of Waste Management and Research (WM&R) for 20 years, and is currently an International Advisory Board member for WM&R. He is on the editorial boards of several journals such as Journal of Material Cycles and Waste Management and Journal of Safety and Environment. He is the Vice-President of the Society of Solid Waste Management Experts in Asia and Pacific Islands (SWAPI). He is the Founder Head of the Center for Research in Waste Management and the Founder President of the Malaysian Society of Waste Management and Environment. Currently he is the Chairman for the Organization for Climate Change (OFCC), Malaysia. He is an Honorary life member of International Solid Waste Association (ISWA).  He has published 22 books, 34 chapters in books and authored over 480 peer-reviewed articles, proceedings and invited papers. He has done over 75 consultancy projects and supervised over 200 Master’s Degree students and 45 doctoral students. His research interest includes Solid Waste Management, Plastic and Microplastics, Marine Debris, Landfills and Biomass/Waste to Energy, ESG, to name a few. He has international cooperation and collaboration in several countries such as the UK, China, Austria, Japan, Korea, India, Norway, Finland, Cambodia, Thailand, Myanmar, Sri Lanka, to name a few.</p>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="section-title pb-3 col-12 col-md-2 col-lg-2 text-start">
+                <img src="Content/imgs/expert2.png" alt="" style="border-radius: 50%; height: 170px; width: 170px;">
+            </div>
+            <div class="col-12 col-md-10 col-lg-10">
+                <h5 class="m-0">Amila Abeynayaka</h5>
+                <small class="text-muted">Researcher</small><br>
+                <p class="mt-3 text-muted">Dr. Amila Abeynayaka is a researcher specializing in Quantitative Sustainability Assessment, with a focus on plastic pollution. He brings over 15 years of experience primarily from his work on waste management, life cycle assessment (LCA) studies, microplastics research, capacity building programs, and environmental policy studies in Asia. Currently based at the Technical University of Denmark (DTU), Dr. Abeynayaka's research centers on advancing methodologies for life cycle impact assessment (LCIA), particularly in evaluating human health and environmental impacts, including climate change and biodiversity loss caused by microplastics, nano-plastics, and plastic related chemicals. Amila serves as a technical committee member of the American Centre for Life Cycle Assessment (ACLCA), a steering committee member of the Society for Environmental Toxicology and Chemistry (SETAC) Plastics Group, and a steering committee member of the Scientists' Coalition for an Effective Plastics Treaty. Additionally, he is recognized as a Fellow at the Institute for Global Environmental Strategies (IGES) in Japan and a member of the board of directors at the Moore Institute for Plastic Pollution Research (MIPPR) in California, USA.</p>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="section-title pb-3 col-12 col-md-2 col-lg-2 text-start">
+                <img src="Content/imgs/expert3.png" alt="" style="border-radius: 50%; height: 170px; width: 170px;">
+            </div>
+            <div class="col-12 col-md-10 col-lg-10">
+                <h5 class="m-0" id="ex-1">Bishal Bhari</h5>
+                <small class="text-muted">Programme Officer</small><br>
+                <p class="mt-3 text-muted">Mr. Bishal Bhari has experience working on various environmental projects related to solid waste management, plastic waste management, end-of-life vehicle management, sustainable cities, circular economy, material cycle, industry 4.0, sustainable agriculture, and water treatment. Prior to working in RRC.AP, Bishal was doing research on material cycle and material flow analysis at the Environment Preservation Research Center at Kyoto University. He has also published a peer-reviewed journal and book chapter. His role in RRC.AP is to assist in the implementation of, among other things, a regional project on marine plastic debris knowledge management. His current work interest lies in the harmonization of quantitative environmental indicators on Plastic Waste Management for ASEAN focusing on its material flow. Bishal Bhari received his M. Eng in Environmental Engineering and Management from Asian Institute of Technology, Thailand and he holds a B. Tech in Environmental Engineering from Kathmandu University, Nepal.</p>
+            </div>
+        </div>
+    </div>
+</section>

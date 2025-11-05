@@ -201,7 +201,7 @@ namespace Web.Framework.Server
                 Where.Append(" AND deleted = '0'");
 
             Query = string.Format("SELECT {4} {5}{0}{5}FROM {1}{2}{3}", column, Table, Where.ToString(), Order.ToString(), Limit.ToString(), Environment.NewLine);
-            
+
             Clear();
 
             return ExecuteQuery();

@@ -1,0 +1,92 @@
+﻿@model ViewModels.News
+@{
+    Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
+}
+
+<section class="breadcrumb">
+    <div class="container container-md container-md py-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item text-uppercase"><a href="New/News">News</a></li>
+                <li class="breadcrumb-item active text-uppercase" aria-current="page">@Model.Title</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- 3promar Section -->
+<section class="ptb-5 ">
+    <div class="container container-md container-md pb-120">
+
+        <div class="p-4 mb-4 bg-light br-8 text-muted">
+            <h3 class="mb-3 text-blue">@Model.Title</h3>
+
+            <div class="d-flex justify-content-between mb-4">
+                <small><span class="fw-bold">Date: </span> <span>Dec, 7 2024</span></small>
+                <small>
+                    <span class="fw-bold">Share on: </span>
+                    <span>
+                        <i class="bi bi-facebook pe-2"></i>
+                        <i class="bi bi-linkedin pe-2"></i>
+                        <i class="bi bi-twitter-x pe-2"></i>
+                        <i class="bi bi-envelope pe-2"></i>
+                    </span>
+                </small>
+            </div>
+            <div class="mb-40">
+                <div class="text-white text-center carousel-wrapper">
+                    <div id="carouselExampleCaptions" class="carousel slide w-100">
+                        <div class="carousel-indicators">
+                            @{
+                                string[] photos = Model.Photo.Split(';');
+                                int index = 0;
+                            }
+
+                            @foreach (String img in photos)
+                            {
+                                if (!String.IsNullOrEmpty(img))
+                                {
+                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="@index" @(index == 0 ? "class=active aria-current=true" : null) aria-label="Slide @(index + 1)"></button>
+                                }
+                                {
+                                    index = index + 1;
+                                }
+                            }
+                        </div>
+                        <div class="carousel-inner ">
+                            @{
+                                index = 0;
+                            }
+
+                            @foreach (String img in photos)
+                            {
+                                if (!String.IsNullOrEmpty(img))
+                                {
+                                    <div class="carousel-item @(index == 0 ? "active" : null) h-600">
+                                        <img src="~/Documents/News/@img" class="d-block w-100" alt="..." style="width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
+                                }
+                                {
+                                    index = index + 1;
+                                }
+                            }
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                @Html.Raw(Model.Description)
+            </div>
+        </div>
+
+    </div>
+</section>

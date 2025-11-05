@@ -1,0 +1,59 @@
+﻿@model ViewModels.GoodPractice
+@{
+    Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
+}
+
+<section class="breadcrumb">
+    <div class="container py-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item text-uppercase"><a href="New/MarineDebris">Marine Debris</a></li>
+                <li class="breadcrumb-item text-uppercase" aria-current="page"><a href="New/GoodPractices">Good Practices</a></li>
+                <li class="breadcrumb-item active text-uppercase" aria-current="page">@Model.Title</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- description Section -->
+<section class="ptb-5 ">
+    <div class="container pb-120 w-70">
+        <div class="pb-4">
+            <h1 class="section-title mb-5 text-uppercase ">
+                @Model.Title</h2>
+                <div class="d-flex justify-content-between mb-4">
+                    <small><span>By: @Model.Author </span> <span>@Convert.ToDateTime(Model.Date).ToString("MMMM d, yyyy")</span></small>
+                    <small>Share on: <span><i class="bi bi-telephone pe-2"></i><i class="bi bi-telephone pe-2"></i><i class="bi bi-telephone pe-2"></i></span></small>
+                </div>
+                <div class="mb-40" style="width: 100%; height: 500px;">
+                    <img src="Documents/Blogs/@Model.Thumbnail.Split(';')[0]" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </h1>
+        </div>
+
+        <div class="content">
+            @Html.Raw(Model.Description)
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container pb-120">
+        <h5 class="mb-4">Related Topics</h5>
+        <div class="row g-4">
+            @foreach (ViewModels.GoodPractice item in Model.RelatedTopics)
+            {
+                <div class="col-md-4">
+                    <div class="card h-100 card card-rounded s-border box-shadow tns-item tns-slide-cloned m-10">
+                        <img src="Documents/Blogs/@item.Thumbnail.Split(';')[0]" class="card-img-top" alt="@item.Title">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Title</h5>
+                            <small>@item.Country</small>
+                            <div class="card-text text-truncate-3">@Html.Raw(item.Description)</div>
+                            <a href="New/GoodPractices/Details/@item.ID" class="btn btn-link px-0">Start Reading →</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

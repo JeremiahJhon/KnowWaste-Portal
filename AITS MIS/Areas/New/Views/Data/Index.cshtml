@@ -1,0 +1,361 @@
+﻿@{
+    Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
+}
+
+<!-- breadcrumb -->
+<section class="breadcrumb">
+    <div class=" container container-md container-lg py-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item text-uppercase"><a href="marine debris.html">Marine Debris</a></li>
+                <li class="breadcrumb-item active text-uppercase" aria-current="page">Data</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="ptb-5 ">
+    <div class="container pb-120">
+        <div class="text-center pb-4">
+            <h1 class="section-title pb-3 text-uppercase text-start">Data</h1>
+            <p class="text-muted text-start">This section compiles and presents waste-related data from across ASEAN, helping stakeholders make evidence-based decisions to address marine litter and improve waste management. You will find data on waste generation, collection, recycling, and disposal. Our aim is to make this information accessible and actionable for policymakers, researchers, and practitioners working toward more sustainable systems. </p>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4 col-lg-3 custom-sidebar h-fitcontent">
+                <div class="mb-4">
+                    <strong class="m-0 pe-3" style="padding-bottom: 4px;">Waste Type: </strong>
+                    <div class="form-check mt-2">
+                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2" checked>
+                        <label class="form-check-label" for="radioDefault2">
+                            Both
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
+                        <label class="form-check-label" for="radioDefault1">
+                            Solid Waste
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
+                        <label class="form-check-label" for="radioDefault1">
+                            Plastic Waste
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
+                        <label class="form-check-label" for="radioDefault1">
+                            Calculator
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
+                        <label class="form-check-label" for="radioDefault1">
+                            Calculator
+                        </label>
+                    </div>
+
+                </div>
+                <div class="mb-4">
+                    <strong class="m-0 pe-3" style="padding-bottom: 4px;">Country: </strong>
+                    <select class="form-select" id="countrySelect" style="width: 100%; margin-top: 4px;">
+                        <option selected disabled>Select a country</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <strong class="m-0 pe-3" style="padding-bottom: 4px;">City: </strong>
+                    <select class="form-select" id="countrySelect" style="width: 100%; margin-top: 4px;">
+                        <option selected disabled>Select a country</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <strong class="m-0 pe-3" style="padding-bottom: 4px;">Year: </strong>
+                    <select class="form-select" id="countrySelect" style="width: 100%; margin-top: 4px;">
+                        <option selected disabled>Select a country</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <strong class="m-0 pe-3" style="padding-bottom: 4px;">Waste Type: </strong>
+                    <div class="form-check mt-2">
+                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2" checked>
+                        <label class="form-check-label" for="radioDefault2">
+                            Both
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
+                        <label class="form-check-label" for="radioDefault1">
+                            Graph only
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
+                        <label class="form-check-label" for="radioDefault1">
+                            Table only
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-8 col-lg-9">
+                <div class="wrapper">
+                    <div class="custom-border p-4 mb-4">
+                        <div class="graph-wrapper mb-5">
+                            <h2 class="m-0 text-blue text-center">Solid Wastes</h2>
+                            <!-- <small>Vietnam | 2018</small> -->
+                            <p class="pt-3" style="display: -webkit-box; -webkit-line-clamp: 4;  -webkit-box-orient: vertical; overflow: hidden; ">The Decree provide detailed rules on recycling of discarded products and packaging materials under the Extended Producer Responsibility (EPR). The Decree sets out a list of regulated products and compulsory recycling rates.</p>
+
+                            <strong class="mb-3">Year Vs Tons  </strong>
+                            <div id="chart1"></div>
+                        </div>
+                        <div class="custom-table">
+                            <strong class="mb-3">Table </strong>
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Country</th>
+                                        <th scope="col">Year</th>
+                                        <th scope="col">Generated</th>
+                                        <th scope="col">Collected</th>
+                                        <th scope="col">Recycled</th>
+                                        <th scope="col">Recovered</th>
+                                        <th scope="col">Disposal</th>
+                                        <th scope="col">More Info</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <!-- <th scope="row">1</th> -->
+                                        <td>Brunei Darussalam</td>
+                                        <td>2014</td>
+                                        <td>210</td>
+                                        <td>168</td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td><i class="bi bi-chevron-down"></i></td>
+
+                                    </tr>
+                                    <tr>
+                                        <!-- <th scope="row">2</th> -->
+                                        <td>Brunei Darussalam</td>
+                                        <td>2019</td>
+                                        <td>297.22K</td>
+                                        <td> </td>
+                                        <td></td>
+                                        <td>33.59K</td>
+                                        <td> 263.63</td>
+                                        <td><i class="bi bi-chevron-down"></i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                    <div class="custom-border p-4 mb-4">
+                        <div class="graph-wrapper mb-5">
+                            <h2 class="m-0 text-blue text-center">Plastic Wastes</h2>
+                            <!-- <small>Vietnam | 2018</small> -->
+                            <p class="pt-3" style="display: -webkit-box; -webkit-line-clamp: 4;  -webkit-box-orient: vertical; overflow: hidden; ">The Decree provide detailed rules on recycling of discarded products and packaging materials under the Extended Producer Responsibility (EPR). The Decree sets out a list of regulated products and compulsory recycling rates.</p>
+
+                            <strong class="mb-3">Year Vs Tons  </strong>
+                            <div id="chart2"></div>
+                        </div>
+                        <div class="custom-table table-responsive">
+                            <strong class="mb-3">Table </strong>
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Country</th>
+                                        <th scope="col">Year</th>
+                                        <th scope="col">Generated</th>
+                                        <th scope="col">Collected</th>
+                                        <th scope="col">Recycled</th>
+                                        <th scope="col">Recovered</th>
+                                        <th scope="col">Disposal</th>
+                                        <th scope="col">More Info</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <!-- <th scope="row">1</th> -->
+                                        <td>Brunei Darussalam</td>
+                                        <td>2014</td>
+                                        <td>210</td>
+                                        <td>168</td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td><i class="bi bi-chevron-down"></i></td>
+
+                                    </tr>
+                                    <tr>
+                                        <!-- <th scope="row">2</th> -->
+                                        <td>Brunei Darussalam</td>
+                                        <td>2019</td>
+                                        <td>297.22K</td>
+                                        <td> </td>
+                                        <td></td>
+                                        <td>33.59K</td>
+                                        <td> 263.63</td>
+                                        <td><i class="bi bi-chevron-down"></i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script>
+   var options1 = {
+          series: [
+          {
+            name: 'Q1 Budget',
+            group: 'budget',
+            data: [44000, 55000, 41000, 67000, 22000, 43000]
+          },
+          {
+            name: 'Q1 Actual',
+            group: 'actual',
+            data: [48000, 50000, 40000, 65000, 25000, 40000]
+          },
+          {
+            name: 'Q2 Budget',
+            group: 'budget',
+            data: [13000, 36000, 20000, 8000, 13000, 27000]
+          },
+          {
+            name: 'Q2 Actual',
+            group: 'actual',
+            data: [20000, 40000, 25000, 10000, 12000, 28000]
+          }
+        ],
+          chart: {
+          type: 'bar',
+          height: 350,
+          stacked: true,
+        },
+        stroke: {
+          width: 1,
+          colors: ['#fff']
+        },
+        dataLabels: {
+          formatter: (val) => {
+            return val / 1000 + 'K'
+          }
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false
+          }
+        },
+        xaxis: {
+          categories: [
+            'Online advertising',
+            'Sales Training',
+            'Print advertising',
+            'Catalogs',
+            'Meetings',
+            'Public relations'
+          ]
+        },
+        fill: {
+          opacity: 1
+        },
+        colors: ['#80c7fd', '#008FFB', '#80f1cb', '#00E396'],
+        yaxis: {
+          labels: {
+            formatter: (val) => {
+              return val / 1000 + 'K'
+            }
+          }
+        },
+        legend: {
+          position: 'bottom',
+          horizontalAlign: 'center'
+        }
+        };
+
+    var options2 = {
+          series: [
+          {
+            name: 'Q1 Budget',
+            group: 'budget',
+            data: [44000, 55000, 41000, 67000, 22000, 43000]
+          },
+          {
+            name: 'Q1 Actual',
+            group: 'actual',
+            data: [48000, 50000, 40000, 65000, 25000, 40000]
+          },
+          {
+            name: 'Q2 Budget',
+            group: 'budget',
+            data: [13000, 36000, 20000, 8000, 13000, 27000]
+          },
+          {
+            name: 'Q2 Actual',
+            group: 'actual',
+            data: [20000, 40000, 25000, 10000, 12000, 28000]
+          }
+        ],
+          chart: {
+          type: 'bar',
+          height: 350,
+          stacked: true,
+        },
+        stroke: {
+          width: 1,
+          colors: ['#fff']
+        },
+        dataLabels: {
+          formatter: (val) => {
+            return val / 1000 + 'K'
+          }
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false
+          }
+        },
+        xaxis: {
+          categories: [
+            'Online advertising',
+            'Sales Training',
+            'Print advertising',
+            'Catalogs',
+            'Meetings',
+            'Public relations'
+          ]
+        },
+        fill: {
+          opacity: 1
+        },
+        colors: ['#80c7fd', '#008FFB', '#80f1cb', '#00E396'],
+        yaxis: {
+          labels: {
+            formatter: (val) => {
+              return val / 1000 + 'K'
+            }
+          }
+        },
+        legend: {
+          position: 'bottom',
+          horizontalAlign: 'center'
+        }
+        };
+
+var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
+var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+chart1.render();
+chart2.render();
+</script>

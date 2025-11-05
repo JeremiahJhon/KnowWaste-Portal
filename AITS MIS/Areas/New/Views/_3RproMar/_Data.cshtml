@@ -1,0 +1,23 @@
+﻿@model KnowWaste.Models.Documents
+
+@foreach (ViewModels.Document item in Model.DocumentList)
+{
+
+    <div class="custom-border d-flex p-4 mb-4">
+        <!-- <small class="text-blue text-uppercase">Code No:</small> -->
+        @if (!String.IsNullOrEmpty(item.Thumbnail))
+        {
+            <div class="col-2 pe-3">
+                <img src="Documents/@item.Thumbnail" style="width: 100%;">
+            </div>
+        }
+
+        <div class="col-10">
+            <h4 class="m-0">@item.Title</h4>
+            <small>@item.Country | @item.Year</small>
+            <div class="pt-3" style="display: -webkit-box; -webkit-line-clamp: 4;  -webkit-box-orient: vertical; overflow: hidden; ">@Html.Raw(item.Description)</div>
+
+            <a href="New/_3rpromar/Details/@item.ID" class="btn btn-link px-0">Start Reading →</a>
+        </div>
+    </div>
+}

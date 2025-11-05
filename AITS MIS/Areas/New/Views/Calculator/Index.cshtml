@@ -1,0 +1,147 @@
+﻿@{
+    Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
+}
+
+<!-- breadcrumb -->
+<section class="breadcrumb">
+    <div class=" container container-md container-lg py-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item text-uppercase"><a href="marine debris.html">Marine Debris</a></li>
+                <li class="breadcrumb-item active text-uppercase" aria-current="page">Data</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="ptb-5 ">
+    <div class="container pb-120">
+        <div class="text-center pb-4">
+            <h1 class="section-title pb-3 text-uppercase text-start">Data</h1>
+            <p class="text-muted text-start">This section compiles and presents waste-related data from across ASEAN, helping stakeholders make evidence-based decisions to address marine litter and improve waste management. You will find data on waste generation, collection, recycling, and disposal. Our aim is to make this information accessible and actionable for policymakers, researchers, and practitioners working toward more sustainable systems. </p>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4 col-lg-3 custom-sidebar h-fitcontent">
+                <div class="mb-4">
+                    <strong class="m-0 pe-3" style="padding-bottom: 4px;">Waste Type: </strong>
+                    <div class="form-check mt-2">
+                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2" checked>
+                        <label class="form-check-label" for="radioDefault2">
+                            Both
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
+                        <label class="form-check-label" for="radioDefault1">
+                            Solid Waste
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
+                        <label class="form-check-label" for="radioDefault1">
+                            Plastic Waste
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
+                        <label class="form-check-label" for="radioDefault1">
+                            Calculator
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
+                        <label class="form-check-label" for="radioDefault1">
+                            Calculator
+                        </label>
+                    </div>
+
+                </div>
+                <div class="mb-4">
+                    <strong class="m-0 pe-3" style="padding-bottom: 4px;">Country: </strong>
+                    <select class="form-select" id="countrySelect" style="width: 100%; margin-top: 4px;">
+                        <option selected disabled>Select a country</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <strong class="m-0 pe-3" style="padding-bottom: 4px;">City: </strong>
+                    <select class="form-select" id="countrySelect" style="width: 100%; margin-top: 4px;">
+                        <option selected disabled>Select a country</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <strong class="m-0 pe-3" style="padding-bottom: 4px;">Year: </strong>
+                    <select class="form-select" id="countrySelect" style="width: 100%; margin-top: 4px;">
+                        <option selected disabled>Select a country</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <strong class="m-0 pe-3" style="padding-bottom: 4px;">Waste Type: </strong>
+                    <div class="form-check mt-2">
+                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2" checked>
+                        <label class="form-check-label" for="radioDefault2">
+                            Both
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
+                        <label class="form-check-label" for="radioDefault1">
+                            Graph only
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
+                        <label class="form-check-label" for="radioDefault1">
+                            Table only
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-8 col-lg-9">
+                <div class="wrapper">
+                    <div class="custom-border p-4 mb-4">
+                        <div class="mb-5">
+                            <h2 class="m-0 text-blue text-center">Plastic Footprint</h2>
+                            <!-- <small>Vietnam | 2018</small> -->
+                            <p class="pt-3">The Decree provide detailed rules on recycling of discarded products and packaging materials under the Extended Producer Responsibility (EPR). The Decree sets out a list of regulated products and compulsory recycling rates.</p>
+                            <div class="d-flex flex-wrap my-4">
+                                <div class="mb-3 w-50 pe-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Plastic Bottles (per week):</label>
+                                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                                </div>
+
+                                <div class="mb-3 w-50 pe-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Plastic Bags (per week):</label>
+                                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                                </div>
+
+                                <div class="mb-3 w-50 pe-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Plastic Straws (per week):</label>
+                                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                                </div>
+
+                                <div class="mb-3 w-50 pe-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Disposable Coffee/Tea Cups (per week):</label>
+                                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                                </div>
+
+                                <div class="mb-3 w-50 pe-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Plastic Food Wrappers (per week):</label>
+                                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                                </div>
+
+                                <div class="mb-3 w-50 pe-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Recycling Rate (%):</label>
+                                    <input type="range" class="form-range" min="0" max="100" step="10" value="0" id="sliderRange">
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary">Calculate my footprint</button>
+                            <div id="result"></div>
+                            <p class="tip">Tip: Use reusable bottles and bags to cut your plastic waste!</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+</section>

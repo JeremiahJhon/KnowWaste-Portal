@@ -1,0 +1,61 @@
+﻿@model KnowWaste.Models.Documents
+@{
+    Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
+}
+
+<section class="breadcrumb">
+    <div class=" container container-md container-lg py-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item text-uppercase"><a href="#">Topic</a></li>
+                <li class="breadcrumb-item active text-uppercase" aria-current="page">Thematic Area</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="ptb-5 ">
+    <div class="container pb-120">
+        <div class="text-center pb-4">
+            <h1 class="section-title pb-3 text-uppercase text-start">Topics</h1>
+            <p class="text-muted text-start">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less </p>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4 col-lg-3">
+                <div class="mb-4 custom-sidebar ">
+                    <strong class="m-0 pe-3" style="padding-bottom: 4px;">Thematic Areas </strong>
+                    @foreach (string area in Model.Areas)
+                    {
+                        <div class="form-check mt-2">
+                            <input class="form-check-input area-select" type="radio" name="radioArea" data-val="@area" @(Model.Areas.IndexOf(area) == 0 ? "checked" : "")>
+                            <label class="form-check-label">
+                                @area
+                            </label>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-12 col-md-8 col-lg-9" id="ThematicAreaData">
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            refreshData();
+
+            $(".area-select").change(function () {
+                refreshData();
+            });
+        });
+
+        function refreshData() {
+            const area = encodeURI($(".area-select:checked").data("val").toString());
+            const url = `/New/ThematicArea/RefreshData?area=${area}`;
+            const data = [];
+            $("#ThematicAreaData").load(url);
+        }
+    </script>
+}

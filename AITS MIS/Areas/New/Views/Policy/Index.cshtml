@@ -1,0 +1,79 @@
+﻿@model KnowWaste.Models.Policy
+@{
+    Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
+}
+
+<section class="breadcrumb">
+    <div class=" container container-md container-lg py-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item text-uppercase"><a href="marine debris.html">Marine Debris</a></li>
+                <li class="breadcrumb-item active text-uppercase" aria-current="page">Policies And Regulations</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="ptb-5 ">
+    <div class="container pb-120">
+        <div class="text-center pb-4">
+            <h1 class="section-title pb-3 text-uppercase text-start">
+                Policies and Regulations</h1>
+                <p class="text-muted text-start">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less </p>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4 col-lg-3">
+                <div class="mb-3 custom-sidebar">
+                    <strong class="m-0 pe-3" style="padding-bottom: 4px;">Country: </strong>
+                    <select class="form-select" id="countrySelect" style="width: 100%; margin-top: 4px;" onclick="refreshData();">
+                        <option selected value="0">All</option>
+                        @foreach (ViewModels.Country country in Model.Countries)
+                        {
+                            <option value="@country.ID">@country.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="mb-3 custom-sidebar">
+                    <strong class="m-0 pe-3" style="padding-bottom: 4px;">Policy Areas: </strong>
+                    <div class="d-flex flex-wrap" style="list-style-type: none; gap: 10px;">
+                        @foreach (ViewModels.PolicyArea area in Model.Areas)
+                        {
+                            <span class="custom-pill policy-area cursor-pointer" data-id="@area.ID" data-val="@area.Name">@area.Name</span>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-8 col-lg-9" id="PolicyData">
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            refreshData([]);
+
+            $(".policy-area").click(function () {
+                // Toggle selection styling
+                $(this).toggleClass("selected text-bg-primary");
+
+                // Collect selected values
+                let keywords = $(".policy-area.selected")
+                    .map(function () {
+                        return $(this).data("val");
+                    })
+                    .get();
+
+                refreshData(keywords);
+            });
+        });
+
+        function refreshData(data) {
+            const countryID = $("#countrySelect").val();
+            const searchText = $("#searchInput").val();
+            const url = `/New/Policy/RefreshData?countryID=${countryID}&searchText=${}`;
+            $("#PolicyData").load(url, { "data": data });
+        }
+    </script>
+}
