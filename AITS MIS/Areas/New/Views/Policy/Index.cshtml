@@ -72,7 +72,7 @@
         function refreshData(data) {
             const countryID = $("#countrySelect").val();
             const searchText = $("#searchInput").val();
-            const url = `/New/Policy/RefreshData?countryID=${countryID}&searchText=${}`;
+            const url = `/New/Policy/RefreshData?countryID=${countryID}`;
             $("#PolicyData").load(url, { "data": data });
         }
     </script>
