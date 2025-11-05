@@ -401,11 +401,11 @@ namespace UCOnline.Controllers
                         select new
                         {
                             WasteCategory = g.Key,
-                            Generated = g.Sum(x => x.Totalgenerated),
+                            Generated = g.Sum(x => x.Totalgenerated ?? 0),
                             Hazardous = g.Sum(x => x.Hazardous ?? 0),
-                            Recycled = g.Sum(x => x.Recycled),
-                            Recovered = g.Sum(x => x.Recovered),
-                            Disposal = g.Sum(x => x.Disposal),
+                            Recycled = g.Sum(x => x.Recycled ?? 0),
+                            Recovered = g.Sum(x => x.Recovered ?? 0),
+                            Disposal = g.Sum(x => x.Disposal ?? 0),
                             Treatment = g.Sum(x => x.Treatment ?? 0),
                             Reuse = g.Sum(x => x.Reuse ?? 0),
                             Sludge = g.Sum(x => x.Sludge ?? 0),
