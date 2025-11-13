@@ -20,11 +20,11 @@
 {
     <div class="custom-border d-flex p-4 mb-4">
         <!-- <small class="text-blue text-uppercase">Code No:</small> -->
-        <div class="col-2 pe-3">
-            <img src="~/Documents/@item.Thumbnail" style="width: 100%;">
+        <div class="col-2">
+            <img src="~/Documents/@item.Thumbnail" style="height: 100%; width: 150px; object-fit: cover;">
         </div>
 
-        <div class="col-10">
+        <div class="col-10 ps-3">
             <h4 class="m-0">@item.Title</h4>
             <small>@item.Country | @item.Year</small>
             <div class="pt-3" style="display: -webkit-box; -webkit-line-clamp: 4;  -webkit-box-orient: vertical; overflow: hidden; ">@Html.Raw(item.Description)</div>

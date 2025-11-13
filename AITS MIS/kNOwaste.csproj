@@ -6424,6 +6424,9 @@
     <Content Include="Content\imgs\expert2.png" />
     <Content Include="Content\imgs\expert3.png" />
     <Content Include="Content\imgs\expert4.png" />
+    <Content Include="Content\imgs\home\banner_1.jpg" />
+    <Content Include="Content\imgs\home\banner_2.jpg" />
+    <Content Include="Content\imgs\home\banner_3.jpg" />
     <Content Include="Content\imgs\img-1.jfif" />
     <Content Include="Content\imgs\img1.jfif" />
     <Content Include="Content\imgs\inform.png" />

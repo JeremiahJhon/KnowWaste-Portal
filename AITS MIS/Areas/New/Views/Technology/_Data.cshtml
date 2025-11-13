@@ -4,7 +4,7 @@
 {
     <div class="col-md-4">
         <div class="card h-100 s-border box-shadow">
-            <img src="~/Documents/Technology/@item.Thumbnail.Split(';')[0]" class="card-img-top" alt="@item.Title" height="250px">
+            <img src="~/Documents/Technology/@item.Thumbnail.Split(';')[0]" class="card-img-top" alt="@item.Title"  style="height: 250px; width: 100%; object-fit: cover;">
             <div class="card-body">
                 <h5 class="card-title mb-0">@item.Title</h5>
                 <small>Date Created: @Convert.ToDateTime(item.Date).ToString("d MMMM yyyy")</small>
