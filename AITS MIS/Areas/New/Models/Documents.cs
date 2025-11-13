@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Policy;
 using UCOnline.Data;
@@ -30,6 +31,8 @@ namespace KnowWaste.Models
 
         public List<string> Areas { get; set; }
 
+        public Pagination PaginationSetting { get; set; } = new Pagination();
+
         public Documents(string type, int id) {
             this.ID = id;
             this.CountryID = 0;
@@ -48,13 +51,15 @@ namespace KnowWaste.Models
             }
         }
 
-        public Documents(string type, int countryID, int year, string publisher)
+        public Documents(string type, int countryID, int year, string publisher, string searchText, int pageIndex)
         {
             this.ID = 0;
             this.CountryID = countryID;
             this.Year = year;
             this.Publisher = publisher;
             this.Area = "";
+            PaginationSetting.SearchText = searchText;
+            PaginationSetting.PageIndex = pageIndex;
 
             switch (type)
             {
@@ -157,6 +162,28 @@ namespace KnowWaste.Models
 
             Years = DocumentList.Select(p => p.Year).Distinct().ToList();
             Publishers = DocumentList.Select(p => p.Publisher).Distinct().ToList();
+
+            // Apply pagination and search
+            // Get base query
+            var query = DocumentList.AsQueryable();
+
+            // Apply search
+            if (!string.IsNullOrWhiteSpace(PaginationSetting.SearchText))
+            {
+                query = query.Where(p => p.Title.Contains(PaginationSetting.SearchText));
+            }
+
+            // Compute total count BEFORE pagination
+            PaginationSetting.TotalCount = query.Count();
+
+            // Apply pagination
+            DocumentList = query
+                .Skip(PaginationSetting.PageIndex * PaginationSetting.PageCount)
+                .Take(PaginationSetting.PageCount)
+                .ToList();
+
+            // Compute total pages
+            PaginationSetting.TotalPages = (int)Math.Ceiling((double)PaginationSetting.TotalCount / PaginationSetting.PageCount);
         }
 
         public void RefreshPublicationData()
@@ -238,6 +265,28 @@ namespace KnowWaste.Models
 
             Years = DocumentList.Select(p => p.Year).Distinct().ToList();
             Publishers = DocumentList.Select(p => p.Publisher).Distinct().ToList();
+
+            // Apply pagination and search
+            // Get base query
+            var query = DocumentList.AsQueryable();
+
+            // Apply search
+            if (!string.IsNullOrWhiteSpace(PaginationSetting.SearchText))
+            {
+                query = query.Where(p => p.Title.Contains(PaginationSetting.SearchText));
+            }
+
+            // Compute total count BEFORE pagination
+            PaginationSetting.TotalCount = query.Count();
+
+            // Apply pagination
+            DocumentList = query
+                .Skip(PaginationSetting.PageIndex * PaginationSetting.PageCount)
+                .Take(PaginationSetting.PageCount)
+                .ToList();
+
+            // Compute total pages
+            PaginationSetting.TotalPages = (int)Math.Ceiling((double)PaginationSetting.TotalCount / PaginationSetting.PageCount);
         }
 
         public void RefreshThematicData()

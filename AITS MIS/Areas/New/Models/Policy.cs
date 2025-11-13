@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UCOnline.Data;
 using ViewModels;
@@ -19,6 +20,8 @@ namespace KnowWaste.Models
 
         public List<PolicyArea> Areas { get; set; }
 
+        public Pagination PaginationSetting { get; set; } = new Pagination();
+
         public Policy()
         {
             CountryID = 0;
@@ -29,6 +32,15 @@ namespace KnowWaste.Models
         {
             CountryID = countryID;
             Keywords = keywords;
+            RefreshData();
+        }
+
+        public Policy(int countryID, List<string> keywords, string searchText, int pageIndex)
+        {
+            CountryID = countryID;
+            Keywords = keywords;            
+            PaginationSetting.SearchText = searchText;
+            PaginationSetting.PageIndex = pageIndex;
             RefreshData();
         }
 
@@ -78,6 +90,28 @@ namespace KnowWaste.Models
                             Name = g.Key.PolicyArea
                         })
                         .ToList();
+
+            // Apply pagination and search
+            // Get base query
+            var query = Policies.AsQueryable();
+
+            // Apply search
+            if (!string.IsNullOrWhiteSpace(PaginationSetting.SearchText))
+            {
+                query = query.Where(p => p.Legal.Contains(PaginationSetting.SearchText));
+            }
+
+            // Compute total count BEFORE pagination
+            PaginationSetting.TotalCount = query.Count();
+
+            // Apply pagination
+            Policies = query
+                .Skip(PaginationSetting.PageIndex * PaginationSetting.PageCount)
+                .Take(PaginationSetting.PageCount)
+                .ToList();
+
+            // Compute total pages
+            PaginationSetting.TotalPages = (int)Math.Ceiling((double)PaginationSetting.TotalCount / PaginationSetting.PageCount);
         }
     }
 }

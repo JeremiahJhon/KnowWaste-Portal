@@ -1,5 +1,21 @@
 ﻿@model KnowWaste.Models.Documents
 
+@if (Model.PaginationSetting.TotalPages > 0)
+{
+    <div class="d-flex justify-content-end align-items-center mb-5">
+        <nav aria-label="Page navigation example" class="pagination">
+            <ul class="pagination">
+                <li class="page-item"><button class="page-link" @(Model.PaginationSetting.PageIndex == 0 ? "hidden" : null) onclick="refreshData(@(Model.PaginationSetting.PageIndex - 1))">Previous</button></li>
+                @for (int index = 0; index < Model.PaginationSetting.TotalPages; index++)
+                {
+                    <li class="page-item"><button class="page-link @(index == Model.PaginationSetting.PageIndex ? "text-dark" : null)" onclick="refreshData(@index)">@(index + 1)</button></li>
+                }
+                <li class="page-item"><button class="page-link" @(Model.PaginationSetting.PageIndex == Model.PaginationSetting.TotalPages - 1 ? "hidden" : null) onclick="refreshData(@(Model.PaginationSetting.PageIndex + 1))">Next</button></li>
+            </ul>
+        </nav>
+    </div>
+}
+
 @foreach (ViewModels.Document item in Model.DocumentList)
 {
 

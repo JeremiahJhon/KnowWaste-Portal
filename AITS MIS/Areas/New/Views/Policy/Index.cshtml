@@ -26,7 +26,7 @@
             <div class="col-12 col-md-4 col-lg-3">
                 <div class="mb-3 custom-sidebar">
                     <strong class="m-0 pe-3" style="padding-bottom: 4px;">Country: </strong>
-                    <select class="form-select" id="countrySelect" style="width: 100%; margin-top: 4px;" onclick="refreshData();">
+                    <select class="form-select" id="countrySelect" style="width: 100%; margin-top: 4px;" onclick="refreshData(0);">
                         <option selected value="0">All</option>
                         @foreach (ViewModels.Country country in Model.Countries)
                         {
@@ -44,36 +44,43 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-8 col-lg-9" id="PolicyData">
-            </div>
+            <div class="col-12 col-md-8 col-lg-9">
+                <div class="col-3 float-start">
+                    <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" id="searchInput">
+                </div>
+                <div class="wrapper" id="PolicyData">
+                </div>
         </div>
     </div>
 </section>
 @section scripts {
     <script>
         $(document).ready(function () {
-            refreshData([]);
+            refreshData(0);
 
             $(".policy-area").click(function () {
                 // Toggle selection styling
                 $(this).toggleClass("selected text-bg-primary");
 
-                // Collect selected values
-                let keywords = $(".policy-area.selected")
-                    .map(function () {
-                        return $(this).data("val");
-                    })
-                    .get();
+                refreshData(0);
+            });
 
-                refreshData(keywords);
+            $("#searchInput").keyup(function () {
+                refreshData(0);
             });
         });
 
-        function refreshData(data) {
+        function refreshData(pageIndex) {
+            // Collect selected values
+            let keywords = $(".policy-area.selected")
+                .map(function () {
+                    return $(this).data("val");
+                })
+                .get();
             const countryID = $("#countrySelect").val();
             const searchText = $("#searchInput").val();
-            const url = `/New/Policy/RefreshData?countryID=${countryID}`;
-            $("#PolicyData").load(url, { "data": data });
+            const url = `/New/Policy/RefreshData?countryID=${countryID}&searchText=${searchText}&pageIndex=${pageIndex}`;
+            $("#PolicyData").load(url, { "data": keywords });
         }
     </script>
 }

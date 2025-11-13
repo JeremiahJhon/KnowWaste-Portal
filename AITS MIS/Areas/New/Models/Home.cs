@@ -11,6 +11,8 @@ namespace KnowWaste.Models
 
         public List<ViewModels.GoodPractice> BlogList { get; set; }
 
+        public List<ViewModels.Expert> ExpertList { get; set; }
+
         public Home() { }
 
         public void GetData()
@@ -26,6 +28,17 @@ namespace KnowWaste.Models
                             Country = b.Name,
                             Thumbnail = a.Photo,
                         }).ToList();
+
+            ExpertList = (from a in db.expertrosters
+                          where a.Deleted == 0
+                          select new ViewModels.Expert
+                          {
+                              ID = a.ID,
+                              Name = a.Firstname + " " + a.Lastname,
+                              Description = a.Expertise,
+                              Position = a.Position,
+                              Thumbnail = a.Thumbnail,
+                          }).ToList();
         }
     }
 }

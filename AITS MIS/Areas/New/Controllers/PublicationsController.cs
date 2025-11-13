@@ -34,9 +34,9 @@ namespace Knowwaste.Areas.New.Controllers
         }
 
         // GET: New/Publications/RefreshData
-        public ActionResult RefreshData(int countryID, int year, string publisher)
+        public ActionResult RefreshData(int countryID, int year, string publisher, string searchText, int pageIndex)
         {
-            Documents model = new Documents("Publications", countryID, year, publisher);
+            Documents model = new Documents("Publications", countryID, year, publisher, searchText, pageIndex);
             return PartialView("_Data", model);
         }
     }

@@ -16,10 +16,10 @@ namespace Knowwaste.Areas.New.Controllers
 
         // POST: New/Policy/RefreshData
         [HttpPost]
-        public ActionResult RefreshData(int countryID, List<string> data)
+        public ActionResult RefreshData(int countryID, List<string> data, string searchText, int pageIndex)
         {
             if (data == null) { data = new List<string>(); }
-            Policy model = new Policy(countryID, data);
+            Policy model = new Policy(countryID, data, searchText, pageIndex);
             return PartialView("_Data", model);
         }
     }
