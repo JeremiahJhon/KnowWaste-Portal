@@ -1,6 +1,24 @@
-﻿@{
+﻿@model KnowWaste.Models.Data
+@{
     Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
 }
+
+<style>
+    .apexcharts-legend {
+        align-items: baseline !important;
+    }
+
+    .table.gy-7 td, .table.gy-7 th {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    .table > thead {
+        border-bottom: solid 2px #ccc;
+        font-weight: 800;
+        font-size: 14px;
+    }
+</style>
 
 <!-- breadcrumb -->
 <section class="breadcrumb">
@@ -26,72 +44,69 @@
                 <div class="mb-4">
                     <strong class="m-0 pe-3" style="padding-bottom: 4px;">Waste Type: </strong>
                     <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2" checked>
-                        <label class="form-check-label" for="radioDefault2">
-                            Both
+                        <input class="form-check-input" type="radio" name="radioWasteType" data-val="All" checked>
+                        <label class="form-check-label">
+                            All
                         </label>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
-                        <label class="form-check-label" for="radioDefault1">
-                            Solid Waste
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
-                        <label class="form-check-label" for="radioDefault1">
-                            Plastic Waste
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
-                        <label class="form-check-label" for="radioDefault1">
-                            Calculator
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
-                        <label class="form-check-label" for="radioDefault1">
-                            Calculator
-                        </label>
-                    </div>
-
+                    @foreach (ViewModels.WasteType wasteType in Model.WasteTypes)
+                    {
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="radio" data-val="@wasteType.Name" name="radioWasteType">
+                            <label class="form-check-label">
+                                @wasteType.Name
+                            </label>
+                        </div>
+                    }
                 </div>
                 <div class="mb-4">
                     <strong class="m-0 pe-3" style="padding-bottom: 4px;">Country: </strong>
                     <select class="form-select" id="countrySelect" style="width: 100%; margin-top: 4px;">
-                        <option selected disabled>Select a country</option>
+                        <option value="0" selected>All</option>
+                        @foreach (ViewModels.Country country in Model.Countries)
+                        {
+                            <option value="@country.ID">@country.Name</option>
+                        }
                     </select>
                 </div>
                 <div class="mb-4">
                     <strong class="m-0 pe-3" style="padding-bottom: 4px;">City: </strong>
-                    <select class="form-select" id="countrySelect" style="width: 100%; margin-top: 4px;">
-                        <option selected disabled>Select a country</option>
+                    <select class="form-select" id="citySelect" style="width: 100%; margin-top: 4px;">
+                        <option value="-1" selected>-</option>
+                        <option value="0">All</option>
+                        @foreach (ViewModels.City city in Model.Cities)
+                        {
+                            <option value="@city.ID">@city.Name</option>
+                        }
                     </select>
                 </div>
                 <div class="mb-4">
                     <strong class="m-0 pe-3" style="padding-bottom: 4px;">Year: </strong>
-                    <select class="form-select" id="countrySelect" style="width: 100%; margin-top: 4px;">
-                        <option selected disabled>Select a country</option>
+                    <select class="form-select" id="yearSelect" style="width: 100%; margin-top: 4px;">
+                        <option value="0" selected>All</option>
+                        @foreach (int year in Model.Years)
+                        {
+                            <option value="@year">@year</option>
+                        }
                     </select>
                 </div>
                 <div class="mb-4">
-                    <strong class="m-0 pe-3" style="padding-bottom: 4px;">Waste Type: </strong>
+                    <strong class="m-0 pe-3" style="padding-bottom: 4px;">Report Type: </strong>
                     <div class="form-check mt-2">
-                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2" checked>
-                        <label class="form-check-label" for="radioDefault2">
+                        <input class="form-check-input" type="radio" name="radioReportType" data-val="Both" checked>
+                        <label class="form-check-label">
                             Both
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
-                        <label class="form-check-label" for="radioDefault1">
+                        <input class="form-check-input" type="radio" name="radioReportType" data-val="Graph">
+                        <label class="form-check-label">
                             Graph only
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
-                        <label class="form-check-label" for="radioDefault1">
+                        <input class="form-check-input" type="radio" name="radioReportType" data-val="Table">
+                        <label class="form-check-label">
                             Table only
                         </label>
                     </div>
@@ -99,113 +114,29 @@
             </div>
             <div class="col-12 col-md-8 col-lg-9">
                 <div class="wrapper">
-                    <div class="custom-border p-4 mb-4">
-                        <div class="graph-wrapper mb-5">
-                            <h2 class="m-0 text-blue text-center">Solid Wastes</h2>
-                            <!-- <small>Vietnam | 2018</small> -->
-                            <p class="pt-3" style="display: -webkit-box; -webkit-line-clamp: 4;  -webkit-box-orient: vertical; overflow: hidden; ">The Decree provide detailed rules on recycling of discarded products and packaging materials under the Extended Producer Responsibility (EPR). The Decree sets out a list of regulated products and compulsory recycling rates.</p>
-
+                    <div class="custom-border p-4 mb-4" id="SolidWasteWrapper">
+                        <h2 class="m-0 text-blue text-center">Solid Waste</h2>
+                        <p class="pt-3" style="display: -webkit-box; -webkit-line-clamp: 4;  -webkit-box-orient: vertical; overflow: hidden; ">The Decree provide detailed rules on recycling of discarded products and packaging materials under the Extended Producer Responsibility (EPR). The Decree sets out a list of regulated products and compulsory recycling rates.</p>
+                        <div class="graph-wrapper mb-5" id="SolidWasteGraph">
                             <strong class="mb-3">Year Vs Tons  </strong>
-                            <div id="chart1"></div>
+                            <div id="chart-1" style="height: 350px;"></div>
                         </div>
-                        <div class="custom-table">
-                            <strong class="mb-3">Table </strong>
-
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Country</th>
-                                        <th scope="col">Year</th>
-                                        <th scope="col">Generated</th>
-                                        <th scope="col">Collected</th>
-                                        <th scope="col">Recycled</th>
-                                        <th scope="col">Recovered</th>
-                                        <th scope="col">Disposal</th>
-                                        <th scope="col">More Info</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <!-- <th scope="row">1</th> -->
-                                        <td>Brunei Darussalam</td>
-                                        <td>2014</td>
-                                        <td>210</td>
-                                        <td>168</td>
-                                        <td> </td>
-                                        <td> </td>
-                                        <td> </td>
-                                        <td><i class="bi bi-chevron-down"></i></td>
-
-                                    </tr>
-                                    <tr>
-                                        <!-- <th scope="row">2</th> -->
-                                        <td>Brunei Darussalam</td>
-                                        <td>2019</td>
-                                        <td>297.22K</td>
-                                        <td> </td>
-                                        <td></td>
-                                        <td>33.59K</td>
-                                        <td> 263.63</td>
-                                        <td><i class="bi bi-chevron-down"></i></td>
-                                    </tr>
-                                </tbody>
+                        <div class="custom-table" id="SolidWasteTable">
+                            <table class="table table-striped" id="SolidWasteDatatable">
                             </table>
-
                         </div>
                     </div>
 
-                    <div class="custom-border p-4 mb-4">
-                        <div class="graph-wrapper mb-5">
-                            <h2 class="m-0 text-blue text-center">Plastic Wastes</h2>
-                            <!-- <small>Vietnam | 2018</small> -->
-                            <p class="pt-3" style="display: -webkit-box; -webkit-line-clamp: 4;  -webkit-box-orient: vertical; overflow: hidden; ">The Decree provide detailed rules on recycling of discarded products and packaging materials under the Extended Producer Responsibility (EPR). The Decree sets out a list of regulated products and compulsory recycling rates.</p>
-
+                    <div class="custom-border p-4 mb-4" id="PlasticWasteWrapper">
+                        <h2 class="m-0 text-blue text-center">Plastic Waste</h2>
+                        <p class="pt-3" style="display: -webkit-box; -webkit-line-clamp: 4;  -webkit-box-orient: vertical; overflow: hidden; ">The Decree provide detailed rules on recycling of discarded products and packaging materials under the Extended Producer Responsibility (EPR). The Decree sets out a list of regulated products and compulsory recycling rates.</p>
+                        <div class="graph-wrapper mb-5" id="PlasticWasteGraph">
                             <strong class="mb-3">Year Vs Tons  </strong>
-                            <div id="chart2"></div>
+                            <div id="chart-2" style="height: 350px;"></div>
                         </div>
-                        <div class="custom-table table-responsive">
-                            <strong class="mb-3">Table </strong>
-
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Country</th>
-                                        <th scope="col">Year</th>
-                                        <th scope="col">Generated</th>
-                                        <th scope="col">Collected</th>
-                                        <th scope="col">Recycled</th>
-                                        <th scope="col">Recovered</th>
-                                        <th scope="col">Disposal</th>
-                                        <th scope="col">More Info</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <!-- <th scope="row">1</th> -->
-                                        <td>Brunei Darussalam</td>
-                                        <td>2014</td>
-                                        <td>210</td>
-                                        <td>168</td>
-                                        <td> </td>
-                                        <td> </td>
-                                        <td> </td>
-                                        <td><i class="bi bi-chevron-down"></i></td>
-
-                                    </tr>
-                                    <tr>
-                                        <!-- <th scope="row">2</th> -->
-                                        <td>Brunei Darussalam</td>
-                                        <td>2019</td>
-                                        <td>297.22K</td>
-                                        <td> </td>
-                                        <td></td>
-                                        <td>33.59K</td>
-                                        <td> 263.63</td>
-                                        <td><i class="bi bi-chevron-down"></i></td>
-                                    </tr>
-                                </tbody>
+                        <div class="custom-table" id="PlasticWasteTable">
+                            <table class="table table-striped" id="PlasticWasteDatatable">
                             </table>
-
                         </div>
                     </div>
                 </div>
@@ -215,147 +146,756 @@
     </div>
 </section>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<script>
-   var options1 = {
-          series: [
-          {
-            name: 'Q1 Budget',
-            group: 'budget',
-            data: [44000, 55000, 41000, 67000, 22000, 43000]
-          },
-          {
-            name: 'Q1 Actual',
-            group: 'actual',
-            data: [48000, 50000, 40000, 65000, 25000, 40000]
-          },
-          {
-            name: 'Q2 Budget',
-            group: 'budget',
-            data: [13000, 36000, 20000, 8000, 13000, 27000]
-          },
-          {
-            name: 'Q2 Actual',
-            group: 'actual',
-            data: [20000, 40000, 25000, 10000, 12000, 28000]
-          }
-        ],
-          chart: {
-          type: 'bar',
-          height: 350,
-          stacked: true,
-        },
-        stroke: {
-          width: 1,
-          colors: ['#fff']
-        },
-        dataLabels: {
-          formatter: (val) => {
-            return val / 1000 + 'K'
-          }
-        },
-        plotOptions: {
-          bar: {
-            horizontal: false
-          }
-        },
-        xaxis: {
-          categories: [
-            'Online advertising',
-            'Sales Training',
-            'Print advertising',
-            'Catalogs',
-            'Meetings',
-            'Public relations'
-          ]
-        },
-        fill: {
-          opacity: 1
-        },
-        colors: ['#80c7fd', '#008FFB', '#80f1cb', '#00E396'],
-        yaxis: {
-          labels: {
-            formatter: (val) => {
-              return val / 1000 + 'K'
-            }
-          }
-        },
-        legend: {
-          position: 'bottom',
-          horizontalAlign: 'center'
-        }
-        };
 
-    var options2 = {
-          series: [
-          {
-            name: 'Q1 Budget',
-            group: 'budget',
-            data: [44000, 55000, 41000, 67000, 22000, 43000]
-          },
-          {
-            name: 'Q1 Actual',
-            group: 'actual',
-            data: [48000, 50000, 40000, 65000, 25000, 40000]
-          },
-          {
-            name: 'Q2 Budget',
-            group: 'budget',
-            data: [13000, 36000, 20000, 8000, 13000, 27000]
-          },
-          {
-            name: 'Q2 Actual',
-            group: 'actual',
-            data: [20000, 40000, 25000, 10000, 12000, 28000]
-          }
-        ],
-          chart: {
-          type: 'bar',
-          height: 350,
-          stacked: true,
-        },
-        stroke: {
-          width: 1,
-          colors: ['#fff']
-        },
-        dataLabels: {
-          formatter: (val) => {
-            return val / 1000 + 'K'
-          }
-        },
-        plotOptions: {
-          bar: {
-            horizontal: false
-          }
-        },
-        xaxis: {
-          categories: [
-            'Online advertising',
-            'Sales Training',
-            'Print advertising',
-            'Catalogs',
-            'Meetings',
-            'Public relations'
-          ]
-        },
-        fill: {
-          opacity: 1
-        },
-        colors: ['#80c7fd', '#008FFB', '#80f1cb', '#00E396'],
-        yaxis: {
-          labels: {
-            formatter: (val) => {
-              return val / 1000 + 'K'
-            }
-          }
-        },
-        legend: {
-          position: 'bottom',
-          horizontalAlign: 'center'
-        }
-        };
+@section scripts{
+    <script>
+        const isMobile = navigator.userAgentData.mobile || window.orientation > -1; //resolves true/false
 
-var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
-var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
-chart1.render();
-chart2.render();
-</script>
+        var chart1;
+        var chart2;
+        var datatable1;
+        var datatable2;
+        $(document).ready(function () {
+            $('input[name="radioWasteType"]').on('change', function () {
+                let value = $('input[name="radioWasteType"]:checked').data('val');
+
+                $('#SolidWasteWrapper').hide();
+                $('#PlasticWasteWrapper').hide();
+
+                switch (value) {
+                    case "All":
+                        $('#SolidWasteWrapper').show();
+                        $('#PlasticWasteWrapper').show();
+                        break;
+                    case "Municipal Waste":
+                        $('#SolidWasteWrapper').show();
+                        break;
+                    case "Plastic Waste":
+                        $('#PlasticWasteWrapper').show();
+                        break;
+                }
+            });
+
+            $('input[name="radioReportType"]').on('change', function () {
+                let value = $('input[name="radioReportType"]:checked').data('val');
+
+                $('#SolidWasteGraph').hide();
+                $('#SolidWasteTable').hide();
+                $('#PlasticWasteGraph').hide();
+                $('#PlasticWasteTable').hide();
+
+                switch (value) {
+                    case "Both":
+                        $('#SolidWasteGraph').show();
+                        $('#SolidWasteTable').show();
+                        $('#PlasticWasteGraph').show();
+                        $('#PlasticWasteTable').show();
+                        break;
+                    case "Graph":
+                        $('#SolidWasteGraph').show();
+                        $('#PlasticWasteGraph').show();
+                        break;
+                    case "Table":
+                        $('#SolidWasteTable').show();
+                        $('#PlasticWasteTable').show();
+                        break;
+                }
+            });
+
+            $("#button-download").click(function () {
+                window.location.href = `/Data/ExportToCsv?country=${$("#filter-country-1").val()}&city=${$("#filter-city-1").val()}&year=${$("#filter-year-1").val()}`;
+            });
+
+            $("#countrySelect").change(function () {
+                populateCityFilter("solidWaste", this.value);
+                $("#citySelect").change();
+            });
+
+            $("#citySelect").change(function () {
+                $.ajax({
+                    url: `/MarineDebris/getDataYears?country=${$("#countrySelect").val()}&city=${$("#citySelect").val()}&wasteCategoryID=1`,
+                    type: 'GET',
+                    processData: false,
+                    async: false,
+                    success: function (res) {
+                        var data = JSON.parse(res);
+                        var select = document.getElementById("yearSelect");
+                        select.innerHTML = "";
+                        var option = document.createElement("option");
+                        option.setAttribute("value", 0);
+                        option.text = "All";
+                        select.add(option);
+                        for (var ctr = 0; ctr < data.length; ctr++) {
+                            var option = document.createElement("option");
+                            option.setAttribute("value", data[ctr]);
+                            option.text = data[ctr];
+                            select.add(option);
+                        }
+                        select.value = 0;
+                    },
+                    error: function (res) {
+                        console.log(res);
+                    }
+                });
+            });
+
+            function populateCityFilter(wasteType, country) {
+                $.ajax({
+                    url: '/MarineDebris/getCity?country=' + country,
+                    type: 'GET',
+                    async: false,
+                    processData: false,
+                    success: function (res) {
+                        var data = JSON.parse(res);
+                        var select;
+                        select = document.getElementById("citySelect");
+                        select.innerHTML = "";
+                        var option = document.createElement("option");
+                        option.setAttribute("value", -1);
+                        option.text = "-";
+                        select.add(option);
+                        option = document.createElement("option");
+                        option.setAttribute("value", 0);
+                        option.text = "All";
+                        select.add(option);
+                        for (var ctr = 0; ctr < data.length; ctr++) {
+                            var option = document.createElement("option");
+                            option.setAttribute("value", data[ctr]["ID"]);
+                            option.text = data[ctr]["Name"];
+                            select.add(option);
+                        }
+                        select.value = -1;
+
+                        refreshData();
+                    },
+                    error: function (res) {
+                        console.log(res);
+                    }
+                });
+            }
+
+            function refreshData() {
+                chart1.destroy();
+                createSolidWasteGraph();
+                chart2.destroy();
+                createPlasticWasteGraph();
+            }
+
+            function createSolidWasteGraph(id, x_axis, series) {
+                $.ajax({
+                    url: `/MarineDebris/getSolidWasteGraphData?country=${$("#countrySelect").val()}&city=${$("#citySelect").val()}&year=${$("#yearSelect").val()}`,
+                    type: 'GET',
+                    processData: false,
+                    async: false,
+                    success: function (data) {
+                        getSolidWasteTableData();
+                        var graphData = JSON.parse(data);
+                        var x_axis = [];
+                        var series = [];
+                        var data_ = [];
+                        var count = 0;
+                        if (graphData.length > 0) {
+                            if (graphData[0].hasOwnProperty("Generated")) {
+                                for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                    x_axis[ctr] = graphData[ctr]["Year"];
+                                    data_[ctr] = graphData[ctr]["Generated"];
+                                }
+                                series[count] = {
+                                    name: "Generated",
+                                    group: "a",
+                                    data: data_
+                                }
+                                count++;
+                            }
+                            data_ = [];
+                            if (graphData[0].hasOwnProperty("Collected")) {
+                                for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                    x_axis[ctr] = graphData[ctr]["Year"];
+                                    data_[ctr] = graphData[ctr]["Collected"];
+                                }
+                                series[count] = {
+                                    name: "Collected",
+                                    group: "b",
+                                    data: data_
+                                }
+                                count++;
+                            }
+                            data_ = [];
+                            if (graphData[0].hasOwnProperty("Recycled")) {
+                                for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                    x_axis[ctr] = graphData[ctr]["Year"];
+                                    data_[ctr] = graphData[ctr]["Recycled"];
+                                }
+                                series[count] = {
+                                    name: "Recycled",
+                                    group: "b",
+                                    data: data_
+                                }
+                                count++;
+                            }
+                            data_ = [];
+                            if (graphData[0].hasOwnProperty("Recovered")) {
+                                for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                    x_axis[ctr] = graphData[ctr]["Year"];
+                                    data_[ctr] = graphData[ctr]["Recovered"];
+                                }
+                                series[count] = {
+                                    name: "Recovered",
+                                    group: "b",
+                                    data: data_
+                                }
+                                count++;
+                            }
+                            data_ = [];
+                            if (graphData[0].hasOwnProperty("Disposal")) {
+                                for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                    x_axis[ctr] = graphData[ctr]["Year"];
+                                    data_[ctr] = graphData[ctr]["Disposal"];
+                                }
+                                series[count] = {
+                                    name: "Disposal",
+                                    group: "b",
+                                    data: data_
+                                }
+                                count++;
+                            }
+
+                            var options = {
+                                series: series,
+                                chart: {
+                                    type: 'bar',
+                                    stacked: true,
+                                    height: 400,
+                                    toolbar: {
+                                        show: true
+                                    },
+                                    zoom: {
+                                        enabled: true
+                                    }
+                                },
+                                plotOptions: {
+                                    bar: {
+                                        horizontal: false,
+                                        endingShape: 'rounded',
+                                        borderRadius: 2
+                                    },
+                                },
+                                dataLabels: {
+                                    formatter: function (val) {
+                                        return numFormatter(val);//.toLocaleString('en-US')
+                                    },
+                                    style: {
+                                        fontSize: "10px",
+                                        colors: ['#000000']
+                                    }
+                                },
+                                stroke: {
+                                    show: true,
+                                    width: 2,
+                                    colors: ['transparent']
+                                },
+                                xaxis: {
+                                    categories: x_axis,
+                                    labels: {
+                                        show: true,
+                                        minWidth: 0,
+                                        maxWidth: 160,
+                                        style: {
+                                            fontSize: '12px',
+                                            fontFamily: 'Roboto Condensed, sans-serif',
+                                            fontWeight: 400,
+                                        }
+                                    },
+                                    title: {
+                                        text: 'Year'
+                                    }
+                                },
+                                yaxis: {
+                                    logarithmic: false,
+                                    logBase: 10,
+                                    labels: {
+                                        show: true,
+                                        align: 'right',
+                                        minWidth: 0,
+                                        maxWidth: 160,
+                                        style: {
+                                            fontSize: '12px',
+                                            fontFamily: 'Roboto Condensed, sans-serif',
+                                            fontWeight: 400,
+                                        },
+                                        offsetX: 0,
+                                        offsetY: 0,
+                                        rotate: 0,
+                                        formatter: function (val) {
+                                            return numFormatter(val);//.toLocaleString('en-US')
+                                        }
+                                    },
+                                    title: {
+                                        text: 'Tons'
+                                    }
+                                },
+                                fill: {
+                                    opacity: 1
+                                },
+                                tooltip: {
+                                    enabled: true,
+                                    y: {
+                                        formatter: function (val) {
+                                            return val.toLocaleString('en-US') + " Tons";
+                                        }
+                                    }
+                                },
+                                noData: {
+                                    text: 'No Data'
+                                },
+                                legend: {
+                                    position: isMobile ? 'bottom' : 'right',
+                                },
+                            };
+
+                            chart1 = new ApexCharts(document.querySelector("#chart-1"), options);
+                            chart1.render();
+                        } else {
+                            var options = {
+                                chart: {
+                                    height: 350,
+                                    type: 'bar',
+                                },
+                                dataLabels: {
+                                    enabled: false
+                                },
+                                series: [],
+                                noData: {
+                                    text: 'No Data'
+                                }
+                            }
+
+                            chart1 = new ApexCharts(document.querySelector("#chart-1"), options);
+                            chart1.render();
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    },
+                });
+            }
+
+            function createPlasticWasteGraph(id, x_axis, series) {
+                $.ajax({
+                    url: `/MarineDebris/getPlasticWasteGraphData?country=${$("#countrySelect").val()}&city=${$("#citySelect").val()}&year=${$("#yearSelect").val()}`,
+                    type: 'GET',
+                    processData: false,
+                    async: false,
+                    success: function (data) {
+                        getPlasticWasteTableData();
+                        var graphData = JSON.parse(data);
+                        var x_axis = [];
+                        var series = [];
+                        var data_ = [];
+                        var count = 0;
+                        if (graphData.length > 0) {
+                            if (graphData[0].hasOwnProperty("Generated")) {
+                                for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                    x_axis[ctr] = graphData[ctr]["Year"];
+                                    data_[ctr] = graphData[ctr]["Generated"];
+                                }
+                                series[count] = {
+                                    name: "Generated",
+                                    group: "a",
+                                    data: data_
+                                }
+                                count++;
+                            }
+                            data_ = [];
+                            if (graphData[0].hasOwnProperty("Collected")) {
+                                for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                    x_axis[ctr] = graphData[ctr]["Year"];
+                                    data_[ctr] = graphData[ctr]["Collected"];
+                                }
+                                series[count] = {
+                                    name: "Collected",
+                                    group: "b",
+                                    data: data_
+                                }
+                                count++;
+                            }
+                            data_ = [];
+                            if (graphData[0].hasOwnProperty("Recycled")) {
+                                for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                    x_axis[ctr] = graphData[ctr]["Year"];
+                                    data_[ctr] = graphData[ctr]["Recycled"];
+                                }
+                                series[count] = {
+                                    name: "Recycled",
+                                    group: "b",
+                                    data: data_
+                                }
+                                count++;
+                            }
+                            data_ = [];
+                            if (graphData[0].hasOwnProperty("Recovered")) {
+                                for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                    x_axis[ctr] = graphData[ctr]["Year"];
+                                    data_[ctr] = graphData[ctr]["Recovered"];
+                                }
+                                series[count] = {
+                                    name: "Recovered",
+                                    group: "b",
+                                    data: data_
+                                }
+                                count++;
+                            }
+                            data_ = [];
+                            if (graphData[0].hasOwnProperty("Disposal")) {
+                                for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                    x_axis[ctr] = graphData[ctr]["Year"];
+                                    data_[ctr] = graphData[ctr]["Disposal"];
+                                }
+                                series[count] = {
+                                    name: "Disposal",
+                                    group: "b",
+                                    data: data_
+                                }
+                                count++;
+                            }
+
+                            var options = {
+                                series: series,
+                                chart: {
+                                    type: 'bar',
+                                    stacked: true,
+                                    height: 400,
+                                    toolbar: {
+                                        show: true
+                                    },
+                                    zoom: {
+                                        enabled: true
+                                    }
+                                },
+                                plotOptions: {
+                                    bar: {
+                                        horizontal: false,
+                                        endingShape: 'rounded',
+                                        borderRadius: 2
+                                    },
+                                },
+                                dataLabels: {
+                                    formatter: function (val) {
+                                        return numFormatter(val);//.toLocaleString('en-US')
+                                    },
+                                    style: {
+                                        fontSize: "10px",
+                                        colors: ['#000000']
+                                    }
+                                },
+                                stroke: {
+                                    show: true,
+                                    width: 2,
+                                    colors: ['transparent']
+                                },
+                                xaxis: {
+                                    categories: x_axis,
+                                    labels: {
+                                        show: true,
+                                        minWidth: 0,
+                                        maxWidth: 160,
+                                        style: {
+                                            fontSize: '12px',
+                                            fontFamily: 'Roboto Condensed, sans-serif',
+                                            fontWeight: 400,
+                                        }
+                                    },
+                                    title: {
+                                        text: 'Year'
+                                    }
+                                },
+                                yaxis: {
+                                    logarithmic: false,
+                                    logBase: 10,
+                                    labels: {
+                                        show: true,
+                                        align: 'right',
+                                        minWidth: 0,
+                                        maxWidth: 160,
+                                        style: {
+                                            fontSize: '12px',
+                                            fontFamily: 'Roboto Condensed, sans-serif',
+                                            fontWeight: 400,
+                                        },
+                                        offsetX: 0,
+                                        offsetY: 0,
+                                        rotate: 0,
+                                        formatter: function (val) {
+                                            return numFormatter(val);//.toLocaleString('en-US')
+                                        }
+                                    },
+                                    title: {
+                                        text: 'Tons'
+                                    }
+                                },
+                                fill: {
+                                    opacity: 1
+                                },
+                                tooltip: {
+                                    enabled: true,
+                                    y: {
+                                        formatter: function (val) {
+                                            return val.toLocaleString('en-US') + " Tons";
+                                        }
+                                    }
+                                },
+                                noData: {
+                                    text: 'No Data'
+                                },
+                                legend: {
+                                    position: isMobile ? 'bottom' : 'right',
+                                },
+                            };
+
+                            chart2 = new ApexCharts(document.querySelector("#chart-2"), options);
+                            chart2.render();
+                        } else {
+                            var options = {
+                                chart: {
+                                    height: 350,
+                                    type: 'bar',
+                                },
+                                dataLabels: {
+                                    enabled: false
+                                },
+                                series: [],
+                                noData: {
+                                    text: 'No Data'
+                                }
+                            }
+
+                            chart2 = new ApexCharts(document.querySelector("#chart-2"), options);
+                            chart2.render();
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    },
+                })
+            }
+
+            function getSolidWasteTableData() {
+                if (datatable2 != null) datatable2.destroy();
+                $.ajax({
+                    url: `/MarineDebris/getSolidWasteTableData?country=${$("#countrySelect").val()}&city=${$("#citySelect").val()}&year=${$("#yearSelect").val()}`,
+                    type: 'GET',
+                    processData: false,
+                    async: false,
+                    success: function (res) {
+                        var data = JSON.parse(res);
+                        dataSet = [];
+                        var column = "Country";
+                        if ($("#filter-city-1").val() >= 0) column = "City";
+                        for (var ctr = 0; ctr < data.length; ctr++) {
+                            array = [];
+                            if ($("#filter-city-1").val() >= 0) array.push(data[ctr]["City"]);
+                            else array.push(data[ctr]["Country"]);
+                            array.push(data[ctr]["Year"]);
+                            array.push(numFormatter(data[ctr]["Generated"]));
+                            array.push(numFormatter(data[ctr]["Collected"]));
+                            array.push(numFormatter(data[ctr]["Recycled"]));
+                            array.push(numFormatter(data[ctr]["Recovered"]));
+                            array.push(numFormatter(data[ctr]["Disposal"]));
+                            array.push('<div hidden><div data-name="SW-popover-content-' + ctr + '" style="font-size: 10px;">' + data[ctr]["Reference"] + '</div></div><button id="SW-ref' + ctr + '" type="button" class="btn btn-primary popover-group py-1 px-2 border" data-bs-toggle="tooltip" data-bs-trigger="focus" data-bs-placement="right" style="border-radius: 20px;position:relative;margin:-10px 0px;"><i class="bi bi-info-lg px-0"></i></button>');
+                            array.push('<div hidden><div data-name="SW-popover-content-1-' + ctr + '" style="font-size: 10px;">' + data[ctr]["Definitions"] + '</div></div><button id="SW-ref-1-' + ctr + '" type="button" class="btn btn-primary popover-group py-1 px-2 border" data-bs-toggle="tooltip" data-bs-trigger="focus" data-bs-placement="right" style="border-radius: 20px;position:relative;margin:-10px 0px;"><i class="bi bi-book px-0"></i></button>');
+                            dataSet.push(array);
+                        }
+
+                        datatable2 = $("#SolidWasteDatatable").DataTable({
+                            columns: [
+                                { title: column },
+                                { title: 'Year' },
+                                { title: 'Generated' },
+                                { title: 'Collected' },
+                                { title: 'Recycled' },
+                                { title: 'Recovered' },
+                                { title: 'Disposal' },
+                                { title: 'Ref' },
+                                { title: 'Definitions' }
+                            ],
+                            data: dataSet,
+                            dom: "<'row'" +
+                                "<'col-sm-8 d-flex align-items-center justify-content-start'f>" +
+                                "<'col-sm-4 d-flex align-items-center justify-content-end'l>" +
+                                ">" +
+
+                                "<'table-responsive'tr>" +
+
+                                "<'row'" +
+                                "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                                "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                                ">",
+                            language: {
+                                paginate: { next: "Next", previous: "Prev" }
+                            }
+                        });
+                        for (var ctr = 0; ctr < data.length; ctr++) {
+                            var options = {
+                                html: true,
+                                title: "References",
+                                //html element
+                                //content: $("#popover-content")
+                                content: $('[data-name="SW-popover-content-' + ctr + '"]')
+                                //Doing below won't work. Shows title only
+                                //content: $("#popover-content").html()
+
+                            }
+                            var exampleEl = document.getElementById('SW-ref' + ctr)
+                            if (exampleEl != null) {
+                                var popover = new bootstrap.Popover(exampleEl, options)
+                            }
+                        }
+                        for (var ctr = 0; ctr < data.length; ctr++) {
+                            var options = {
+                                html: true,
+                                title: "Definitions",
+                                //html element
+                                //content: $("#popover-content")
+                                content: $('[data-name="SW-popover-content-1-' + ctr + '"]')
+                                //Doing below won't work. Shows title only
+                                //content: $("#popover-content").html()
+
+                            }
+                            var exampleEl = document.getElementById('SW-ref-1-' + ctr)
+                            if (exampleEl != null) {
+                                var popover = new bootstrap.Popover(exampleEl, options)
+                            }
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    },
+                })
+            }
+
+            function getPlasticWasteTableData() {
+                if (datatable1 != null) datatable1.destroy();
+                $.ajax({
+                    url: `/MarineDebris/getPlasticWasteTableData?country=${$("#countrySelect").val()}&city=${$("#citySelect").val()}&year=${$("#yearSelect").val()}`,
+                    type: 'GET',
+                    processData: false,
+                    async: false,
+                    success: function (res) {
+                        var data = JSON.parse(res);
+                        dataSet = [];
+                        var column = "Country";
+                        if ($("#filter-city-1").val() >= 0) column = "City";
+                        for (var ctr = 0; ctr < data.length; ctr++) {
+                            array = [];
+                            if ($("#filter-city-1").val() >= 0) array.push(data[ctr]["City"]);
+                            else array.push(data[ctr]["Country"]);
+                            array.push(data[ctr]["Year"]);
+                            array.push(numFormatter(data[ctr]["Generated"]));
+                            array.push(numFormatter(data[ctr]["Collected"]));
+                            array.push(numFormatter(data[ctr]["Recycled"]));
+                            array.push(numFormatter(data[ctr]["Recovered"]));
+                            array.push(numFormatter(data[ctr]["Disposal"]));
+                            array.push('<div hidden><div data-name="PW-popover-content-' + ctr + '" style="font-size: 10px;">' + data[ctr]["Reference"] + '</div></div><button id="PW-ref' + ctr + '" type="button" class="btn btn-primary popover-group py-1 px-2 border" data-bs-toggle="tooltip" data-bs-trigger="focus" data-bs-placement="right" style="border-radius: 20px;position:relative;margin:-10px 0px;"><i class="bi bi-info-lg px-0"></i></button>');
+                            array.push('<div hidden><div data-name="PW-popover-content-2-' + ctr + '" style="font-size: 10px;">' + data[ctr]["Definitions"] + '</div></div><button id="PW-ref-2-' + ctr + '" type="button" class="btn btn-primary popover-group py-1 px-2 border" data-bs-toggle="tooltip" data-bs-trigger="focus" data-bs-placement="right" style="border-radius: 20px;position:relative;margin:-10px 0px;"><i class="bi bi-book px-0"></i></button>');
+                            dataSet.push(array);
+                        }
+
+                        datatable1 = $("#PlasticWasteDatatable").DataTable({
+                            columns: [
+                                { title: column },
+                                { title: 'Year' },
+                                { title: 'Generated' },
+                                { title: 'Collected' },
+                                { title: 'Recycled' },
+                                { title: 'Recovered' },
+                                { title: 'Disposal' },
+                                { title: 'Ref' },
+                                { title: 'Definitions' }
+                            ],
+                            data: dataSet,
+                            dom: "<'row'" +
+                                "<'col-sm-8 d-flex align-items-center justify-content-start'f>" +
+                                "<'col-sm-4 d-flex align-items-center justify-content-end'l>" +
+                                ">" +
+
+                                "<'table-responsive'tr>" +
+
+                                "<'row'" +
+                                "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                                "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                                ">",
+                            language: {
+                                paginate: { next: "Next", previous: "Prev" }
+                            }
+                        });
+                        for (var ctr = 0; ctr < data.length; ctr++) {
+                            var options = {
+                                html: true,
+                                title: "References",
+                                //html element
+                                //content: $("#popover-content")
+                                content: $('[data-name="PW-popover-content-' + ctr + '"]')
+                                //Doing below won't work. Shows title only
+                                //content: $("#popover-content").html()
+
+                            }
+                            var exampleEl = document.getElementById('PW-ref' + ctr)
+                            if (exampleEl != null) {
+                                var popover = new bootstrap.Popover(exampleEl, options)
+                            }
+                        }
+                        for (var ctr = 0; ctr < data.length; ctr++) {
+                            var options = {
+                                html: true,
+                                title: "Definitions",
+                                //html element
+                                //content: $("#popover-content")
+                                content: $('[data-name="PW-popover-content-2-' + ctr + '"]')
+                                //Doing below won't work. Shows title only
+                                //content: $("#popover-content").html()
+
+                            }
+                            var exampleEl = document.getElementById('PW-ref-2-' + ctr)
+                            if (exampleEl != null) {
+                                var popover = new bootstrap.Popover(exampleEl, options)
+                            }
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    },
+                });
+            }
+
+            function numFormatter(num) {
+                try {
+                    if (num >= 1000000000) {
+                        return Math.abs(num) > 999999999 ? Math.sign(num) * ((Math.abs(num) / 1000000000).toFixed(3)) + ' B' : Math.sign(num) * Math.abs(num)
+                    }
+                    if (num >= 1000000) {
+                        return Math.abs(num) > 999999 ? Math.sign(num) * ((Math.abs(num) / 1000000).toFixed(3)) + ' M' : Math.sign(num) * Math.abs(num)
+                    }
+                    if (num >= 1000) {
+                        return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(2)) + ' K' : Math.sign(num) * Math.abs(num)
+                    }
+                    if (num > 0) {
+                        return num;
+                    }
+                    if (num == null) {
+                        return ""
+                    }
+                    return 0;
+                }
+                catch {
+                    return 0;
+                }
+            }
+
+            $("#filter-country-1").change();
+            $("#filter-country-2").change();
+
+            createSolidWasteGraph();
+            createPlasticWasteGraph();
+        });
+    </script>
+}

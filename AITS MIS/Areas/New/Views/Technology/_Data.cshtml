@@ -9,7 +9,7 @@
                 <h5 class="card-title mb-0">@item.Title</h5>
                 <small>Date Created: @Convert.ToDateTime(item.Date).ToString("d MMMM yyyy")</small>
                 <p class="card-text text-truncate-3 text-muted mt-3">@Html.Raw(item.Description)</p>
-                <a href="New/Technology/Details/@item.ID" class="btn btn-link px-0">Start Reading →</a>
+                <a href="New/Technology/Details/@item.ID" class="form-control btn btn-outline-primary w-auto mt-2">Start Reading →</a>
             </div>
         </div>
     </div>
