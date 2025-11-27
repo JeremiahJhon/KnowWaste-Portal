@@ -7266,7 +7266,6 @@
     <Content Include="Scripts\jquery.form.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Tipped\tipped.js" />
-    <Content Include="Scripts\Views\Index.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -7310,6 +7309,7 @@
     <Folder Include="Areas\New\Views\Events\" />
     <Folder Include="Content\documents\Lawpolicy\" />
     <Folder Include="Content\script\" />
+    <Folder Include="Scripts\Views\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\Search\" />
   </ItemGroup>
