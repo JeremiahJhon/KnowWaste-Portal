@@ -50,5 +50,15 @@ namespace kNowaste.Helper
 
             return dt;
         }
+
+        public static int GetCookieInt(HttpRequestBase request, string cookieName)
+        {
+            var cookie = request.Cookies[cookieName];
+            if (cookie == null || string.IsNullOrWhiteSpace(cookie.Value))
+                return 0;
+
+            int value;
+            return int.TryParse(cookie.Value, out value) ? value : 0;
+        }
     }
 }

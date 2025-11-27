@@ -1,0 +1,21 @@
+﻿@model KnowWaste.Models.WasteData
+
+@foreach (ViewModels.Policy item in Model.PolicyList)
+{
+    if (Model.PolicyList.IndexOf(item) != 0)
+    {
+        <hr class="mt-0" />
+    }
+    <div class="accordion-item custom-accordion-item">
+        <h2 class="accordion-header ">
+            <button class="accordion-button bg-white @(Model.PolicyList.IndexOf(item) == 0 ? "" : "collapsed") px-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@(Model.PolicyList.IndexOf(item) + 1)" aria-expanded="@(Model.PolicyList.IndexOf(item) == 0 ? "true" : "false")" aria-controls="collapse_@(Model.PolicyList.IndexOf(item) + 1)">
+                <strong>@item.Legal</strong>
+            </button>
+        </h2>
+        <div id="collapse_@(Model.PolicyList.IndexOf(item) + 1)" class="accordion-collapse collapse @(Model.PolicyList.IndexOf(item) == 0 ? "show" : "")">
+            <div class="accordion-body bg-white px-0 text-muted">
+                @Html.Raw(item.Description)
+            </div>
+        </div>
+    </div>
+}

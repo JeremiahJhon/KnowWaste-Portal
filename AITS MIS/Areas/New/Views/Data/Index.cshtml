@@ -288,6 +288,7 @@
                     processData: false,
                     async: false,
                     success: function (data) {
+                        console.log(data);
                         getSolidWasteTableData();
                         var graphData = JSON.parse(data);
                         var x_axis = [];

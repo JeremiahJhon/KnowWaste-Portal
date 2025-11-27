@@ -22,7 +22,7 @@
             </div>
 
             <div class="carousel-item  h-600">
-                <img src="~/Content/imgs/home/banner_2.jpg" class="d-block w-100" alt="..." style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="~/Content/Images/banner/banner_marine2.jpg" class="d-block w-100" alt="..." style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="carousel-caption d-none d-md-block hero-overlay">
                     <!-- <h6 class="text-blue text-uppercase">Latest News</h6> -->
                     <h4 class="text-white">Connecting Policy, Practice, and People for a Waste-Free Future.</h4>
@@ -177,12 +177,12 @@
     <img src="/Content/imgs/wave-top.png" class="wave-top" alt="Wave Divider" />
     <div class="container container-md container-lg">
         <h2 class="section-title">NETWORKS OF PRACTICE</h2>
-        <div class="row  mt-4 bg-white p-5">
-            <div class="col-12 col-md-6 col-lg-6">
+        <div class="row mt-4 bg-white p-5 networks-of-practice">
+            <div class="col-12 col-md-6 col-lg-6 m-auto">
                 <img src="/Content/imgs/partner1.png" class="mx-3 my-2" alt="IKHAPP">
                 <p>International Knowledge Hub Against Plastic Pollution</p>
             </div>
-            <div class="col-12 col-md-6 col-lg-6">
+            <div class="col-12 col-md-6 col-lg-6 m-auto">
                 <img src="/Content/imgs/partner2.png" class="mx-3 my-2" alt="RKC-MPD">
                 <p>
                     Regional Knowledge Centre for Marine Plastic
@@ -201,20 +201,21 @@
         <div class="row g-4">
             @foreach (ViewModels.GoodPractice item in Model.BlogList.Take(3))
             {
-                <div class="col-md-4">
-                    <div class="card h-100 card card-rounded s-border box-shadow tns-item tns-slide-cloned m-10">
-                        <img src="Documents/Blogs/@item.Thumbnail.Split(';')[0]"
-                             class="card-img-top"
-                             alt="@item.Title"
-                             style="height: 250px; width: 100%; object-fit: cover;">
-
-                        <div class="card-body">
-                            <h5 class="card-title">@item.Title</h5>
-                            <small>@item.Country</small>
-                            <div class="card-text text-truncate-3">@Html.Raw(item.Description)</div>
-                            <a href="New/GoodPractices/Details/@item.ID" class="form-control btn btn-outline-primary w-auto mt-2">Start Reading →</a>
+                <div class="col-md-4 px-3">
+                    <a href="New/GoodPractices/Details/@item.ID" class="text-decoration-none text-dark">
+                        <div class="card h-100 card-rounded s-border box-shadow m-10 hover-zoom-card">
+                            <img src="Documents/Blogs/@item.Thumbnail.Split(';')[0]"
+                                 class="card-img-top"
+                                 alt="@item.Title"
+                                 style="height: 250px; width: 100%; object-fit: cover;">
+                            <div class="card-body p-4">
+                                <h5 class="card-title">@item.Title</h5>
+                                <small>@item.Country</small>
+                                <div class="card-text text-truncate-3">@Html.Raw(item.Description)</div>
+                                <span class="btn btn-link px-0 mt-2">Start Reading →</span>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             }
         </div>
@@ -228,7 +229,7 @@
     <div class="container container-md container-lg">
         <h2 class="section-title text-center pb-3 mb-4">Meet the Experts</h2>
         <div class="container container-md container-lg">
-            <div class="owl-carousel owl-theme">
+            <div class="owl-carousel owl-theme meet-the-experts">
                 @foreach (ViewModels.Expert item in Model.ExpertList)
                 {
                     <a href="/New/Experts" style="text-decoration: none;">
@@ -246,9 +247,17 @@
 @section scripts{
     <script>
         $(function () {
-            $(".owl-carousel").owlCarousel({
+            $(".networks-of-practice").owlCarousel({
+                items: 2,
+                loop: true,
+                animateOut: 'fadeOut',
+                autoplay: false,
+                autoplayTimeout: 1800,
+                autoplayHoverPause: true,
+            });
+
+            $(".meet-the-experts").owlCarousel({
                 items: 4,
-                // nav: true,
                 loop: true,
                 animateOut: 'fadeOut',
                 autoplay: false,

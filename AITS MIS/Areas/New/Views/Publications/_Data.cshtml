@@ -18,18 +18,20 @@
 
 @foreach (ViewModels.Document item in Model.DocumentList)
 {
-    <div class="custom-border d-flex p-4 mb-4">
-        <!-- <small class="text-blue text-uppercase">Code No:</small> -->
-        <div class="col-2">
-            <img src="~/Documents/@item.Thumbnail" style="height: 100%; width: 150px; object-fit: cover;">
-        </div>
+    <a href="New/Publications/Details/@item.ID" class="text-decoration-none text-dark">
+        <div class="custom-border d-flex p-4 mb-4">
+            <!-- <small class="text-blue text-uppercase">Code No:</small> -->
+            <div class="col-2">
+                <img src="~/Documents/@item.Thumbnail" style="height: 100%; width: 150px; object-fit: cover;">
+            </div>
 
-        <div class="col-10 ps-3">
-            <h4 class="m-0">@item.Title</h4>
-            <small>@item.Country | @item.Year</small>
-            <div class="pt-3" style="display: -webkit-box; -webkit-line-clamp: 4;  -webkit-box-orient: vertical; overflow: hidden; ">@Html.Raw(item.Description)</div>
+            <div class="col-10 ps-3">
+                <h4 class="m-0">@item.Title</h4>
+                <small>@item.Country | @item.Year</small>
+                <div class="pt-3" style="display: -webkit-box; -webkit-line-clamp: 4;  -webkit-box-orient: vertical; overflow: hidden; ">@Html.Raw(item.Description)</div>
 
-            <a href="New/Publications/Details/@item.ID" class="form-control btn btn-outline-primary w-auto mt-2">Start Reading →</a>
+                <span class="btn btn-link px-0 mt-2">Start Reading →</span>
+            </div>
         </div>
-    </div>
+    </a>
 }

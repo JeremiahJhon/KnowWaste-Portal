@@ -1,4 +1,4 @@
-﻿@*@model KnowWaste.Models.WasteData*@
+﻿@model KnowWaste.Models.WasteData
 @{
     Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
 }
@@ -25,32 +25,46 @@
         <div class="d-flex flex-wrap">
             <div class="d-flex align-items-center pb-5 me-4">
                 <p class="m-0 pe-3">Sub region</p>
-                <select class="form-select w-auto" id="countrySelect">
-                    <option selected disabled>Select sub region</option>
+                <select class="form-select w-auto" id="subregionSelect">
+                    <option value="0" @(Model.SubRegionID == 0 ? "selected" : "")>All</option>
+                    @foreach (ViewModels.SubRegion item in Model.SubRegions)
+                    {
+                        <option value="@item.ID" @(Model.SubRegionID == item.ID ? "selected" : "")>@item.Name</option>
+                    }
                 </select>
             </div>
             <div class="d-flex align-items-center pb-5 me-4">
                 <p class="m-0 pe-3">Country</p>
                 <select class="form-select w-auto" id="countrySelect">
-                    <option selected disabled>Select a country</option>
+                    <option value="0" @(Model.CountryID == 0 ? "selected" : "")>All</option>
+                    @foreach (ViewModels.Country item in Model.Countries)
+                    {
+                        <option value="@item.ID" @(Model.CountryID == item.ID ? "selected" : "")>@item.Name</option>
+                    }
                 </select>
             </div>
             <div class="d-flex align-items-center pb-5 me-4">
                 <p class="m-0 pe-3">Year</p>
-                <select class="form-select w-auto" id="countrySelect">
-                    <option selected disabled>All</option>
+                <select class="form-select w-auto" id="yearSelect">
+                    <option value="0" @(Model.Year == 0 ? "selected" : "")>All</option>
+                    @foreach (int year in Model.Years)
+                    {
+                        <option value="@year" @(Model.Year == year ? "selected" : "")>@year</option>
+                    }
                 </select>
             </div>
         </div>
         <div class="kpi-wrapper">
             <div class="country-title">
-                <h2 class="text-blue text-uppercase">Japan</h2>
+                <h2 class="text-blue text-uppercase">@(Model.CountryID > 0 ? Model.Countries.Where(p => p.ID == Model.CountryID).First().Name : "All")</h2>
             </div>
             <div class="row mb-5">
                 <div class="col-12 col-md-3 col-lg-3">
                     <div class="d-flex justify-content-between custom-sidebar">
                         <div>
-                            <h4 class="text-blue">126,820,000</h4>
+                            <h4 class="text-blue">
+                                @(Model.PopulationList != null && Model.PopulationList.Any() ? Model.PopulationList.First().Population.ToString() : "-")
+                            </h4>
                             <p class="m-0">Population</p>
                         </div>
                         <div><img src="icons/crowd-of-users.png" alt="" height="60px"></div>
@@ -60,7 +74,9 @@
                 <div class="col-12 col-md-3 col-lg-3">
                     <div class="d-flex justify-content-between custom-sidebar">
                         <div>
-                            <h4 class="text-blue">93.5</h4>
+                            <h4 class="text-blue">
+                                @(Model.PopulationList != null && Model.PopulationList.Any() ? Model.PopulationList.First().UrbanPopulation.ToString() : "-")
+                            </h4>
                             <p class="m-0">Urban Population</p>
                         </div>
                         <div><img src="icons/crowd-of-users.png" alt="" height="60px"></div>
@@ -70,7 +86,9 @@
                 <div class="col-12 col-md-3 col-lg-3">
                     <div class="d-flex justify-content-between custom-sidebar">
                         <div>
-                            <h4 class="text-blue">377,962</h4>
+                            <h4 class="text-blue">
+                                @(Model.PopulationList != null && Model.PopulationList.Any() ? Model.PopulationList.First().Area.ToString() : "-")
+                            </h4>
                             <p class="m-0">Area</p>
                         </div>
                         <div><img src="icons/map_14948265.png" alt="" height="60px"></div>
@@ -80,7 +98,9 @@
                 <div class="col-12 col-md-3 col-lg-3">
                     <div class="d-flex justify-content-between custom-sidebar">
                         <div>
-                            <h4 class="text-blue">36,700</h4>
+                            <h4 class="text-blue">
+                                @(Model.PopulationList != null && Model.PopulationList.Any() ? Model.PopulationList.First().IncomeLevel.ToString() : "-")
+                            </h4>
                             <p class="m-0">Income Level $</p>
                         </div>
                         <div><img src="icons/save-money.png" alt="" height="60px"></div>
@@ -94,8 +114,8 @@
             <div class="custom-border p-4 mb-4">
                 <div class="graph-wrapper mb-5">
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h4 class="m-0 text-blue">Solid Wastes</h4>
-                        <select class="form-select w-auto" id="countrySelect">
+                        <h4 class="m-0 text-blue">Solid Waste</h4>
+                        <select class="form-select w-auto" id="chart1TypeSelect">
                             <option selected>Solid waste</option>
                             <option>Waste Water</option>
                             <option>Gaseous emission</option>
@@ -111,14 +131,11 @@
                     <div class="graph-wrapper mb-5">
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <h4 class="m-0 text-blue">Municipal Waste</h4>
-                            <select class="form-select w-50" id="waste-type">
-                                <option selected>Municipal Waste</option>
-                                <option>Agricultural Waste</option>
-                                <option>Construction &amp; Demolition Waste</option>
-                                <option>E-Waste</option>
-                                <option>Industrial Waste</option>
-                                <option>Mining Waste</option>
-                                <option>Healthcare Waste</option>
+                            <select class="form-select w-50" id="chart2TypeSelect">
+                                @foreach (ViewModels.WasteType type in Model.WasteTypes)
+                                {
+                                    <option value="@type.ID">@type.Name</option>
+                                }
                             </select>
                         </div>
                         <div id="chart2"></div>
@@ -131,7 +148,7 @@
                     <div class="graph-wrapper mb-5">
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <h4 class="m-0 text-blue">Generated Waste</h4>
-                            <select class="form-select w-50" id="countrySelect">
+                            <select class="form-select w-50" id="chart3TypeSelect">
                                 <option selected>Generated</option>
                                 <option>Hazardous</option>
                                 <option>Collected</option>
@@ -153,151 +170,14 @@
                 <h4 class="text-blue mb-4">Waste Data</h4>
             </div>
 
-            <div class="custom-table table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Waste Category</th>
-                            <th scope="col">Generated</th>
-                            <th scope="col">Hazardous</th>
-                            <th scope="col">Collected</th>
-                            <th scope="col">Recycled</th>
-                            <th scope="col">Recovered</th>
-                            <th scope="col">Disposal</th>
-                            <th scope="col">Treatment</th>
-                            <th scope="col">Reuse</th>
-                            <th scope="col">Sludge</th>
-                            <th scope="col">Ref</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <!-- <th scope="row">1</th> -->
-                            <td>Brunei Darussalam</td>
-                            <td>2014</td>
-                            <td>210</td>
-                            <td>168</td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><i class="bi bi-info-circle"></i></td>
-
-                        </tr>
-                        <tr>
-                            <!-- <th scope="row">2</th> -->
-                            <td>Brunei Darussalam</td>
-                            <td>2019</td>
-                            <td>297.22K</td>
-                            <td> </td>
-                            <td></td>
-                            <td>33.59K</td>
-                            <td> 263.63</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><i class="bi bi-info-circle"></i></td>
-                        </tr>
-                    </tbody>
-                </table>
-
+            <div class="custom-table table-responsive" id="WasteDataTable">
+                @Html.Partial("_WasteData", Model)
             </div>
         </div>
-        <div class="custom-border p-4 mb-4">
+        <div class="custom-border p-4 mb-4" @(Model.PolicyList.Count > 0 ? null : "hidden")>
             <h4 class="text-blue text-uppercase mb-4">Legal framework and Policy</h4>
             <div class="accordion " id="accordionExample">
-                <div class="accordion-item custom-accordion-item">
-                    <h2 class="accordion-header ">
-                        <button class="accordion-button bg-white px-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            <strong>Waste Management and Public Cleansing Act</strong>
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show ">
-                        <div class="accordion-body bg-white px-0 text-muted">
-                            <p>TONTOTON works in Sihanoukville, Cambodia to prevent plastic waste from entering the environment by creating a community-based solution for the management of plastics through a certified plastic credit system. </p>
-
-                            <p>They work with the local, informal waste pickers to collect the plastic from the environment and their household partnerships and take them to be processed at their Material Recovery Facility.</p>
-
-                            <p>
-                                Its main objectives are:
-                                <ul>
-                                    <li>To directly remove plastics from entering the ocean</li>
-                                    <li>To provide stable incomes for and empower marginalized communities, and</li>
-                                    <li>To create a circular economy by providing a market TONTOTON has been identified as UNESCO Green Citizens project, the first in Cambodia. TONTOTON is also the first plastic neutralizing program to be certified under the Ocean Bound Plastic Neutrality Standard.</li>
-                                </ul>
-                            </p>
-
-                            <p>They also have operations in Vietnam.</p>
-                        </div>
-                    </div>
-                </div>
-                <hr class="mt-0">
-                <div class="accordion-item custom-accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button bg-white collapsed px-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            <strong>Act on the Promotion of Effective Utilization of Resources</strong>
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse">
-                        <div class="accordion-body bg-white px-0 text-muted">
-                            It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                        </div>
-                    </div>
-                </div>
-                <hr class="mt-0">
-                <div class="accordion-item custom-accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button bg-white collapsed px-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            <strong>Containers and Packaging Recycling Act (enacted in 1995)</strong>
-                        </button>
-                    </h2>
-                    <div id="collapseThree" class="accordion-collapse collapse">
-                        <div class="accordion-body bg-white px-0 text-muted">
-                            It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                        </div>
-                    </div>
-                </div>
-                <hr class="mt-0">
-                <div class="accordion-item custom-accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button bg-white collapsed px-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            <strong>Home Appliance Recycling Act (enacted in 1998)</strong>
-                        </button>
-                    </h2>
-                    <div id="collapseFour" class="accordion-collapse collapse">
-                        <div class="accordion-body bg-white px-0 text-muted">
-                            It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                        </div>
-                    </div>
-                </div>
-                <hr class="mt-0">
-                <div class="accordion-item custom-accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button bg-white collapsed px-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            <strong>Food Recycling Act (enacted in 2000)</strong>
-                        </button>
-                    </h2>
-                    <div id="collapseFive" class="accordion-collapse collapse">
-                        <div class="accordion-body bg-white px-0 text-muted">
-                            It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                        </div>
-                    </div>
-                </div>
-                <hr class="mt-0">
-                <div class="accordion-item custom-accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button bg-white collapsed px-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                            <strong>Construction Recycling Act (enacted in 2000)</strong>
-                        </button>
-                    </h2>
-                    <div id="collapseSix" class="accordion-collapse collapse">
-                        <div class="accordion-body bg-white px-0 text-muted">
-                            It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                        </div>
-                    </div>
-                </div>
+                @Html.Partial("_PolicyData", Model)
             </div>
         </div>
     </div>
@@ -307,219 +187,629 @@
 <!-- apexchart  -->
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
-<!-- chart code -->
-<script>
-    // Chart 1
-    var options1 = {
-            series: [
-            {
-              name: 'Q1 Budget',
+@section scripts{
+    <!-- chart code -->
+    <script>
+        var subregionID, countryID, year;
+        var chart1;
+        var chart2;
+        var chart3;
+        const isMobile = navigator.userAgentData.mobile || window.orientation > -1; //resolves true/false
 
-              data: [44000, 55000, 41000, 67000, 22000, 43000]
-            },
-            {
-              name: 'Q1 Actual',
+        $(document).ready(function () {
+            subregionID = $("#subregionSelect").val();
+            countryID = $("#countrySelect").val();
+            year = $("#yearSelect").val();
 
-              data: [48000, 50000, 40000, 65000, 25000, 40000]
-            },
-            {
-              name: 'Q2 Budget',
+            //renderWasteDataTable(subregionID, countryID, year);
+            refreshWasteDataChart1();
+            refreshWasteDataChart2();
+            refreshWasteDataChart3();
+        });
 
-              data: [13000, 36000, 20000, 8000, 13000, 27000]
-            },
-            {
-              name: 'Q2 Actual',
+        $("#subregionSelect").change(function () { refresh(); });
 
-              data: [20000, 40000, 25000, 10000, 12000, 28000]
-            }
-          ],
-            chart: {
-            type: 'bar',
-            height: 350,
-            stacked: true,
-          },
-          stroke: {
-            width: 1,
-            colors: ['#fff']
-          },
-          dataLabels: {
-            formatter: (val) => {
-              return val / 1000 + 'K'
-            }
-          },
-          plotOptions: {
-            bar: {
-              horizontal: false
-            }
-          },
-          xaxis: {
-            categories: [
-              'Online advertising',
-              'Sales Training',
-              'Print advertising',
-              'Catalogs',
-              'Meetings',
-              'Public relations'
-            ]
-          },
-          fill: {
-            opacity: 1
-          },
-          colors: ['#80c7fd', '#008FFB', '#80f1cb', '#00E396'],
-          yaxis: {
-            labels: {
-              formatter: (val) => {
-                return val / 1000 + 'K'
-              }
-            }
-          },
-          legend: {
-            position: 'bottom',
-            horizontalAlign: 'center'
-          }
-          };
+        $("#countrySelect").change(function () { refresh(); });
 
+        $("#yearSelect").change(function () { refresh(); });
 
-    var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
+        $("#chart1TypeSelect").change(function () {
+            chart1.destroy();
+            refreshWasteDataChart1();
+        });
 
-    chart1.render();
+        $("#chart2TypeSelect").change(function () {
+            chart2.destroy();
+            refreshWasteDataChart2();
+        });
 
-    // Chart 2
+        $("#chart3TypeSelect").change(function () {
+            chart3.destroy();
+            refreshWasteDataChart3();
+        });
 
-    var options2 = {
-          series: [
-          {
-            name: 'Q1 Budget',
-            data: [44000, 55000, 41000, 67000, 22000, 43000]
-          },
-          {
-            name: 'Q1 Actual',
-            data: [48000, 50000, 40000, 65000, 25000, 40000]
-          },
-          {
-            name: 'Q2 Budget',
-            data: [13000, 36000, 20000, 8000, 13000, 27000]
-          },
-          {
-            name: 'Q2 Actual',
-            data: [20000, 40000, 25000, 10000, 12000, 28000]
-          }
-        ],
-          chart: {
-          type: 'bar',
-          height: 350,
-          stacked: true,
-        },
-        stroke: {
-          width: 1,
-          colors: ['#fff']
-        },
-        dataLabels: {
-          formatter: (val) => {
-            return val / 1000 + 'K'
-          }
-        },
-        plotOptions: {
-          bar: {
-            horizontal: false
-          }
-        },
-        xaxis: {
-          categories: [
-            'Online advertising',
-            'Sales Training',
-            'Print advertising',
-            'Catalogs',
-            'Meetings',
-            'Public relations'
-          ]
-        },
-        fill: {
-          opacity: 1
-        },
-        colors: ['#80c7fd', '#008FFB', '#80f1cb', '#00E396'],
-        yaxis: {
-          labels: {
-            formatter: (val) => {
-              return val / 1000 + 'K'
-            }
-          }
-        },
-        legend: {
-          position: 'bottom',
-          horizontalAlign: 'center'
+        function refresh() {
+            subregionID = $("#subregionSelect").val();
+            countryID = $("#countrySelect").val();
+            year = $("#yearSelect").val();
+
+            $.cookie("CountryID", countryID, { expires: 7, path: '/' });
+            $.cookie("SubRegionID", subregionID, { expires: 7, path: '/' });
+            $.cookie("Year", year, { expires: 7, path: '/' });
+
+            location.reload();
         }
-        };
 
-    var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
-    chart2.render();
-
-    // Chart 3
-    var options3 = {
-          series: [
-          {
-            name: 'Q1 Budget',
-            data: [44000, 55000, 41000, 67000, 22000, 43000]
-          },
-          {
-            name: 'Q1 Actual',
-            data: [48000, 50000, 40000, 65000, 25000, 40000]
-          },
-          {
-            name: 'Q2 Budget',
-            data: [13000, 36000, 20000, 8000, 13000, 27000]
-          },
-          {
-            name: 'Q2 Actual',
-            data: [20000, 40000, 25000, 10000, 12000, 28000]
-          }
-        ],
-          chart: {
-          type: 'bar',
-          height: 350,
-          stacked: true,
-        },
-        stroke: {
-          width: 1,
-          colors: ['#fff']
-        },
-        dataLabels: {
-          formatter: (val) => {
-            return val / 1000 + 'K'
-          }
-        },
-        plotOptions: {
-          bar: {
-            horizontal: false
-          }
-        },
-        xaxis: {
-          categories: [
-            'Online advertising',
-            'Sales Training',
-            'Print advertising',
-            'Catalogs',
-            'Meetings',
-            'Public relations'
-          ]
-        },
-        fill: {
-          opacity: 1
-        },
-        colors: ['#80c7fd', '#008FFB', '#80f1cb', '#00E396'],
-        yaxis: {
-          labels: {
-            formatter: (val) => {
-              return val / 1000 + 'K'
-            }
-          }
-        },
-        legend: {
-          position: 'bottom',
-          horizontalAlign: 'center'
+        function renderPolicyDataTable(country, year) {
+            $("#PolicyList").load(`/Data/getPolicyData?country=${country}&year=${year}`);
         }
-        };
 
-    var chart3 = new ApexCharts(document.querySelector("#chart3"), options3);
-    chart3.render();
-</script>
+        function renderWasteDataTable(subregion, country, year) {
+            $("#WasteDataTable").load(`/Data/getWasteData?subregion=${subregion}&country=${country}&year=${year}`, function () {
+                $("#datatableWasteData").DataTable({
+                    "lengthChange": false,
+                    "ordering": false,
+                    "paging": false,
+                    "dom": "<'table-responsive'tr>"
+                });
+            });
+        }
+
+        function refreshWasteDataChart1() {
+            const type = $("#chart1TypeSelect").val()
+            $.ajax({
+                url: `/New/WasteData/getWasteChart1?subregionID=${subregionID}&countryID=${countryID}&year=${year}&type=${type}&categoryID=0`,
+                type: 'GET',
+                processData: false,
+                async: false,
+                success: function (data) {
+                    var x_axis = [];
+                    var series = [];
+                    var data_ = [];
+                    var count = 0;
+                    var graphData = data;
+                    if (graphData.length > 0) {
+                        if (graphData[0].hasOwnProperty("Generated")) {
+                            for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                x_axis[ctr] = graphData[ctr]["WasteCategory"];
+                                data_[ctr] = graphData[ctr]["Generated"];
+                            }
+                            series[count] = {
+                                name: "Generated",
+                                data: data_
+                            }
+                            count++;
+                        }
+                        data_ = [];
+                        if (graphData[0].hasOwnProperty("Collected")) {
+                            for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                x_axis[ctr] = graphData[ctr]["WasteCategory"];
+                                data_[ctr] = graphData[ctr]["Collected"];
+                            }
+                            series[count] = {
+                                name: "Collected",
+                                data: data_
+                            }
+                            count++;
+                        }
+                        data_ = [];
+                        if (graphData[0].hasOwnProperty("Recycled")) {
+                            for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                x_axis[ctr] = graphData[ctr]["WasteCategory"];
+                                data_[ctr] = graphData[ctr]["Recycled"];
+                            }
+                            series[count] = {
+                                name: "Recycled",
+                                data: data_
+                            }
+                            count++;
+                        }
+                        data_ = [];
+                        if (graphData[0].hasOwnProperty("Recovered")) {
+                            for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                x_axis[ctr] = graphData[ctr]["WasteCategory"];
+                                data_[ctr] = graphData[ctr]["Recovered"];
+                            }
+                            series[count] = {
+                                name: "Recovered",
+                                data: data_
+                            }
+                            count++;
+                        }
+                        data_ = [];
+                        if (graphData[0].hasOwnProperty("Disposal")) {
+                            for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                x_axis[ctr] = graphData[ctr]["WasteCategory"];
+                                data_[ctr] = graphData[ctr]["Disposal"];
+                            }
+                            series[count] = {
+                                name: "Disposal",
+                                data: data_
+                            }
+                            count++;
+                        }
+
+                        var options = {
+                            series: series,
+                            chart: {
+                                type: 'bar',
+                                height: 400,
+                                toolbar: {
+                                    show: true
+                                },
+                                zoom: {
+                                    enabled: true
+                                }
+                            },
+                            plotOptions: {
+                                bar: {
+                                    horizontal: false,
+                                    endingShape: 'rounded',
+                                    borderRadius: 2
+                                },
+                            },
+                            dataLabels: {
+                                formatter: function (val) {
+                                    return numFormatter(val);//.toLocaleString('en-US')
+                                },
+                                style: {
+                                    fontSize: "10px",
+                                    colors: ['#000000']
+                                }
+                            },
+                            stroke: {
+                                show: true,
+                                width: 2,
+                                colors: ['transparent']
+                            },
+                            xaxis: {
+                                categories: x_axis,
+                                labels: {
+                                    show: true,
+                                    minWidth: 0,
+                                    maxWidth: 160,
+                                    style: {
+                                        fontSize: '12px',
+                                        fontFamily: 'Roboto Condensed, sans-serif',
+                                        fontWeight: 400,
+                                    }
+                                },
+                                title: {
+                                    text: 'WasteType'
+                                }
+                            },
+                            yaxis: {
+                                logarithmic: false,
+                                logBase: 10,
+                                labels: {
+                                    show: true,
+                                    align: 'right',
+                                    minWidth: 0,
+                                    maxWidth: 160,
+                                    style: {
+                                        fontSize: '12px',
+                                        fontFamily: 'Roboto Condensed, sans-serif',
+                                        fontWeight: 400,
+                                    },
+                                    offsetX: 0,
+                                    offsetY: 0,
+                                    rotate: 0,
+                                    formatter: function (val) {
+                                        return numFormatter(val);//.toLocaleString('en-US')
+                                    }
+                                },
+                                title: {
+                                    text: 'Tons'
+                                }
+                            },
+                            fill: {
+                                opacity: 1
+                            },
+                            tooltip: {
+                                enabled: true,
+                                y: {
+                                    formatter: function (val) {
+                                        return val.toLocaleString('en-US') + " Tons";
+                                    }
+                                }
+                            },
+                            noData: {
+                                text: 'No Data'
+                            },
+                            legend: {
+                                position: isMobile ? 'bottom' : 'right',
+                            },
+                        };
+
+                        chart1 = new ApexCharts(document.querySelector("#chart1"), options);
+                        chart1.render();
+                    } else {
+                        var options = {
+                            chart: {
+                                height: 350,
+                                type: 'bar',
+                            },
+                            dataLabels: {
+                                enabled: false
+                            },
+                            series: [],
+                            noData: {
+                                text: 'No Data'
+                            }
+                        }
+
+                        chart1 = new ApexCharts(document.querySelector("#chart1"), options);
+                        chart1.render();
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                },
+            });
+        }
+
+        function refreshWasteDataChart2() {
+            const categoryID = $("#chart2TypeSelect").val()
+            const category = $('#chart2TypeSelect option:selected').text();
+            $.ajax({
+                url: `/New/WasteData/getWasteChart1?subregionID=${subregionID}&countryID=${countryID}&year=${year}&type=0&categoryID=${categoryID}`,
+                type: 'GET',
+                processData: false,
+                async: false,
+                success: function (data) {
+                    var x_axis = [];
+                    var series = [];
+                    var data_ = [];
+                    var count = 0;
+                    var graphData = data;
+                    if (graphData.length > 0) {
+                        if (graphData[0].hasOwnProperty("Generated")) {
+                            for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                x_axis[ctr] = graphData[ctr]["WasteCategory"];
+                                data_[ctr] = graphData[ctr]["Generated"];
+                            }
+                            series[count] = {
+                                name: "Generated",
+                                data: data_
+                            }
+                            count++;
+                        }
+                        data_ = [];
+                        if (graphData[0].hasOwnProperty("Collected")) {
+                            for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                x_axis[ctr] = graphData[ctr]["WasteCategory"];
+                                data_[ctr] = graphData[ctr]["Collected"];
+                            }
+                            series[count] = {
+                                name: "Collected",
+                                data: data_
+                            }
+                            count++;
+                        }
+                        data_ = [];
+                        if (graphData[0].hasOwnProperty("Recycled")) {
+                            for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                x_axis[ctr] = graphData[ctr]["WasteCategory"];
+                                data_[ctr] = graphData[ctr]["Recycled"];
+                            }
+                            series[count] = {
+                                name: "Recycled",
+                                data: data_
+                            }
+                            count++;
+                        }
+                        data_ = [];
+                        if (graphData[0].hasOwnProperty("Recovered")) {
+                            for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                x_axis[ctr] = graphData[ctr]["WasteCategory"];
+                                data_[ctr] = graphData[ctr]["Recovered"];
+                            }
+                            series[count] = {
+                                name: "Recovered",
+                                data: data_
+                            }
+                            count++;
+                        }
+                        data_ = [];
+                        if (graphData[0].hasOwnProperty("Disposal")) {
+                            for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                x_axis[ctr] = graphData[ctr]["WasteCategory"];
+                                data_[ctr] = graphData[ctr]["Disposal"];
+                            }
+                            series[count] = {
+                                name: "Disposal",
+                                data: data_
+                            }
+                            count++;
+                        }
+
+                        console.log(series);
+
+                        var options = {
+                            series: series,
+                            chart: {
+                                type: 'bar',
+                                height: 400,
+                                toolbar: {
+                                    show: true
+                                },
+                                zoom: {
+                                    enabled: true
+                                }
+                            },
+                            plotOptions: {
+                                bar: {
+                                    horizontal: false,
+                                    endingShape: 'rounded',
+                                    borderRadius: 2
+                                },
+                            },
+                            dataLabels: {
+                                formatter: function (val) {
+                                    return numFormatter(val);//.toLocaleString('en-US')
+                                },
+                                style: {
+                                    fontSize: "10px",
+                                    colors: ['#000000']
+                                }
+                            },
+                            stroke: {
+                                show: true,
+                                width: 2,
+                                colors: ['transparent']
+                            },
+                            xaxis: {
+                                categories: x_axis,
+                                labels: {
+                                    show: true,
+                                    minWidth: 0,
+                                    maxWidth: 160,
+                                    style: {
+                                        fontSize: '12px',
+                                        fontFamily: 'Roboto Condensed, sans-serif',
+                                        fontWeight: 400,
+                                    }
+                                },
+                                title: {
+                                    text: category
+                                }
+                            },
+                            yaxis: {
+                                logarithmic: false,
+                                logBase: 10,
+                                labels: {
+                                    show: true,
+                                    align: 'right',
+                                    minWidth: 0,
+                                    maxWidth: 160,
+                                    style: {
+                                        fontSize: '12px',
+                                        fontFamily: 'Roboto Condensed, sans-serif',
+                                        fontWeight: 400,
+                                    },
+                                    offsetX: 0,
+                                    offsetY: 0,
+                                    rotate: 0,
+                                    formatter: function (val) {
+                                        return numFormatter(val);//.toLocaleString('en-US')
+                                    }
+                                },
+                                title: {
+                                    text: 'Tons'
+                                }
+                            },
+                            fill: {
+                                opacity: 1
+                            },
+                            tooltip: {
+                                enabled: true,
+                                y: {
+                                    formatter: function (val) {
+                                        return val.toLocaleString('en-US') + " Tons";
+                                    }
+                                }
+                            },
+                            noData: {
+                                text: 'No Data'
+                            },
+                            legend: {
+                                position: isMobile ? 'bottom' : 'right',
+                            },
+                        };
+
+                        chart2 = new ApexCharts(document.querySelector("#chart2"), options);
+                        chart2.render();
+                    } else {
+                        var options = {
+                            chart: {
+                                height: 350,
+                                type: 'bar',
+                            },
+                            dataLabels: {
+                                enabled: false
+                            },
+                            series: [],
+                            noData: {
+                                text: 'No Data'
+                            }
+                        }
+
+                        chart2 = new ApexCharts(document.querySelector("#chart2"), options);
+                        chart2.render();
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                },
+            });
+        }
+
+        function refreshWasteDataChart3() {
+            const type = $("#chart3TypeSelect").val()
+            $.ajax({
+                url: `/New/WasteData/getWasteChart2?subregionID=${subregionID}&countryID=${countryID}&year=${year}&type=${type}`,
+                type: 'GET',
+                processData: false,
+                async: false,
+                success: function (data) {
+                    var x_axis = [type];
+                    var series = [];
+                    var count = 0;
+                    var graphData = data;
+                    if (graphData.length > 0) {
+                        if (graphData[0].hasOwnProperty(type)) {
+                            for (var ctr = 0; ctr < graphData.length; ctr++) {
+                                series[ctr] = {
+                                    name: graphData[ctr]["WasteCategory"],
+                                    data: [graphData[ctr][type]]
+                                }
+                            }
+                        }
+
+                        console.log(series);
+
+                        var options = {
+                            series: series,
+                            chart: {
+                                type: 'bar',
+                                height: 400,
+                                toolbar: {
+                                    show: true
+                                },
+                                zoom: {
+                                    enabled: true
+                                }
+                            },
+                            plotOptions: {
+                                bar: {
+                                    horizontal: false,
+                                    endingShape: 'rounded',
+                                    borderRadius: 2
+                                },
+                            },
+                            dataLabels: {
+                                formatter: function (val) {
+                                    return numFormatter(val);//.toLocaleString('en-US')
+                                },
+                                style: {
+                                    fontSize: "10px",
+                                    colors: ['#000000']
+                                }
+                            },
+                            stroke: {
+                                show: true,
+                                width: 2,
+                                colors: ['transparent']
+                            },
+                            xaxis: {
+                                categories: x_axis,
+                                labels: {
+                                    show: true,
+                                    minWidth: 0,
+                                    maxWidth: 160,
+                                    style: {
+                                        fontSize: '12px',
+                                        fontFamily: 'Roboto Condensed, sans-serif',
+                                        fontWeight: 400,
+                                    }
+                                },
+                                title: {
+                                    text: type
+                                }
+                            },
+                            yaxis: {
+                                logarithmic: false,
+                                logBase: 10,
+                                labels: {
+                                    show: true,
+                                    align: 'right',
+                                    minWidth: 0,
+                                    maxWidth: 160,
+                                    style: {
+                                        fontSize: '12px',
+                                        fontFamily: 'Roboto Condensed, sans-serif',
+                                        fontWeight: 400,
+                                    },
+                                    offsetX: 0,
+                                    offsetY: 0,
+                                    rotate: 0,
+                                    formatter: function (val) {
+                                        return numFormatter(val);//.toLocaleString('en-US')
+                                    }
+                                },
+                                title: {
+                                    text: 'Tons'
+                                }
+                            },
+                            fill: {
+                                opacity: 1
+                            },
+                            tooltip: {
+                                enabled: true,
+                                y: {
+                                    formatter: function (val) {
+                                        return val.toLocaleString('en-US') + " Tons";
+                                    }
+                                }
+                            },
+                            noData: {
+                                text: 'No Data'
+                            },
+                            legend: {
+                                position: isMobile ? 'bottom' : 'right',
+                            },
+                        };
+
+                        chart3 = new ApexCharts(document.querySelector("#chart3"), options);
+                        chart3.render();
+                    } else {
+                        var options = {
+                            chart: {
+                                height: 350,
+                                type: 'bar',
+                            },
+                            dataLabels: {
+                                enabled: false
+                            },
+                            series: [],
+                            noData: {
+                                text: 'No Data'
+                            }
+                        }
+
+                        chart3 = new ApexCharts(document.querySelector("#chart3"), options);
+                        chart3.render();
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                },
+            });
+        }
+
+        function numFormatter(num) {
+            try {
+                if (num >= 1000000000) {
+                    return Math.abs(num) > 999999999 ? Math.sign(num) * ((Math.abs(num) / 1000000000).toFixed(3)) + ' B' : Math.sign(num) * Math.abs(num)
+                }
+                if (num >= 1000000) {
+                    return Math.abs(num) > 999999 ? Math.sign(num) * ((Math.abs(num) / 1000000).toFixed(3)) + ' M' : Math.sign(num) * Math.abs(num)
+                }
+                if (num >= 1000) {
+                    return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(2)) + ' K' : Math.sign(num) * Math.abs(num)
+                }
+                if (num > 0) {
+                    return num;
+                }
+                if (num == null) {
+                    return ""
+                }
+                return 0;
+            }
+            catch {
+                return 0;
+            }
+        }
+
+    </script>
+}

@@ -2,15 +2,20 @@
 
 @foreach (ViewModels.GoodPractice item in Model.BlogList)
 {
-    <div class="col-md-4">
-        <div class="card h-100 card card-rounded s-border box-shadow tns-item tns-slide-cloned m-10">
-            <img src="Documents/Blogs/@item.Thumbnail.Split(';')[0]" class="card-img-top" alt="@item.Title" style="height: 250px; width: 100%; object-fit: cover;">
-            <div class="card-body">
-                <h5 class="card-title">@item.Title</h5>
-                <small>@item.Country</small>
-                <div class="card-text text-truncate-3">@Html.Raw(item.Description)</div>
-                <a href="New/GoodPractices/Details/@item.ID" class="form-control btn btn-outline-primary w-auto mt-2">Start Reading →</a>
+    <div class="col-md-4 px-3">
+        <a href="New/GoodPractices/Details/@item.ID" class="text-decoration-none text-dark">
+            <div class="card h-100 card-rounded s-border box-shadow m-10 hover-zoom-card">
+                <img src="Documents/Blogs/@item.Thumbnail.Split(';')[0]"
+                     class="card-img-top"
+                     alt="@item.Title"
+                     style="height: 250px; width: 100%; object-fit: cover;">
+                <div class="card-body p-4">
+                    <h5 class="card-title">@item.Title</h5>
+                    <small>@item.Country</small>
+                    <div class="card-text text-truncate-3">@Html.Raw(item.Description)</div>
+                    <span class="btn btn-link px-0 mt-2">Start Reading →</span>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
 }

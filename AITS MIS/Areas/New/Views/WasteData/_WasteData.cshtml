@@ -1,0 +1,64 @@
+﻿@model KnowWaste.Models.WasteData
+@{ 
+    var data = Model.DataList
+    .GroupBy(x => new { x.WasteTypeID, x.WasteType })
+    .Select(g => new ViewModels.WasteData
+    {
+        WasteCategory = g.Key.WasteType,
+
+        Generated = g.Sum(x => x.TotalGenerated ?? 0),
+        Hazardous = g.Sum(x => x.Hazardous ?? 0),
+        Collected = g.Sum(x => x.TotalCollected ?? 0),
+        Recycled = g.Sum(x => x.Recycled ?? 0),
+        Recovered = g.Sum(x => x.Recovered ?? 0),
+        Disposal = g.Sum(x => x.Disposal ?? 0),
+        Treatment = g.Sum(x => x.Treatment ?? 0),
+        Reuse = g.Sum(x => x.Reuse ?? 0),
+        Sludge = g.Sum(x => x.Sludge ?? 0)
+    })
+    .ToList();
+
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Waste Category</th>
+            <th scope="col" class="text-end">Generated</th>
+            <th scope="col" class="text-end">Hazardous</th>
+            <th scope="col" class="text-end">Collected</th>
+            <th scope="col" class="text-end">Recycled</th>
+            <th scope="col" class="text-end">Recovered</th>
+            <th scope="col" class="text-end">Disposal</th>
+            <th scope="col" class="text-end">Treatment</th>
+            <th scope="col" class="text-end">Reuse</th>
+            <th scope="col" class="text-end">Sludge</th>
+            <th scope="col">Ref</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ViewModels.WasteData item in data)
+        {
+            <tr>
+                <!-- <th scope="row">1</th> -->
+                <td>@item.WasteCategory</td>
+                <td align="right">@item.Generated.ToString("#,##0.#0")</td>
+                <td align="right">@item.Hazardous.ToString("#,##0.#0")</td>
+                <td align="right">@item.Collected.ToString("#,##0.#0")</td>
+                <td align="right">@item.Recycled.ToString("#,##0.#0")</td>
+                <td align="right">@item.Recovered.ToString("#,##0.#0")</td>
+                <td align="right">@item.Disposal.ToString("#,##0.#0")</td>
+                <td align="right">@item.Treatment.ToString("#,##0.#0")</td>
+                <td align="right">@item.Reuse.ToString("#,##0.#0")</td>
+                <td align="right">@item.Sludge.ToString("#,##0.#0")</td>
+                <td>
+                    @if (!String.IsNullOrWhiteSpace(item.Ref))
+                    {
+                        <i class="bi bi-info-circle-fill fs-1 custom-tooltip" id="tooltip-@data.IndexOf(item)" data-id="@data.IndexOf(item)" style="color: #23A2D7;"></i>
+                        <div hidden id="tooltip-content-@data.IndexOf(item)">@Html.Raw(item.Ref)</div>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

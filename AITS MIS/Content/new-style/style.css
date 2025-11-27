@@ -451,3 +451,16 @@ footer a {
         border-radius: 8px 8px 0px 0px;
     }
 }
+
+.card {
+    overflow: hidden; /* Prevent image from overflowing the card */
+    cursor: pointer;
+}
+
+.card-img-top {
+    transition: transform 0.4s ease;
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.07); /* Slight zoom */
+}
