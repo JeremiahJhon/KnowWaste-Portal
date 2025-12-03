@@ -45,9 +45,17 @@ namespace KnowWaste.Models
             var rawList = (from a in db.countrywastestreams
                            join b in db.countries on a.Country_ID equals b.ID.ToString()
                            join c in db.wastecategories on a.Wastecategory_ID equals c.ID.ToString()
+                           join d in db.subregions on b.SubRegion_ID equals d.ID.ToString()
                            where a.Deleted == false
                                  && (c.ID == 1 || c.ID == 14)
-                           select new { a, b, c }).ToList();
+                                 && b.Deleted == 0
+                                 && d.Region_id == "3" //Asian Countries only
+                           select new { a, b, c, d }).ToList();
+
+            if (SubRegionID > 0)
+            {
+                rawList = rawList.Where(p => p.b.SubRegion_ID == SubRegionID.ToString()).ToList();
+            }
 
             DataList = rawList.Select(x => new ViewModels.Data
             {
@@ -122,9 +130,8 @@ namespace KnowWaste.Models
                 Name = a.Name,
             }).ToList();
 
-            var countryIds = Countries.Select(p => p.ID).ToList();
             SubRegions = (from a in db.subregions
-                          where countryIds.Contains(a.ID) && a.Deleted == 0
+                          where a.Deleted == 0 && a.Region_id == "3"
                           select new ViewModels.SubRegion { 
                             ID = a.ID,
                             Name = a.Name,

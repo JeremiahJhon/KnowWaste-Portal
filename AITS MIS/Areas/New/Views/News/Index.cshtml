@@ -8,28 +8,30 @@
     <div class="container  container-md container-lg">
 
         <div class="row custom-padding">
-            <div id="carouselExampleCaptions" class="carousel slide col-12 col-md-8 col-lg-9">
+            <div id="carouselExampleCaptions" class="carousel slide col-12 col-md-8 @(Model.EventsList.Count > 0 ? "col-lg-9" : "col-lg-12")">
                 <div class="carousel-indicators">
-                    @foreach (ViewModels.Event item in Model.EventsList)
+                    @foreach (ViewModels.News item in Model.NewsList.Take(3))
                     {
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="@Model.EventsList.IndexOf(item)" @(Model.EventsList.IndexOf(item) == 0 ? "class=active aria-current=true" : null) aria-label="Slide @item.ID"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="@Model.NewsList.IndexOf(item)" @(Model.NewsList.IndexOf(item) == 0 ? "class=active aria-current=true" : null) aria-label="Slide @item.ID"></button>
                     }
                 </div>
                 <div class="carousel-inner ">
-                    @foreach (ViewModels.Event item in Model.EventsList)
+                    @foreach (ViewModels.News item in Model.NewsList.Take(3))
                     {
-                        <div class="carousel-item @(Model.EventsList.IndexOf(item) == 0 ? "active" : null) h-510">
-                            <img src="~/Documents/UpcomingEvents/@item.Thumbnail" class="d-block w-100" alt="..." style="width: 100%; height: 100%; object-fit: cover;">
-                            <div class="carousel-caption d-none d-md-block" style="background-color: rgba(0, 0, 0, 0.5); padding: 12px; text-align: start;">
-                                <h6 class="text-blue text-uppercase">Latest News</h6>
-                                <h4 class="text-white">@item.Title</h4>
-                                <small class="text-white">@item.Location</small>
-                                <p class="pt-1 text-white" style="display: -webkit-box; -webkit-line-clamp: 4;  -webkit-box-orient: vertical; overflow: hidden; ">@Html.Raw(item.Description)</p>
-                                <a href="" class="btn btn-link px-0 text-white">Start Reading →</a>
+                        <a href="New/News/Details/@item.ID" class="text-decoration-none text-dark">
+                            <div class="carousel-item @(Model.NewsList.IndexOf(item) == 0 ? "active" : null) h-510">
+                                <img src="~/Documents/News/@item.Photo.Split(';')[0]" class="d-block w-100" alt="..." style="width: 100%; height: 100%; object-fit: cover;">
+                                <div class="carousel-caption d-none d-md-block" style="background-color: rgba(0, 0, 0, 0.5); padding: 12px; text-align: start;">
+                                    <h6 class="text-blue text-uppercase">Latest News</h6>
+                                    <h4 class="text-white">@item.Title</h4>
+                                    <small class="text-white">@item.Country</small>
+                                    <div class="pt-1 text-white text-truncate-3" style="display: -webkit-box; -webkit-line-clamp: 4;  -webkit-box-orient: vertical; overflow: hidden; ">@Html.Raw(item.Description)</div>
+                                    <span class="btn btn-link px-0 text-white mt-2">Start Reading →</span>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     }
-                </div>
+                    </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
@@ -39,24 +41,27 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-            <div class="col-12 col-md-4 col-lg-3 custom-border p-0 bg-offgrey h-510 vertical-scroll">
-                <h5 class="bg-white" style="padding: 12px 20px; border-left: 5px solid #0FB4DF; border-radius: 8px 8px 0px 0px;">Upcoming events</h5>
-                <div class="wrapper px-3">
-                    @foreach (ViewModels.Event item in Model.EventsList)
-                    {
-                        <div class="custom-border p-2 mb-4 bg-white">
-                            <h6 class="m-0">@item.Title</h6>
-                            <small>@Convert.ToDateTime(item.StartDate.Split('-')[0]).ToString("d MMMM yyyy")</small><br>
-                            <small>@item.Location</small>
-                            <div class="pt-3 text-truncate-3" style="display: -webkit-box; -webkit-line-clamp: 4;  -webkit-box-orient: vertical; overflow: hidden; ">@Html.Raw(item.Description)</div>
-                        </div>
-                    }
+            @if (Model.EventsList.Count > 0)
+            {
+                <div class="col-12 col-md-4 col-lg-3 custom-border p-0 bg-offgrey h-510 vertical-scroll">
+                    <h5 class="bg-white" style="padding: 12px 20px; border-left: 5px solid #0FB4DF; border-radius: 8px 8px 0px 0px;">Upcoming events</h5>
+                    <div class="wrapper px-3">
+                        @foreach (ViewModels.Event item in Model.EventsList)
+                        {
+                            <div class="custom-border p-2 mb-4 bg-white">
+                                <h6 class="m-0">@item.Title</h6>
+                                <small>@Convert.ToDateTime(item.StartDate.Split('-')[0]).ToString("d MMMM yyyy")</small><br>
+                                <small>@item.Location</small>
+                                <div class="pt-3 text-truncate-3" style="display: -webkit-box; -webkit-line-clamp: 4;  -webkit-box-orient: vertical; overflow: hidden; ">@Html.Raw(item.Description)</div>
+                            </div>
+                        }
+                    </div>
                 </div>
-            </div>
+            }
         </div>
     </div>
 </section>
-<section class="ptb-120">
+<section class="ptb-30">
     <div class="container">
         <h4 class="text-blue mb-4">All News</h4>
         <!-- <hr class="mb-3"> -->

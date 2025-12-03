@@ -71,7 +71,7 @@
                 </div>
                 <div class="mb-4">
                     <strong class="m-0 pe-3" style="padding-bottom: 4px;">City: </strong>
-                    <select class="form-select" id="citySelect" style="width: 100%; margin-top: 4px;">
+                    <select class="form-select" id="citySelect" style="width: 100%; margin-top: 4px;" disabled>
                         <option value="-1" selected>-</option>
                         <option value="0">All</option>
                         @foreach (ViewModels.City city in Model.Cities)
@@ -207,9 +207,24 @@
             });
 
             $("#countrySelect").change(function () {
-                populateCityFilter("solidWaste", this.value);
-                $("#citySelect").change();
+                if (parseInt(this.value) > 0) {
+
+                    // Enable dropdown
+                    $("#citySelect").prop("disabled", false);
+
+                    // Populate with cities
+                    populateCityFilter("solidWaste", this.value);
+
+                    // Trigger change event if needed
+                    $("#citySelect").trigger("change");
+
+                } else {
+
+                    // Disable dropdown
+                    $("#citySelect").prop("disabled", true);
+                }
             });
+
 
             $("#citySelect").change(function () {
                 $.ajax({
@@ -288,7 +303,6 @@
                     processData: false,
                     async: false,
                     success: function (data) {
-                        console.log(data);
                         getSolidWasteTableData();
                         var graphData = JSON.parse(data);
                         var x_axis = [];

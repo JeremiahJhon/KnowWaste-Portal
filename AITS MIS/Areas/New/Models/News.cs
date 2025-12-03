@@ -22,7 +22,7 @@ namespace KnowWaste.Models
             {
                 NewsList = (from a in db.news
                             join b in db.countries on a.Country_ID equals b.ID
-                            where a.Deleted == 0 && b.Deleted == 0
+                            where a.Deleted == 0 && b.Deleted == 0 && a.Publish == true
                             select new ViewModels.News
                             {
                                 ID = a.ID,
@@ -33,24 +33,33 @@ namespace KnowWaste.Models
                                 Date = a.StartDate
                             }).ToList();
 
-                EventsList = (from a in db.upcomingevents
-                              join b in db.countries on a.Country_ID equals b.ID
-                              where a.Deleted == 0 &&
-                                      b.Deleted == 0 //&&
-                                                     //a.Datestart <= DateTime.Now &&
-                                                     //a.Dateend >= DateTime.Now
-                              select new ViewModels.Event
-                              {
-                                  ID = a.ID,
-                                  Title = a.Title,
-                                  StartDate = a.StartDate,
-                                  EndDate = a.EndDate,
-                                  Country = b.Name,
-                                  Thumbnail = a.Thumbnail,
-                                  Description = a.Description,
-                                  Detail = a.Detail,
-                                  Location = a.Location
-                              }).ToList();
+                EventsList = db.upcomingevents
+                            .Where(a => a.Deleted == 0)
+                            .Join(db.countries.Where(c => c.Deleted == 0),
+                                a => a.Country_ID,
+                                c => c.ID,
+                                (a, c) => new { a, c })
+                            .AsEnumerable() // switch to in-memory processing (because of Split)
+                            .Where(x =>
+                            {
+                                var dates = x.a.StartDate.Split('-');
+                                var start = DateTime.Parse(dates[0].Trim());
+                                var end = DateTime.Parse(dates[1].Trim());
+                                return start <= DateTime.Now && end >= DateTime.Now;
+                            })
+                            .Select(x => new ViewModels.Event
+                            {
+                                ID = x.a.ID,
+                                Title = x.a.Title,
+                                StartDate = x.a.StartDate,
+                                EndDate = x.a.EndDate,
+                                Country = x.c.Name,
+                                Thumbnail = x.a.Thumbnail,
+                                Description = x.a.Description,
+                                Detail = x.a.Detail,
+                                Location = x.a.Location
+                            })
+                            .ToList();
             }
             else
             {
