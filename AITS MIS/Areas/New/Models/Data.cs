@@ -46,10 +46,9 @@ namespace KnowWaste.Models
                            join d in db.wastecategories on a.Wastecategory_ID equals d.ID.ToString()
                            join c in db.cities on b.ID equals c.ID into cityGroup
                            from c in cityGroup.DefaultIfEmpty()
-                           join e in db.subregions on b.SubRegion_ID equals e.ID.ToString()
                            where a.Deleted == false
                                  && (d.ID == 1 || d.ID == 14)
-                                 && e.Region_id == "3" //Asian Countries
+                                 && b.SubRegion_ID == "3"
                                  && b.Deleted == 0
                            select new { a, b, c, d }).ToList();
 
