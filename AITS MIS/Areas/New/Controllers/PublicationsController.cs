@@ -1,4 +1,5 @@
-﻿using KnowWaste.Models;
+﻿using kNowaste.Helper;
+using KnowWaste.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,11 @@ namespace Knowwaste.Areas.New.Controllers
         // GET: New/Publications
         public ActionResult Index()
         {
-            Documents model = new Documents("Publications", 0);
+            int countryID = Utility.GetCookieInt(Request, "CountryID");
+            int year = Utility.GetCookieInt(Request, "Year");
+            string publisher = Utility.GetCookieString(Request, "Publisher");
+
+            Documents model = new Documents("Publications", countryID, year, publisher, "", 0);
             return View(model);
         }
 

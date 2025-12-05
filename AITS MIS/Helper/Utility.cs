@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Web;
 
@@ -60,5 +61,15 @@ namespace kNowaste.Helper
             int value;
             return int.TryParse(cookie.Value, out value) ? value : 0;
         }
+
+        public static string GetCookieString(HttpRequestBase request, string cookieName)
+        {
+            var cookie = request.Cookies[cookieName];
+            if (cookie == null || string.IsNullOrWhiteSpace(cookie.Value))
+                return "";
+
+            return WebUtility.UrlDecode(WebUtility.UrlDecode(cookie.Value.ToString()));
+        }
+
     }
 }

@@ -2,6 +2,9 @@
 @{
     Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
 }
+<div>
+    <img src="~/Content/Images/3rpromar/3RproMar RKP banner.png" width="100%" />
+</div>
 <section class="breadcrumb">
     <div class="container container-md container-md py-4">
         <nav aria-label="breadcrumb">
@@ -17,7 +20,7 @@
     <div class="container container-md container-md pb-120">
         <div class="text-center pb-4">
             <h1 class="section-title pb-3 text-uppercase text-start">
-                3Rpromar reports</h2>
+                3Rpromar reports</h1>
                 <p class="text-muted text-start">The “Reduce, Reuse, Recycle to Protect the Marine Environment and Coral Reefs” (3RproMar) project supports ASEAN countries in tackling marine litter through improved waste management. As the Knowledge Partner for 3RproMar, we share resources, technical guidance, and best practices developed through this initiative. This page provides updates and learning materials that strengthen capacity and foster regional collaboration to protect marine ecosystems.</p>
         </div>
         <div class="row">
@@ -25,27 +28,27 @@
                 <div class="mb-3 custom-sidebar">
                     <strong class="m-0 pe-3" style="padding-bottom: 4px;">Country: </strong>
                     <select class="form-select mt-2 w-100" id="countrySelect" onclick="refreshData(0);">
-                        <option selected value="0">All</option>
+                        <option selected value="0" @(Model.CountryID == 0 ? "selected" : "")>All</option>
                         @foreach (ViewModels.Country country in Model.Countries)
                         {
-                            <option value="@country.ID">@country.Name</option>
+                            <option value="@country.ID" @(Model.CountryID == country.ID ? "selected" : "")>@country.Name</option>
                         }
                     </select>
                 </div>
                 <div class="mb-3 custom-sidebar">
                     <strong class="m-0 pe-3" style="padding-bottom: 4px;">Year: </strong>
                     <select class="form-select mt-2 w-100" id="yearSelect" onclick="refreshData(0);">
-                        <option selected value="0">All</option>
+                        <option selected value="0" @(Model.Year == 0 ? "selected" : "")>All</option>
                         @foreach (string year in Model.Years)
                         {
-                            <option value="@year">@year</option>
+                            <option value="@year" @(Model.Year.ToString() == year ? "selected" : "")>@year</option>
                         }
                     </select>
                 </div>
                 <div class="mb-3 custom-sidebar">
                     <strong class="m-0 pe-3" style="padding-bottom: 4px;">Publisher: </strong>
                     <div class="form-check mt-2">
-                        <input class="form-check-input publisher-select" type="radio" name="radioPublisher" data-val="All" checked>
+                        <input class="form-check-input publisher-select" type="radio" name="radioPublisher" data-val="All" @(Model.Publisher == "All" ? "checked" : "")>
                         <label class="form-check-label">
                             All
                         </label>
@@ -53,7 +56,7 @@
                     @foreach (string publisher in Model.Publishers)
                     {
                         <div class="form-check mt-2">
-                            <input class="form-check-input publisher-select" type="radio" name="radioPublisher" data-val="@publisher">
+                            <input class="form-check-input publisher-select" type="radio" name="radioPublisher" data-val="@publisher" @(Model.Publisher == publisher ? "checked" : "")>
                             <label class="form-check-label">
                                 @publisher
                             </label>
@@ -75,16 +78,30 @@
 @section scripts {
     <script>
         $(document).ready(function () {
+            setCookies();            
             refreshData(0);
 
+            $("#countrySelect").change(function () {
+                refresh();
+            });
+
+            $("#yearSelect").change(function () {
+                refresh();
+            });
+
             $(".publisher-select").change(function () {
-                refreshData(0);
+                refresh();
             });
 
             $("#searchInput").keyup(function () {
-                refreshData(0);
+                refresh();
             });
         });
+
+        function refresh() {
+            setCookies();
+            location.reload();
+        }
 
         function refreshData(pageIndex) {
             const countryID = $("#countrySelect").val();
@@ -94,6 +111,20 @@
             const url = `/New/_3RproMar/RefreshData?countryID=${countryID}&year=${year}&publisher=${publisher}&searchText=${searchText}&pageIndex=${pageIndex}`;
             const data = [];
             $("#3RpromarData").load(url);
+        }
+
+        function setCookies() {
+            countryID = $("#countrySelect").val();
+            year = $("#yearSelect").val();
+            try {
+                publisher = encodeURI($(".publisher-select:checked").data("val").toString());
+            } catch {
+                publisher = "All";
+            }
+
+            $.cookie("CountryID", countryID, { expires: 7, path: '/' });
+            $.cookie("Year", year, { expires: 7, path: '/' });
+            $.cookie("Publisher", publisher, { expires: 7, path: '/' });
         }
     </script>
 }

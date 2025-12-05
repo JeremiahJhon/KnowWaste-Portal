@@ -217,14 +217,13 @@
 
                     // Trigger change event if needed
                     $("#citySelect").trigger("change");
-
                 } else {
 
                     // Disable dropdown
                     $("#citySelect").prop("disabled", true);
+                    refreshData();
                 }
             });
-
 
             $("#citySelect").change(function () {
                 $.ajax({
@@ -247,11 +246,16 @@
                             select.add(option);
                         }
                         select.value = 0;
+                        refreshData();
                     },
                     error: function (res) {
                         console.log(res);
                     }
                 });
+            });
+
+            $("#yearSelect").change(function () {
+                refreshData();
             });
 
             function populateCityFilter(wasteType, country) {

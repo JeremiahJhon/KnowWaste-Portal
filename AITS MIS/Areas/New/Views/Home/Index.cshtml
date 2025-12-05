@@ -13,15 +13,6 @@
         </div>
         <div class="carousel-inner ">
             <div class="carousel-item active h-600">
-                <img src="~/Content/imgs/home/banner_1.jpg" class="d-block w-100" alt="..." style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="carousel-caption d-none d-md-block hero-overlay">
-                    <!-- <h6 class="text-blue text-uppercase">Latest News</h6> -->
-                    <h4 class="text-white">From Insight to Action — Building a Cleaner, Circular ASEAN.</h4>
-
-                </div>
-            </div>
-
-            <div class="carousel-item  h-600">
                 <img src="~/Content/Images/banner/banner_marine2.jpg" class="d-block w-100" alt="..." style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="carousel-caption d-none d-md-block hero-overlay">
                     <!-- <h6 class="text-blue text-uppercase">Latest News</h6> -->
@@ -30,7 +21,16 @@
                 </div>
             </div>
 
-            <div class="carousel-item  h-600">
+            <div class="carousel-item h-600">
+                <img src="~/Content/imgs/home/banner_1.jpg" class="d-block w-100" alt="..." style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="carousel-caption d-none d-md-block hero-overlay">
+                    <!-- <h6 class="text-blue text-uppercase">Latest News</h6> -->
+                    <h4 class="text-white">From Insight to Action — Building a Cleaner, Circular ASEAN.</h4>
+
+                </div>
+            </div>
+
+            <div class="carousel-item h-600">
                 <img src="~/Content/imgs/home/banner_3.jpg" class="d-block w-100" alt="..." style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="carousel-caption d-none d-md-block hero-overlay">
                     <!-- <h6 class="text-blue text-uppercase">Latest News</h6> -->
@@ -93,6 +93,80 @@
     </div>
 </section>
 
+<!-- network -->
+<section class="ptb-120 bg-pattern text-center position-relative">
+    <img src="/Content/imgs/wave-top.png" class="wave-top" alt="Wave Divider" />
+    <div class="container container-md container-lg">
+        <h2 class="section-title">NETWORKS OF PRACTICE</h2>
+        <div class="row mt-4 bg-white p-5 networks-of-practice">
+            <a href="https://ikhapp.org/" class="col-12 col-md-6 col-lg-6 m-auto text-decoration-none text-dark">
+                <img src="/Content/imgs/partner1.png" class="mx-3 my-2" alt="IKHAPP">
+                <p>International Knowledge Hub Against Plastic Pollution</p>
+            </a>
+            <a href="https://rkcmpd-eria.org/" class="col-12 col-md-6 col-lg-6 m-auto text-decoration-none text-dark">
+                <img src="/Content/imgs/partner2.png" class="mx-3 my-2" alt="RKC-MPD">
+                <p>
+                    Regional Knowledge Centre for Marine Plastic
+                    Debris RKC-MPD ERIA
+                </p>
+            </a>
+        </div>
+    </div>
+    <img src="/Content/imgs/wave-bottom.png" class="swiggle-img" alt="Wave Divider" />
+</section>
+
+<section class="ptb-120">
+    <div class="container container-md container-lg">
+        <h2 class="section-title text-center mb-4">GOOD PRACTICES</h2>
+        <p class="text-center text-muted mb-5">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like </p>
+        <div class="row g-4">
+            @foreach (ViewModels.GoodPractice item in Model.BlogList.Take(3))
+            {
+                <div class="col-md-4 px-3">
+                    <a href="New/GoodPractices/Details/@item.ID" class="text-decoration-none text-dark">
+                        <div class="card h-100 card-rounded s-border box-shadow m-10 hover-zoom-card">
+                            <img src="Documents/Blogs/@item.Thumbnail.Split(';')[0]"
+                                 class="card-img-top"
+                                 alt="@item.Title"
+                                 style="height: 250px; width: 100%; object-fit: cover;">
+                            <div class="card-body p-4">
+                                <h5 class="card-title">@item.Title</h5>
+                                <small>@item.Country</small>
+                                <div class="card-text text-truncate-3">@Html.Raw(item.Description)</div>
+                                <span class="btn btn-link px-0 mt-2">Start Reading →</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+        <div class="text-center mt-4">
+            <a href="New/GoodPractices" class="btn btn-primary">View More</a>
+        </div>
+    </div>
+</section>
+
+<section class="ptb-120 bg-light">
+    <div class="container container-md container-lg">
+        <h2 class="section-title text-center pb-3 mb-4">Meet the Experts</h2>
+        <div class="container container-md container-lg">
+            <div class="owl-carousel owl-theme meet-the-experts">
+                @foreach (ViewModels.Expert item in Model.ExpertList)
+                {
+                    <a href="/New/Experts#@item.Name.Replace(" ","")" style="text-decoration: none;">
+                        <div class="card expert-card p-2 mx-2 bg-light">
+                            <img src="Documents/@item.Thumbnail.Split(';')[0]" alt="" class="br-8" style="height: 300px; width: 100%; object-fit: cover;">
+                            <h5 class="mb-0 mt-1 ps-2">@item.Name</h5>
+                            <small class="text-muted ps-2">@item.Position</small>
+                        </div>
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+
 <section class="pt-120 pb-60">
     <div class="container container-md container-lg">
         <div class="abt-sec text-center pb-60">
@@ -110,7 +184,7 @@
                                       autoplay
                                       loop></dotlottie-wc>
                         <div>
-                            <h5 class="text-black">Thematic Area Case Study</h5>
+                            <h5 class="text-black">Thematic Area</h5>
                             <p class="text-muted">Real-world examples and impact assessments from successful waste management projects across Asia-Pacific.</p>
                         </div>
                     </div>
@@ -172,87 +246,15 @@
     </div>
 </section>
 
-<!-- network -->
-<section class="ptb-120 bg-pattern text-center position-relative">
-    <img src="/Content/imgs/wave-top.png" class="wave-top" alt="Wave Divider" />
-    <div class="container container-md container-lg">
-        <h2 class="section-title">NETWORKS OF PRACTICE</h2>
-        <div class="row mt-4 bg-white p-5 networks-of-practice">
-            <div class="col-12 col-md-6 col-lg-6 m-auto">
-                <img src="/Content/imgs/partner1.png" class="mx-3 my-2" alt="IKHAPP">
-                <p>International Knowledge Hub Against Plastic Pollution</p>
-            </div>
-            <div class="col-12 col-md-6 col-lg-6 m-auto">
-                <img src="/Content/imgs/partner2.png" class="mx-3 my-2" alt="RKC-MPD">
-                <p>
-                    Regional Knowledge Centre for Marine Plastic
-                    Debris RKC-MPD ERIA
-                </p>
-            </div>
-        </div>
-    </div>
-    <img src="/Content/imgs/wave-bottom.png" class="swiggle-img" alt="Wave Divider" />
-</section>
-
-<section class="ptb-120">
-    <div class="container container-md container-lg">
-        <h2 class="section-title text-center mb-4">GOOD PRACTICES</h2>
-        <p class="text-center text-muted mb-5">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like </p>
-        <div class="row g-4">
-            @foreach (ViewModels.GoodPractice item in Model.BlogList.Take(3))
-            {
-                <div class="col-md-4 px-3">
-                    <a href="New/GoodPractices/Details/@item.ID" class="text-decoration-none text-dark">
-                        <div class="card h-100 card-rounded s-border box-shadow m-10 hover-zoom-card">
-                            <img src="Documents/Blogs/@item.Thumbnail.Split(';')[0]"
-                                 class="card-img-top"
-                                 alt="@item.Title"
-                                 style="height: 250px; width: 100%; object-fit: cover;">
-                            <div class="card-body p-4">
-                                <h5 class="card-title">@item.Title</h5>
-                                <small>@item.Country</small>
-                                <div class="card-text text-truncate-3">@Html.Raw(item.Description)</div>
-                                <span class="btn btn-link px-0 mt-2">Start Reading →</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            }
-        </div>
-        <div class="text-center mt-4">
-            <a href="New/GoodPractices" class="btn btn-primary">View More</a>
-        </div>
-    </div>
-</section>
-
-<section class="ptb-120">
-    <div class="container container-md container-lg">
-        <h2 class="section-title text-center pb-3 mb-4">Meet the Experts</h2>
-        <div class="container container-md container-lg">
-            <div class="owl-carousel owl-theme meet-the-experts">
-                @foreach (ViewModels.Expert item in Model.ExpertList)
-                {
-                    <a href="/New/Experts" style="text-decoration: none;">
-                        <div class="card expert-card p-2 mx-2 bg-light">
-                            <img src="Documents/@item.Thumbnail.Split(';')[0]" alt="" class="br-8"  style="height: 300px; width: 100%; object-fit: cover;">
-                            <h5 class="mb-0 mt-1 ps-2">@item.Name</h5>
-                            <small class="text-muted ps-2">@item.Position</small>
-                        </div>
-                    </a>
-                }
-            </div>
-        </div>
-    </div>
-</section>
 @section scripts{
     <script>
         $(function () {
             $(".networks-of-practice").owlCarousel({
-                items: 2,
+                items: 1,
                 loop: true,
                 animateOut: 'fadeOut',
-                autoplay: false,
-                autoplayTimeout: 1800,
+                autoplay: true,
+                autoplayTimeout: 3000,
                 autoplayHoverPause: true,
             });
 
@@ -260,8 +262,8 @@
                 items: 4,
                 loop: true,
                 animateOut: 'fadeOut',
-                autoplay: false,
-                autoplayTimeout: 1800,
+                autoplay: true,
+                autoplayTimeout: 3000,
                 autoplayHoverPause: true,
                 responsive: {
                     0: {

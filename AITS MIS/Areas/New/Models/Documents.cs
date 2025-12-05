@@ -13,7 +13,7 @@ namespace KnowWaste.Models
 
         public int ID { get; set; }
 
-        public int CountryID { get; set; }
+        public int CountryID { get; set; } 
 
         public int Year { get; set; }
 
@@ -136,21 +136,6 @@ namespace KnowWaste.Models
                                 }).ToList();
             }
 
-            if (CountryID > 0)
-            {
-                DocumentList = DocumentList.Where(p => p.CountryID == CountryID).ToList();
-            }
-
-            if (Year > 0)
-            {
-                DocumentList = DocumentList.Where(p => p.Year == Year.ToString()).ToList();
-            }
-
-            if (Publisher != "All")
-            {
-                DocumentList = DocumentList.Where(p => p.Publisher == Publisher).ToList();
-            }
-
             Countries = DocumentList
                         .GroupBy(a => new { a.CountryID, a.Country })
                         .Select(g => new ViewModels.Country
@@ -160,8 +145,34 @@ namespace KnowWaste.Models
                         })
                         .ToList();
 
-            Years = DocumentList.Select(p => p.Year).Distinct().ToList();
+            if (CountryID > 0)
+            {
+                DocumentList = DocumentList.Where(p => p.CountryID == CountryID).ToList();
+            }
+
+            Years = DocumentList.Select(p => p.Year).Distinct().OrderByDescending(a => a).ToList();
+
+            if (!Years.Contains(Year.ToString()))
+            {
+                Year = 0;
+            }
+
+            if (Year > 0)
+            {
+                DocumentList = DocumentList.Where(p => p.Year == Year.ToString()).ToList();
+            }
+
             Publishers = DocumentList.Select(p => p.Publisher).Distinct().ToList();
+
+            if (!Publishers.Contains(Publisher.ToString()))
+            {
+                Publisher = "All";
+            }
+
+            if (Publisher != "All")
+            {
+                DocumentList = DocumentList.Where(p => p.Publisher == Publisher).ToList();
+            }
 
             // Apply pagination and search
             // Get base query
@@ -239,21 +250,6 @@ namespace KnowWaste.Models
                                 }).ToList();
             }
 
-            if (CountryID > 0)
-            {
-                DocumentList = DocumentList.Where(p => p.CountryID == CountryID).ToList();
-            }
-
-            if (Year > 0)
-            {
-                DocumentList = DocumentList.Where(p => p.Year == Year.ToString()).ToList();
-            }
-
-            if (Publisher != "All")
-            {
-                DocumentList = DocumentList.Where(p => p.Publisher == Publisher).ToList();
-            }
-
             Countries = DocumentList
                         .GroupBy(a => new { a.CountryID, a.Country })
                         .Select(g => new ViewModels.Country
@@ -263,8 +259,34 @@ namespace KnowWaste.Models
                         })
                         .ToList();
 
-            Years = DocumentList.Select(p => p.Year).Distinct().ToList();
+            if (CountryID > 0)
+            {
+                DocumentList = DocumentList.Where(p => p.CountryID == CountryID).ToList();
+            }
+
+            Years = DocumentList.Select(p => p.Year).Distinct().OrderByDescending(a => a).ToList();
+
+            if (!Years.Contains(Year.ToString()))
+            {
+                Year = 0;
+            }
+
+            if (Year > 0)
+            {
+                DocumentList = DocumentList.Where(p => p.Year == Year.ToString()).ToList();
+            }
+
             Publishers = DocumentList.Select(p => p.Publisher).Distinct().ToList();
+
+            if (!Publishers.Contains(Publisher.ToString()))
+            {
+                Publisher = "All";
+            }
+
+            if (Publisher != "All")
+            {
+                DocumentList = DocumentList.Where(p => p.Publisher == Publisher).ToList();
+            }
 
             // Apply pagination and search
             // Get base query
@@ -338,7 +360,7 @@ namespace KnowWaste.Models
                         })
                         .ToList();
 
-            Years = DocumentList.Select(p => p.Year).Distinct().ToList(); 
+            Years = DocumentList.Select(p => p.Year).Distinct().OrderByDescending(a => a).ToList(); 
             Publishers = DocumentList.Select(p => p.Publisher).Distinct().ToList();
             Areas = DocumentList.Select(p => p.GeoTheme).Distinct().ToList();
 

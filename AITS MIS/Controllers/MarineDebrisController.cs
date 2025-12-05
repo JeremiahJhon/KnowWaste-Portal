@@ -1378,21 +1378,21 @@ namespace UCOnline.Controllers
             string[] yearData;
             if (city > 0)
             {
-                yearData = context.citywastestreams.Where(x => x.Deleted == 0 && x.Wastecategory_ID == wasteCategoryID && x.City_ID == city).Select(x => x.Year).Distinct().OrderBy(year => year).ToArray();
+                yearData = context.citywastestreams.Where(x => x.Deleted == 0 && x.Wastecategory_ID == wasteCategoryID && x.City_ID == city).Select(x => x.Year).Distinct().OrderByDescending(year => year).ToArray();
             }
             else if (city == 0)
             {
-                yearData = context.citywastestreams.Where(x => x.Deleted == 0 && x.Wastecategory_ID == wasteCategoryID).Select(x => x.Year).Distinct().OrderBy(year => year).ToArray();
+                yearData = context.citywastestreams.Where(x => x.Deleted == 0 && x.Wastecategory_ID == wasteCategoryID).Select(x => x.Year).Distinct().OrderByDescending(year => year).ToArray();
             }
             else
             {
                 if(country == 0)
                 {
-                    yearData = context.countrywastestreams.Where(x => x.Deleted == false && x.Wastecategory_ID == wasteCategoryID.ToString()).Select(x => x.Year).Distinct().OrderBy(year => year).ToArray();
+                    yearData = context.countrywastestreams.Where(x => x.Deleted == false && x.Wastecategory_ID == wasteCategoryID.ToString()).Select(x => x.Year).Distinct().OrderByDescending(year => year).ToArray();
                 }
                 else
                 {
-                    yearData = context.countrywastestreams.Where(x => x.Deleted == false && x.Wastecategory_ID == wasteCategoryID.ToString() && x.Country_ID == country.ToString()).Select(x => x.Year).Distinct().OrderBy(year => year).ToArray();
+                    yearData = context.countrywastestreams.Where(x => x.Deleted == false && x.Wastecategory_ID == wasteCategoryID.ToString() && x.Country_ID == country.ToString()).Select(x => x.Year).Distinct().OrderByDescending(year => year).ToArray();
                 }
             }
 
