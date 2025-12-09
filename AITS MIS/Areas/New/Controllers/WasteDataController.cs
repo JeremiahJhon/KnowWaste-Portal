@@ -10,6 +10,7 @@ using System.Web.Razor.Editor;
 using System.Web.UI.WebControls;
 using UCOnline.Data;
 using UCOnline.Models;
+using ViewModels;
 
 namespace Knowwaste.Areas.New.Controllers
 {
@@ -22,7 +23,7 @@ namespace Knowwaste.Areas.New.Controllers
             int subregionID = Utility.GetCookieInt(Request, "SubRegionID");
             int year = Utility.GetCookieInt(Request, "Year");
 
-            WasteData model = new WasteData(subregionID, countryID, year);
+            KnowWaste.Models.WasteData model = new KnowWaste.Models.WasteData(subregionID, countryID, year);
             return View(model);
         }
 
@@ -73,6 +74,21 @@ namespace Knowwaste.Areas.New.Controllers
                 Sludge = x.a.Sludge,
                 Reference = x.a.reference,
             }).ToList();
+
+            if (subregionID > 0)
+            {
+                rawList = rawList.Where(p => p.b.SubRegion_ID == subregionID.ToString()).ToList();
+            }
+
+            if (countryID > 0)
+            {
+                DataList = DataList.Where(p => p.CountryID == countryID).ToList();
+            }
+
+            if (year > 0)
+            {
+                DataList = DataList.Where(p => p.Year == year).ToList();
+            }
 
             var data = DataList
                         .GroupBy(x => new { x.WasteTypeID, x.WasteType })
@@ -132,6 +148,21 @@ namespace Knowwaste.Areas.New.Controllers
                 Sludge = x.a.Sludge,
                 Reference = x.a.reference,
             }).ToList();
+
+            if (subregionID > 0)
+            {
+                rawList = rawList.Where(p => p.b.SubRegion_ID == subregionID.ToString()).ToList();
+            }
+
+            if (countryID > 0)
+            {
+                DataList = DataList.Where(p => p.CountryID == countryID).ToList();
+            }
+
+            if (year > 0)
+            {
+                DataList = DataList.Where(p => p.Year == year).ToList();
+            }
 
             List<ViewModels.WasteData> data = new List<ViewModels.WasteData>();
 

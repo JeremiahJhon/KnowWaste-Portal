@@ -98,7 +98,7 @@ namespace KnowWaste.Models
             // Apply search
             if (!string.IsNullOrWhiteSpace(PaginationSetting.SearchText))
             {
-                query = query.Where(p => p.Legal.Contains(PaginationSetting.SearchText));
+                query = query.Where(p => p.Legal.ToLower().Contains(PaginationSetting.SearchText.ToLower()));
             }
 
             // Compute total count BEFORE pagination

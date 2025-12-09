@@ -30,7 +30,7 @@
 
             <div class="col-10 ps-3">
                 <h4 class="m-0">@item.Title</h4>
-                <small>@item.Country | @item.Year</small>
+                <small>@string.Join(", ", item.Country.Select(x => x.Name)) | @item.Year</small>
                 <div class="pt-3" style="display: -webkit-box; -webkit-line-clamp: 4;  -webkit-box-orient: vertical; overflow: hidden; ">@Html.Raw(item.Description)</div>
 
                 <span class="btn btn-link px-0 mt-2">Start Reading →</span>

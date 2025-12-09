@@ -141,28 +141,6 @@
 
 </section>
 
-<!-- network -->
-<section class="ptb-120 bg-pattern text-center position-relative">
-    <img src="/Content/imgs/wave-top.png" class="wave-top" alt="Wave Divider" />
-    <div class="container container-md container-lg">
-        <h2 class="section-title">NETWORKS OF PRACTICE</h2>
-        <div class="row  mt-4 bg-white p-5">
-            <div class="col-12 col-md-6 col-lg-6">
-                <img src="/Content/imgs/partner1.png" class="mx-3 my-2" alt="IKHAPP">
-                <p>International Knowledge Hub Against Plastic Pollution</p>
-            </div>
-            <div class="col-12 col-md-6 col-lg-6">
-                <img src="/Content/imgs/partner2.png" class="mx-3 my-2" alt="RKC-MPD">
-                <p>
-                    Regional Knowledge Centre for Marine Plastic
-                    Debris RKC-MPD ERIA
-                </p>
-            </div>
-        </div>
-    </div>
-    <img src="/Content/imgs/wave-bottom.png" class="swiggle-img" alt="Wave Divider" />
-</section>
-
 <section class="ptb-120">
     <div class="container container-md container-lg">
         <h2 class="section-title text-center mb-4">GOOD PRACTICES</h2>
@@ -193,3 +171,82 @@
         </div>
     </div>
 </section>
+
+<!-- network -->
+<!--<section class="ptb-120 bg-pattern text-center position-relative">
+    <img src="/Content/imgs/wave-top.png" class="wave-top" alt="Wave Divider" />
+    <div class="container container-md container-lg">
+        <h2 class="section-title">NETWORKS OF PRACTICE</h2>
+        <div class="row mt-4 bg-white p-5 networks-of-practice">
+            <a href="https://ikhapp.org/" class="col-12 col-md-6 col-lg-6 m-auto text-decoration-none text-dark">
+                <img src="/Content/imgs/partner1.png" class="mx-3 my-2" alt="IKHAPP">
+                <p>International Knowledge Hub Against Plastic Pollution</p>
+            </a>
+            <a href="https://rkcmpd-eria.org/" class="col-12 col-md-6 col-lg-6 m-auto text-decoration-none text-dark">
+                <img src="/Content/imgs/partner2.png" class="mx-3 my-2" alt="RKC-MPD">
+                <p>
+                    Regional Knowledge Centre for Marine Plastic
+                    Debris RKC-MPD ERIA
+                </p>
+            </a>
+        </div>
+    </div>
+    <img src="/Content/imgs/wave-bottom.png" class="swiggle-img" alt="Wave Divider" />
+</section>-->
+
+<div class="row" id="networks-of-practice" style="background-image: url('Content/marine-debris/shutterstock_436985632.jpg'); background-repeat: no-repeat; background-size: cover; background-color: white; background-attachment: fixed;">
+    <div class="col-md-12 py-5" style=" background-color: #00000099; ">
+        <div class="container mb-7 text-center py-5">
+            <h2 class="section-title">NETWORKS OF PRACTICE</h2>
+            <div id="NetworkOfPracticeCarousel" class="carousel slide w-100 py-5" data-bs-ride="carousel" data-bs-interval="4000">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#NetworkOfPracticeCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#NetworkOfPracticeCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item">
+                        <a class="octagon d-flex align-items-center m-auto" style="background-color: #13222c; height: 200px; width: 200px;" href="https://ikhapp.org/">
+                            <img src="/Content/marine-debris/ikhapp.svg" class="m-auto w-100" alt="" />
+                        </a>
+                        <br />
+                        <a href="https://ikhapp.org/" class="text-white text-decoration-none fs-5">International Knowledge Hub Against Plastic Pollution</a>
+                    </div>
+
+                    <div class="carousel-item active">
+                        <a class="octagon d-flex align-items-center bg-white m-auto" style="height: 200px; width: 200px;" href="https://rkcmpd-eria.org/">
+                            <img src="~/Content/marine-debris/logo-rkc-mpd.png" class="m-auto w-100" alt="" />
+                        </a>
+                        <br />
+                        <a href="https://rkcmpd-eria.org/" class="text-white text-decoration-none fs-5">
+                            Regional Knowledge Centre for Marine Plastic Debris
+                            RKC-MPD ERIA
+                        </a>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#NetworkOfPracticeCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#NetworkOfPracticeCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $(".networks-of-practice").owlCarousel({
+                items: 1,
+                loop: true,
+                animateOut: 'fadeOut',
+                autoplay: true,
+                autoplayTimeout: 3000,
+                autoplayHoverPause: true,
+            });
+        });
+    </script>
+}

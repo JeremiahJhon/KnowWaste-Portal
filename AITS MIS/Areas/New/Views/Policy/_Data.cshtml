@@ -1,29 +1,37 @@
 ﻿@model KnowWaste.Models.Policy
-
-@if (Model.PaginationSetting.TotalPages > 0)
+@if (Model.Policies.Count == 0)
 {
-    <div class="d-flex justify-content-end align-items-center mb-5">
-        <nav aria-label="Page navigation example" class="pagination">
-            <ul class="pagination">
-                <li class="page-item"><button class="page-link" @(Model.PaginationSetting.PageIndex == 0 ? "hidden" : null) onclick="refreshData(@(Model.PaginationSetting.PageIndex - 1))">Previous</button></li>
-                @for (int index = 0; index < Model.PaginationSetting.TotalPages; index++)
-                {
-                    <li class="page-item"><button class="page-link @(index == Model.PaginationSetting.PageIndex ? "text-dark" : null)" onclick="refreshData(@index)">@(index + 1)</button></li>
-                }
-                <li class="page-item"><button class="page-link" @(Model.PaginationSetting.PageIndex == Model.PaginationSetting.TotalPages - 1 ? "hidden" : null) onclick="refreshData(@(Model.PaginationSetting.PageIndex + 1))">Next</button></li>
-            </ul>
-        </nav>
-    </div>
+    <div class="w-100 text-center bg-light d-grid p-4 mt-5">There is no information matching your search.</div>
 }
-
-@foreach (ViewModels.Policy item in Model.Policies)
+else
 {
-    <div class="custom-border p-4 mb-4 policy-item" data-area="@item.PolicyArea">
-        <small class="text-blue text-uppercase">Code No:</small>
-        <h4 class="m-0">@item.Legal</h4>
-        <small>@item.Country | @item.Year</small>
-        <p class="pt-3" style="display: -webkit-box; -webkit-line-clamp: 4;  -webkit-box-orient: vertical; overflow: hidden; ">@Html.Raw(item.Description)</p>
+    if (Model.PaginationSetting.TotalPages > 0)
+    {
+        <div class="d-flex justify-content-end align-items-center mb-5">
+            <nav aria-label="Page navigation example" class="pagination">
+                <ul class="pagination">
+                    <li class="page-item"><button class="page-link" @(Model.PaginationSetting.PageIndex == 0 ? "hidden" : null) onclick="refreshData(@(Model.PaginationSetting.PageIndex - 1))">Previous</button></li>
+                    @for (int index = 0; index < Model.PaginationSetting.TotalPages; index++)
+                    {
+                        <li class="page-item"><button class="page-link @(index == Model.PaginationSetting.PageIndex ? "text-dark" : null)" onclick="refreshData(@index)">@(index + 1)</button></li>
+                    }
+                    <li class="page-item"><button class="page-link" @(Model.PaginationSetting.PageIndex == Model.PaginationSetting.TotalPages - 1 ? "hidden" : null) onclick="refreshData(@(Model.PaginationSetting.PageIndex + 1))">Next</button></li>
+                </ul>
+            </nav>
+        </div>
+    }
 
-        <a href="@item.Source" target="_blank" class="form-control btn btn-outline-primary w-auto mt-2">Go to Source</a>
-    </div>
+    foreach (ViewModels.Policy item in Model.Policies)
+    {
+        <a href="@item.Source" target="_blank" class="text-decoration-none text-dark">
+            <div class="custom-border p-4 mb-4 policy-item" data-area="@item.PolicyArea">
+                <small class="text-blue text-uppercase">Code No:</small>
+                <h4 class="m-0">@item.Legal</h4>
+                <small>@item.Country | @item.Year</small>
+                <p class="pt-3" style="display: -webkit-box; -webkit-line-clamp: 4;  -webkit-box-orient: vertical; overflow: hidden; ">@Html.Raw(item.Description)</p>
+
+                <div class="btn btn-link ps-0">Go to Source</div>
+            </div>
+        </a>
+    }
 }

@@ -1,8 +1,81 @@
 ﻿@model KnowWaste.Models.Documents
 
+<style>
+    /* Timeline container */
+    .timeline {
+        position: relative;
+        padding-left: 0px;
+        margin-top: 20px;
+    }
+
+    /* Vertical line */
+    .timeline::before {
+        content: "";
+        position: absolute;
+        top: 20px;
+        bottom: 0;
+        left: 75px; /* Position of line */
+        width: 3px;
+        background: #e5e5e5;
+    }
+
+    /* Timeline item */
+    .timeline-item {
+        position: relative;
+        padding-bottom: 40px;
+    }
+
+    /* Year label */
+    .timeline-label {
+        margin-left: 0px;
+        margin-bottom: 10px;
+    }
+
+    /* The circle/dot */
+    .timeline-badge {
+        position: absolute;
+        left: 69px;
+        top: 10px;
+    }
+
+    .timeline-badge i {
+        font-size: 16px !important;
+        color: #0d6efd !important;
+    }
+
+    /* Content container */
+    .timeline-content {
+        margin-left: 80px;
+        padding-left: 10px;
+        border-left: 0;
+        transition: transform 0.4s ease;
+    }
+
+    /* Content container */
+    .timeline-content .img-fluid:hover{
+        transform: scale(1.07);
+    }
+
+    /* Card styling */
+    .document-card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .document-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Image layout */
+    .object-fit-cover {
+        object-fit: cover;
+    }
+
+</style>
+
 @if (Model.PaginationSetting.TotalPages > 0)
 {
-    <div class="d-flex justify-content-end align-items-center mb-5">
+    <div class="d-flex justify-content-end align-items-center mb-5 d-none" hidden>
         <nav aria-label="Page navigation example" class="pagination">
             <ul class="pagination">
                 <li class="page-item"><button class="page-link" @(Model.PaginationSetting.PageIndex == 0 ? "hidden" : null) onclick="refreshData(@(Model.PaginationSetting.PageIndex - 1))">Previous</button></li>
@@ -18,7 +91,7 @@
 
 @foreach (ViewModels.Document item in Model.DocumentList)
 {
-    <a href="New/Publications/Details/@item.ID" class="text-decoration-none text-dark">
+    <a href="New/Publications/Details/@item.ID" class="text-decoration-none text-dark d-none" hidden>
         <div class="custom-border d-flex p-4 mb-4">
             <!-- <small class="text-blue text-uppercase">Code No:</small> -->
             <div class="col-2">
@@ -27,7 +100,7 @@
 
             <div class="col-10 ps-3">
                 <h4 class="m-0">@item.Title</h4>
-                <small>@item.Country | @item.Year</small>
+                <small>@string.Join(", ", item.Country.Select(x => x.Name)) | @item.Year</small>
                 <div class="pt-3" style="display: -webkit-box; -webkit-line-clamp: 4;  -webkit-box-orient: vertical; overflow: hidden; ">@Html.Raw(item.Description)</div>
 
                 <span class="btn btn-link px-0 mt-2">Start Reading →</span>
@@ -35,3 +108,69 @@
         </div>
     </a>
 }
+
+<div class="row">
+    <div class="timeline">
+
+        @foreach (string year in Model.Years)
+        {
+            <div class="timeline-item">
+
+                <!-- YEAR LABEL -->
+                <div class="timeline-label fw-bold text-dark fs-3">
+                    @year
+                </div>
+
+                <!-- DOT / BADGE -->
+                <div class="timeline-badge">
+                    <i class="bi bi-record-circle-fill text-primary"></i>
+                </div>
+
+                <!-- CONTENT -->
+                <div class="timeline-content text-muted ps-4">
+
+                    <div class="row d-flex">
+
+                        @foreach (var item in Model.DocumentList.Where(x => x.Year == year))
+                        {
+                            int MaxLength = item.Description.Length < 100
+                                ? item.Description.Length
+                                : 100;
+
+                            <div class="col-md-3 text-center px-4 pb-4">
+
+                                <!-- Thumbnail -->
+                                <a class="box-shadow"
+                                   href="/New/Publications/Details/@item.ID">
+
+                                    <div class="box-shadow">
+                                        <img src="/Documents/@item.Thumbnail"
+                                             class="img-fluid object-fit-cover h-auto" />
+                                    </div>
+                                </a>
+
+                                <!-- Title -->
+                                <a href="/MarineDebris/Documents/@item.ID"
+                                   class="fw-bold text-dark text-decoration-none d-block mt-3 text-truncate">
+                                    @item.Title
+                                </a>
+
+                                <!-- Country -->
+                                <div class="text-secondary mb-1" style="font-size: 14px;">
+                                    <i class="bi bi-geo-alt-fill me-1"></i>
+                                    @string.Join(", ", item.Country.Select(x => x.Name))
+                                </div>
+
+                                <!-- Publisher -->
+                                <div class="text-secondary" style="font-size: 14px;">
+                                    <i class="bi bi-person-lines-fill me-1"></i>
+                                    @item.Publisher
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

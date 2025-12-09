@@ -7,8 +7,7 @@
     <div class="container pb-120">
         <div class="text-center pb-4 pt-5">
             <h1 class="section-title pb-3 text-uppercase text-start">
-                Publication</h2>
-                <p class="text-muted text-start">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et ad facere veniam, dolores velit voluptas eaque nemo, provident aperiam dolore aut odio at, placeat labore rerum assumenda est mollitia tempora.</p>
+                Publication</h1>
         </div>
         <div class="row">
             <div class="col-12 col-md-3 col-lg-3">
@@ -53,8 +52,8 @@
             </div>
 
             <div class="col-12 col-md-9 col-lg-9">
-                <div class="col-3 float-start">
-                    <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" id="searchInput">
+                <div class="col-3 float-start d-none" hidden>
+                    <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" id="searchInput" value="@Model.PaginationSetting.SearchText">
                 </div>
                 <div class="wrapper" id="PublicationsData">
                 </div>
@@ -81,7 +80,10 @@
             });
 
             $("#searchInput").keyup(function () {
-                refresh();
+                if (event.key === "Enter") {
+                    refresh();
+                    return;
+                }
             });
         });
 
@@ -108,10 +110,12 @@
             } catch {
                 publisher = "All";
             }
+            searchText = $("#searchInput").val();
 
             $.cookie("CountryID", countryID, { expires: 7, path: '/' });
             $.cookie("Year", year, { expires: 7, path: '/' });
             $.cookie("Publisher", publisher, { expires: 7, path: '/' });
+            $.cookie("SearchText", searchText, { expires: 7, path: '/' });
         }
     </script>
 }

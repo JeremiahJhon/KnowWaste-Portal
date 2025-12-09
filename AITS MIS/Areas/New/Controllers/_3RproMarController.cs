@@ -15,8 +15,9 @@ namespace Knowwaste.Areas.New.Controllers
             int countryID = Utility.GetCookieInt(Request, "CountryID");
             int year = Utility.GetCookieInt(Request, "Year");
             string publisher = Utility.GetCookieString(Request, "Publisher");
+            string searchText = Utility.GetCookieString(Request, "SearchText");
 
-            Documents model = new Documents("3Rpromar", countryID, year, publisher, "", 0);
+            Documents model = new Documents("3Rpromar", countryID, year, publisher, searchText, 0);
             return View(model);
         }
 

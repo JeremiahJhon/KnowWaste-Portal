@@ -67,7 +67,7 @@
 
             <div class="col-12 col-md-9 col-lg-9">
                 <div class="col-3 float-start">
-                    <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" id="searchInput">
+                    <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" id="searchInput" value="@Model.PaginationSetting.SearchText">
                 </div>
                 <div class="wrapper" id="3RpromarData">
                 </div>
@@ -93,8 +93,11 @@
                 refresh();
             });
 
-            $("#searchInput").keyup(function () {
-                refresh();
+            $("#searchInput").on("keyup", function () {
+                if (event.key === "Enter") {
+                    refresh();
+                    return;
+                }
             });
         });
 
@@ -121,10 +124,12 @@
             } catch {
                 publisher = "All";
             }
+            searchText = $("#searchInput").val();
 
             $.cookie("CountryID", countryID, { expires: 7, path: '/' });
             $.cookie("Year", year, { expires: 7, path: '/' });
             $.cookie("Publisher", publisher, { expires: 7, path: '/' });
+            $.cookie("SearchText", searchText, { expires: 7, path: '/' });
         }
     </script>
 }

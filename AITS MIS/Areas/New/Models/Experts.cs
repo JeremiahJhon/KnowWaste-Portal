@@ -17,6 +17,7 @@ namespace KnowWaste.Models
         {
             ExpertList = (from a in db.expertrosters
                         where a.Deleted == 0
+                        orderby a.Firstname ascending
                         select new Expert
                         {
                             ID = a.ID,

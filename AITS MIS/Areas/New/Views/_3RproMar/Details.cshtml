@@ -30,7 +30,7 @@
                     <div class="text-muted">
                         <p class="fw-medium mb-0">Publisher: <span class="fw-light w-75">@Model.Publisher</span></p>
                         <p class="fw-medium mb-0">Year: <span class="fw-light">@Model.Year</span></p>
-                        <p class="fw-medium mb-0">Country: <span class="fw-light">@Model.Country</span></p>
+                        <p class="fw-medium mb-0">Country: <span class="fw-light">@string.Join(", ", Model.Country.Select(x => x.Name))</span></p>
                         <p class="fw-medium mb-0">Category: <span class="fw-light">@Model.Category</span></p>
                         <p class="fw-medium mb-0">Waste Theme: <span class="fw-light">@Model.GeoTheme</span></p>
                         <p class="fw-medium mb-0">Keywords: <span class="fw-light">@Model.Keywords</span></p>

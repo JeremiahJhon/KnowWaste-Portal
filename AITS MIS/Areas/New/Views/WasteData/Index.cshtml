@@ -19,7 +19,7 @@
     <div class="container pb-120">
         <div class="pb-4">
             <h1 class="section-title pb-3 text-uppercase">
-                Waste Data</h2>
+                Waste Data</h1>
                 <p class="text-muted text-start">This page highlights successful and replicable practices from across the ASEAN region that address waste management and marine litter. By sharing these case studies, we aim to inspire action and encourage learning for improved circular economy and 3R (Reduce, Reuse, Recycle) approaches. If you have a good practice that could help others and would like to see it featured, please email us at warm@rrcap.ait.ac.th — we welcome your contributions.</p>
         </div>
         <div class="d-flex flex-wrap">
@@ -54,62 +54,64 @@
                 </select>
             </div>
         </div>
-        <div class="kpi-wrapper">
-            <div class="country-title">
-                <h2 class="text-blue text-uppercase">@(Model.CountryID > 0 ? Model.Countries.Where(p => p.ID == Model.CountryID).First().Name : "All")</h2>
+        @if(Model.PopulationList.Count == 1)
+        {
+            <div class="kpi-wrapper">
+                <div class="country-title">
+                </div>
+                <div class="row mb-5">
+                    <div class="col-12 col-md-3 col-lg-3">
+                        <div class="d-flex justify-content-between custom-sidebar">
+                            <div>
+                                <h4 class="text-blue">
+                                    @(Model.PopulationList != null && Model.PopulationList.Any() ? Model.PopulationList.First().Population.ToString() : "-")
+                                </h4>
+                                <p class="m-0">Population</p>
+                            </div>
+                            <div><img src="icons/crowd-of-users.png" alt="" height="60px"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-3 col-lg-3">
+                        <div class="d-flex justify-content-between custom-sidebar">
+                            <div>
+                                <h4 class="text-blue">
+                                    @(Model.PopulationList != null && Model.PopulationList.Any() ? Model.PopulationList.First().UrbanPopulation.ToString() : "-")
+                                </h4>
+                                <p class="m-0">Urban Population</p>
+                            </div>
+                            <div><img src="icons/crowd-of-users.png" alt="" height="60px"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-3 col-lg-3">
+                        <div class="d-flex justify-content-between custom-sidebar">
+                            <div>
+                                <h4 class="text-blue">
+                                    @(Model.PopulationList != null && Model.PopulationList.Any() ? Model.PopulationList.First().Area.ToString() : "-")
+                                </h4>
+                                <p class="m-0">Area</p>
+                            </div>
+                            <div><img src="icons/map_14948265.png" alt="" height="60px"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-3 col-lg-3">
+                        <div class="d-flex justify-content-between custom-sidebar">
+                            <div>
+                                <h4 class="text-blue">
+                                    @(Model.PopulationList != null && Model.PopulationList.Any() ? Model.PopulationList.First().IncomeLevel.ToString() : "-")
+                                </h4>
+                                <p class="m-0">Income Level</p>
+                            </div>
+                            <div><img src="icons/save-money.png" alt="" height="60px"></div>
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
-            <div class="row mb-5">
-                <div class="col-12 col-md-3 col-lg-3">
-                    <div class="d-flex justify-content-between custom-sidebar">
-                        <div>
-                            <h4 class="text-blue">
-                                @(Model.PopulationList != null && Model.PopulationList.Any() ? Model.PopulationList.First().Population.ToString() : "-")
-                            </h4>
-                            <p class="m-0">Population</p>
-                        </div>
-                        <div><img src="icons/crowd-of-users.png" alt="" height="60px"></div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-3 col-lg-3">
-                    <div class="d-flex justify-content-between custom-sidebar">
-                        <div>
-                            <h4 class="text-blue">
-                                @(Model.PopulationList != null && Model.PopulationList.Any() ? Model.PopulationList.First().UrbanPopulation.ToString() : "-")
-                            </h4>
-                            <p class="m-0">Urban Population</p>
-                        </div>
-                        <div><img src="icons/crowd-of-users.png" alt="" height="60px"></div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-3 col-lg-3">
-                    <div class="d-flex justify-content-between custom-sidebar">
-                        <div>
-                            <h4 class="text-blue">
-                                @(Model.PopulationList != null && Model.PopulationList.Any() ? Model.PopulationList.First().Area.ToString() : "-")
-                            </h4>
-                            <p class="m-0">Area</p>
-                        </div>
-                        <div><img src="icons/map_14948265.png" alt="" height="60px"></div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-3 col-lg-3">
-                    <div class="d-flex justify-content-between custom-sidebar">
-                        <div>
-                            <h4 class="text-blue">
-                                @(Model.PopulationList != null && Model.PopulationList.Any() ? Model.PopulationList.First().IncomeLevel.ToString() : "-")
-                            </h4>
-                            <p class="m-0">Income Level $</p>
-                        </div>
-                        <div><img src="icons/save-money.png" alt="" height="60px"></div>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
+        }
         <div class="wrapper">
             <div class="custom-border p-4 mb-4">
                 <div class="graph-wrapper mb-5">
