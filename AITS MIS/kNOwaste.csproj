@@ -6414,6 +6414,10 @@
     <Content Include="Content\imgs\20200212_115334.jpg" />
     <Content Include="Content\imgs\about-us.JPG" />
     <Content Include="Content\imgs\about.png" />
+    <Content Include="Content\imgs\accordian-3rproma.png" />
+    <Content Include="Content\imgs\accordian-data.png" />
+    <Content Include="Content\imgs\accordian-elearning.png" />
+    <Content Include="Content\imgs\accordian-policy.png" />
     <Content Include="Content\imgs\banner1.png" />
     <Content Include="Content\imgs\bg-10.png" />
     <Content Include="Content\imgs\bg-100.png" />
@@ -6457,6 +6461,7 @@
     <Content Include="Content\imgs\SSl-logo.png" />
     <Content Include="Content\imgs\technology-1.jpeg" />
     <Content Include="Content\imgs\technology-2.png" />
+    <Content Include="Content\imgs\technology2.png" />
     <Content Include="Content\imgs\to-connect.png" />
     <Content Include="Content\imgs\to-empower.png" />
     <Content Include="Content\imgs\to-inform.png" />
