@@ -5,6 +5,51 @@
         margin-top: 0; /* optional: remove jump on hover */
     }
 
+    .gsc-search-button-v2{
+        display: none;
+    }
+
+    .gsc-search-box {
+        min-width: 175px;
+    }
+
+    /* Container */
+    .search-wrapper {
+        position: relative;
+    }
+
+    /* Box layout */
+    .search-box {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        position: relative;
+        transition: width 0.3s ease;
+        width: 35px; /* collapsed width */
+        overflow: hidden;
+        padding: 5px;
+    }
+
+    /* Icon */
+    .search-icon {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+
+    /* Input */
+    .search-input {
+        border: none;
+        outline: none;
+        width: 100%;
+        margin-left: 8px;
+        background: transparent;
+    }
+
+    .search-box.active {
+        width: 220px;
+    }
+
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm ptb-3 sticky-top">
@@ -16,7 +61,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav align-items-center">
                 <li class="nav-item text-uppercase fw-bold pe-2 dropdown">
-                    <a class="nav-link" href="/New/Home/About" id="navbarDropdownMenuLink" role="button"" aria-expanded="false">
+                    <a class="nav-link" href="/New/Home/About" role="button" aria-expanded="false">
                         About
                         <i class="bi bi-chevron-down icon-hidden pl-2"></i>
                     </a>
@@ -26,7 +71,7 @@
                     </ul>
                 </li>
                 <li class="nav-item text-uppercase fw-bold pe-2 dropdown">
-                    <a class="nav-link" href="/New/MarineDebris" id="navbarDropdownMenuLink" role="button" aria-expanded="false">
+                    <a class="nav-link" href="/New/MarineDebris" role="button" aria-expanded="false">
                         Marine Debris
                         <i class="bi bi-chevron-down icon-hidden pl-2"></i>
                     </a>
@@ -43,7 +88,7 @@
                 <li class="nav-item text-uppercase fw-bold pe-2"><a class="nav-link" href="/New/News">News</a></li>
                 <!-- <li class="nav-item text-uppercase fw-bold pe-2"><a class="nav-link" href="upcoming-events.html">Upcoming Events</a></li> -->
                 <li class="nav-item text-uppercase fw-bold pe-2 dropdown">
-                    <a class="nav-link" href="/New/WasteData" id="navbarDropdownMenuLink" role="button" aria-expanded="false">
+                    <a class="nav-link" href="/New/WasteData" role="button" aria-expanded="false">
                         Topic
                         <i class="bi bi-chevron-down icon-hidden pl-2"></i>
                     </a>
@@ -53,8 +98,48 @@
                     </ul>
                 </li>
                 <li class="nav-item text-uppercase fw-bold pe-2"><a class="nav-link" href="/New/Publications">Publications</a></li>
-                <li class="nav-item text-uppercase fw-bold pe-3"><a class="nav-link" href="/New/Contact">Contact</a></li>
-                <img src="Content/icons/search.svg" alt="Search" width="20" height="20">
+                <li class="nav-item text-uppercase fw-bold pe-2"><a class="nav-link" href="/New/Contact">Contact</a></li>
+                <li class="nav-item text-uppercase fw-bold pe-2 search-wrapper">
+                    
+                    <div class="search-box">
+                        <div class="gcse-search" data-gname="storesearch" style="padding: 10px;"></div>
+                        <img src="Content/icons/search.svg" class="search-icon ms-2" alt="Search">
+                    </div>
+                    <script>
+                        (function () {
+                            var cx = '003366087466855040359:7y-p87ccjws';
+                            var gcse = document.createElement('script');
+                            gcse.type = 'text/javascript';
+                            gcse.async = true;
+                            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                            document.getElementsByTagName('head')[0].appendChild(gcse);
+
+                            window.__gcse = {
+                                callback: function () {
+                                    // This fires AFTER Google renders the DOM
+                                    setTimeout(() => {
+                                        const box = document.querySelector(".gsc-input-box");
+                                        if (box) box.style.cssText = "border-radius:5px;border:1px solid #2577BC;width:100%;";
+
+                                        const input = document.querySelector(".gsc-input");
+                                        if (input) input.style.cssText = "padding-right:0px;";
+
+                                        const btn = document.querySelector(".gsc-search-button input");
+                                        if (btn) btn.style.display = "none";
+
+                                        const cse = document.querySelector(".gsc-control-cse");
+                                        if (cse) cse.style.padding = "0px";
+                                    }, 200);
+                                }
+                            };
+                        })();
+
+                        document.querySelector('.search-icon').addEventListener('click', function (e) {
+                            document.querySelector('.search-box').classList.toggle('active');
+                            document.querySelector('.gsc-input').focus();
+                        });
+                    </script>
+                </li>
                 <!-- <li class="nav-item text-uppercase fw-bold"><img src="icons/search.svg" alt="Search" width="18" height="18"></li> -->
             </ul>
         </div>
