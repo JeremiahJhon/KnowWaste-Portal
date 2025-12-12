@@ -198,10 +198,10 @@ namespace KnowWaste.Models
                 PaginationSetting.TotalCount = query.Count();
 
                 // Apply pagination
-                DocumentList = query
-                    .Skip(PaginationSetting.PageIndex * PaginationSetting.PageCount)
-                    .Take(PaginationSetting.PageCount)
-                    .ToList();
+                //DocumentList = query
+                //    .Skip(PaginationSetting.PageIndex * PaginationSetting.PageCount)
+                //    .Take(PaginationSetting.PageCount)
+                //    .ToList();
 
                 // Compute total pages
                 PaginationSetting.TotalPages = (int)Math.Ceiling((double)PaginationSetting.TotalCount / PaginationSetting.PageCount);
