@@ -340,7 +340,7 @@ namespace KnowWaste.Models
             DocumentList = (from a in db.documents
                             join c in db.documentcategories on a.Documentcategory_ID equals c.ID
                             join d in db.geothemes on a.Geotheme_ID equals d.ID
-                            where a.Documentcategory_ID != 4 && a.Deleted == 0
+                            where a.Documentcategory_ID != 4 && a.Deleted == 0 && d.Deleted == 0
                             orderby a.Year descending
                             select new Document
                             {

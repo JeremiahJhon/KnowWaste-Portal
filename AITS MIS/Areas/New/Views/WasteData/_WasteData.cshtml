@@ -14,13 +14,20 @@
         Disposal = g.Sum(x => x.Disposal ?? 0),
         Treatment = g.Sum(x => x.Treatment ?? 0),
         Reuse = g.Sum(x => x.Reuse ?? 0),
-        Sludge = g.Sum(x => x.Sludge ?? 0)
+        Sludge = g.Sum(x => x.Sludge ?? 0),
+
+        Ref = string.Join(", ",
+            g.Select(x => x.Reference)
+             .Where(r => !string.IsNullOrEmpty(r))
+             .Distinct()
+        )
     })
     .ToList();
 
+
 }
 
-<table class="table">
+<table class="table" id="WasteDataTable">
     <thead>
         <tr>
             <th scope="col">Waste Category</th>
@@ -54,8 +61,14 @@
                 <td>
                     @if (!String.IsNullOrWhiteSpace(item.Ref))
                     {
-                        <i class="bi bi-info-circle-fill fs-1 custom-tooltip" id="tooltip-@data.IndexOf(item)" data-id="@data.IndexOf(item)" style="color: #23A2D7;"></i>
-                        <div hidden id="tooltip-content-@data.IndexOf(item)">@Html.Raw(item.Ref)</div>
+                        <div hidden="">
+                            <div data-name="popover-content-@data.IndexOf(item)" style="font-size: 10px; max-height: 500px; overflow: auto;">
+                                @Html.Raw(item.Ref)
+                            </div>
+                        </div>
+                        <button id="ref-@data.IndexOf(item)" type="button" class="btn btn-primary popover-group py-1 px-2 border" data-bs-toggle="tooltip" data-bs-trigger="focus" data-bs-placement="right" style="border-radius: 20px;position:relative;margin:-10px 0px;">
+                            <i class="bi bi-info-lg px-0"></i>
+                        </button>
                     }
                 </td>
             </tr>

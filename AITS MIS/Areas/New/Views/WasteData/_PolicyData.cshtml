@@ -7,11 +7,12 @@
         <hr class="mt-0" />
     }
     <div class="accordion-item custom-accordion-item">
-        <h2 class="accordion-header ">
-            <button class="accordion-button bg-white @(Model.PolicyList.IndexOf(item) == 0 ? "" : "collapsed") px-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@(Model.PolicyList.IndexOf(item) + 1)" aria-expanded="@(Model.PolicyList.IndexOf(item) == 0 ? "true" : "false")" aria-controls="collapse_@(Model.PolicyList.IndexOf(item) + 1)">
+        <button class="accordion-button bg-white @(Model.PolicyList.IndexOf(item) == 0 ? "" : "collapsed") px-0 d-block py-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@(Model.PolicyList.IndexOf(item) + 1)" aria-expanded="@(Model.PolicyList.IndexOf(item) == 0 ? "true" : "false")" aria-controls="collapse_@(Model.PolicyList.IndexOf(item) + 1)">
+            <h5 class="accordion-header ">
                 <strong>@item.Legal</strong>
-            </button>
-        </h2>
+            </h5>
+            <div class="text-muted">@item.Country</div>
+        </button>
         <div id="collapse_@(Model.PolicyList.IndexOf(item) + 1)" class="accordion-collapse collapse @(Model.PolicyList.IndexOf(item) == 0 ? "show" : "")">
             <div class="accordion-body bg-white px-0 text-muted">
                 @Html.Raw(item.Description)

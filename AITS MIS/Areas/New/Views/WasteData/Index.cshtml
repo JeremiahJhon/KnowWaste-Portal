@@ -20,7 +20,7 @@
         <div class="pb-4">
             <h1 class="section-title pb-3 text-uppercase">
                 Waste Data</h1>
-                <p class="text-muted text-start">This page highlights successful and replicable practices from across the ASEAN region that address waste management and marine litter. By sharing these case studies, we aim to inspire action and encourage learning for improved circular economy and 3R (Reduce, Reuse, Recycle) approaches. If you have a good practice that could help others and would like to see it featured, please email us at warm@rrcap.ait.ac.th — we welcome your contributions.</p>
+            <p class="text-muted text-start">Key data and indicators on solid waste and plastic waste are presented to support understanding of waste generation, composition, and management trends across the region.</p>
         </div>
         <div class="d-flex flex-wrap">
             <div class="d-flex align-items-center pb-5 me-4">
@@ -207,6 +207,25 @@
             refreshWasteDataChart1();
             refreshWasteDataChart2();
             refreshWasteDataChart3();
+
+
+            var rows = $('#WasteDataTable tbody tr:visible').length;
+            for (var ctr = 0; ctr < rows; ctr++) {
+                var options = {
+                    html: true,
+                    title: "References",
+                    //html element
+                    //content: $("#popover-content")
+                    content: $('[data-name="popover-content-' + ctr + '"]')
+                    //Doing below won't work. Shows title only
+                    //content: $("#popover-content").html()
+
+                }
+                var exampleEl = document.getElementById('ref-' + ctr)
+                if (exampleEl != null) {
+                    var popover = new bootstrap.Popover(exampleEl, options)
+                }
+            }
         });
 
         $("#subregionSelect").change(function () { refresh(); });

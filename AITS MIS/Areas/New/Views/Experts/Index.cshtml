@@ -20,11 +20,12 @@
     <div class="container">
         @foreach (ViewModels.Expert item in Model.ExpertList)
         {
-            <div class="row mb-5" id="@item.Name.Replace(" ","")">
-                <div class="section-title pb-3 col-12 col-md-2 col-lg-2 text-start">
-                    <img src="Documents/@item.Thumbnail.Split(';')[0]" alt="" style="height: 200px; width: 200px; object-fit: cover; border-radius: 10%;">
+            <div class="row mb-5 align-items-start" id="@item.Name.Replace(" ","")">
+                <div class="col-12 col-md-2 text-center text-md-start mb-3 mb-md-0">
+                    <img src="Documents/@item.Thumbnail.Split(';')[0]" alt="@item.Name.Replace(" ","")" class="img-fluid"
+                         style="max-width: auto; object-fit: cover; border-radius: 10%;">
                 </div>
-                <div class="col-12 col-md-10 col-lg-10">
+                <div class="col-12 col-md-10">
                     <h5 class="m-0">@item.Name</h5>
                     <small class="text-muted">@item.Position</small><br>
                     @Html.Raw(item.Description)
