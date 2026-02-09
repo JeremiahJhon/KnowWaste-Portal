@@ -36,7 +36,8 @@ namespace Knowwaste.Areas.New.Controllers
                            join b in db.countries on a.Country_ID equals b.ID.ToString()
                            join c in db.wastecategories on a.Wastecategory_ID equals c.ID.ToString()
                            where a.Deleted == false
-                                 //&& (c.ID == 1 || c.ID == 14)
+                                 //&& (c.ID == 1 || c.ID == 14 || c.ID == 4)
+                                 && c.Deleted == 0
                            select new { a, b, c }).ToList();
 
             if (!String.IsNullOrWhiteSpace(type))
