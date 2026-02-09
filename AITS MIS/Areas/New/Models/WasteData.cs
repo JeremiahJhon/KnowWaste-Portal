@@ -47,7 +47,7 @@ namespace KnowWaste.Models
                            join c in db.wastecategories on a.Wastecategory_ID equals c.ID.ToString()
                            join d in db.subregions on b.SubRegion_ID equals d.ID.ToString()
                            where a.Deleted == false
-                                 && (c.ID == 1 || c.ID == 14)
+                                 //&& (c.ID == 1 || c.ID == 14)
                                  && b.Deleted == 0
                                  && d.Region_id == "3" //Asian Countries only
                            select new { a, b, c, d }).ToList();
