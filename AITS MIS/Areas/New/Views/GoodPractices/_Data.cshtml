@@ -8,7 +8,7 @@ else
 {
     if (Model.PaginationSetting.TotalPages > 0)
     {
-        <div class="d-flex justify-content-end align-items-center">
+        <div class="d-flex justify-content-end align-items-center mb-3">
             <nav aria-label="Page navigation example" class="pagination">
                 <ul class="pagination">
                     <li class="page-item"><button class="page-link prev-link" @(Model.PaginationSetting.PageIndex == 0 ? "hidden" : null) onclick="refreshData(@(Model.PaginationSetting.PageIndex - 1))"><i class="bi bi-arrow-left"></i>Previous</button></li>
@@ -22,7 +22,7 @@ else
         </div>
     }
 
-    <div class="blog-card-grid pt-0">
+    <div class="blog-card-grid">
         @foreach (ViewModels.GoodPractice item in Model.BlogList)
         {
             <a href="New/GoodPractices/Details/@item.ID" class="blog-card">
