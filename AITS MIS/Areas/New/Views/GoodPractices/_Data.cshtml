@@ -8,7 +8,7 @@ else
 {
     if (Model.PaginationSetting.TotalPages > 0)
     {
-        <div class="d-flex justify-content-end align-items-center mb-3">
+        <div class="d-flex justify-content-end align-items-center">
             <nav aria-label="Page navigation example" class="pagination">
                 <ul class="pagination">
                     <li class="page-item"><button class="page-link prev-link" @(Model.PaginationSetting.PageIndex == 0 ? "hidden" : null) onclick="refreshData(@(Model.PaginationSetting.PageIndex - 1))"><i class="bi bi-arrow-left"></i>Previous</button></li>
