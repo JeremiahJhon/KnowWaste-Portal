@@ -104,7 +104,7 @@ namespace KnowWaste.Models
                                                  Country = b.Name,
                                                  CountryID = b.ID,
                                                  Thumbnail = a.Photo
-                                             }).Take(3).ToList();
+                                             }).Take(4).ToList();
             }
 
             Countries = BlogList

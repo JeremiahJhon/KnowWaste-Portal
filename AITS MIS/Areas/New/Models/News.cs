@@ -130,7 +130,7 @@ namespace KnowWaste.Models
                                                Photo = a.Photo,
                                                Description = a.Description,
                                                Date = a.StartDate
-                                           }).Take(3).ToList();
+                                           }).Take(4).ToList();
             }
 
             // Apply pagination and search
