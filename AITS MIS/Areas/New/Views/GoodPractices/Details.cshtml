@@ -2,71 +2,168 @@
 @{
     Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
 }
+<section class="page-banner goodpractices">
+    <div class="banner-content">
+        <h1>Good Practices</h1>
+        <p></p>
 
-<section class="breadcrumb">
-    <div class="container py-4">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item text-uppercase"><a href="New/MarineDebris">Marine Debris</a></li>
-                <li class="breadcrumb-item text-uppercase" aria-current="page"><a href="New/GoodPractices">Good Practices</a></li>
-                <li class="breadcrumb-item active text-uppercase" aria-current="page">@Model.Title</li>
-            </ol>
-        </nav>
+    </div>
+
+    <svg class="banner-wave" viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path fill="#fff4e8"
+              d="M0,80 C360,140 1080,0 1440,80 L1440,120 L0,120 Z"></path>
+    </svg>
+
+</section>
+<!---end of page banner--->
+<!--blog -->
+<!-- BLOG ARTICLE -->
+<section class="bg-peach-cream">
+    <!-- breadcrumb -->
+    <div class="breadcrumb-area">
+        <div class="container py-4">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+
+                    <li class="breadcrumb-item text-uppercase">
+                        <a href="marine debris.html">
+                            Marine Debris
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item text-uppercase">
+                        <a href="New/GoodPractices">
+                            Good Practices
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active text-uppercase"
+                        aria-current="page">
+                        @Model.Title
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+
+    <!-- article -->
+    <div class="container blog-article-container pb-120">
+
+        <!-- article header -->
+        <div class="article-header">
+
+            <h2 class="section-title mb-4">
+                @Model.Title
+            </h2>
+
+
+            <!-- meta + share -->
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+
+                <!-- article meta -->
+                <div class="article-meta">
+
+                    <div class="meta-item">
+                        <i class="bi bi-person-circle"></i>
+                        <span>@Model.Author</span>
+                    </div>
+
+                    <div class="meta-item">
+                        <i class="bi bi-calendar3"></i>
+                        <span>@Convert.ToDateTime(Model.Date).ToString("MMMM d, yyyy")</span>
+                    </div>
+
+                </div>
+
+                <!-- share -->
+                <div class="d-flex align-items-center gap-3">
+
+                    <span class="fw-semibold text-muted small">
+                        Share:
+                    </span>
+
+                    <div class="article-share">
+
+                        <a href="#">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="bi bi-twitter-x"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="bi bi-envelope"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- feature image -->
+            <div class="blog-feature-image mb-40">
+
+                <div class="blog-feature-bg"
+                     style="background-image:url('Documents/Blogs/@Model.Thumbnail.Split(';')[0]');">
+                </div>
+
+                <img src="Documents/Blogs/@Model.Thumbnail.Split(';')[0]"
+                     alt="@Model.Title">
+
+            </div>
+        </div>
+
+        <!-- article content -->
+        <div class="blog-content">
+
+            <!-- section -->
+            <div class="content-section">
+                @Html.Raw(Model.Description)
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- description Section -->
-<section class="ptb-5 ">
-    <div class="container pb-120 w-70">
+<!-- About Section -->
+<section class="pt-120 pb-60 bg-light-blue">
+    <div class="container ">
         <div class="pb-4">
-            <h1 class="section-title mb-5 text-uppercase ">
-                @Model.Title</h2>
-                <div class="d-flex justify-content-between mb-4">
-                    <small><span>By: @Model.Author </span> <span>@Convert.ToDateTime(Model.Date).ToString("MMMM d, yyyy")</span></small>
-                    <small>
-                        <span class="fw-bold">Share on: </span>
-                        <span>
-                            <i class="bi bi-facebook pe-2"></i>
-                            <i class="bi bi-linkedin pe-2"></i>
-                            <i class="bi bi-twitter-x pe-2"></i>
-                            <i class="bi bi-envelope pe-2"></i>
-                        </span>
-                    </small>
-                </div>
-                <div class="mb-40" style="width: 100%; height: 500px;">
-                    <img src="Documents/Blogs/@Model.Thumbnail.Split(';')[0]" alt="" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-            </h1>
+            <h2 class="section-title mb-4">Explore More</h2>
         </div>
 
-        <div class="content">
-            @Html.Raw(Model.Description)
-        </div>
-    </div>
-</section>
-<section>
-    <div class="container pb-120">
-        <h5 class="mb-4">Related Topics</h5>
-        <div class="row g-4">
-            @foreach (ViewModels.GoodPractice item in Model.RelatedTopics.Take(3))
+
+        <!---blog card section--->
+        <div class="blog-card-grid">
+            @foreach (ViewModels.GoodPractice item in Model.RelatedTopics.Take(4))
             {
-                <div class="col-md-4 px-3">
-                    <a href="New/GoodPractices/Details/@item.ID" class="text-decoration-none text-dark">
-                        <div class="card h-100 card-rounded s-border box-shadow m-10 hover-zoom-card">
-                            <img src="Documents/Blogs/@item.Thumbnail.Split(';')[0]"
-                                 class="card-img-top"
-                                 alt="@item.Title"
-                                 style="height: 250px; width: 100%; object-fit: cover;">
-                            <div class="card-body p-4">
-                                <h5 class="card-title">@item.Title</h5>
-                                <small>@item.Country</small>
-                                <div class="card-text text-truncate-3">@Html.Raw(item.Description)</div>
-                                <span class="btn btn-link px-0 mt-2">Start Reading →</span>
+                <a href="New/GoodPractices/Details/@item.ID" class="blog-card">
+                    <div class="blog-card-image">
+                        <img src="Documents/Blogs/@item.Thumbnail.Split(';')[0]"
+                             class="card-img-top"
+                             alt="@item.Title">
+                    </div>
+
+                    <div class="blog-card-content">
+                        <h3>@item.Title</h3>
+
+                        <div class="blog-card-meta meta">
+                            <div class="meta-item">
+                                <i class="bi bi-geo-alt meta-icon"></i>
+                                @item.Country
                             </div>
                         </div>
-                    </a>
-                </div>
+
+                        <div class="card-text text-truncate-3" style="max-height: 80px">@Html.Raw(item.Description)</div>
+                        <span class="blog-card-arrow">→</span>
+                    </div>
+                </a>
             }
-        </div>
+        </div><!---end of card grid ---->
     </div>
 </section>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UCOnline.Data;
 using ViewModels;
@@ -17,16 +18,20 @@ namespace KnowWaste.Models
 
         public List<Country> Countries { get; set; }
 
+        public Pagination PaginationSetting { get; set; } = new Pagination();
+
         public Technology(int id) {
             ID = id;
             CountryID = 0;
             Refresh();
         }
 
-        public Technology(int id, int countryID)
+        public Technology(int id, int countryID, string searchText, int pageIndex)
         {
             ID = id;
             CountryID = countryID;
+            PaginationSetting.SearchText = searchText;
+            PaginationSetting.PageIndex = pageIndex;
             Refresh();
         }
 
@@ -87,6 +92,28 @@ namespace KnowWaste.Models
                             Name = g.Key.Country
                         })
                         .ToList();
+
+            // Apply pagination and search
+            // Get base query
+            var query = TechnologyList.AsQueryable();
+
+            // Apply search
+            if (!string.IsNullOrWhiteSpace(PaginationSetting.SearchText))
+            {
+                query = query.Where(p => p.Title.ToLower().Contains(PaginationSetting.SearchText.ToLower()));
+            }
+
+            // Compute total count BEFORE pagination
+            PaginationSetting.TotalCount = query.Count();
+
+            // Apply pagination
+            TechnologyList = query
+                .Skip(PaginationSetting.PageIndex * PaginationSetting.PageCount)
+                .Take(PaginationSetting.PageCount)
+                .ToList();
+
+            // Compute total pages
+            PaginationSetting.TotalPages = (int)Math.Ceiling((double)PaginationSetting.TotalCount / PaginationSetting.PageCount);
         }
     }
 }

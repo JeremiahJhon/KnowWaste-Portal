@@ -2,6 +2,23 @@
 @{
     Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
 }
+
+<!---page banner--->
+<section class="page-banner expert">
+
+    <div class="banner-content">
+        <h1>Expert</h1>
+        <p></p>
+    </div>
+
+    <svg class="banner-wave" viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path fill="#ffffff"
+              d="M0,80 C360,140 1080,0 1440,80 L1440,120 L0,120 Z"></path>
+    </svg>
+
+</section>
+<!---end of page banner--->
+
 <section class="breadcrumb">
     <div class=" container container-md container-lg py-4">
         <nav aria-label="breadcrumb">
@@ -16,20 +33,23 @@
 
 <!-- Hero Section -->
 <!-- About Section -->
-<section class="py-3 ">
-    <div class="container">
+<section class="py-3">
+    <div class="container expert-list">
         @foreach (ViewModels.Expert item in Model.ExpertList)
         {
-            <div class="row mb-5 align-items-start" id="@item.Name.Replace(" ","")">
-                <div class="col-12 col-md-2 text-center text-md-start mb-3 mb-md-0">
-                    <img src="Documents/@item.Thumbnail.Split(';')[0]" alt="@item.Name.Replace(" ","")" class="img-fluid"
-                         style="max-width: auto; object-fit: cover; border-radius: 10%;">
+            <div href="#ex-1024" class="expert-card-horizontal">
+
+                <div class="expert-image">
+                    <img src="Documents/@item.Thumbnail.Split(';')[0]" alt="@item.Name.Replace(" ","")">
                 </div>
-                <div class="col-12 col-md-10">
-                    <h5 class="m-0">@item.Name</h5>
-                    <small class="text-muted">@item.Position</small><br>
+
+                <div class="expert-content">
+                    <h3>@item.Name</h3>
+                    <small>@item.Position</small>
+
                     @Html.Raw(item.Description)
                 </div>
+
             </div>
         }
     </div>

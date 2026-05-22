@@ -2,6 +2,20 @@
 @{
     Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
 }
+<section class="page-banner technology">
+    <div class="banner-content">
+        <h1>Technology</h1>
+        <p></p>
+
+    </div>
+
+    <svg class="banner-wave" viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path fill="#ffffff"
+              d="M0,80 C360,140 1080,0 1440,80 L1440,120 L0,120 Z"></path>
+    </svg>
+
+</section>
+
 <section class="breadcrumb">
     <div class="container py-4">
         <nav aria-label="breadcrumb">
@@ -14,16 +28,14 @@
 </section>
 
 <!-- About Section -->
-<section class="ptb-5 ">
+<section>
     <div class="container pb-120">
         <div class=" pb-4">
-            <h1 class="section-title pb-3 text-uppercase">
-                Technology</h1>
-                <p class="text-muted text-start">This section features innovative technological solutions that can transform waste management and reduce marine litter across ASEAN. From community-based recycling systems to cutting-edge industrial technologies, these examples demonstrate how technology can drive sustainable change. If you would like to showcase your technology on this page and help inspire others, please email us at warm@rrcap.ait.ac.th.</p>
+            <p class="text-muted text-start">This section features innovative technological solutions that can transform waste management and reduce marine litter across ASEAN. From community-based recycling systems to cutting-edge industrial technologies, these examples demonstrate how technology can drive sustainable change. If you would like to showcase your technology on this page and help inspire others, please email us at warm@rrcap.ait.ac.th.</p>
         </div>
-        <div class="d-flex align-items-center pb-5">
+        <div class="d-flex align-items-center pb-3">
             <p class="m-0 pe-3">Filter by Country</p>
-            <select class="form-select" id="countrySelect" onclick="refreshData()" style="width: 30%;">
+            <select class="form-select" id="countrySelect" onclick="refreshData(0)" style="width: 30%;">
                 <option selected value="0">All</option>
                 @foreach (ViewModels.Country country in Model.Countries)
                 {
@@ -31,19 +43,29 @@
                 }
             </select>
         </div>
-        <div class="row g-4 gy-5" id="TechnologyData">
+        <div class="wrapper col-3 float-start">
+            <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" id="searchInput">
         </div>
+        <!---blog card section--->
+        <div class="wrapper" id="TechnologyData">
+
+        </div><!---end of card grid ---->
     </div>
 </section>
 @section scripts {
     <script>
         $(document).ready(function () {
-            refreshData();
+            refreshData(0);
+
+            $("#searchInput").keyup(function () {
+                refreshData(0);
+            });
         });
 
-        function refreshData() {
+        function refreshData(pageIndex) {
             const countryID = $("#countrySelect").val();
-            const url = `/New/Technology/RefreshData?countryID=${countryID}`;
+            const searchText = $("#searchInput").val();
+            const url = `/New/Technology/RefreshData?countryID=${countryID}&searchText=${searchText}&pageIndex=${pageIndex}`;
             const data = [];
             $("#TechnologyData").load(url);
         }

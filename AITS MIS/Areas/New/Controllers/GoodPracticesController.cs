@@ -31,9 +31,9 @@ namespace Knowwaste.Areas.New.Controllers
         }
 
         // GET: New/GoodPractices/RefreshData/{countryID}
-        public ActionResult RefreshData(int countryID)
+        public ActionResult RefreshData(int countryID, string searchText, int pageIndex)
         {
-            GoodPractices model = new GoodPractices(0, countryID);
+            GoodPractices model = new GoodPractices(0, countryID, searchText, pageIndex);
             return PartialView("_Data", model);
         }
     }

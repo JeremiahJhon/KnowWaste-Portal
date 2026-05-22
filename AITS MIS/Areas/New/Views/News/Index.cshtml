@@ -3,10 +3,131 @@
     Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
 }
 
+<section class="page-banner news">
+    <div class="banner-content">
+        <h1>News</h1>
+    </div>
+    <svg class="banner-wave" viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path fill="#ffffff"
+              d="M0,80 C360,140 1080,0 1440,80 L1440,120 L0,120 Z"></path>
+    </svg>
+</section>
+<!---end of page banner--->
+<!--- NEWS HIGHLIGHT SECTION -->
+<section class="ptb-60 news-highlight">
+    <div class="custom-container">
+        <div class="news-highlight-inner">
+            <div id="carouselExampleCaptions"
+                 class="carousel slide carousel-fade news-carousel"
+                 data-bs-ride="carousel"
+                 data-bs-interval="3000">
+
+                <!-- 🔥 WRAPPER (important for positioning) -->
+                <div class="carousel-wrapper">
+
+                    <!-- SLIDES -->
+                    <div class="carousel-inner">
+                        @foreach (ViewModels.Event item in Model.EventsList.Take(3))
+                        {
+                            <div class="carousel-item active">
+                                <div class="news-highlight-card">
+
+                                    <div class="news-image">
+                                        <img src="~/Documents/News/@item.Thumbnail.Split(';')[0]" alt="">
+                                    </div>
+
+                                    <div class="news-content">
+                                        <h6 class="news-tag text-uppercase">Latest News</h6>
+
+                                        <h3>
+                                            @item.Title
+                                        </h3>
+
+                                        <div class="news-meta">
+
+                                            <div class="meta-item">
+                                                <i class="bi bi-calendar3"></i>
+                                                <span>@Convert.ToDateTime(item.StartDate.Split('-')[0]).ToString("d MMMM yyyy")</span>
+                                            </div>
+
+                                            <div class="meta-item">
+                                                <i class="bi bi-geo-alt"></i>
+                                                <span>@item.Country</span>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="text-truncate-2" style="max-height: 80px">@Html.Raw(item.Description)</div>
+
+                                        <a href="#" class="btn-main mt-2">
+                                            Read More →
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                        @foreach (ViewModels.News item in Model.NewsList.Take(3))
+                        {
+                            <div class="carousel-item active">
+                                <div class="news-highlight-card">
+
+                                    <div class="news-image">
+                                        <img src="~/Documents/News/@item.Photo.Split(';')[0]" alt="">
+                                    </div>
+
+                                    <div class="news-content">
+                                        <h6 class="news-tag text-uppercase">Latest News</h6>
+
+                                        <h3>
+                                            @item.Title
+                                        </h3>
+
+                                        <div class="news-meta">
+
+                                            <div class="meta-item">
+                                                <i class="bi bi-calendar3"></i>
+                                                <span>@Convert.ToDateTime(item.Date.Split('-')[0]).ToString("d MMMM yyyy")</span>
+                                            </div>
+
+                                            <div class="meta-item">
+                                                <i class="bi bi-geo-alt"></i>
+                                                <span>@item.Country</span>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="text-truncate-2" style="max-height: 80px">@Html.Raw(item.Description)</div>
+
+                                        <a href="#" class="btn-main mt-2">
+                                            Read More →
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--- END NEWS HIGHLIGHT SECTION -->
+<!---blog-card section--->
+<section class="container ptb-5">
+    <div class="wrapper col-3 float-start">
+        <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" id="searchInput">
+    </div>
+    <div class="wrapper" id="NewsData">
+
+    </div>
+</section>
+
 @if (Model.EventsList.Count > 0)
 {
     <!-- About Section -->
-    <section class="ptb-60">
+    <section class="ptb-60 d-none" hidden>
         <div class="container  container-md container-lg">
 
             <div class="row custom-padding">
@@ -67,7 +188,7 @@
 else
 {
     <!-- About Section -->
-    <section class="pb-60">
+    <section class="pb-60 d-none" hidden>
         <div class="row custom-padding">
             <div id="carouselExampleCaptions" class="carousel slide col-12 col-md-8 @(Model.EventsList.Count > 0 ? "col-lg-9" : "col-lg-12")">
                 <div class="carousel-indicators">
@@ -106,7 +227,7 @@ else
     </section>
 }
 
-<section class="ptb-30">
+<section class="ptb-30 d-none" hidden>
     <div class="container">
         <h4 class="text-blue mb-4">All News</h4>
         <!-- <hr class="mb-3"> -->
@@ -130,3 +251,22 @@ else
         </div>
     </div>
 </section>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            refreshData(0);
+
+            $("#searchInput").keyup(function () {
+                refreshData(0);
+            });
+        });
+
+        function refreshData(pageIndex) {
+            const searchText = $("#searchInput").val();
+            const url = `/New/News/RefreshData?searchText=${searchText}&pageIndex=${pageIndex}`;
+            const data = [];
+            $("#NewsData").load(url);
+        }
+    </script>
+}

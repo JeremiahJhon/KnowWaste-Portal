@@ -1,7 +1,21 @@
 ﻿@{
     Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
 }
+<!---page banner--->
+<section class="page-banner elearning">
 
+    <div class="banner-content">
+        <h1>e-Learning</h1>
+        <p></p>
+    </div>
+
+    <svg class="banner-wave" viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path fill="#ffffff"
+              d="M0,80 C360,140 1080,0 1440,80 L1440,120 L0,120 Z"></path>
+    </svg>
+
+</section>
+<!---end of page banner--->
 <section class="breadcrumb">
     <div class=" container container-md container-lg py-4">
         <nav aria-label="breadcrumb">
@@ -13,18 +27,45 @@
     </div>
 </section>
 
-<!-- About Section -->
-<section class="ptb-5 ">
-    <div class="container container-md container-lg pb-120">
-        <div class="pb-4">
-            <h1 class="section-title pb-3 text-uppercase text-start pb-2">E-learning</h1>
-            <p class="text-muted text-start">Build your knowledge and skills through our interactive e-learning resources. Here we offer self-paced courses and training materials on sustainable waste management, climate resilience, circular economy, and marine debris prevention. Whether you are a policymaker, professional, educator, or student, these learning tools will help you develop practical strategies and innovative thinking to support a cleaner and healthier environment. </p>
-        </div>
-        <div class="elearning-section text-white d-flex align-items-center justify-content-center position-relative">
-            <div class="position-absolute blue-description-box hover-zoom">
-                <h4 class="text-start">CLIMATE ADAPTATION AND RESILIENCE BUILDING THROUGH SUSTAINABLE WASTE AND RESOURCE MANAGEMENT</h4>
-                <p class="text-start">This short course introduces key considerations and approaches to climate change adaptation and urban resilience planning from the perspectives of sustainable waste and resource management. Sustainable waste and resource management is increasingly linked to climate and urban resilience building.</p>
-                <a href="https://ap-plat.nies.go.jp/adaptation_literacy/resources/e_learning/waste_management/index.html?fbclid=IwAR2zsmf3Qun3CPYvOnuRW38yOvI7bORXqsTF-25pLuqrLiERn_7XOUSjDuo " class="btn btn-link px-0 text-white" target="_blank">Start Reading →</a>
+<!-- E-Learning -->
+<section class="pt-120 pb-120">
+    <div class="container container-md container-lg">
+        <div class="feature-box">
+
+            <!-- LEFT IMAGE -->
+            <div class="feature-image">
+
+                <img src="~/Content/new-template/images/elearning.jpg" alt="E-Learning">
+
+                <div class="feature-overlay">
+                    <h3>
+                        Climate Adaptation<br>
+                        & Resilience
+                    </h3>
+
+                    <p>
+                        Sustainable waste and resource management learning course
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- RIGHT CARD -->
+            <div class="feature-content">
+
+                <span class="feature-tag">
+                    Online Learning
+                </span>
+
+                <h3>
+                    Climate Adaptation and Resilience Building Through Sustainable Waste and Resource Management
+                </h3>
+
+                <a href="https://ap-plat.nies.go.jp/adaptation_literacy/resources/e_learning/waste_management/index.html?fbclid=IwAR2zsmf3Qun3CPYvOnuRW38yOvI7bORXqsTF-25pLuqrLiERn_7XOUSjDuo"
+                   class="btn-main"
+                   target="_blank">
+                    Explore Courses
+                </a>
             </div>
         </div>
     </div>

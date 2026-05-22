@@ -2,9 +2,15 @@
 @{
     Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
 }
-<div>
-    <img src="~/Content/Images/3rpromar/3RproMar RKP banner.png" width="100%" />
-</div>
+<section class="page-banner threerproma">
+    <div class="banner-content">
+    </div>
+    <svg class="banner-wave" viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path fill="#ffffff"
+              d="M0,80 C360,140 1080,0 1440,80 L1440,120 L0,120 Z"></path>
+    </svg>
+</section>
+
 <section class="breadcrumb">
     <div class="container container-md container-md py-4">
         <nav aria-label="breadcrumb">
@@ -15,13 +21,12 @@
         </nav>
     </div>
 </section>
+
 <!-- 3Rpromar Section -->
 <section class="ptb-5 ">
     <div class="container container-md container-md pb-120">
         <div class="text-center pb-4">
-            <h1 class="section-title pb-3 text-uppercase text-start">
-                3Rpromar reports</h1>
-                <p class="text-muted text-start">The “Reduce, Reuse, Recycle to Protect the Marine Environment and Coral Reefs” (3RproMar) project supports ASEAN countries in tackling marine litter through improved waste management. As the Knowledge Partner for 3RproMar, we share resources, technical guidance, and best practices developed through this initiative. This page provides updates and learning materials that strengthen capacity and foster regional collaboration to protect marine ecosystems.</p>
+            <p class="text-muted text-start">The “Reduce, Reuse, Recycle to Protect the Marine Environment and Coral Reefs” (3RproMar) project supports ASEAN countries in tackling marine litter through improved waste management. As the Knowledge Partner for 3RproMar, we share resources, technical guidance, and best practices developed through this initiative. This page provides updates and learning materials that strengthen capacity and foster regional collaboration to protect marine ecosystems.</p>
         </div>
         <div class="row">
             <div class="col-12 col-md-3 col-lg-3">
@@ -67,7 +72,7 @@
 
             <div class="col-12 col-md-9 col-lg-9">
                 <div class="col-3 float-start d-none" hidden>
-                    <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" id="searchInput" value="@Model.PaginationSetting.SearchText">
+                    <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" id="searchInput" value="">
                 </div>
                 <div class="wrapper" id="3RpromarData">
                 </div>

@@ -2,7 +2,21 @@
 @{
     Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
 }
+<!---page banner--->
+<section class="page-banner goodpractices">
+    <div class="banner-content">
+        <h1>Good Practices</h1>
+        <p></p>
 
+    </div>
+
+    <svg class="banner-wave" viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path fill="#ffffff"
+              d="M0,80 C360,140 1080,0 1440,80 L1440,120 L0,120 Z"></path>
+    </svg>
+
+</section>
+<!---end of page banner--->
 <section class="breadcrumb">
     <div class="container py-4">
         <nav aria-label="breadcrumb">
@@ -15,16 +29,14 @@
 </section>
 
 <!-- About Section -->
-<section class="ptb-5 ">
-    <div class="container pb-120">
+<section>
+    <div class="container">
         <div class="pb-4">
-            <h1 class="section-title pb-3 text-uppercase">
-                Good Practices</h1>
-                <p class="text-muted text-start">This page highlights successful and replicable practices from across the ASEAN region that address waste management and marine litter. By sharing these case studies, we aim to inspire action and encourage learning for improved circular economy and 3R (Reduce, Reuse, Recycle) approaches. If you have a good practice that could help others and would like to see it featured, please email us at warm@rrcap.ait.ac.th — we welcome your contributions.</p>
+            <p>This page highlights successful and replicable practices from across the ASEAN region that address waste management and marine litter. By sharing these case studies, we aim to inspire action and encourage learning for improved circular economy and 3R (Reduce, Reuse, Recycle) approaches. If you have a good practice that could help others and would like to see it featured, please email us at warm@rrcap.ait.ac.th — we welcome your contributions.</p>
         </div>
-        <div class="d-flex align-items-center pb-5">
+        <div class="d-flex align-items-center pb-3">
             <p class="m-0 pe-3">Filter by Country</p>
-            <select class="form-select width-30" id="countrySelect" onclick="refreshData();">
+            <select class="form-select width-30" id="countrySelect" onclick="refreshData(0);">
                 <option selected value="0">All</option>
                 @foreach (ViewModels.Country country in Model.Countries)
                 {
@@ -32,19 +44,31 @@
                 }
             </select>
         </div>
-        <div class="row g-4 gy-5" id="GoodPracticesData">
+
+        <div class="wrapper col-3 float-start">
+            <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" id="searchInput">
         </div>
+        <!---blog card section--->
+        <div class="wrapper" id="GoodPracticesData">
+
+        </div><!---end of card grid ---->
     </div>
 </section>
+
 @section scripts {
     <script>
         $(document).ready(function () {
-            refreshData();
+            refreshData(0);
+
+            $("#searchInput").keyup(function () {
+                refreshData(0);
+            });
         });
 
-        function refreshData() {
+        function refreshData(pageIndex) {
             const countryID = $("#countrySelect").val();
-            const url = `/New/GoodPractices/RefreshData?countryID=${countryID}`;
+            const searchText = $("#searchInput").val();
+            const url = `/New/GoodPractices/RefreshData?countryID=${countryID}&searchText=${searchText}&pageIndex=${pageIndex}`;
             const data = [];
             $("#GoodPracticesData").load(url);
         }

@@ -11,7 +11,11 @@ namespace KnowWaste.Models
 
         public List<ViewModels.GoodPractice> BlogList { get; set; }
 
+        public List<ViewModels.Document> DocumentList { get; set; }
+
         public List<ViewModels.Expert> ExpertList { get; set; }
+
+        public List<ViewModels.News> NewsList { get; set; }
 
         public Home() { }
 
@@ -29,6 +33,28 @@ namespace KnowWaste.Models
                             Thumbnail = a.Photo,
                         }).ToList();
 
+            DocumentList = (from a in db.documents
+                            join c in db.documentcategories on a.Documentcategory_ID equals c.ID
+                            join d in db.geothemes on a.Geotheme_ID equals d.ID
+                            where (a.Documentcategory_ID == 4 || a.Publisher.Contains("RRC.AP") || a.Publisher.Contains("ERIA") || a.Publisher.Contains("NIVA") || a.Publisher.Contains("GIZ") || a.IsPublications == true) && a.Deleted == 0
+                            orderby a.Year descending
+                            select new Document
+                            {
+                                ID = a.ID,
+                                Title = a.Title,
+                                Country = (from x in db.countries where a.Country_ID.Contains(x.ID.ToString()) select new ViewModels.Country { ID = x.ID, Name = x.Name }).ToList(),
+                                Year = a.Year,
+                                Publisher = a.Publisher,
+                                CategoryID = c.ID,
+                                Category = c.Name,
+                                GeoTheme = d.Name,
+                                Keywords = a.Keyword,
+                                Description = a.Description,
+                                Thumbnail = a.Thumbnail,
+                                Attachment = a.Attachment,
+                                Source = a.Datasource,
+                            }).ToList();
+
             ExpertList = (from a in db.expertrosters
                           where a.Deleted == 0
                           select new ViewModels.Expert
@@ -39,6 +65,19 @@ namespace KnowWaste.Models
                               Position = a.Position,
                               Thumbnail = a.Thumbnail,
                           }).ToList();
+
+            NewsList = (from a in db.news
+                        join b in db.countries on a.Country_ID equals b.ID
+                        where a.Deleted == 0 && b.Deleted == 0 && a.Publish == true
+                        select new ViewModels.News
+                        {
+                            ID = a.ID,
+                            Title = a.Title,
+                            Country = b.Name,
+                            Photo = a.Photo,
+                            Description = a.Description,
+                            Date = a.StartDate
+                        }).ToList();
         }
     }
 }

@@ -1,0 +1,165 @@
+/* =========================================
+   ARTICLE GALLERY
+========================================= */
+
+.article-gallery-section{
+  margin-top:80px;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.article-gallery-nav{
+  display:flex;
+  gap:12px;
+}
+
+.article-gallery-prev,
+.article-gallery-next{
+  width:42px;
+  height:42px;
+
+  border-radius:50%;
+  background:#fff;
+  border:1px solid #e6edf2;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  cursor:pointer;
+
+  transition:all 0.25s ease;
+
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+
+.article-gallery-prev:hover,
+.article-gallery-next:hover{
+  background:#0FB4DF;
+  color:#fff;
+
+  transform:translateY(-2px);
+}
+
+
+/* =========================================
+   SWIPER
+========================================= */
+
+.article-gallery-swiper{
+  overflow:hidden;
+}
+
+
+/* =========================================
+   SLIDE
+========================================= */
+
+.article-gallery-swiper .swiper-slide{
+  overflow:hidden;
+  border-radius:34px;
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.article-gallery-card{
+  position:relative;
+
+  overflow:hidden;
+
+  border-radius:34px;
+
+  background:rgba(15,180,223,0.22);
+
+  padding:6px;
+
+  isolation:isolate;
+
+  transform:translateZ(0);
+
+  box-shadow:0 10px 28px rgba(0,0,0,0.08);
+
+  transition:
+    background 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s ease;
+}
+
+
+/* hover */
+
+.article-gallery-card:hover{
+  background:rgba(15,180,223,0.35);
+
+  transform:translateY(-3px);
+
+  box-shadow:0 18px 40px rgba(0,0,0,0.12);
+}
+
+
+/* =========================================
+   IMAGE
+========================================= */
+
+.article-gallery-card img{
+  width:100%;
+  height:520px;
+
+  display:block;
+
+  object-fit:cover;
+
+  border-radius:28px;
+
+  transform:scale(1.001);
+
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+
+  overflow:hidden;
+}
+
+
+/* image hover */
+
+.article-gallery-card:hover img{
+  opacity:0.88;
+  transform:scale(1.02);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width:768px){
+
+  .article-gallery-section{
+    margin-top:70px;
+  }
+
+  .article-gallery-swiper .swiper-slide{
+    border-radius:28px;
+  }
+
+  .article-gallery-card{
+    border-radius:28px;
+    padding:5px;
+  }
+
+  .article-gallery-card img{
+    height:300px;
+    border-radius:22px;
+  }
+
+}

@@ -34,9 +34,9 @@ namespace Knowwaste.Areas.New.Controllers
         }
 
         // GET: New/Technology/RefreshData/{countryID}
-        public ActionResult RefreshData(int countryID)
+        public ActionResult RefreshData(int countryID, string searchText, int pageIndex)
         {
-            Technology model = new Technology(0, countryID);
+            Technology model = new Technology(0, countryID, searchText, pageIndex);
             return PartialView("_Data", model);
         }
     }

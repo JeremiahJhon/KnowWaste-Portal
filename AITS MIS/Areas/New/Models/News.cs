@@ -9,16 +9,71 @@ namespace KnowWaste.Models
     public class News
     {
         private KnowWasteEntities db = new KnowWasteEntities();
+        public int ID { get; set; }
 
         public List<ViewModels.News> NewsList { get; set; }
 
         public List<ViewModels.Event> EventsList { get; set; }
 
-        public News() { }
+        public Pagination PaginationSetting { get; set; } = new Pagination();
 
-        public void GetData(int? id)
+        public News() {
+            ID = 0;
+            Refresh();
+        }
+
+        public News(int id)
         {
-            if (id == null)
+            ID = id;
+            Refresh();
+        }
+
+        public News(int id, string searchText, int pageIndex)
+        {
+            ID = id;
+            PaginationSetting.SearchText = searchText;
+            PaginationSetting.PageIndex = pageIndex;
+            Refresh();
+        }
+
+        public void Refresh()
+        {
+            if (ID > 0)
+            {
+                NewsList = (from a in db.news
+                            join b in db.countries on a.Country_ID equals b.ID
+                            where a.Deleted == 0 && b.Deleted == 0 && a.ID == ID
+                            select new ViewModels.News
+                            {
+                                ID = a.ID,
+                                Title = a.Title,
+                                Country = b.Name,
+                                Photo = a.Photo,
+                                Description = a.Description,
+                                Date = a.StartDate
+                            }).ToList();
+
+                EventsList = (from a in db.upcomingevents
+                              join b in db.countries on a.Country_ID equals b.ID
+                              where a.Deleted == 0 &&
+                                      b.Deleted == 0 //&&
+                                                     //a.Datestart <= DateTime.Now &&
+                                                     //a.Dateend >= DateTime.Now
+                                    && a.ID == ID
+                              select new ViewModels.Event
+                              {
+                                  ID = a.ID,
+                                  Title = a.Title,
+                                  StartDate = a.StartDate,
+                                  EndDate = a.EndDate,
+                                  Country = b.Name,
+                                  Thumbnail = a.Thumbnail,
+                                  Description = a.Description,
+                                  Detail = a.Detail,
+                                  Location = a.Location
+                              }).ToList();
+            }
+            else
             {
                 NewsList = (from a in db.news
                             join b in db.countries on a.Country_ID equals b.ID
@@ -61,41 +116,45 @@ namespace KnowWaste.Models
                             })
                             .ToList();
             }
-            else
-            {
-                NewsList = (from a in db.news
-                            join b in db.countries on a.Country_ID equals b.ID
-                            where a.Deleted == 0 && b.Deleted == 0 && a.ID == id
-                            select new ViewModels.News
-                            {
-                                ID = a.ID,
-                                Title = a.Title,
-                                Country = b.Name,
-                                Photo = a.Photo,
-                                Description = a.Description,
-                                Date = a.StartDate
-                            }).ToList();
 
-                EventsList = (from a in db.upcomingevents
-                              join b in db.countries on a.Country_ID equals b.ID
-                              where a.Deleted == 0 &&
-                                      b.Deleted == 0 //&&
-                                                     //a.Datestart <= DateTime.Now &&
-                                                     //a.Dateend >= DateTime.Now
-                                    && a.ID == id
-                              select new ViewModels.Event
-                              {
-                                  ID = a.ID,
-                                  Title = a.Title,
-                                  StartDate = a.StartDate,
-                                  EndDate = a.EndDate,
-                                  Country = b.Name,
-                                  Thumbnail = a.Thumbnail,
-                                  Description = a.Description,
-                                  Detail = a.Detail,
-                                  Location = a.Location
-                              }).ToList();
+            if (NewsList.Count == 1)
+            {
+                NewsList[0].RelatedNews = (from a in db.news
+                                           join b in db.countries on a.Country_ID equals b.ID
+                                           where a.Deleted == 0 && b.Deleted == 0 && a.ID != ID
+                                           select new ViewModels.News
+                                           {
+                                               ID = a.ID,
+                                               Title = a.Title,
+                                               Country = b.Name,
+                                               Photo = a.Photo,
+                                               Description = a.Description,
+                                               Date = a.StartDate
+                                           }).Take(3).ToList();
             }
+
+            // Apply pagination and search
+            // Get base query
+            var query = NewsList.AsQueryable();
+
+            // Apply search
+            if (!string.IsNullOrWhiteSpace(PaginationSetting.SearchText))
+            {
+                query = query.Where(p => p.Title.ToLower().Contains(PaginationSetting.SearchText.ToLower()));
+            }
+
+            // Compute total count BEFORE pagination
+            PaginationSetting.TotalCount = query.Count();
+
+            // Apply pagination
+            NewsList = query
+                .Skip(PaginationSetting.PageIndex * PaginationSetting.PageCount)
+                .Take(PaginationSetting.PageCount)
+                .ToList();
+
+            // Compute total pages
+            PaginationSetting.TotalPages = (int)Math.Ceiling((double)PaginationSetting.TotalCount / PaginationSetting.PageCount);
+
         }
     }
 }
@@ -110,5 +169,6 @@ namespace ViewModels
         public string Description { get; set; }
         public string Photo { get; set; }
         public string Date { get; set; }
+        public List<News> RelatedNews { get; set; }
     }
 }

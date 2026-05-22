@@ -8,16 +8,16 @@
         margin-top: 20px;
     }
 
-    /* Vertical line */
-    .timeline::before {
-        content: "";
-        position: absolute;
-        top: 20px;
-        bottom: 0;
-        left: 75px; /* Position of line */
-        width: 3px;
-        background: #e5e5e5;
-    }
+        /* Vertical line */
+        .timeline::before {
+            content: "";
+            position: absolute;
+            top: 20px;
+            bottom: 0;
+            left: 75px; /* Position of line */
+            width: 3px;
+            background: #e5e5e5;
+        }
 
     /* Timeline item */
     .timeline-item {
@@ -38,10 +38,10 @@
         top: 10px;
     }
 
-    .timeline-badge i {
-        font-size: 16px !important;
-        color: #0d6efd !important;
-    }
+        .timeline-badge i {
+            font-size: 16px !important;
+            color: #0d6efd !important;
+        }
 
     /* Content container */
     .timeline-content {
@@ -51,31 +51,30 @@
         transition: transform 0.4s ease;
     }
 
-    /* Content container */
-    .timeline-content .img-fluid:hover{
-        transform: scale(1.07);
-    }
+        /* Content container */
+        .timeline-content .img-fluid:hover {
+            transform: scale(1.07);
+        }
 
     /* Card styling */
     .document-card {
         transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .document-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
-    }
+        .document-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+        }
 
     /* Image layout */
     .object-fit-cover {
         object-fit: cover;
     }
-
 </style>
 
 @if (Model.PaginationSetting.TotalPages > 0)
 {
-    <div class="d-flex justify-content-end align-items-center mb-5 d-none" hidden>
+    <div class="d-flex justify-content-end align-items-center mb-5">
         <nav aria-label="Page navigation example" class="pagination">
             <ul class="pagination">
                 <li class="page-item"><button class="page-link" @(Model.PaginationSetting.PageIndex == 0 ? "hidden" : null) onclick="refreshData(@(Model.PaginationSetting.PageIndex - 1))">Previous</button></li>
@@ -89,27 +88,71 @@
     </div>
 }
 
-@foreach (ViewModels.Document item in Model.DocumentList)
+<div class="publication-list">
+    @foreach (ViewModels.Document item in Model.DocumentList)
+    {
+        <a href="~/Documents/@item.Attachment.Split(';')[0]" class="publication-item" target="_blank">
+            @if (!String.IsNullOrEmpty(item.Thumbnail))
+            {
+                <div class="publication-image">
+                    <img src="/Documents/@item.Thumbnail" alt="@item.Title">
+                </div>
+            }
+            <div class="publication-content">
+                <h3 class="publication-title">
+                    @item.Title
+                </h3>
+                <div class="publication-meta meta">
+                    <div class="meta-item">
+                        <i class="bi bi-calendar3 meta-icon"></i>
+                        <span>@item.Year</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="bi bi-geo-alt meta-icon"></i>
+                        <span>@string.Join(", ", item.Country.Select(x => x.Name))</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="bi bi-building meta-icon"></i>
+                        <span>@item.Publisher</span>
+                    </div>
+                </div>
+                <div class="publication-desc">
+                    @Html.Raw(item.Description)
+                </div>
+                <!-- NOT a link anymore -->
+                <span class="btn-secondary-main">
+                    <span>View Document</span>
+                    <span class="download-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M12 3V14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                            <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M5 19H19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                        </svg>
+                    </span>
+                </span>
+            </div>
+        </a>
+        <!-- END DOCUMENT ITEM -->
+    }
+</div>
+
+@if (Model.PaginationSetting.TotalPages > 0)
 {
-    <a href="New/Publications/Details/@item.ID" class="text-decoration-none text-dark d-none" hidden>
-        <div class="custom-border d-flex p-4 mb-4">
-            <!-- <small class="text-blue text-uppercase">Code No:</small> -->
-            <div class="col-2">
-                <img src="~/Documents/@item.Thumbnail" style="height: 100%; width: 150px; object-fit: cover;">
-            </div>
-
-            <div class="col-10 ps-3">
-                <h4 class="m-0">@item.Title</h4>
-                <small>@string.Join(", ", item.Country.Select(x => x.Name)) | @item.Year</small>
-                <div class="pt-3" style="display: -webkit-box; -webkit-line-clamp: 4;  -webkit-box-orient: vertical; overflow: hidden; ">@Html.Raw(item.Description)</div>
-
-                <span class="btn btn-link px-0 mt-2">Start Reading →</span>
-            </div>
-        </div>
-    </a>
+    <div class="d-flex justify-content-end align-items-center mb-5">
+        <nav aria-label="Page navigation example" class="pagination">
+            <ul class="pagination">
+                <li class="page-item"><button class="page-link" @(Model.PaginationSetting.PageIndex == 0 ? "hidden" : null) onclick="refreshData(@(Model.PaginationSetting.PageIndex - 1))">Previous</button></li>
+                @for (int index = 0; index < Model.PaginationSetting.TotalPages; index++)
+                {
+                    <li class="page-item"><button class="page-link @(index == Model.PaginationSetting.PageIndex ? "text-dark" : null)" onclick="refreshData(@index)">@(index + 1)</button></li>
+                }
+                <li class="page-item"><button class="page-link" @(Model.PaginationSetting.PageIndex == Model.PaginationSetting.TotalPages - 1 ? "hidden" : null) onclick="refreshData(@(Model.PaginationSetting.PageIndex + 1))">Next</button></li>
+            </ul>
+        </nav>
+    </div>
 }
 
-<div class="row">
+<div class="row d-none" hidden>
     <div class="timeline">
 
         @foreach (string year in Model.Years)

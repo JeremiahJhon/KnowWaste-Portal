@@ -1,0 +1,262 @@
+/* ============================= */
+/* GRID */
+/* ============================= */
+
+.expert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  padding: 40px 0;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+
+/* EXPERT CARD */
+
+
+.expert-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  text-decoration: none;
+  color: #333;
+  padding: 35px 20px;
+  cursor: pointer;
+  transition: transform 0.25s ease,
+              box-shadow 0.25s ease,
+              background 0.25s ease,
+              color 0.25s ease;
+}
+
+
+/* HOVER */
+.expert-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.14);
+  background: #f9fcff;
+  color: #0FB4DF;
+}
+
+.expert-card:active {
+  transform: translateY(-2px) scale(0.98);
+}
+
+/* IMAGE */
+
+
+.expert-image {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  border: 5px solid #f1f3f6;
+  overflow: hidden;
+  position: relative; /* needed for glow */
+}
+
+/* Image */
+.expert-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.4s ease;
+}
+
+/* Hover zoom */
+.expert-card:hover .expert-image img {
+  transform: scale(1.06);
+}
+
+.expert-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(15,180,223,0);
+  transition: box-shadow 0.25s ease;
+}
+
+.expert-card:hover .expert-image::after {
+  box-shadow: 0 0 0 6px rgba(15,180,223,0.25);
+}
+
+.expert-content h3 {
+  font-size: 15px;
+  font-weight: 400;
+  margin: 6px 0 0;
+  color: inherit;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .expert-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px 0;
+  }
+
+  .expert-image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .expert-content h3 {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .expert-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* HORIZONTAL EXPERT LIST */
+.expert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;  
+  margin: 0 auto;
+}
+
+.expert-card-horizontal {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 20px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+  text-decoration: none;
+  color: #333;
+  transition: all 0.25s ease;
+}
+
+.expert-card-horizontal:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.14);
+  background: #f9fcff;
+  color: #0FB4DF;
+}
+
+
+/* IMAGE */
+.expert-card-horizontal .expert-image {
+  width: 220px;
+  height: auto;
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.expert-card-horizontal .expert-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* CONTENT */
+.expert-card-horizontal .expert-content h3 {
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.expert-card-horizontal .expert-content p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  display: block;
+  overflow: visible;
+}
+
+
+/* HORIZONTAL RESPONSIVE FIX */
+@media (max-width: 768px) {
+
+  .expert-card-horizontal {
+    flex-direction: column !important;   /* stack */
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .expert-card-horizontal .expert-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .expert-card-horizontal .expert-content {
+    width: 100%;
+    text-align: left;
+  }
+
+  .expert-card-horizontal .expert-content h3 {
+    font-size: 16px;
+    text-align: left;
+  }
+
+  .expert-card-horizontal .expert-content p {
+    font-size: 14px;
+    text-align: left;
+  }
+}
+
+@media (max-width: 992px) {
+  .card.expert-card-horizontal {
+    gap: 24px; /* reduce spacing from 40px */
+  }
+}
+
+/* SECTION SPACING */
+.expert-section {
+  padding: 20px 0;
+}
+
+/* CARD SPACING */
+.expert-card-horizontal {
+  margin-bottom: 24px; /* replaces mb-4 */
+}
+
+/* CONTENT */
+.expert-content h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.expert-role {
+  display: block;
+  margin-top: 4px;
+  color: #777;
+  font-size: 14px;
+}
+
+/* TEXT */
+.expert-content p {
+  margin-top: 10px; 
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+}

@@ -1,0 +1,210 @@
+/* =====================================
+   FEATURE SECTION
+===================================== */
+
+.feature-section {
+    background: #f5f6f8;
+    overflow: hidden;
+}
+
+
+/* =====================================
+     MAIN LAYOUT
+  ===================================== */
+
+.feature-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 520px;
+    padding-bottom: 40px;
+
+}
+
+
+/* =====================================
+     IMAGE
+  ===================================== */
+
+.feature-image {
+    position: relative;
+
+    width: 70%;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+}
+
+.feature-image img {
+    width: 100%;
+    height: 460px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+
+/* Overlay */
+
+.feature-image::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.35));
+}
+
+.feature-box:hover .feature-image img {
+    transform: scale(1.04);
+}
+
+/* =====================================
+     IMAGE TEXT
+  ===================================== */
+
+.feature-overlay {
+    position: absolute;
+    left: 35px;
+    bottom: 35px;
+    z-index: 2;
+    color: white;
+    max-width: 420px;
+}
+
+.feature-overlay h3 {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 10px;
+}
+
+.feature-overlay p {
+    font-size: 16px;
+    margin: 0;
+    opacity: 0.95;
+}
+
+
+/* =====================================
+     CONTENT CARD
+  ===================================== */
+
+.feature-content {
+    position: absolute;
+    right: 0;
+    top: 47%;
+    transform: translateY(-50%);
+    width: 36%;
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.10);
+    z-index: 5;
+}
+
+
+/* Tag */
+
+.feature-tag {
+    display: inline-block;
+    background: rgba(15, 180, 223, 0.12);
+    color: #00a3e0;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 7px 15px;
+    border-radius: 50px;
+    margin-bottom: 18px;
+}
+
+
+/* Content */
+
+.feature-content h3 {
+    font-size: 28px;
+    line-height: 1.35;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.feature-content p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+
+/* Button spacing */
+
+.feature-content .btn-main {
+    margin-top: 10px;
+}
+
+
+/* =====================================
+     TABLET
+  ===================================== */
+
+@media (max-width: 991px) {
+
+    .feature-box {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .feature-image {
+        width: 100%;
+    }
+
+    .feature-image img {
+        height: 400px;
+        transition: transform 0.4s ease;
+    }
+
+    .feature-content {
+        position: relative;
+        width: 90%;
+        right: auto;
+        margin-top: -60px;
+        padding: 35px;
+    }
+
+}
+
+
+/* =====================================
+     MOBILE
+  ===================================== */
+
+@media (max-width: 767px) {
+
+    .feature-image img {
+        height: 320px;
+    }
+
+    .feature-overlay {
+        left: 24px;
+        bottom: 24px;
+    }
+
+    .feature-overlay h3 {
+        font-size: 34px;
+    }
+
+    .feature-overlay p {
+        font-size: 14px;
+    }
+
+    .feature-content {
+        width: 95%;
+        padding: 28px;
+    }
+
+    .feature-content h3 {
+        font-size: 24px;
+    }
+
+}

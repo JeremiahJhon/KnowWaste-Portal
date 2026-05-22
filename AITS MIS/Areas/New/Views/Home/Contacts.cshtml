@@ -1,36 +1,59 @@
 ﻿@{
     Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
 }
+<!---page banner--->
+<section class="page-banner contactus">
 
-<!-- Hero Section -->
-<section class="contact-section">
-    <div class="container">
-        <div class="col-11 col-lg-4 col-md-8" style="position: absolute; top: 20%; background-color: white; border-radius: 8px; padding: 40px;">
-            <h2 class="section-title pb-4">Contacts</h2>
-            <ul class="list-group pb-4" style="list-style-type: none;">
-                <li>
-                    <div class="d-flex m-0">
-                        <i class="bi bi-geo-alt pe-2"></i>
-                        <p>
-                            Regional Resource Centre for Asia and the Pacific (RRC.AP)
-                            <br>
-                            3rd Floor, Outreach Building
-                            <br>
-                            Asian Institute of Technology
-                            <br>
-                            58 Moo 9, Km 42 Paholyothin Highway
-                            <br>
-                            Klong Neung, Klong Luang
-                            <br>
-                            Pathum Thani 12120
-                            <br>
-                            Thailand
-                        </p>
-                    </div>
-                </li>
-                <li><p><i class="bi bi-telephone pe-2"></i> +662-524-6246</p></li>
-                <li><p><i class="bi bi-envelope pe-2"></i>warm@rrcap.ait.ac.th</p></li>
-            </ul>
-        </div>
+    <div class="banner-content">
+        <h1>Contact Us</h1>
+        <p></p>
     </div>
+
+    <svg class="banner-wave" viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path fill="#ffffff"
+              d="M0,80 C360,140 1080,0 1440,80 L1440,120 L0,120 Z"></path>
+    </svg>
+
+</section>
+<!---end of page banner--->
+<!-- breadcrumb -->
+<section class="breadcrumb">
+    <div class=" container container-md container-lg py-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item text-uppercase"><a href="index.html">home</a></li>
+                <li class="breadcrumb-item active text-uppercase" aria-current="page">Contact Us</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+<!-- Hero Section -->
+<section>
+    <div class="container">
+
+        <h2 class="section-title pb-4">Regional Resource Centre for Asia and the Pacific (RRC.AP)</h2>
+        <ul class="list-group pb-4" style="list-style-type: none;">
+            <li><p><i class="bi bi-telephone pe-2"></i> (662) 516-2124</p></li>
+            <li><p><i class="bi bi-envelope pe-2"></i>warm@rrcap.ait.ac.th</p></li>
+            <li><div class="d-flex m-0"><i class="bi bi-geo-alt pe-2"></i><p>Regional Resource centre for Asia and the Pacific (RRC.AP)<br> Asian Institute of Technology <br> P.O Box (4) 3rd Floor, Outreach Building <br> 58 Moo 9 Km 42, Paholyothin Highway, Pathumthani 12120, Thailand</p></div></li>
+        </ul>
+        <div class="qr-card mt-4">
+
+            <div class="qr-icon">
+                <i class="bi bi-geo-alt-fill"></i>
+            </div>
+
+            <img src="imgs/qrcode.png" alt="Office Location QR Code" class="qr-image">
+
+            <h5>Visit Our Office</h5>
+
+            <p>
+                Scan the QR code to get directions to the RRC.AP office.
+            </p>
+
+        </div>
+
+
+    </div>
+
 </section>

@@ -10,15 +10,13 @@ namespace Knowwaste.Areas.New.Controllers
         public ActionResult Index()
         {
             News model = new News();
-            model.GetData(null);
             return View(model);
         }
 
         // GET: New/News/Details/5
         public ActionResult Details(int id)
         {
-            News model = new News();
-            model.GetData(id);
+            News model = new News(id);
             if (model.NewsList.Count == 1)
             {
                 return View(model.NewsList.First());
@@ -30,6 +28,13 @@ namespace Knowwaste.Areas.New.Controllers
                 else
                     return RedirectToAction("Index");
             }
+        }
+
+        // GET: New/News/RefreshData/{countryID}
+        public ActionResult RefreshData(string searchText, int pageIndex)
+        {
+            News model = new News(0, searchText, pageIndex);
+            return PartialView("_Data", model);
         }
     }
 }

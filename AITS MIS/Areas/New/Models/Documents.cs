@@ -73,13 +73,15 @@ namespace KnowWaste.Models
             }
         }
 
-        public Documents(string area)
+        public Documents(string area, string searchText, int pageIndex)
         {
             this.ID = 0;
             this.CountryID = 0;
             this.Year = 0;
             this.Publisher = "All";
             this.Area = area;
+            PaginationSetting.SearchText = searchText;
+            PaginationSetting.PageIndex = pageIndex;
 
             RefreshThematicData();
         }
@@ -198,10 +200,10 @@ namespace KnowWaste.Models
                 PaginationSetting.TotalCount = query.Count();
 
                 // Apply pagination
-                //DocumentList = query
-                //    .Skip(PaginationSetting.PageIndex * PaginationSetting.PageCount)
-                //    .Take(PaginationSetting.PageCount)
-                //    .ToList();
+                DocumentList = query
+                    .Skip(PaginationSetting.PageIndex * PaginationSetting.PageCount)
+                    .Take(PaginationSetting.PageCount)
+                    .ToList();
 
                 // Compute total pages
                 PaginationSetting.TotalPages = (int)Math.Ceiling((double)PaginationSetting.TotalCount / PaginationSetting.PageCount);
@@ -321,10 +323,10 @@ namespace KnowWaste.Models
                 PaginationSetting.TotalCount = query.Count();
 
                 // Apply pagination
-                //DocumentList = query
-                //    .Skip(PaginationSetting.PageIndex * PaginationSetting.PageCount)
-                //    .Take(PaginationSetting.PageCount)
-                //    .ToList();
+                DocumentList = query
+                    .Skip(PaginationSetting.PageIndex * PaginationSetting.PageCount)
+                    .Take(PaginationSetting.PageCount)
+                    .ToList();
 
                 // Compute total pages
                 PaginationSetting.TotalPages = (int)Math.Ceiling((double)PaginationSetting.TotalCount / PaginationSetting.PageCount);
@@ -398,6 +400,28 @@ namespace KnowWaste.Models
                 Area = Areas.First();
             }
             DocumentList = DocumentList.Where(p => p.GeoTheme == Area).ToList();
+
+            // Apply pagination and search
+            // Get base query
+            var query = DocumentList.AsQueryable();
+
+            // Apply search
+            if (!string.IsNullOrWhiteSpace(PaginationSetting.SearchText))
+            {
+                query = query.Where(p => p.Title.ToLower().Contains(PaginationSetting.SearchText.ToLower()));
+            }
+
+            // Compute total count BEFORE pagination
+            PaginationSetting.TotalCount = query.Count();
+
+            // Apply pagination
+            DocumentList = query
+                .Skip(PaginationSetting.PageIndex * PaginationSetting.PageCount)
+                .Take(PaginationSetting.PageCount)
+                .ToList();
+
+            // Compute total pages
+            PaginationSetting.TotalPages = (int)Math.Ceiling((double)PaginationSetting.TotalCount / PaginationSetting.PageCount);
         }
     }
 }

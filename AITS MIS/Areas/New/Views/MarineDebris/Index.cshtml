@@ -2,251 +2,430 @@
 @{
     Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
 }
+
 <!-- Hero Section -->
 <section class="hero-section text-white text-center d-flex align-items-center justify-content-center">
-    <div class="hero-overlay hover-zoom">
+
+    <!-- Background Video -->
+    <video autoplay muted loop playsinline class="hero-video">
+        <source src="~/Content/new-template/images/h1.mp4" type="video/mp4">
+    </video>
+
+    <!-- Dark Overlay -->
+    <div class="hero-dark-overlay"></div>
+
+    <!-- Content -->
+    <div class="hero-overlay">
         <hr class="custom-hr">
         <h1 class="display-5 fw-bold">MARINE DEBRIS</h1>
         <p class="lead">A Threat to Ocean Life</p>
         <hr class="custom-hr">
     </div>
 
-    <img src="/Content/imgs/wave.png" class="swiggle-img" alt="Wave Divider" />
+    <img src="~/Content/new-template/imgs/wave.png" class="swiggle-home-img" alt="Wave Divider" />
 
 </section>
 
 <!-- About Section -->
-<section class="ptb-120 ">
+<section class="pt-120 pb-60">
     <div class=container container-md container-lg>
-        <div class="abt-sec text-center pb-120 hover-zoom">
-            <h2 class="section-title pb-3">ABOUT MARINE DEBRIS</h2>
-            <p class="text-muted">Marine debris is one of the most critical environmental challenges of our time, threatening biodiversity, harming marine life, and impacting human health and livelihoods across the world. In ASEAN, land-based plastic waste and other forms of debris are major contributors to ocean pollution. We aim to support the ASEAN Regional Action Plan for Combating Marine Debris, providing resources and insights that help integrate waste management strategies with the roadmap’s goals for cleaner, healthier, and more sustainable seas.</p>
-        </div>
-        <h2 class="section-title pb-3">KEY IMPORTANT FEATURES</h2>
-        <div class="accordion" id="featuresAccordion">
-            <div class="accordion-item custom-accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#featureOne" aria-expanded="true">
-                        Data
-                    </button>
-                </h2>
-                <div id="featureOne" class="accordion-collapse collapse show">
-                    <div class="accordion-body d-flex w-100" style="min-height: 300px;">
-                        <div class="col-12 col-md-6 col-lg-6">
-                            <p>This section compiles and presents waste-related data from across ASEAN, helping stakeholders make evidence-based decisions to address marine litter and improve waste management. You will find data on waste generation, collection, recycling, and disposal. Our aim is to make this information accessible and actionable for policymakers, researchers, and practitioners working toward more sustainable systems.</p>
 
-                            <a href="New/Data" class="text-primary fw-bold">Explore Now →</a>
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-6 pb-3 px-3 img-box-wrapper s-border-reverse custom-height">
-                            <a href="New/Data">
-                                <div class="s-border-reverse box-shadow col-md-12 min-h-300px h-100 hover-zoom" style="background-image: url(/Content/imgs/accordian-data.png); background-repeat: no-repeat; background-size: cover;">
-                                </div>
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item custom-accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#featureTwo">
-                        Policy
-                    </button>
-                </h2>
-                <div id="featureTwo" class="accordion-collapse collapse">
-                    <div class="accordion-body d-flex w-100" style="min-height: 300px;">
-                        <div class="col-12 col-md-6 col-lg-6">
-                            <p>
-                                This page provides an overview of marine debris–related policies across ASEAN
-                                countries. It features an interactive table summarizing national frameworks on solid
-                                waste, plastic bans, EPR, and monitoring. Please explore specific laws, strategies, and
-                                enforcement mechanisms:
-                            </p>
-
-                            <a href="New/Policy" class="text-primary fw-bold">Explore Now →</a>
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-6 pb-3 px-3 img-box-wrapper s-border-reverse custom-height">
-                            <a href="New/Policy">
-                                <div class="s-border-reverse box-shadow col-md-12 min-h-300px h-100 hover-zoom" style="background-image: url(/Content/imgs/accordian-policy.png); background-repeat: no-repeat; background-size: cover;">
-                                </div>
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item custom-accordion-item">
-                <h2 class="accordion-header" id="headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#featureThree">
-                        3RProMAR
-                    </button>
-                </h2>
-                <div id="featureThree" class="accordion-collapse collapse">
-                    <div class="accordion-body d-flex w-100" style="min-height: 300px;">
-                        <div class="col-12 col-md-6 col-lg-6">
-                            <p>The “Reduce, Reuse, Recycle to Protect the Marine Environment and Coral Reefs”(3RproMar) project supports ASEAN countries in tackling marine litter through improved waste management. As the Knowledge Partner for 3RproMar, we share resources, technical guidance, and best practices developed through this initiative. This page provides updates and learning materials that strengthen capacity and foster regional collaboration to protect marine ecosystems.</p>
-
-                            <a href="New/_3rpromar" class="text-primary fw-bold">Explore Now →</a>
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-6 pb-3 px-3 img-box-wrapper s-border-reverse custom-height">
-                            <a href="New/_3rpromaro">
-                                <div class="s-border-reverse box-shadow col-md-12 min-h-300px h-100 hover-zoom" style="background-image: url(/Content/imgs/accordian-3rproma.png); background-repeat: no-repeat; background-size: cover;">
-                                </div>
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item custom-accordion-item">
-                <h2 class="accordion-header" id="headingFour">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#featureFour">
-                        E-learning
-                    </button>
-                </h2>
-                <div id="featureFour" class="accordion-collapse collapse">
-                    <div class="accordion-body d-flex w-100" style="min-height: 300px;">
-                        <div class="col-12 col-md-6 col-lg-6">
-                            <p>Build your knowledge and skills through our interactive e-learning resources. Here we offer self-paced courses and training materials on sustainable waste management, climate resilience, circular economy, and marine debris prevention. Whether you are a policymaker, professional, educator, or student, these learning tools will help you develop practical strategies and innovative thinking to support a cleaner and healthier environment.</p>
-
-                            <a href="New/ELearning" class="text-primary fw-bold">Explore Now →</a>
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-6 pb-3 px-3 img-box-wrapper s-border-reverse custom-height">
-                            <a href="New/ELearning">
-                                <div class="s-border-reverse box-shadow col-md-12 min-h-300px h-100 hover-zoom" style="background-image: url(/Content/imgs/accordian-elearning.png); background-repeat: no-repeat; background-size: cover;">
-                                </div>
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item custom-accordion-item">
-                <h2 class="accordion-header" id="headingFive">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#featureFive">
-                        Technology
-                    </button>
-                </h2>
-                <div id="featureFive" class="accordion-collapse collapse">
-                    <div class="accordion-body d-flex w-100" style="min-height: 300px;">
-                        <div class="col-12 col-md-6 col-lg-6">
-                            <p>This section features innovative technological solutions that can transform waste management and reduce marine litter across ASEAN. From community-based recycling systems to cutting-edge industrial technologies, these examples demonstrate how technology can drive sustainable change. If you would like to showcase your technology on this page and help inspire others, please email us at warm@rrcap.ait.ac.th.</p>
-
-                            <a href="New/Technology" class="text-primary fw-bold">Explore Now →</a>
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-6 pb-3 px-3 img-box-wrapper s-border-reverse custom-height">
-                            <a href="New/Technology">
-                                <div class="s-border-reverse box-shadow col-md-12 min-h-300px h-100 hover-zoom" style="background-image: url(/Content/imgs/technology2.png); background-repeat: no-repeat; background-size: cover;">
-                                </div>
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
+        <h2 class="section-title ">About Marine Debris</h2>
+        <p class="text-muted">Marine debris is one of the most critical environmental challenges of our time, threatening biodiversity, harming marine life, and impacting human health and livelihoods across the world. In ASEAN, land-based plastic waste and other forms of debris are major contributors to ocean pollution. We aim to support the ASEAN Regional Action Plan for Combating Marine Debris, providing resources and insights that help integrate waste management strategies with the roadmap’s goals for cleaner, healthier, and more sustainable seas.</p>
 
     </div>
-
-
 </section>
 
-<section class="ptb-120">
-    <div class="container container-md container-lg">
-        <h2 class="section-title text-center mb-4">GOOD PRACTICES</h2>
-        <p class="text-center text-muted mb-5">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like </p>
-        <div class="row g-4">
-            @foreach (ViewModels.GoodPractice item in Model.BlogList.Take(3))
+<!---good practices -->
+<section class="pt-60 pb-60">
+    <div class="container">
+        <h2 class="section-title">Good Practices</h2>
+
+        <!---blog card section--->
+        <div class="blog-card-grid">
+
+            @foreach (ViewModels.GoodPractice item in Model.BlogList.Take(4))
             {
-                <div class="col-md-4 px-3">
-                    <a href="New/GoodPractices/Details/@item.ID" class="text-decoration-none text-dark">
-                        <div class="card h-100 card-rounded s-border box-shadow m-10 hover-zoom-card">
-                            <img src="Documents/Blogs/@item.Thumbnail.Split(';')[0]"
-                                 class="card-img-top"
-                                 alt="@item.Title"
-                                 style="height: 250px; width: 100%; object-fit: cover;">
-                            <div class="card-body p-4">
-                                <h5 class="card-title">@item.Title</h5>
-                                <small>@item.Country</small>
-                                <div class="card-text text-truncate-3">@Html.Raw(item.Description)</div>
-                                <span class="btn btn-link px-0 mt-2">Start Reading →</span>
+                <a href="New/GoodPractices/Details/@item.ID" class="blog-card">
+                    <div class="blog-card-image">
+                        <img src="Documents/Blogs/@item.Thumbnail.Split(';')[0]"
+                             class="card-img-top"
+                             alt="@item.Title">
+                    </div>
+
+                    <div class="blog-card-content">
+                        <h3>@item.Title</h3>
+
+                        <div class="blog-card-meta meta">
+                            <div class="meta-item">
+                                <i class="bi bi-geo-alt meta-icon"></i>
+                                @item.Country
                             </div>
                         </div>
-                    </a>
-                </div>
+
+                        <div class="card-text text-truncate-3" style="max-height: 80px">@Html.Raw(item.Description)</div>
+                        <span class="blog-card-arrow">→</span>
+                    </div>
+                </a>
+            }
+        </div><!---end of card grid ---->
+    </div>
+    <div class="text-center mt-4">
+        <a href="New/GoodPractices" class="btn-main">See all Good Practices</a>
+    </div>
+</section>
+<!--end of good practices-->
+
+<!---3rproma -->
+<section class="pt-60 pb-60 bg-peach-cream">
+    <div class="container">
+        <h2 class="section-title">3RProMAR</h2>
+
+        <!---publication -list --->
+        <div class="publication-list home-publication">
+
+            @foreach (ViewModels.Document item in Model._3RProMARList.Take(5))
+            {
+
+                <!-- DOCUMENT ITEM -->
+                <a href="~/Documents/@item.Attachment.Split(';')[0]" class="publication-item" target="_blank">
+
+                    <div class="publication-image">
+                        <img src="/Documents/@item.Thumbnail" alt="@item.Title">
+                    </div>
+
+                    <div class="publication-content">
+                        <h3 class="publication-title">
+                            @item.Title
+                        </h3>
+
+                        <div class="publication-meta meta">
+
+                            <div class="meta-item">
+                                <i class="bi bi-calendar3 meta-icon"></i>
+                                <span>@item.Year</span>
+                            </div>
+
+                            <div class="meta-item">
+                                <i class="bi bi-geo-alt meta-icon"></i>
+                                <span>@item.Country</span>
+                            </div>
+
+                            <div class="meta-item">
+                                <i class="bi bi-building meta-icon"></i>
+                                <span>@item.Publisher</span>
+                            </div>
+
+                        </div>
+
+                        <p class="publication-desc">
+                            The overall objective of the technical guidelines is to prevent plastics leakage...
+                        </p>
+
+                        <!-- NOT a link anymore -->
+                        <span class="btn-secondary-main">
+
+                            <span>View Document</span>
+
+                            <span class="download-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 3V14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                                    <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M5 19H19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                                </svg>
+                            </span>
+                        </span>
+                    </div>
+                </a>
+                <!-- END DOCUMENT ITEM -->
             }
         </div>
-        <div class="text-center mt-4">
-            <a href="New/GoodPractices" class="btn btn-primary">View More</a>
+    </div>
+    <div class="text-center mt-4">
+        <a href="New/_3rpromar" class="btn-main">See all 3RProMAR Documents</a>
+    </div>
+</section> 
+<!---end of publications -->
+
+<!-- network of practices -->
+<section class="bg-ocean">
+    <div class="row" id="networks-of-practice" style="background-image: url('Content/marine-debris/shutterstock_436985632.jpg'); background-repeat: no-repeat; background-size: cover; background-color: white; background-attachment: fixed;">
+        <div class="col-md-12 py-5" style=" background-color: #00000099; ">
+            <div class="container mb-7 text-center py-5">
+                <h2 class="section-title">NETWORKS OF PRACTICE</h2>
+                <div id="NetworkOfPracticeCarousel" class="carousel slide w-100 py-5" data-bs-ride="carousel" data-bs-interval="3000">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#NetworkOfPracticeCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#NetworkOfPracticeCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <a class="octagon d-flex align-items-center m-auto" style="background-color: #13222c; height: 200px; width: 200px;" href="https://ikhapp.org/">
+                                <img src="/Content/marine-debris/ikhapp.svg" class="m-auto w-100" alt="" />
+                            </a>
+                            <br />
+                            <a href="https://ikhapp.org/" class="text-white text-decoration-none fs-5">
+                                International Knowledge Hub Against Plastic Pollution
+                            </a>
+                        </div>
+
+                        <div class="carousel-item">
+                            <a class="octagon d-flex align-items-center bg-white m-auto" style="height: 200px; width: 200px;" href="https://rkcmpd-eria.org/">
+                                <img src="~/Content/marine-debris/logo-rkc-mpd.png" class="m-auto w-100" alt="" />
+                            </a>
+                            <br />
+                            <a href="https://rkcmpd-eria.org/" class="text-white text-decoration-none fs-5">
+                                Regional Knowledge Centre for Marine Plastic Debris
+                                RKC-MPD ERIA
+                            </a>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#NetworkOfPracticeCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#NetworkOfPracticeCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- network -->
-<!--<section class="ptb-120 bg-pattern text-center position-relative">
-    <img src="/Content/imgs/wave-top.png" class="wave-top" alt="Wave Divider" />
-    <div class="container container-md container-lg">
-        <h2 class="section-title">NETWORKS OF PRACTICE</h2>
-        <div class="row mt-4 bg-white p-5 networks-of-practice">
-            <a href="https://ikhapp.org/" class="col-12 col-md-6 col-lg-6 m-auto text-decoration-none text-dark">
-                <img src="/Content/imgs/partner1.png" class="mx-3 my-2" alt="IKHAPP">
-                <p>International Knowledge Hub Against Plastic Pollution</p>
-            </a>
-            <a href="https://rkcmpd-eria.org/" class="col-12 col-md-6 col-lg-6 m-auto text-decoration-none text-dark">
-                <img src="/Content/imgs/partner2.png" class="mx-3 my-2" alt="RKC-MPD">
-                <p>
-                    Regional Knowledge Centre for Marine Plastic
-                    Debris RKC-MPD ERIA
-                </p>
-            </a>
-        </div>
+<!---Technology -->
+<section class="pt-60 pb-60">
+    <div class="container">
+        <h2 class="section-title">Technology</h2>
+
+        <!---blog card section--->
+        <div class="blog-card-grid">
+
+            @foreach (ViewModels.Technology item in Model.TechnologyList.Take(4))
+            {
+                <a href="New/Technology/Details/@item.ID" class="blog-card">
+                    <div class="blog-card-image">
+                        <img src="~/Documents/Technology/@item.Thumbnail.Split(';')[0]"
+                             class="card-img-top"
+                             alt="@item.Title">
+                    </div>
+
+                    <div class="blog-card-content">
+                        <h3>@item.Title</h3>
+
+                        <div class="blog-card-meta meta">
+                            <div class="meta-item">
+                                <i class="bi bi-geo-alt meta-icon"></i>
+                                @item.Country
+                            </div>
+                        </div>
+
+                        <div class="card-text text-truncate-3" style="max-height: 80px">@Html.Raw(item.Description)</div>
+                        <span class="blog-card-arrow">→</span>
+                    </div>
+                </a>
+            }
+        </div><!---end of card grid ---->
     </div>
-    <img src="/Content/imgs/wave-bottom.png" class="swiggle-img" alt="Wave Divider" />
-</section>-->
+    <div class="text-center mt-4">
+        <a href="New/Technology" class="btn-main">See all Technolgy</a>
+    </div>
+</section><!--end of good practices-->
+    
+<!-- E-Learning -->
+<section class="pt-120 pb-120">
+    <div class="container container-md container-lg">
+        <div class="feature-box">
 
-<div class="row" id="networks-of-practice" style="background-image: url('Content/marine-debris/shutterstock_436985632.jpg'); background-repeat: no-repeat; background-size: cover; background-color: white; background-attachment: fixed;">
-    <div class="col-md-12 py-5" style=" background-color: #00000099; ">
-        <div class="container mb-7 text-center py-5">
-            <h2 class="section-title">NETWORKS OF PRACTICE</h2>
-            <div id="NetworkOfPracticeCarousel" class="carousel slide w-100 py-5" data-bs-ride="carousel" data-bs-interval="3000">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#NetworkOfPracticeCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#NetworkOfPracticeCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <a class="octagon d-flex align-items-center m-auto" style="background-color: #13222c; height: 200px; width: 200px;" href="https://ikhapp.org/">
-                            <img src="/Content/marine-debris/ikhapp.svg" class="m-auto w-100" alt="" />
-                        </a>
-                        <br />
-                        <a href="https://ikhapp.org/" class="text-white text-decoration-none fs-5">
-                            International Knowledge Hub Against Plastic Pollution
-                        </a>
-                    </div>
+            <!-- LEFT IMAGE -->
+            <div class="feature-image">
 
-                    <div class="carousel-item">
-                        <a class="octagon d-flex align-items-center bg-white m-auto" style="height: 200px; width: 200px;" href="https://rkcmpd-eria.org/">
-                            <img src="~/Content/marine-debris/logo-rkc-mpd.png" class="m-auto w-100" alt="" />
-                        </a>
-                        <br />
-                        <a href="https://rkcmpd-eria.org/" class="text-white text-decoration-none fs-5">
-                            Regional Knowledge Centre for Marine Plastic Debris
-                            RKC-MPD ERIA
-                        </a>
-                    </div>
+                <img src="~/Content/new-template/images/elearning.jpg" alt="E-Learning">
+
+                <div class="feature-overlay">
+                    <h3>
+                        Climate Adaptation<br>
+                        & Resilience
+                    </h3>
+
+                    <p>
+                        Sustainable waste and resource management learning course
+                    </p>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#NetworkOfPracticeCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#NetworkOfPracticeCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+
+            </div>
+
+            <!-- RIGHT CARD -->
+            <div class="feature-content">
+
+                <span class="feature-tag">
+                    Online Learning
+                </span>
+
+                <h3>
+                    Climate Adaptation and Resilience Building Through Sustainable Waste and Resource Management
+                </h3>
+
+                <a href="https://ap-plat.nies.go.jp/adaptation_literacy/resources/e_learning/waste_management/index.html?fbclid=IwAR2zsmf3Qun3CPYvOnuRW38yOvI7bORXqsTF-25pLuqrLiERn_7XOUSjDuo"
+                   class="btn-main"
+                   target="_blank">
+                    Explore Courses
+                </a>
             </div>
         </div>
     </div>
-</div>
+</section>
+
+<!---publications -->
+<section class="pt-60 pb-60 bg-peach-cream">
+    <div class="container">
+        <h2 class="section-title">Publications</h2>
+
+        <!---publication -list --->
+        <div class="publication-list home-publication">
+
+            @foreach (ViewModels.Document item in Model.DocumentList.Take(5))
+            {
+
+                <!-- DOCUMENT ITEM -->
+                <a href="~/Documents/@item.Attachment.Split(';')[0]" class="publication-item" target="_blank">
+
+                    <div class="publication-image">
+                        <img src="/Documents/@item.Thumbnail" alt="@item.Title">
+                    </div>
+
+                    <div class="publication-content">
+                        <h3 class="publication-title">
+                            @item.Title
+                        </h3>
+
+                        <div class="publication-meta meta">
+
+                            <div class="meta-item">
+                                <i class="bi bi-calendar3 meta-icon"></i>
+                                <span>@item.Year</span>
+                            </div>
+
+                            <div class="meta-item">
+                                <i class="bi bi-geo-alt meta-icon"></i>
+                                <span>@item.Country</span>
+                            </div>
+
+                            <div class="meta-item">
+                                <i class="bi bi-building meta-icon"></i>
+                                <span>@item.Publisher</span>
+                            </div>
+
+                        </div>
+
+                        <p class="publication-desc">
+                            The overall objective of the technical guidelines is to prevent plastics leakage...
+                        </p>
+
+                        <!-- NOT a link anymore -->
+                        <span class="btn-secondary-main">
+
+                            <span>View Document</span>
+
+                            <span class="download-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 3V14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                                    <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M5 19H19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                                </svg>
+                            </span>
+                        </span>
+                    </div>
+                </a>
+                <!-- END DOCUMENT ITEM -->
+            }
+        </div>
+    </div>
+    <div class="text-center mt-4">
+        <a href="New/Publications" class="btn-main">See all Publications</a>
+    </div>
+</section> <!---end of publications -->
+
+<!-- data -->
+<section class="pt-60 pb-60 bg-peach-cream">
+    <div class="container container-md container-lg">
+        <h2 class="section-title mb-5">Data</h2>
+        <div class="feature-box">
+            <!-- LEFT IMAGE -->
+            <div class="feature-image">
+                <img src="~/Content/new-template/images/data.png" alt="data">
+                <div class="feature-overlay">
+                    <h3>
+                        Data
+                    </h3>
+                </div>
+            </div>
+            <!-- RIGHT CARD -->
+            <div class="feature-content">
+                <p>
+                    This section compiles and presents waste-related data from across ASEAN, helping stakeholders make evidence-based decisions to address marine litter and improve waste management.
+                </p>
+                <a href="data.html"
+                   class="btn-main"
+                   target="_blank">
+                    Explore More
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Policy -->
+<section class="pt-60 pb-60">
+    <div class="container container-md container-lg">
+        <h2 class="section-title mb-5">Policy</h2>
+        <div class="feature-box">
+            <!-- LEFT IMAGE -->
+            <div class="feature-image">
+                <img src="~/Content/new-template/images/policy.jpg" alt="E-Learning">
+                <div class="feature-overlay">
+                    <h3>
+                        Policy
+                    </h3>
+                </div>
+            </div>
+            <!-- RIGHT CARD -->
+            <div class="feature-content">
+                <p>
+                    It presents key laws, regulations, and policy measures addressing waste management and plastic pollution, helping to better understand the policy landscape and identify actions supporting waste reduction, recycling, and marine litter prevention.
+                </p>
+                <a href="policy.html"
+                   class="btn-main"
+                   target="_blank">
+                    Explore More
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!---expert -->
+<section class="pt-60 pb-60 bg-light-blue">
+    <div class="container">
+        <h2 class="section-title">Meet the Experts</h2>
+        <div class="container">
+            <div class="owl-carousel owl-theme meet-the-experts expert-grid">
+                @foreach (ViewModels.Expert item in Model.ExpertList)
+                {
+                    <a href="/New/Experts#@item.Name.Replace(" ","")" class="card expert-card mx-2">
+                        <div class="expert-image">
+                            <img src="Documents/@item.Thumbnail.Split(';')[0]" alt="@item.Name">
+                        </div>
+                        <div class="expert-content">
+                            <h3>@item.Name</h3>
+                        </div>
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</section>
 
 @section scripts{
     <script>
@@ -258,6 +437,29 @@
                 autoplay: true,
                 autoplayTimeout: 3000,
                 autoplayHoverPause: true,
+            });
+
+            $(".meet-the-experts").owlCarousel({
+                items: 4,
+                loop: true,
+                animateOut: 'fadeOut',
+                autoplay: true,
+                autoplayTimeout: 3000,
+                autoplayHoverPause: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 3
+                    },
+                    1000: {
+                        items: 4
+                    },
+                    1200: {
+                        items: 4
+                    }
+                }
             });
         });
     </script>

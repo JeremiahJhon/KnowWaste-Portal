@@ -1,0 +1,70 @@
+﻿@model KnowWaste.Models.News
+
+@if (Model.NewsList.Count == 0)
+{
+    <div class="w-100 text-center bg-light d-grid p-4 mt-5">There is no information matching your search.</div>
+}
+else
+{
+    if (Model.PaginationSetting.TotalPages > 0)
+    {
+        <div class="d-flex justify-content-end align-items-center">
+            <nav aria-label="Page navigation example" class="pagination">
+                <ul class="pagination">
+                    <li class="page-item"><button class="page-link prev-link" @(Model.PaginationSetting.PageIndex == 0 ? "hidden" : null) onclick="refreshData(@(Model.PaginationSetting.PageIndex - 1))"><i class="bi bi-arrow-left"></i>Previous</button></li>
+                    @for (int index = 0; index < Model.PaginationSetting.TotalPages; index++)
+                    {
+                        <li class="page-item @(index == Model.PaginationSetting.PageIndex ? "active" : null)"><button class="page-link" onclick="refreshData(@index)">@(index + 1)</button></li>
+                    }
+                    <li class="page-item"><button class="page-link next-link" @(Model.PaginationSetting.PageIndex == Model.PaginationSetting.TotalPages - 1 ? "hidden" : null) onclick="refreshData(@(Model.PaginationSetting.PageIndex + 1))">Next<i class="bi bi-arrow-right"></i></button></li>
+                </ul>
+            </nav>
+        </div>
+    }
+
+    <div class="blog-card-grid">
+        @foreach (ViewModels.News item in Model.NewsList)
+        {
+            <a href="New/News/Details/@item.ID" class="blog-card">
+                <div class="blog-card-image">
+                    <img src="~/Documents/News/@item.Photo.Split(';')[0]" alt="">
+                </div>
+
+                <div class="blog-card-content">
+                    <h3>@item.Title</h3>
+                    <div class="blog-card-meta meta">
+
+                        <div class="meta-item">
+                            <i class="bi bi-calendar3 meta-icon"></i>
+                            <span>@item.Date</span>
+                        </div>
+
+                        <div class="meta-item">
+                            <i class="bi bi-geo-alt meta-icon"></i>
+                            <span>@item.Country</span>
+                        </div>
+
+                    </div>
+                    <div class="text-truncate-3" style="max-height: 80px">@Html.Raw(item.Description)</div>
+                    <span class="blog-card-arrow">→</span>
+                </div>
+            </a>
+        }
+    </div>
+
+    if (Model.PaginationSetting.TotalPages > 0)
+    {
+        <div class="d-flex justify-content-end align-items-center">
+            <nav aria-label="Page navigation example" class="pagination">
+                <ul class="pagination">
+                    <li class="page-item"><button class="page-link prev-link" @(Model.PaginationSetting.PageIndex == 0 ? "hidden" : null) onclick="refreshData(@(Model.PaginationSetting.PageIndex - 1))"><i class="bi bi-arrow-left"></i>Previous</button></li>
+                    @for (int index = 0; index < Model.PaginationSetting.TotalPages; index++)
+                    {
+                        <li class="page-item @(index == Model.PaginationSetting.PageIndex ? "active" : null)"><button class="page-link" onclick="refreshData(@index)">@(index + 1)</button></li>
+                    }
+                    <li class="page-item"><button class="page-link next-link" @(Model.PaginationSetting.PageIndex == Model.PaginationSetting.TotalPages - 1 ? "hidden" : null) onclick="refreshData(@(Model.PaginationSetting.PageIndex + 1))">Next<i class="bi bi-arrow-right"></i></button></li>
+                </ul>
+            </nav>
+        </div>
+    }
+}

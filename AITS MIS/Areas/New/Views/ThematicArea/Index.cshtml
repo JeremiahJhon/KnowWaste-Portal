@@ -2,6 +2,19 @@
 @{
     Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
 }
+<section class="page-banner publication">
+
+    <div class="banner-content">
+        <h1>Knowledge Repository</h1>
+        <p></p>
+    </div>
+
+    <svg class="banner-wave" viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path fill="#ffffff"
+              d="M0,80 C360,140 1080,0 1440,80 L1440,120 L0,120 Z"></path>
+    </svg>
+
+</section>
 
 <section class="breadcrumb">
     <div class=" container container-md container-lg py-4">
@@ -18,7 +31,6 @@
 <section class="ptb-5 ">
     <div class="container pb-120">
         <div class="text-center pb-4" hidden>
-            <h1 class="section-title pb-3 text-uppercase text-start">Topics</h1>
             <p class="text-muted text-start">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less </p>
         </div>
         <div class="row">
@@ -36,7 +48,12 @@
                     }
                 </div>
             </div>
-            <div class="col-12 col-md-8 col-lg-9" id="ThematicAreaData">
+            <div class="col-12 col-md-8 col-lg-9">
+                <div class="wrapper">
+                    <div class="document-list" id="ThematicAreaData">
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -44,16 +61,17 @@
 @section scripts {
     <script>
         $(document).ready(function () {
-            refreshData();
+            refreshData(0);
 
             $(".area-select").change(function () {
-                refreshData();
+                refreshData(0);
             });
         });
 
-        function refreshData() {
+        function refreshData(pageIndex) {
             const area = encodeURI($(".area-select:checked").data("val").toString());
-            const url = `/New/ThematicArea/RefreshData?area=${area}`;
+            const searchText = "";
+            const url = `/New/ThematicArea/RefreshData?area=${area}&searchText=${searchText}&pageIndex=${pageIndex}`;
             const data = [];
             $("#ThematicAreaData").load(url);
         }

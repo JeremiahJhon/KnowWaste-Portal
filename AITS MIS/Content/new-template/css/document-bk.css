@@ -1,0 +1,375 @@
+/* ============================= */
+/* DOCUMENT LIST CONTAINER */
+/* ============================= */
+
+.document-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+}
+
+
+/* ============================= */
+/* DOCUMENT ITEM */
+/* ============================= */
+
+.document-item {
+  display: block;
+  padding: 20px;
+  background: linear-gradient(180deg, #eaf6fb 0%, #ffffff 100%);
+  border: 1px solid #e6edf2;
+  border-radius: 8px;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+
+  transition: all 0.25s ease;
+
+  width: 100%;
+  box-sizing: border-box;
+
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+
+  position: relative;
+}
+
+
+/* ============================= */
+/* HOVER */
+/* ============================= */
+
+.document-item:hover {
+  background: #e6f4fa;
+  border-color: #cfe4ee;
+
+  transform: translateY(-3px);
+
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+}
+
+
+/* ============================= */
+/* ACTIVE */
+/* ============================= */
+
+.document-item:active {
+  transform: translateY(-1px) scale(0.995);
+}
+
+
+/* ============================= */
+/* ACCESSIBILITY */
+/* ============================= */
+
+.document-item:focus-visible {
+  outline: 2px solid #00a3e0;
+  outline-offset: 3px;
+}
+
+
+/* ============================= */
+/* OVERLAY LINK */
+/* ============================= */
+
+.card-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+
+/* ============================= */
+/* CONTENT */
+/* ============================= */
+
+.document-content {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: 100%;
+
+  position: relative;
+  z-index: 2;
+  align-items: flex-start;
+}
+
+.document-download {
+  position: relative;
+  z-index: 3;
+}
+
+
+/* ============================= */
+/* TITLE */
+/* ============================= */
+
+.document-title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+
+  margin-bottom: 6px;
+
+  color: #222;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+}
+
+.document-item:hover .document-title {
+  color: #00a3e0;
+}
+
+
+/* ============================= */
+/* META */
+/* ============================= */
+
+.document-meta {
+  margin-bottom: 8px;
+}
+
+
+/* ============================= */
+/* DESCRIPTION */
+/* ============================= */
+
+.document-desc {
+  font-size: 14px;
+  color: #555;
+
+  line-height: 1.5;
+
+  margin-bottom: 12px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+}
+
+
+/* ============================= */
+/* DOWNLOAD BUTTON */
+/* ============================= */
+
+.document-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #00a3e0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid #00a3e0;
+  width: fit-content;
+  line-height: 1;
+  margin-top: 4px;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+
+/* ICON */
+
+.download-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-left: 1px solid rgba(255,255,255,0.4);
+
+  padding-left: 10px;
+
+  transition: border-color 0.25s ease;
+}
+
+.download-icon svg {
+  width: 16px;
+  height: 16px;
+
+  stroke: currentColor;
+
+  transition: transform 0.2s ease;
+}
+
+
+/* HOVER */
+
+.document-download:hover {
+  background: #fff;
+  color: #00a3e0;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.document-download:hover .download-icon {
+  border-left: 1px solid rgba(0,163,224,0.4);
+}
+
+.document-download:hover .download-icon svg {
+  transform: translateY(2px);
+}
+
+/* ============================= */
+/* ACTION BUTTONS */
+/* ============================= */
+
+.document-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+
+  flex-wrap: wrap;
+
+  margin-top: 8px;
+}
+
+
+/* ============================= */
+/* VIEW SOURCE BUTTON */
+/* ============================= */
+
+.document-source {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  background: #17c1d6;
+  color: #fff;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  padding: 8px 14px;
+
+  border-radius: 6px;
+  border: 1px solid #17c1d6;
+
+  width: fit-content;
+
+  line-height: 1;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+
+/* ICON */
+
+.source-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-left: 1px solid rgba(255,255,255,0.4);
+
+  padding-left: 10px;
+
+  transition: border-color 0.25s ease;
+}
+
+.source-icon svg {
+  width: 16px;
+  height: 16px;
+
+  stroke: currentColor;
+
+  transition: transform 0.2s ease;
+}
+
+
+/* HOVER */
+
+.document-source:hover {
+  background: #fff;
+  color: #17c1d6;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.document-source:hover .source-icon {
+  border-left: 1px solid rgba(23,193,214,0.4);
+}
+
+.document-source:hover .source-icon svg {
+  transform: translate(2px, -2px);
+}
+
+.document-download,
+.document-source {
+  margin-top: 0;
+}
+
+/* ============================= */
+/* YEAR SECTION */
+/* ============================= */
+
+.year-section {
+  margin-bottom: 30px;
+}
+
+.year-title {
+  font-size: 20px;
+  font-weight: 700;
+
+  margin: 30px 0 10px;
+
+  color: #111;
+}
+
+
+/* ============================= */
+/* TABLET */
+/* ============================= */
+
+@media (max-width: 991px) {
+
+  .document-list {
+    gap: 24px;
+  }
+
+  .document-title {
+    font-size: 16px;
+  }
+}
+
+
+/* ============================= */
+/* MOBILE */
+/* ============================= */
+
+@media (max-width: 767px) {
+
+  .document-list {
+    grid-template-columns: 1fr;
+  }
+
+  .document-item {
+    padding: 16px;
+  }
+
+  .document-content {
+    gap: 4px;
+  }
+}
