@@ -4,7 +4,7 @@
     {
         public string SearchText { get; set; }
         public int PageIndex { get; set; } = 0;
-        public int PageCount { get; set; } = 10;
+        public int PageCount { get; set; } = 12;
         public int TotalCount { get; set; }
         public int TotalPages { get; set; }
 

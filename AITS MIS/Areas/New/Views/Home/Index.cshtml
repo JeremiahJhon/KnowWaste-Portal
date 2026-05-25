@@ -122,14 +122,13 @@
         </div> <!-- END timeline -->
     </div> <!-- END swiper -->
 </section> <!-- END of highlight --->
-
 <!---News section-->
 <section class="pt-120 pb-60">
     <div class="container">
         <h2 class="section-title">Latest News</h2>
 
         <!---blog card section--->
-        <div class="blog-card-grid">
+        <div class="blog-card-grid pt-4">
             @foreach (ViewModels.News item in Model.NewsList.Take(4))
             {
                 <a href="New/News/Details/@item.ID" class="blog-card">
@@ -140,7 +139,12 @@
                     <div class="blog-card-content">
                         <h3>@item.Title</h3>
                         <small>@item.Country</small>
-                        <div class="card-text text-truncate-3" style="max-height: 80px">@Html.Raw(item.Description)</div>
+                        <div class="card-text text-truncate-3" style="max-height: 80px">
+                            @Html.Raw((System.Text.RegularExpressions.Regex.Replace(item.Description, "<.*?>", "").Length > 80) ?
+                                    System.Text.RegularExpressions.Regex.Replace(item.Description, "<.*?>", "").Substring(0, 80) + "..."
+                                    :
+                                    System.Text.RegularExpressions.Regex.Replace(item.Description, "<.*?>", ""))
+                        </div>
                         <span class="blog-card-arrow">→</span>
                     </div>
                 </a>
@@ -148,7 +152,6 @@
         </div>
     </div>
 </section> <!---end of news -->
-
 <!---publications -->
 <section class="pt-60 pb-60 bg-peach-cream">
     <div class="container">
@@ -214,7 +217,6 @@
         </div>
     </div>
 </section> <!---end of publications -->
-
 <!---good practices -->
 <section class="pt-60 pb-60">
     <div class="container">
@@ -255,7 +257,7 @@
     <div class="container">
         <h2 class="section-title">Meet the Experts</h2>
         <div class="container">
-            <div class="owl-carousel owl-theme meet-the-experts expert-grid">
+            <div class="owl-carousel owl-theme meet-the-experts expert-grid" id="meet-the-experts">
                 @foreach (ViewModels.Expert item in Model.ExpertList)
                 {
                     <a href="/New/Experts#@item.Name.Replace(" ","")" class="card expert-card mx-2">
@@ -275,22 +277,12 @@
 @section scripts{
     <script>
         $(function () {
-            $(".networks-of-practice").owlCarousel({
-                items: 1,
-                loop: true,
-                animateOut: 'fadeOut',
-                autoplay: true,
-                autoplayTimeout: 3000,
-                autoplayHoverPause: true,
-            });
-
-            $(".meet-the-experts").owlCarousel({
+            $("#meet-the-experts").owlCarousel({
                 items: 4,
                 loop: true,
-                animateOut: 'fadeOut',
                 autoplay: true,
                 autoplayTimeout: 3000,
-                autoplayHoverPause: true,
+                autoplayHoverPause: false,
                 responsive: {
                     0: {
                         items: 1

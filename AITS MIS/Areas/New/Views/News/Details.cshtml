@@ -148,7 +148,12 @@
                             </div>
                         </div>
 
-                        <div class="card-text text-truncate-3" style="max-height: 80px">@Html.Raw(item.Description)</div>
+                        <div class="card-text text-truncate-3" style="max-height: 80px">
+                            @Html.Raw((System.Text.RegularExpressions.Regex.Replace(item.Description, "<.*?>", "").Length > 80) ?
+                                System.Text.RegularExpressions.Regex.Replace(item.Description, "<.*?>", "").Substring(0, 80) + "..."
+                                :
+                                System.Text.RegularExpressions.Regex.Replace(item.Description, "<.*?>", ""))
+                        </div>
                         <span class="blog-card-arrow">→</span>
                     </div>
                 </a>
