@@ -1,12 +1,12 @@
 ﻿@model KnowWaste.Models.Documents
 
-<h3 class="section-title mb-0 text-uppercase text-start">@Model.Area</h3>
+<h3 class="section-title mb-0 text-start">@Model.Area</h3>
 
 @if (Model.PaginationSetting.TotalPages > 0)
 {
-    <div class="d-flex justify-content-end align-items-center">
+    <div class="d-flex justify-content-end align-items-center @(Model.PaginationSetting.TotalPages == 1 ? "d-none" : null)">
         <nav aria-label="Page navigation example" class="pagination">
-            <ul class="pagination">
+            <ul class="pagination @(Model.PaginationSetting.TotalPages == 1 ? "d-none" : null)">
                 <li class="page-item"><button class="page-link prev-link" @(Model.PaginationSetting.PageIndex == 0 ? "hidden" : null) onclick="refreshData(@(Model.PaginationSetting.PageIndex - 1))"><i class="bi bi-arrow-left"></i>Previous</button></li>
                 @for (int index = 0; index < Model.PaginationSetting.TotalPages; index++)
                 {
@@ -32,7 +32,7 @@
                 </div>
                 <div class="meta-item">
                     <i class="bi bi-geo-alt meta-icon"></i>
-                    <span>@item.Country</span>
+                    <span>@string.Join(", ", item.Country.Select(x => x.Name))</span>
                 </div>
                 <div class="meta-item">
                     <i class="bi bi-building meta-icon"></i>
@@ -70,9 +70,9 @@
 
 @if (Model.PaginationSetting.TotalPages > 0)
 {
-    <div class="d-flex justify-content-end align-items-center">
+    <div class="d-flex justify-content-end align-items-center @(Model.PaginationSetting.TotalPages == 1 ? "d-none" : null)">
         <nav aria-label="Page navigation example" class="pagination">
-            <ul class="pagination">
+            <ul class="pagination @(Model.PaginationSetting.TotalPages == 1 ? "d-none" : null)">
                 <li class="page-item"><button class="page-link prev-link" @(Model.PaginationSetting.PageIndex == 0 ? "hidden" : null) onclick="refreshData(@(Model.PaginationSetting.PageIndex - 1))"><i class="bi bi-arrow-left"></i>Previous</button></li>
                 @for (int index = 0; index < Model.PaginationSetting.TotalPages; index++)
                 {

@@ -1,0 +1,118 @@
+/* =========================
+   NETWORK SWIPER
+========================= */
+
+.networkSwiper {
+    width: 100%;
+    overflow: hidden;
+    padding-bottom: 60px;
+  }
+  
+  /* IMPORTANT */
+  .networkSwiper .swiper-wrapper {
+    display: flex;
+    padding-top: 10px;
+  }
+  
+  .networkSwiper .swiper-slide {
+    flex-shrink: 0;
+    width: 100%;
+    height: auto;
+  }
+  
+  /* =========================
+     GLASS CARD
+  ========================= */
+  
+  .network-box {
+
+    /* smaller width */
+    width: fit-content;
+    max-width: 700px;  
+    margin: 0 auto;  
+    min-height: 260px;  
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    text-align: center;  
+    padding: 50px 70px;  
+    border-radius: 28px;  
+    background: rgba(255,255,255,0.12);  
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);  
+    border: 1px solid rgba(255,255,255,0.25);  
+    box-shadow:
+      0 8px 32px rgba(0,0,0,0.18);
+  }
+  /* hover */
+  .network-box:hover {
+    transform: translateY(-6px);
+  
+    background: rgba(255, 255, 255, 0.18);
+  
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+  
+  /* =========================
+     CONTENT
+  ========================= */
+  
+  .network-box a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  .network-box img {
+    max-width: 220px;
+    max-height: 110px;
+  }
+  
+  .network-box p {
+    margin-top: 25px;  
+    color: #fff;  
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  
+  /* =========================
+     PAGINATION
+  ========================= */
+  
+  .network-pagination {
+    margin-top: 25px;
+    text-align: center;
+  }
+  
+  .network-pagination .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+  
+    background: rgba(255,255,255,0.6);
+  
+    opacity: 1;
+  }
+  
+  .network-pagination .swiper-pagination-bullet-active {
+    background: #FFC107;
+  }
+  
+  /* =========================
+     MOBILE
+  ========================= */
+  
+  @media (max-width: 768px) {
+  
+    .network-box {
+      min-height: 260px;
+      padding: 40px 25px;
+    }
+  
+    .network-box p {
+      font-size: 1rem;
+    }
+  
+    .network-box img {
+      max-width: 170px;
+    }
+  
+  }

@@ -37,7 +37,7 @@
 </section>
 
 <!---good practices -->
-<section class="pt-60 pb-60">
+<section class="pt-60 pb-60 bg-white-to-blue">
     <div class="container">
         <h2 class="section-title">Good Practices</h2>
 
@@ -75,9 +75,8 @@
     </div>
 </section>
 <!--end of good practices-->
-
 <!---3rproma -->
-<section class="pt-60 pb-60 bg-peach-cream">
+<section class="pt-60 pb-120 bg-light-blue">
     <div class="container">
         <h2 class="section-title">3RProMAR</h2>
 
@@ -144,58 +143,48 @@
     <div class="text-center mt-5">
         <a href="New/_3rpromar" class="btn-main">See all 3RProMAR Documents</a>
     </div>
-</section> 
+</section>
 <!---end of publications -->
 
-<!-- network of practices -->
-<section class="bg-ocean">
-    <div class="row" id="networks-of-practice" style="background-image: url('Content/marine-debris/shutterstock_436985632.jpg'); background-repeat: no-repeat; background-size: cover; background-color: white; background-attachment: fixed;">
-        <div class="col-md-12 py-5" style=" background-color: #00000099; ">
-            <div class="container mb-7 text-center py-5">
-                <h2 class="section-title">NETWORKS OF PRACTICE</h2>
-                <div id="NetworkOfPracticeCarousel" class="carousel slide w-100 py-5" data-bs-ride="carousel" data-bs-interval="3000">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#NetworkOfPracticeCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#NetworkOfPracticeCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    </div>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <a class="octagon d-flex align-items-center m-auto" style="background-color: #13222c; height: 200px; width: 200px;" href="https://ikhapp.org/">
-                                <img src="/Content/marine-debris/ikhapp.svg" class="m-auto w-100" alt="" />
-                            </a>
-                            <br />
-                            <a href="https://ikhapp.org/" class="text-white text-decoration-none fs-5">
+<section class="ptb-120 bg-ocean position-relative">
+    <div class="container">
+        <h2 class="section-title">Networks of Practices</h2>
+        <div class="swiper networkSwiper mt-5">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                    <div class="network-box">
+                        <a href="https://ikhapp.org/" target="_blank">
+                            <img src="~/Content/new-template/imgs/partner1.png"
+                                 alt="IKHAPP">
+                            <p>
                                 International Knowledge Hub Against Plastic Pollution
-                            </a>
-                        </div>
-
-                        <div class="carousel-item">
-                            <a class="octagon d-flex align-items-center bg-white m-auto" style="height: 200px; width: 200px;" href="https://rkcmpd-eria.org/">
-                                <img src="~/Content/marine-debris/logo-rkc-mpd.png" class="m-auto w-100" alt="" />
-                            </a>
-                            <br />
-                            <a href="https://rkcmpd-eria.org/" class="text-white text-decoration-none fs-5">
-                                Regional Knowledge Centre for Marine Plastic Debris
-                                RKC-MPD ERIA
-                            </a>
-                        </div>
+                            </p>
+                        </a>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#NetworkOfPracticeCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#NetworkOfPracticeCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                    <div class="network-box">
+                        <a href="https://rkcmpd-eria.org/" target="_blank">
+                            <img src="~/Content/new-template/imgs/rkcmpd-logo.svg"
+                                 alt="RKC-MPD">
+                            <p>
+                                Regional Knowledge Centre for Marine Plastic Debris
+                            </p>
+                        </a>
+                    </div>
                 </div>
             </div>
+            <!-- pagination -->
+            <div class="network-pagination"></div>
         </div>
     </div>
 </section>
 
 <!---Technology -->
-<section class="pt-60 pb-60">
+<section class="pt-120 pb-60">
     <div class="container">
         <h2 class="section-title">Technology</h2>
 
@@ -232,10 +221,10 @@
         <a href="New/Technology" class="btn-main">See all Technology</a>
     </div>
 </section><!--end of good practices-->
-    
 <!-- E-Learning -->
-<section class="pt-120 pb-120">
+<section class="pt-60 pb-60 bg-peach-cream">
     <div class="container container-md container-lg">
+        <h2 class="section-title">E-Learning</h2>
         <div class="feature-box">
 
             <!-- LEFT IMAGE -->
@@ -278,7 +267,7 @@
 </section>
 
 <!---publications -->
-<section class="pt-60 pb-60 bg-peach-cream">
+<section class="pt-60 pb-60">
     <div class="container">
         <h2 class="section-title">Publications</h2>
 
@@ -346,7 +335,6 @@
         <a href="New/Publications" class="btn-main">See all Publications</a>
     </div>
 </section> <!---end of publications -->
-
 <!-- data -->
 <section class="pt-60 pb-60 bg-peach-cream">
     <div class="container container-md container-lg">
@@ -416,20 +404,35 @@
 <section class="pt-60 pb-60 bg-light-blue">
     <div class="container">
         <h2 class="section-title">Meet the Experts</h2>
-        <div class="container">
-            <div class="owl-carousel owl-theme meet-the-experts expert-grid">
+
+        <div class="swiper expertSwiper">
+            <div class="swiper-wrapper">
                 @foreach (ViewModels.Expert item in Model.ExpertList)
                 {
-                    <a href="/New/Experts#@item.Name.Replace(" ","")" class="card expert-card mx-2">
-                        <div class="expert-image">
-                            <img src="Documents/@item.Thumbnail.Split(';')[0]" alt="@item.Name">
-                        </div>
-                        <div class="expert-content">
-                            <h3>@item.Name</h3>
-                        </div>
-                    </a>
+                    var fileName = item.Thumbnail.Split(';')[0];
+                    var filePath = Server.MapPath("~/Documents/" + fileName);
+                    <div class="swiper-slide">
+                        <a href="/New/Experts#@item.Name.Replace(" ","")" class="expert-card">
+                            @if (File.Exists(filePath))
+                            {
+                                <div class="expert-image">
+                                    <img src="Documents/@item.Thumbnail.Split(';')[0]" alt="@item.Name">
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="expert-image">
+                                    <img src="~/Content/new-template/images/expert-profile.png" alt="@item.Name">
+                                </div>
+                            }
+                            <div class="expert-content">
+                                <h3>@item.Name</h3>
+                            </div>
+                        </a>
+                    </div>
                 }
             </div>
+            <div class="swiper-pagination"></div>
         </div>
     </div>
 </section>

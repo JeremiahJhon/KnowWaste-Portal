@@ -5,7 +5,7 @@
 <section class="page-banner publication">
 
     <div class="banner-content">
-        <h1>Knowledge Repository</h1>
+        <h1>Thematic Area</h1>
         <p></p>
     </div>
 
@@ -50,7 +50,10 @@
             </div>
             <div class="col-12 col-md-8 col-lg-9">
                 <div class="wrapper">
-                    <div class="document-list" id="ThematicAreaData">
+                    <div class="wrapper col-3 ms-2 float-end" style="position: relative; z-index: 999;">
+                        <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" id="searchInput">
+                    </div>
+                    <div class="document-list" id="ThematicAreaData" style="position: relative; top: -40px;">
 
                     </div>
                 </div>
@@ -66,11 +69,15 @@
             $(".area-select").change(function () {
                 refreshData(0);
             });
+
+            $("#searchInput").on("keyup", function () {
+                refreshData(0);
+            });
         });
 
         function refreshData(pageIndex) {
             const area = encodeURI($(".area-select:checked").data("val").toString());
-            const searchText = "";
+            const searchText = $("#searchInput").val();
             const url = `/New/ThematicArea/RefreshData?area=${area}&searchText=${searchText}&pageIndex=${pageIndex}`;
             const data = [];
             $("#ThematicAreaData").load(url);

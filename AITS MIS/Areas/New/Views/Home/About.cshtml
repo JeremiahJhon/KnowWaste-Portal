@@ -1,48 +1,24 @@
 ﻿@{
     Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
 }
-<!-- Hero Section -->
-<section class="text-white text-center ">
-    <div id="carouselExampleCaptions" class="carousel slide w-100" data-bs-ride="carousel" data-bs-interval="3000">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
-        </div>
-        <div class="carousel-inner ">
-            <div class="carousel-item active h-600">
-                <img src="~/Content/imgs/about-us/01.jpg" class="d-block w-100" alt="..." style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
+<!---page banner--->
+<section class="page-banner">
+    <video autoplay muted loop playsinline class="hero-video">
+        <source src="Content/new-template/images/h5-aboutus.mp4" type="video/mp4">
+    </video>
 
-            <div class="carousel-item h-600">
-                <img src="~/Content/imgs/about-us/02.jpg" class="d-block w-100" alt="..." style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
+    <svg class="banner-wave" viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path fill="#ffffff"
+              d="M0,80 C360,140 1080,0 1440,80 L1440,120 L0,120 Z"></path>
+    </svg>
 
-            <div class="carousel-item h-600">
-                <img src="~/Content/imgs/about-us/03.jpg" class="d-block w-100" alt="..." style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-
-            <div class="carousel-item h-600">
-                <img src="~/Content/imgs/about-us/04.jpg" class="d-block w-100" alt="..." style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
 </section>
-
+<!---end of page banner--->
 <!-- About Section -->
 <section class="ptb-120 ">
     <div class="container">
         <div class="abt-sec text-center row">
-            <h2 class="section-title pb-3 col-12 col-md-2 col-lg-2 text-start">About Us</h2>
+            <h2 class="section-title pb-3 col-12 col-md-2 col-lg-2 text-start">Our story</h2>
             <div class="col-12 col-md-10 col-lg-10">
                 <p class="text-muted text-start">The Know Waste Knowledge (KWK) Platform provides a platform for information and knowledge sharing to support inform decision-making on marine debris in ASEAN. The platform was created with the objective of generating and consolidating data and information on sustainable waste management, as well as transforming data into comprehensible outputs for key stakeholders to use. The KWK platform also provides information on international waste management projects, as well as offers capacity- building support for stakeholders through e-Learning content.<br></p>
 
@@ -51,38 +27,39 @@
                 <p class="text-muted text-start">Currently, the KWK Platform is hosting the The “Reduce, Reuse, and Recycle to Protect the Marine Environment and Coral Reefs” (3RproMAR) Knowledge Partnership for Marine Litter Prevention in ASEAN. The 3RproMar project is a collaborative effort being implemented by the Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ) GmbH on behalf of the German Federal Ministry for Economic Cooperation and Development (BMZ) in cooperation with the ASEAN Secretariat. Through the KWK Platform, AIT RRC.AP is one of the partners of the 3RproMar.</p>
             </div>
         </div>
-    </div>
 </section>
 
-<section class="ptb-120 bg-blue text-center position-relative" style="background-color: #00a3e0;">
+<section class="ptb-120 bg-sky-blue text-center position-relative">
     <div class="container">
         <h4 class="text-white">The platform was created with the objective of generating and consolidating data and information on sustainable waste management, as well as transforming data into comprehensible outputs for key stakeholders to use. </h4>
 
     </div>
 </section>
 
-<section class="ptb-120">
+<section class="ptb-60">
     <div class="container d-flex justify-content-center">
         <ul class="list-group">
-            <li class="d-flex hover-zoom my-3">
-                <img src="Content/imgs/inform.png" alt="" width="60" height="60">
+            <li class="d-flex mb-4">
+                <img src="~/Content/new-template/imgs/inform.png" alt="" class=" p-2 mb-3" style="height: 60px; background-color: #E7F7FC; border-radius: 10px;">
                 <div class="ps-5">
                     <h5>To Inform</h5>
-                    <p>An interactive and intuitive sustainable waste and resource management knowledge repository</p>
+                    <p class="text-muted">An interactive and intuitive sustainable waste and resource management knowledge repository </p>
                 </div>
+
+                </img>
             </li>
-            <li class="d-flex hover-zoom my-3">
-                <img src="Content/imgs/empower.png" alt="" width="60" height="60">
+            <li class="d-flex mb-4">
+                <img src="~/Content/new-template/imgs/empower.png" alt="" class=" p-2 mb-3" style="height: 60px; background-color: #E7F7FC; border-radius: 10px;">
                 <div class="ps-5">
                     <h5>To Empower</h5>
-                    <p>Knowledge and capacity building on the transfer of sustainable waste and resource management</p>
+                    <p class="text-muted">Knowledge and capacity building on the transfer of sustainable waste and resource management </p>
                 </div>
             </li>
-            <li class="d-flex hover-zoom my-3">
-                <img src="Content/imgs/connect.png" alt="" width="60" height="60">
+            <li class="d-flex mb-4">
+                <img src="~/Content/new-template/imgs/connect.png" alt="" class=" p-2 mb-3" style="height: 60px; background-color: #E7F7FC; border-radius: 10px;">
                 <div class="ps-5">
                     <h5>To Connect</h5>
-                    <p>Bringing together sustainable waste and resource management related professional and institutions</p>
+                    <p class="text-muted"> Bringing together sustainable waste and resource management related professional and institutions</p>
                 </div>
             </li>
         </ul>

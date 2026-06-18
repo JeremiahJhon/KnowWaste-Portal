@@ -9,7 +9,7 @@ else
     {
         <div class="d-flex justify-content-end align-items-center mb-3">
             <nav aria-label="Page navigation example" class="pagination">
-                <ul class="pagination">
+                <ul class="pagination @(Model.PaginationSetting.TotalPages == 1 ? "d-none" : null)">
                     <li class="page-item"><button class="page-link prev-link" @(Model.PaginationSetting.PageIndex == 0 ? "hidden" : null) onclick="refreshData(@(Model.PaginationSetting.PageIndex - 1))"><i class="bi bi-arrow-left"></i>Previous</button></li>
                     @for (int index = 0; index < Model.PaginationSetting.TotalPages; index++)
                     {
@@ -25,7 +25,7 @@ else
     {
         <a href="@item.Source" target="_blank" class="text-decoration-none text-dark">
             <div class="custom-border p-4 mb-4 policy-item" data-area="@item.PolicyArea">
-                <small class="text-blue text-uppercase">Code No:</small>
+                <small class="text-blue text-uppercase">Code No: @item.CodeNumber</small>
                 <h4 class="m-0">@item.Legal</h4>
                 <small>@item.Country | @item.Year</small>
                 <p class="pt-3 text-muted" style="display: -webkit-box; -webkit-line-clamp: 4;  -webkit-box-orient: vertical; overflow: hidden; ">@Html.Raw(item.Description)</p>
@@ -39,7 +39,7 @@ else
     {
         <div class="d-flex justify-content-end align-items-center">
             <nav aria-label="Page navigation example" class="pagination">
-                <ul class="pagination">
+                <ul class="pagination @(Model.PaginationSetting.TotalPages == 1 ? "d-none" : null)">
                     <li class="page-item"><button class="page-link prev-link" @(Model.PaginationSetting.PageIndex == 0 ? "hidden" : null) onclick="refreshData(@(Model.PaginationSetting.PageIndex - 1))"><i class="bi bi-arrow-left"></i>Previous</button></li>
                     @for (int index = 0; index < Model.PaginationSetting.TotalPages; index++)
                     {

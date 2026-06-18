@@ -5,7 +5,7 @@
 .document-list {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 50px;
   width: 100%;
 }
 
@@ -16,7 +16,7 @@
 
 .document-item {
   display: block;
-  padding: 20px;
+  padding: 22px;
   background: linear-gradient(180deg, #eaf6fb 0%, #ffffff 100%);
   border: 1px solid #e6edf2;
   border-radius: 12px;
@@ -144,7 +144,13 @@
   overflow: hidden;
 }
 
-
+.document-desc p,
+.document-desc span {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    background: transparent !important;
+    color: inherit !important;
+}
 /* ============================= */
 /* ACTION BUTTONS */
 /* ============================= */

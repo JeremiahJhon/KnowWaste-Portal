@@ -24,7 +24,7 @@
 
 <!-- 3Rpromar Section -->
 <section class="ptb-5 ">
-    <div class="container container-md container-md pb-120">
+    <div class="container container-md container-md">
         <div class="text-center pb-4">
             <p class="text-muted text-start">The “Reduce, Reuse, Recycle to Protect the Marine Environment and Coral Reefs” (3RproMar) project supports ASEAN countries in tackling marine litter through improved waste management. As the Knowledge Partner for 3RproMar, we share resources, technical guidance, and best practices developed through this initiative. This page provides updates and learning materials that strengthen capacity and foster regional collaboration to protect marine ecosystems.</p>
         </div>
@@ -71,8 +71,8 @@
             </div>
 
             <div class="col-12 col-md-9 col-lg-9">
-                <div class="wrapper col-3 ms-2 float-start">
-                    <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" id="searchInput">
+                <div class="wrapper col-3 float-start">
+                    <input class="form-control me-2" type="search" placeholder="🔍  What are you looking for?" aria-label="Search" id="searchInput">
                 </div>
                 <div class="wrapper" id="3RpromarData">
                 </div>
@@ -99,10 +99,7 @@
             });
 
             $("#searchInput").on("keyup", function () {
-                if (event.key === "Enter") {
-                    refresh();
-                    return;
-                }
+                refreshData(0);
             });
         });
 

@@ -10,9 +10,10 @@
     <meta charset="utf-8" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="~/Content/new-template/images/favicon.png">
 
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700&amp;subset=all' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
     <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
@@ -34,12 +35,14 @@
     <link rel="stylesheet" href="~/Content/new-template/css/document.css">
     <link rel="stylesheet" href="~/Content/new-template/css/news-highlight.css">
     <link rel="stylesheet" href="~/Content/new-template/css/gallery.css">
+    <link rel="stylesheet" href="~/Content/new-template/css/network.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
 
     <script src="https://unpkg.com/@("@lottiefiles")/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module">
     </script>
 
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JKZ2HGXCX9"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -50,10 +53,7 @@
     </script>
 </head>
 <body class="d-flex flex-column h-100">
-
-    <header>
-        @Html.Partial("_Nav")
-    </header>
+    @Html.Partial("_Nav")
 
     <div>
         <div class="gcse-searchresults" data-gname="storesearch"></div>
@@ -72,8 +72,13 @@
     <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
     <script src="https://unpkg.com/@("@lottiefiles")/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script src="~/Content/new-template/js/news-highlight.js"></script>
     <script src="~/Content/new-template/js/highlight.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+    <script src="~/Content/new-template/js/networkSwiper.js"></script>
+    <script src="~/Content/new-template/js/expertSwiper.js"></script>
 
     @RenderSection("scripts", false)
 </body>

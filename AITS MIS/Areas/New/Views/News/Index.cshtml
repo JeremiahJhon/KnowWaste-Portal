@@ -13,6 +13,18 @@
     </svg>
 </section>
 <!---end of page banner--->
+
+<section class="breadcrumb">
+    <div class="container py-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item text-uppercase"><a href="New/MarineDebris">Marine Debris</a></li>
+                <li class="breadcrumb-item active text-uppercase" aria-current="page">News</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
 <!--- NEWS HIGHLIGHT SECTION -->
 <section class="ptb-60 news-highlight">
     <div class="custom-container">
@@ -46,20 +58,20 @@
                                         <div class="news-meta">
 
                                             <div class="meta-item">
-                                                <i class="bi bi-calendar3"></i>
+                                                <i class="bi bi-calendar3 meta-icon"></i>
                                                 <span>@Convert.ToDateTime(item.StartDate.Split('-')[0]).ToString("d MMMM yyyy")</span>
                                             </div>
 
                                             <div class="meta-item">
-                                                <i class="bi bi-geo-alt"></i>
+                                                <i class="bi bi-geo-alt meta-icon"></i>
                                                 <span>@item.Country</span>
                                             </div>
 
                                         </div>
 
-                                        <div class="text-truncate-2" style="max-height: 80px">@Html.Raw(item.Description)</div>
+                                        <div class="text-truncate-3" style="max-height: 70px">@Html.Raw(item.Description)</div>
 
-                                        <a href="#" class="btn-main mt-2">
+                                        <a href="New/News/Details/@item.ID" class="btn-main">
                                             Read More →
                                         </a>
                                     </div>
@@ -86,20 +98,20 @@
                                         <div class="news-meta">
 
                                             <div class="meta-item">
-                                                <i class="bi bi-calendar3"></i>
+                                                <i class="bi bi-calendar3 meta-icon"></i>
                                                 <span>@Convert.ToDateTime(item.Date.Split('-')[0]).ToString("d MMMM yyyy")</span>
                                             </div>
 
                                             <div class="meta-item">
-                                                <i class="bi bi-geo-alt"></i>
+                                                <i class="bi bi-geo-alt meta-icon"></i>
                                                 <span>@item.Country</span>
                                             </div>
 
                                         </div>
 
-                                        <div class="text-truncate-2" style="max-height: 80px">@Html.Raw(item.Description)</div>
+                                        <div class="text-truncate-3" style="max-height: 70px">@Html.Raw(item.Description)</div>
 
-                                        <a href="#" class="btn-main mt-2">
+                                        <a href="New/News/Details/@item.ID" class="btn-main">
                                             Read More →
                                         </a>
                                     </div>
@@ -107,6 +119,27 @@
                                 </div>
                             </div>
                         }
+                        <!-- 🔥 SINGLE GLOBAL TIMELINE -->
+                        <div class="news-timeline">
+
+                            <div class="news-timeline-item active" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0">
+                                <div class="news-timeline-bar">
+                                    <div class="news-timeline-progress"></div>
+                                </div>
+                            </div>
+
+                            <div class="news-timeline-item active" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1">
+                                <div class="news-timeline-bar">
+                                    <div class="news-timeline-progress"></div>
+                                </div>
+                            </div>
+                            <div class="news-timeline-item" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2">
+                                <div class="news-timeline-bar">
+                                    <div class="news-timeline-progress"></div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -116,8 +149,10 @@
 <!--- END NEWS HIGHLIGHT SECTION -->
 <!---blog-card section--->
 <section class="container ptb-5">
-    <div class="wrapper col-3 float-start">
-        <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" id="searchInput">
+    <div class="d-flex justify-content-between align-items-center float-start w-50">
+        <form class="d-flex w-100">
+            <input class="form-control me-2" type="search" placeholder="🔍  What are you looking for?" aria-label="Search" id="searchInput">
+        </form>
     </div>
     <div class="wrapper" id="NewsData">
 

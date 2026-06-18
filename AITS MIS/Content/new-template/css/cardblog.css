@@ -4,9 +4,9 @@
 
 .blog-card-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:30px;
-  padding:40px 0;
+  grid-template-columns:repeat(4,minmax(250px,1fr));
+  gap:50px;
+  /*padding:40px 0;*/
   align-items:stretch;
 }
 
@@ -106,38 +106,28 @@
 
 .blog-card-content{
   padding:22px;
-
   flex-grow:1;
-
   display:flex;
   flex-direction:column;
-
   transition:color 0.25s ease;
 }
 
 .blog-card-content h3{
   font-size:18px;
   font-weight:600;
-
-  margin-bottom:10px;
-
-  line-height:1.4;
-
+  margin-bottom:15px;
+  line-height:1.5;
   transition:color 0.25s ease;
 }
 
 .blog-card-content p{
   font-size:14px;
-  line-height:1.7;
-
+  line-height:1.8;
   color:#666;
-
   display:-webkit-box;
   -webkit-line-clamp:3;
   -webkit-box-orient:vertical;
-
   overflow:hidden;
-
   transition:color 0.25s ease;
 }
 
@@ -151,7 +141,7 @@
   align-items:center;
   gap:12px;
 
-  margin-bottom:14px;
+  margin-bottom:20px;
 
   font-size:13px;
 

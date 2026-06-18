@@ -3,13 +3,14 @@
 /* ========================================= */
 
 .news-highlight {
-  padding: 40px 0;
-  z-index: 10;
+  background:#fff;
+  position:relative;
+  z-index:10;
 }
 
 .news-highlight-inner {
   border-radius: 16px;
-  padding: 20px;
+  /*padding: 20px;*/
 }
 
 /* ========================================= */
@@ -80,6 +81,21 @@
   color: #FFBF00;
   margin-bottom: 10px;
 }
+
+/* META*/
+
+.news-meta{
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  margin-bottom:20px;
+
+  font-size:13px;
+
+  color:#777;
+}
+
 
 /* Title */
 .news-content h3 {

@@ -4,7 +4,7 @@
 {
     <div class="d-flex justify-content-end align-items-center">
         <nav aria-label="Page navigation example" class="pagination">
-            <ul class="pagination">
+            <ul class="pagination @(Model.PaginationSetting.TotalPages == 1 ? "d-none" : null)">
                 <li class="page-item"><button class="page-link prev-link" @(Model.PaginationSetting.PageIndex == 0 ? "hidden" : null) onclick="refreshData(@(Model.PaginationSetting.PageIndex - 1))"><i class="bi bi-arrow-left"></i>Previous</button></li>
                 @for (int index = 0; index < Model.PaginationSetting.TotalPages; index++)
                 {
@@ -46,7 +46,7 @@
 {
     <div class="d-flex justify-content-end align-items-center">
         <nav aria-label="Page navigation example" class="pagination">
-            <ul class="pagination">
+            <ul class="pagination @(Model.PaginationSetting.TotalPages == 1 ? "d-none" : null)">
                 <li class="page-item"><button class="page-link prev-link" @(Model.PaginationSetting.PageIndex == 0 ? "hidden" : null) onclick="refreshData(@(Model.PaginationSetting.PageIndex - 1))"><i class="bi bi-arrow-left"></i>Previous</button></li>
                 @for (int index = 0; index < Model.PaginationSetting.TotalPages; index++)
                 {

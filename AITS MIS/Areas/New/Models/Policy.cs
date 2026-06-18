@@ -46,7 +46,7 @@ namespace KnowWaste.Models
 
         public void RefreshData()
         {
-            Policies = (from a in db.countrypolicies
+            Policies = (from a in db.countrypolicies.OrderBy(p => p.Year)
                         join b in db.countries on a.Country_ID equals b.ID.ToString()
                         join c in db.countrypolicy_area on a.Area_ID equals c.ID
                         where a.Deleted == 0 && b.Deleted == 0 && a.WasteCategory_ID == 14
@@ -60,7 +60,8 @@ namespace KnowWaste.Models
                             PolicyArea = c.Name,
                             Year = a.Year,
                             Description = a.Description,
-                            Source = a.Link
+                            Source = a.Link,
+                            CodeNumber = a.code_number
                         }).ToList();
 
             if (CountryID > 0)
@@ -129,5 +130,6 @@ namespace ViewModels
         public string Year { get; set; }
         public string Description { get; set; }
         public string Source { get; set; }
+        public string CodeNumber { get; set; }
     }
 }

@@ -37,11 +37,22 @@
     <div class="container expert-list">
         @foreach (ViewModels.Expert item in Model.ExpertList)
         {
-            <div href="#ex-1024" class="expert-card-horizontal">
+            var fileName = item.Thumbnail.Split(';')[0];
+            var filePath = Server.MapPath("~/Documents/" + fileName);
+            <div id="@item.Name.Replace(" ","")" class="expert-card-horizontal">
 
-                <div class="expert-image">
-                    <img src="Documents/@item.Thumbnail.Split(';')[0]" alt="@item.Name.Replace(" ","")">
-                </div>
+                @if (File.Exists(filePath))
+                {
+                    <div class="expert-image">
+                        <img src="Documents/@item.Thumbnail.Split(';')[0]" alt="@item.Name">
+                    </div>
+                }
+                else
+                {
+                    <div class="expert-image">
+                        <img src="~/Content/new-template/images/expert-profile.png" alt="@item.Name">
+                    </div>
+                }
 
                 <div class="expert-content">
                     <h3>@item.Name</h3>

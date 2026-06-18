@@ -138,17 +138,29 @@
 
                     <div class="blog-card-content">
                         <h3>@item.Title</h3>
-                        <small>@item.Country</small>
+                        <div class="blog-card-meta meta">
+                            <div class="meta-item">
+                                <i class="bi bi-calendar3 meta-icon"></i>
+                                <span>@Convert.ToDateTime(item.Date.Trim().Split('-')[0]).ToString("MMMM d, yyyy") - @Convert.ToDateTime(item.Date.Trim().Split('-')[1]).ToString("MMMM d, yyyy")</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="bi bi-geo-alt meta-icon"></i>
+                                <span>@item.Country</span>
+                            </div>
+                        </div>
                         <div class="card-text text-truncate-3" style="max-height: 80px">
                             @Html.Raw((System.Text.RegularExpressions.Regex.Replace(item.Description, "<.*?>", "").Length > 80) ?
-                                    System.Text.RegularExpressions.Regex.Replace(item.Description, "<.*?>", "").Substring(0, 80) + "..."
-                                    :
-                                    System.Text.RegularExpressions.Regex.Replace(item.Description, "<.*?>", ""))
+                                              System.Text.RegularExpressions.Regex.Replace(item.Description, "<.*?>", "").Substring(0, 80) + "..."
+                                              :
+                                              System.Text.RegularExpressions.Regex.Replace(item.Description, "<.*?>", ""))
                         </div>
                         <span class="blog-card-arrow">→</span>
                     </div>
                 </a>
             }
+        </div>
+        <div class="text-center mt-4">
+            <a href="New/News" class="btn-main">See News</a>
         </div>
     </div>
 </section> <!---end of news -->
@@ -215,6 +227,9 @@
                 <!-- END DOCUMENT ITEM -->
             }
         </div>
+        <div class="text-center mt-4">
+            <a href="New/Publications" class="btn-main">See all Publications</a>
+        </div>
     </div>
 </section> <!---end of publications -->
 <!---good practices -->
@@ -250,6 +265,9 @@
                 </a>
             }
         </div><!---end of card grid ---->
+        <div class="text-center mt-4">
+            <a href="New/GoodPractices" class="btn-main">See all Good Practices</a>
+        </div>
     </div>
 </section><!--end of good practices-->
 
@@ -260,12 +278,23 @@
             <div class="owl-carousel owl-theme meet-the-experts expert-grid" id="meet-the-experts">
                 @foreach (ViewModels.Expert item in Model.ExpertList)
                 {
+                    var fileName = item.Thumbnail.Split(';')[0];
+                    var filePath = Server.MapPath("~/Documents/" + fileName);
                     <a href="/New/Experts#@item.Name.Replace(" ","")" class="card expert-card mx-2">
-                        <div class="expert-image">
-                            <img src="Documents/@item.Thumbnail.Split(';')[0]" alt="@item.Name">
-                        </div>
+                        @if (File.Exists(filePath))
+                        {
+                            <div class="expert-image">
+                                <img src="Documents/@item.Thumbnail.Split(';')[0]" alt="@item.Name">
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="expert-image">
+                                <img src="~/Content/new-template/images/expert-profile.png" alt="@item.Name">
+                            </div>
+                        }
                         <div class="expert-content">
-                            <h3>@item.Name</h3>
+                            <h3 class="text-truncate">@item.Name</h3>
                         </div>
                     </a>
                 }
