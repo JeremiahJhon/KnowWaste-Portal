@@ -107,8 +107,6 @@ namespace KnowWaste.Models
                         })
                         .ToList();
 
-            Years = DataList.Select(p => p.Year).Distinct().OrderByDescending(a => a).ToList();
-
             if (CountryID > 0)
             {
                 DataList = DataList.Where(p => p.CountryID == CountryID).ToList();
@@ -128,6 +126,8 @@ namespace KnowWaste.Models
             {
                 DataList = DataList.Where(p => p.Year == Year).ToList();
             }
+
+            Years = DataList.Select(p => p.Year).Distinct().OrderByDescending(a => a).ToList();
         }
     }
 }

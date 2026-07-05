@@ -2,52 +2,168 @@
 @{
     Layout = "~/Areas/New/Views/Shared/_Layout.cshtml";
 }
+<section class="page-banner goodpractices">
+    <div class="banner-content">
+        <h1>Technology</h1>
+        <p></p>
 
-<section class="breadcrumb">
-    <div class="container container-md container-md py-4">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item text-uppercase"><a href="New/MarineDebris">Marine Debris</a></li>
-                <li class="breadcrumb-item text-uppercase" aria-current="page"><a href="New/Technology">Technology</a></li>
-                <li class="breadcrumb-item active text-uppercase" aria-current="page">@Model.Title</li>
-            </ol>
-        </nav>
+    </div>
+
+    <svg class="banner-wave" viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path fill="#fff4e8"
+              d="M0,80 C360,140 1080,0 1440,80 L1440,120 L0,120 Z"></path>
+    </svg>
+
+</section>
+<!---end of page banner--->
+<!--blog -->
+<!-- BLOG ARTICLE -->
+<section class="bg-peach-cream">
+    <!-- breadcrumb -->
+    <div class="breadcrumb-area">
+        <div class="container py-4">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+
+                    <li class="breadcrumb-item text-uppercase">
+                        <a href="marine debris.html">
+                            Marine Debris
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item text-uppercase">
+                        <a href="New/Technology">
+                            Technology
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active text-uppercase"
+                        aria-current="page">
+                        @Model.Title
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+
+    <!-- article -->
+    <div class="container blog-article-container pb-120">
+
+        <!-- article header -->
+        <div class="article-header">
+
+            <h2 class="section-title mb-4">
+                @Model.Title
+            </h2>
+
+
+            <!-- meta + share -->
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+
+                <!-- article meta -->
+                <div class="article-meta">
+
+                    <div class="meta-item">
+                        <i class="bi bi-person-circle"></i>
+                        <span>@Model.Author</span>
+                    </div>
+
+                    <div class="meta-item">
+                        <i class="bi bi-calendar3"></i>
+                        <span>@Convert.ToDateTime(Model.Date).ToString("MMMM d, yyyy")</span>
+                    </div>
+
+                </div>
+
+                <!-- share -->
+                <div class="d-flex align-items-center gap-3">
+
+                    <span class="fw-semibold text-muted small">
+                        Share:
+                    </span>
+
+                    <div class="article-share">
+
+                        <a href="#">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="bi bi-twitter-x"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="bi bi-envelope"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- feature image -->
+            <div class="blog-feature-image mb-40">
+
+                <div class="blog-feature-bg"
+                     style="background-image:url('Documents/Technology/@Model.Thumbnail.Split(';')[0]');">
+                </div>
+
+                <img src="Documents/Technology/@Model.Thumbnail.Split(';')[0]"
+                     alt="@Model.Title">
+
+            </div>
+        </div>
+
+        <!-- article content -->
+        <div class="blog-content">
+
+            <!-- section -->
+            <div class="content-section">
+                @Html.Raw(Model.Description)
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- 3promar Section -->
-<section class="ptb-5 ">
-    <div class="container container-md container-md pb-120">
-
-        <div class="p-4 mb-4 bg-light br-8">
-            <!-- <small class="text-blue text-uppercase">Code No:</small> -->
-            <div class="d-flex">
-                <div class="col-3 pe-3">
-                    <img src="~/Documents/Technology/@Model.Thumbnail.Split(';')[0]" style="width: 100%;">
-                </div>
-
-                <div class="col-9">
-                    <h3 class="mb-3">@Model.Title</h3>
-                    <div class="text-muted">
-                        <p class="fw-medium mb-0">Date: <span class="fw-light w-75">@Convert.ToDateTime(Model.Date).ToString("d MMMM yyyy")</span></p>
-                        <p class="fw-medium">
-                            Share: <span>
-                                <a href="http://" target="_blank" class="text-muted"><i class="bi bi-facebook me-1"></i></a>
-                                <a href="http://" target="_blank" class="text-muted"><i class="bi bi-linkedin me-1"></i></a>
-                                <a href="http://" target="_blank" class="text-muted"><i class="bi bi-twitter-x me-1"></i></a>
-                                <a href="http://" target="_blank" class="text-muted"><i class="bi bi-envelope-fill me-1"></i></a>
-                            </span>
-                        </p>
-                        <div class="text-muted">@Html.Raw(Model.Description)</div>
-                        <div>
-                            <h5>Sources:</h5>
-                            @Html.Raw(Model.Source)
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- <hr class="text-black"> -->
+<!-- About Section -->
+<section class="pt-120 pb-60 bg-light-blue">
+    <div class="container ">
+        <div class="pb-4">
+            <h2 class="section-title mb-4">Explore More</h2>
         </div>
 
+
+        <!---blog card section--->
+        <div class="blog-card-grid">
+            @foreach (ViewModels.Technology item in Model.RelatedTopics.Take(4))
+            {
+                <a href="New/Technology/Details/@item.ID" class="blog-card">
+                    <div class="blog-card-image">
+                        <img src="Documents/Technology/@item.Thumbnail.Split(';')[0]"
+                             class="card-img-top"
+                             alt="@item.Title">
+                    </div>
+
+                    <div class="blog-card-content">
+                        <h3>@item.Title</h3>
+
+                        <div class="blog-card-meta meta">
+                            <div class="meta-item">
+                                <i class="bi bi-geo-alt meta-icon"></i>
+                                @item.Country
+                            </div>
+                        </div>
+
+                        <div class="card-text text-truncate-3" style="max-height: 80px">@Html.Raw(item.Description)</div>
+                        <span class="blog-card-arrow">→</span>
+                    </div>
+                </a>
+            }
+        </div><!---end of card grid ---->
     </div>
 </section>

@@ -56,6 +56,10 @@ namespace KnowWaste.Models
                                 Author = a.Author,
                                 Date = a.Blogsdate.ToString(),
                                 Description = a.Description,
+                                ResultsAchieved = a.ResultsArchieved,
+                                ChallengesLessonsLearned = a.ChallengesLessonLearned,
+                                Replicability = a.Replicability,
+                                Sources = a.Sources,
                                 Country = b.Name,
                                 CountryID = b.ID,
                                 Thumbnail = a.Photo,
@@ -75,6 +79,10 @@ namespace KnowWaste.Models
                                 Author = a.Author,
                                 Date = a.Blogsdate.ToString(),
                                 Description = a.Description,
+                                ResultsAchieved = a.ResultsArchieved,
+                                ChallengesLessonsLearned = a.ChallengesLessonLearned,
+                                Replicability = a.Replicability,
+                                Sources = a.Sources,
                                 Country = b.Name,
                                 CountryID = b.ID,
                                 Thumbnail = a.Photo
@@ -101,6 +109,10 @@ namespace KnowWaste.Models
                                                  Author = a.Author,
                                                  Date = a.Blogsdate.ToString(),
                                                  Description = a.Description,
+                                                 ResultsAchieved = a.ResultsArchieved,
+                                                 ChallengesLessonsLearned = a.ChallengesLessonLearned,
+                                                 Replicability = a.Replicability,
+                                                 Sources = a.Sources,
                                                  Country = b.Name,
                                                  CountryID = b.ID,
                                                  Thumbnail = a.Photo
@@ -150,6 +162,10 @@ namespace ViewModels
         public string Date { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public string ResultsAchieved { get; set; }
+        public string ChallengesLessonsLearned { get; set; }
+        public string Replicability { get; set; }
+        public string Sources { get; set; }
         public int CountryID { get; set; }
         public string Country { get; set; }
         public string Thumbnail { get; set; }

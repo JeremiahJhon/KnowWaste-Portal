@@ -84,8 +84,10 @@ namespace KnowWaste.Models
                 Reference = x.a.reference,
             }).ToList();
 
+            List<string> countriesFilter = DataList.Select(p => p.CountryID.ToString()).ToList();
+
             PopulationList = db.countrypopulations
-                .Where(p => p.Deleted == 0)
+                .Where(p => p.Deleted == 0 && countriesFilter.Contains(p.Country_ID.ToString()))
                 .Select(p => new ViewModels.PopulationData { 
                     ID = p.ID,
                     Year = p.Year ?? 0,
@@ -101,8 +103,8 @@ namespace KnowWaste.Models
             PolicyList = (from a in db.countrypolicies
                         join b in db.countries on a.Country_ID equals b.ID.ToString()
                         join c in db.countrypolicy_area on a.Area_ID equals c.ID
-                        where a.Deleted == 0 && b.Deleted == 0 && a.WasteCategory_ID == 14
-                        select new ViewModels.Policy
+                        where a.Deleted == 0 && b.Deleted == 0 && a.WasteCategory_ID == 14  && countriesFilter.Contains(b.ID.ToString())
+                          select new ViewModels.Policy
                         {
                             ID = a.ID,
                             Legal = a.Legal,
@@ -138,8 +140,6 @@ namespace KnowWaste.Models
                             Name = a.Name,
                           }).Distinct().ToList();
 
-            Years = DataList.Select(p => p.Year).Distinct().OrderByDescending(a => a).ToList();
-
             if (CountryID > 0)
             {
                 DataList = DataList.Where(p => p.CountryID == CountryID).ToList();
@@ -153,6 +153,8 @@ namespace KnowWaste.Models
                 PopulationList = PopulationList.Where(p => p.Year == Year).ToList();
                 PolicyList = PolicyList.Where(p => p.Year == Year.ToString()).ToList();
             }
+
+            Years = DataList.Select(p => p.Year).Distinct().OrderByDescending(a => a).ToList();
         }
     }
 }

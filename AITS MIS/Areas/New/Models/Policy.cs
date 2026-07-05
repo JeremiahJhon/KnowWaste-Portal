@@ -49,7 +49,8 @@ namespace KnowWaste.Models
             Policies = (from a in db.countrypolicies.OrderBy(p => p.Year)
                         join b in db.countries on a.Country_ID equals b.ID.ToString()
                         join c in db.countrypolicy_area on a.Area_ID equals c.ID
-                        where a.Deleted == 0 && b.Deleted == 0 && a.WasteCategory_ID == 14
+                        where a.Deleted == 0 && b.Deleted == 0
+                        orderby a.Dateentered ascending
                         select new ViewModels.Policy
                         {
                             ID = a.ID,

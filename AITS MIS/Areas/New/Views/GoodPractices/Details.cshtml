@@ -122,48 +122,89 @@
         <!-- article content -->
         <div class="blog-content">
 
-            <!-- section -->
-            <div class="content-section">
-                @Html.Raw(Model.Description)
+            @if (!String.IsNullOrWhiteSpace(Model.Description.Trim()))
+            {
+                <!-- section -->
+                <div class="content-section">
+                    <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base">Background</span>
+                    @Html.Raw(Model.Description)
+                </div>
+            }
+
+            @if (!String.IsNullOrWhiteSpace(Model.ResultsAchieved.Trim()))
+            {
+                <!-- section -->
+                <div class="content-section">
+                    <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base">Results Achieved</span>
+                    @Html.Raw(Model.ResultsAchieved)
+                </div>
+            }
+
+            @if (!String.IsNullOrWhiteSpace(Model.ChallengesLessonsLearned.Trim()))
+            {
+                <!-- section -->
+                <div class="content-section">
+                    <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base">Challenges and Lessons Learned</span>
+                    @Html.Raw(Model.ChallengesLessonsLearned)
+                </div>
+            }
+
+            @if (!String.IsNullOrWhiteSpace(Model.Replicability.Trim()))
+            {
+                <!-- section -->
+                <div class="content-section">
+                    <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base">Replicability</span>
+                    @Html.Raw(Model.Replicability)
+                </div>
+            }
+
+
+            @if (!String.IsNullOrWhiteSpace(Model.Sources.Trim()))
+            {
+                <!-- section -->
+                <div class="content-section">
+                    <span class="fs-3 mt-10 text-dark fw-bolder text-hover-primary text-dark lh-base">Sources</span>
+                    @Html.Raw(Model.Sources)
+                </div>
+            }
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- About Section -->
-<section class="pt-120 pb-60 bg-light-blue">
-    <div class="container ">
-        <div class="pb-4">
-            <h2 class="section-title mb-4">Explore More</h2>
-        </div>
+    <!-- About Section -->
+    <section class="pt-120 pb-60 bg-light-blue">
+        <div class="container ">
+            <div class="pb-4">
+                <h2 class="section-title mb-4">Explore More</h2>
+            </div>
 
 
-        <!---blog card section--->
-        <div class="blog-card-grid">
-            @foreach (ViewModels.GoodPractice item in Model.RelatedTopics.Take(4))
-            {
-                <a href="New/GoodPractices/Details/@item.ID" class="blog-card">
-                    <div class="blog-card-image">
-                        <img src="Documents/Blogs/@item.Thumbnail.Split(';')[0]"
-                             class="card-img-top"
-                             alt="@item.Title">
-                    </div>
-
-                    <div class="blog-card-content">
-                        <h3>@item.Title</h3>
-
-                        <div class="blog-card-meta meta">
-                            <div class="meta-item">
-                                <i class="bi bi-geo-alt meta-icon"></i>
-                                @item.Country
-                            </div>
+            <!---blog card section--->
+            <div class="blog-card-grid">
+                @foreach (ViewModels.GoodPractice item in Model.RelatedTopics.Take(4))
+                {
+                    <a href="New/GoodPractices/Details/@item.ID" class="blog-card">
+                        <div class="blog-card-image">
+                            <img src="Documents/Blogs/@item.Thumbnail.Split(';')[0]"
+                                 class="card-img-top"
+                                 alt="@item.Title">
                         </div>
 
-                        <div class="card-text text-truncate-3" style="max-height: 80px">@Html.Raw(item.Description)</div>
-                        <span class="blog-card-arrow">→</span>
-                    </div>
-                </a>
-            }
-        </div><!---end of card grid ---->
-    </div>
-</section>
+                        <div class="blog-card-content">
+                            <h3>@item.Title</h3>
+
+                            <div class="blog-card-meta meta">
+                                <div class="meta-item">
+                                    <i class="bi bi-geo-alt meta-icon"></i>
+                                    @item.Country
+                                </div>
+                            </div>
+
+                            <div class="card-text text-truncate-3" style="max-height: 80px">@Html.Raw(item.Description)</div>
+                            <span class="blog-card-arrow">→</span>
+                        </div>
+                    </a>
+                }
+            </div><!---end of card grid ---->
+        </div>
+    </section>

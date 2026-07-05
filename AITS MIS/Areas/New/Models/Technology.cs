@@ -84,6 +84,28 @@ namespace KnowWaste.Models
                 TechnologyList = TechnologyList.Where(p => p.CountryID == CountryID).ToList();
             }
 
+            if (TechnologyList.Count == 1)
+            {
+                TechnologyList[0].RelatedTopics = (from a in db.blogs
+                                                   join b in db.countries on a.Country_ID equals b.ID
+                                                   where a.Blogscategory_ID == 3
+                                                         && a.Deleted == 0
+                                                         && b.Deleted == 0
+                                                         && a.ID != ID
+                                                   select new ViewModels.Technology
+                                                   {
+                                                       ID = a.ID,
+                                                       Title = a.Title,
+                                                       Author = a.Author,
+                                                       Date = a.Blogsdate.ToString(),
+                                                       Description = a.Description,
+                                                       CountryID = b.ID,
+                                                       Country = b.Name,
+                                                       Thumbnail = a.Photo,
+                                                       Source = a.Sources,
+                                                   }).Take(4).ToList();
+            }
+
             Countries = TechnologyList
                         .GroupBy(a => new { a.CountryID, a.Country })
                         .Select(g => new ViewModels.Country
@@ -131,5 +153,6 @@ namespace ViewModels
         public string Country { get; set; }
         public string Thumbnail { get; set; }
         public string Source { get; set; }
+        public List<Technology> RelatedTopics { get; set; }
     }
 }

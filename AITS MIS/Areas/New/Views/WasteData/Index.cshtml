@@ -35,7 +35,6 @@
             <div class="d-flex align-items-center pb-5 me-4">
                 <p class="m-0 pe-3">Sub region</p>
                 <select class="form-select w-auto" id="subregionSelect">
-                    <option value="0" @(Model.SubRegionID == 0 ? "selected" : "")>All</option>
                     @foreach (ViewModels.SubRegion item in Model.SubRegions)
                     {
                         <option value="@item.ID" @(Model.SubRegionID == item.ID ? "selected" : "")>@item.Name</option>
