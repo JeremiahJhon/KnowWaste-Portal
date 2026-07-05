@@ -220,6 +220,8 @@
             });
 
             $("#countrySelect").change(function () {
+                $("#citySelect").val(-1);
+                $("#citySelect").change();
                 if (parseInt(this.value) > 0) {
 
                     // Enable dropdown
@@ -722,10 +724,11 @@
                         var data = JSON.parse(res);
                         dataSet = [];
                         var column = "Country";
-                        if ($("#filter-city-1").val() >= 0) column = "City";
+                        if ($("#citySelect").val() >= 0) column = "City";
+
                         for (var ctr = 0; ctr < data.length; ctr++) {
                             array = [];
-                            if ($("#filter-city-1").val() >= 0) array.push(data[ctr]["City"]);
+                            if ($("#citySelect").val() >= 0) array.push(data[ctr]["City"]);
                             else array.push(data[ctr]["Country"]);
                             array.push(data[ctr]["Year"]);
                             array.push(numFormatter(data[ctr]["Generated"]));
@@ -816,10 +819,10 @@
                         var data = JSON.parse(res);
                         dataSet = [];
                         var column = "Country";
-                        if ($("#filter-city-1").val() >= 0) column = "City";
+                        if ($("#citySelect").val() >= 0) column = "City";
                         for (var ctr = 0; ctr < data.length; ctr++) {
                             array = [];
-                            if ($("#filter-city-1").val() >= 0) array.push(data[ctr]["City"]);
+                            if ($("#citySelect").val() >= 0) array.push(data[ctr]["City"]);
                             else array.push(data[ctr]["Country"]);
                             array.push(data[ctr]["Year"]);
                             array.push(numFormatter(data[ctr]["Generated"]));

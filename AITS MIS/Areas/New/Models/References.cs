@@ -20,6 +20,7 @@
     public class Country
     {
         public int ID { get; set; }
+        public string SubRegionID { get; set; }
         public string Name { get; set; }
     }
 

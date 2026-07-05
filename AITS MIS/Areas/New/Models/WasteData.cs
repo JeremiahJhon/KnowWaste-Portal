@@ -147,14 +147,14 @@ namespace KnowWaste.Models
                 PolicyList = PolicyList.Where(p => p.CountryID == CountryID).ToList();
             }
 
+            Years = DataList.Select(p => p.Year).Distinct().OrderByDescending(a => a).ToList();
+
             if (Year > 0)
             {
                 DataList = DataList.Where(p => p.Year == Year).ToList();
                 PopulationList = PopulationList.Where(p => p.Year == Year).ToList();
                 PolicyList = PolicyList.Where(p => p.Year == Year.ToString()).ToList();
             }
-
-            Years = DataList.Select(p => p.Year).Distinct().OrderByDescending(a => a).ToList();
         }
     }
 }

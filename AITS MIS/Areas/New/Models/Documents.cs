@@ -127,7 +127,7 @@ namespace KnowWaste.Models
                                     {
                                         ID = a.ID,
                                         Title = a.Title,
-                                        Country = (from x in db.countries where a.Country_ID.Contains(x.ID.ToString()) select new ViewModels.Country { ID = x.ID, Name = x.Name }).ToList(),
+                                        Country = (from x in db.countries where a.Country_ID.Contains(x.ID.ToString()) select new ViewModels.Country { ID = x.ID, Name = x.Name, SubRegionID = x.SubRegion_ID }).ToList(),
                                         Year = a.Year,
                                         Publisher = a.Publisher,
                                         CategoryID = c.ID,
@@ -150,11 +150,12 @@ namespace KnowWaste.Models
                         Countries.AddRange(item.Country);
                     }
                 }
-
+                
                 Countries = Countries
                             .GroupBy(c => new { c.ID, c.Name })
                             .Select(g => g.First())
                             .OrderBy(c => c.Name)
+                            .Where(p => p.SubRegionID == "3")
                             .ToList();
 
                 if (CountryID > 0)
