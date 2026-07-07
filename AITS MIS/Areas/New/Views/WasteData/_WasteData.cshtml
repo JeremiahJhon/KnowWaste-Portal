@@ -1,11 +1,12 @@
 ﻿@model KnowWaste.Models.WasteData
 @{ 
     var data = Model.DataList
-    .GroupBy(x => new { x.WasteTypeID, x.WasteType })
+    .GroupBy(x => new { x.WasteTypeID, x.WasteType, x.Year })
     .Select(g => new ViewModels.WasteData
     {
         WasteCategory = g.Key.WasteType,
 
+        Year = g.Key.Year,
         Generated = g.Sum(x => x.TotalGenerated ?? 0),
         Hazardous = g.Sum(x => x.Hazardous ?? 0),
         Collected = g.Sum(x => x.TotalCollected ?? 0),
@@ -31,6 +32,7 @@
     <thead>
         <tr>
             <th scope="col">Waste Category</th>
+            <th scope="col">Year</th>
             <th scope="col" class="text-end">Generated</th>
             <th scope="col" class="text-end">Hazardous</th>
             <th scope="col" class="text-end">Collected</th>
@@ -49,6 +51,7 @@
             <tr>
                 <!-- <th scope="row">1</th> -->
                 <td>@item.WasteCategory</td>
+                <td>@item.Year</td>
                 <td align="right">@item.Generated.ToString("#,##0.#0")</td>
                 <td align="right">@item.Hazardous.ToString("#,##0.#0")</td>
                 <td align="right">@item.Collected.ToString("#,##0.#0")</td>

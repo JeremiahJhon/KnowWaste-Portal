@@ -100,22 +100,32 @@ namespace KnowWaste.Models
                     Source = p.Source,
                 }).ToList();
 
-            PolicyList = (from a in db.countrypolicies
-                        join b in db.countries on a.Country_ID equals b.ID.ToString()
-                        join c in db.countrypolicy_area on a.Area_ID equals c.ID
-                        where a.Deleted == 0 && b.Deleted == 0 && a.WasteCategory_ID == 14  && countriesFilter.Contains(b.ID.ToString())
-                          select new ViewModels.Policy
-                        {
-                            ID = a.ID,
-                            Legal = a.Legal,
-                            CountryID = b.ID,
-                            Country = b.Name,
-                            PolicyAreaID = c.ID,
-                            PolicyArea = c.Name,
-                            Year = a.Year,
-                            Description = a.Description,
-                            Source = a.Link
-                        }).ToList();
+            PolicyList = (
+                 from a in db.countrypolicies
+                 join b in db.countries
+                     on a.Country_ID equals b.ID.ToString()
+
+                 join c in db.countrypolicy_area
+                     on a.Area_ID equals c.ID into policyAreas
+                 from c in policyAreas.DefaultIfEmpty()
+
+                 where a.Deleted == 0
+                 orderby a.Year descending
+                 select new ViewModels.Policy
+                 {
+                     ID = a.ID,
+                     Legal = a.Legal,
+                     CountryID = b.ID,
+                     Country = b.Name,
+
+                     PolicyAreaID = c != null ? c.ID : 0,
+                     PolicyArea = c != null ? c.Name : "",
+
+                     Year = a.Year,
+                     Description = a.Description,
+                     Source = a.Link
+                 }
+             ).ToList();
 
             Countries = DataList
                         .GroupBy(a => new { a.CountryID, a.Country })
@@ -176,6 +186,7 @@ namespace ViewModels
     public class WasteData
     {
         public string WasteCategory { get; set; }
+        public int Year { get; set; }
         public decimal Generated { get; set; }
         public decimal Hazardous { get; set; }
         public decimal Collected { get; set; }

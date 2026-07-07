@@ -176,8 +176,11 @@
             </div>
         </div>
         <div class="custom-border p-4 mb-4">
-            <div class="d-flex justify-content-between align-item-center">
-                <h4 class="text-blue mb-4">Waste Data</h4>
+            <div class="justify-content-between align-item-center">
+                <h4 class="text-blue">Waste Data</h4>
+                <p class="fw-bold">
+                    (Unit: Thousand T/Year)
+                </p>
             </div>
 
             <div class="custom-table table-responsive" id="WasteDataTable">
@@ -832,7 +835,7 @@
                 if (num > 0) {
                     return num;
                 }
-                if (num == null) {
+                if (num == null || num == 0) {
                     return ""
                 }
                 return 0;

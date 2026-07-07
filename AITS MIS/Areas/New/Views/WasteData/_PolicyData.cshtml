@@ -12,6 +12,7 @@
                 <strong>@item.Legal</strong>
             </h5>
             <div class="text-muted">@item.Country</div>
+            <div class="text-muted">@item.Year</div>
         </button>
         <div id="collapse_@(Model.PolicyList.IndexOf(item) + 1)" class="accordion-collapse collapse @(Model.PolicyList.IndexOf(item) == 0 ? "show" : "")">
             <div class="accordion-body bg-white px-0 text-muted">

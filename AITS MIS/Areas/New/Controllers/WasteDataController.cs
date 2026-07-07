@@ -120,8 +120,7 @@ namespace Knowwaste.Areas.New.Controllers
             var rawList = (from a in db.countrywastestreams
                            join b in db.countries on a.Country_ID equals b.ID.ToString()
                            join c in db.wastecategories on a.Wastecategory_ID equals c.ID.ToString()
-                           where a.Deleted == false
-                                 && (c.ID == 1 || c.ID == 14)
+                           where a.Deleted == false && c.Deleted == 0
                            select new { a, b, c }).ToList();
 
             List<ViewModels.Data> DataList = rawList.Select(x => new ViewModels.Data

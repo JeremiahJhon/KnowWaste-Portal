@@ -93,16 +93,15 @@ namespace KnowWaste.Models
                 if (ID > 0)
                 {
                     DocumentList = (from a in db.documents
-                                    join b in db.countries on a.Country_ID equals b.ID.ToString()
                                     join c in db.documentcategories on a.Documentcategory_ID equals c.ID
                                     join d in db.geothemes on a.Geotheme_ID equals d.ID
-                                    where (a.Documentcategory_ID == 4 || a.Is3rpromar == true) && a.Deleted == 0 && b.Deleted == 0 && a.ID == ID
+                                    where (a.Documentcategory_ID == 4 || a.Is3rpromar == true) && a.Deleted == 0 && a.ID == ID
                                     orderby a.Year descending
                                     select new Document
                                     {
                                         ID = a.ID,
                                         Title = a.Title,
-                                        Country = (from x in db.countries where a.Country_ID.Contains(x.ID.ToString()) select new ViewModels.Country { ID = x.ID, Name = x.Name }).ToList(),
+                                        CountryID = a.Country_ID,
                                         Year = a.Year,
                                         Publisher = a.Publisher,
                                         CategoryID = c.ID,
@@ -118,16 +117,15 @@ namespace KnowWaste.Models
                 else
                 {
                     DocumentList = (from a in db.documents
-                                    join b in db.countries on a.Country_ID equals b.ID.ToString()
                                     join c in db.documentcategories on a.Documentcategory_ID equals c.ID
                                     join d in db.geothemes on a.Geotheme_ID equals d.ID
-                                    where (a.Documentcategory_ID == 4 || a.Is3rpromar == true) && a.Deleted == 0 && b.Deleted == 0
+                                    where (a.Documentcategory_ID == 4 || a.Is3rpromar == true) && a.Deleted == 0
                                     orderby a.Year descending
                                     select new Document
                                     {
                                         ID = a.ID,
                                         Title = a.Title,
-                                        Country = (from x in db.countries where a.Country_ID.Contains(x.ID.ToString()) select new ViewModels.Country { ID = x.ID, Name = x.Name, SubRegionID = x.SubRegion_ID }).ToList(),
+                                        CountryID = a.Country_ID,
                                         Year = a.Year,
                                         Publisher = a.Publisher,
                                         CategoryID = c.ID,
@@ -141,6 +139,11 @@ namespace KnowWaste.Models
                                     }).ToList();
                 }
 
+                foreach(Document doc in DocumentList)
+                {
+                    var countries = doc.CountryID.Split(',').ToList();
+                    doc.Country = (from x in db.countries where countries.Contains(x.ID.ToString()) select new ViewModels.Country { ID = x.ID, Name = x.Name, SubRegionID = x.SubRegion_ID }).ToList();
+                }
 
                 Countries = new List<Country>();
                 foreach (ViewModels.Document item in DocumentList)
@@ -228,7 +231,7 @@ namespace KnowWaste.Models
                                     {
                                         ID = a.ID,
                                         Title = a.Title,
-                                        Country = (from x in db.countries where a.Country_ID.Contains(x.ID.ToString()) select new ViewModels.Country { ID = x.ID, Name = x.Name }).ToList(),
+                                        CountryID = a.Country_ID,
                                         Year = a.Year,
                                         Publisher = a.Publisher,
                                         CategoryID = c.ID,
@@ -252,7 +255,7 @@ namespace KnowWaste.Models
                                     {
                                         ID = a.ID,
                                         Title = a.Title,
-                                        Country = (from x in db.countries where a.Country_ID.Contains(x.ID.ToString()) select new ViewModels.Country { ID = x.ID, Name = x.Name }).ToList(),
+                                        CountryID = a.Country_ID,
                                         Year = a.Year,
                                         Publisher = a.Publisher,
                                         CategoryID = c.ID,
@@ -264,6 +267,12 @@ namespace KnowWaste.Models
                                         Attachment = a.Attachment,
                                         Source = a.Datasource,
                                     }).ToList();
+                }
+
+                foreach (Document doc in DocumentList)
+                {
+                    var countries = doc.CountryID.Split(',').ToList();
+                    doc.Country = (from x in db.countries where countries.Contains(x.ID.ToString()) select new ViewModels.Country { ID = x.ID, Name = x.Name, SubRegionID = x.SubRegion_ID }).ToList();
                 }
 
                 Countries = new List<Country>();
@@ -349,7 +358,7 @@ namespace KnowWaste.Models
                             {
                                 ID = a.ID,
                                 Title = a.Title,
-                                Country = (from x in db.countries where a.Country_ID.Contains(x.ID.ToString()) select new ViewModels.Country { ID = x.ID, Name = x.Name }).ToList(),
+                                CountryID = a.Country_ID,
                                 Year = a.Year,
                                 Publisher = a.Publisher,
                                 CategoryID = c.ID,
@@ -375,6 +384,12 @@ namespace KnowWaste.Models
             if (Publisher != "All")
             {
                 DocumentList = DocumentList.Where(p => p.Publisher == Publisher).ToList();
+            }
+
+            foreach (Document doc in DocumentList)
+            {
+                var countries = doc.CountryID.Split(',').ToList();
+                doc.Country = (from x in db.countries where countries.Contains(x.ID.ToString()) select new ViewModels.Country { ID = x.ID, Name = x.Name, SubRegionID = x.SubRegion_ID }).ToList();
             }
 
             Countries = new List<Country>();
@@ -433,6 +448,7 @@ namespace ViewModels
     {
         public int ID { get; set; }
         public string Title { get; set; }
+        public string CountryID { get; set; }
         public List<ViewModels.Country> Country { get; set; }
         public string Year { get; set; }
         public string Publisher { get; set; }
