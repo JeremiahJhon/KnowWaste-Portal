@@ -195,7 +195,7 @@
 
                             <div class="meta-item">
                                 <i class="bi bi-geo-alt meta-icon"></i>
-                                <span>@item.Country</span>
+                                <span>@string.Join(", ", item.Country.Select(x => x.Name))</span>
                             </div>
 
                             <div class="meta-item">

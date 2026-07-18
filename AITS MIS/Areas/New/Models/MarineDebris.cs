@@ -37,27 +37,79 @@ namespace KnowWaste.Models
                             Thumbnail = a.Photo,
                         }).ToList();
 
-            DocumentList = (from a in db.documents
-                            join c in db.documentcategories on a.Documentcategory_ID equals c.ID
-                            join d in db.geothemes on a.Geotheme_ID equals d.ID
-                            where (a.Documentcategory_ID == 4 || a.Publisher.Contains("RRC.AP") || a.Publisher.Contains("ERIA") || a.Publisher.Contains("NIVA") || a.Publisher.Contains("GIZ") || a.IsPublications == true) && a.Deleted == 0
-                            orderby a.Year descending
-                            select new Document
-                            {
-                                ID = a.ID,
-                                Title = a.Title,
-                                Country = (from x in db.countries where a.Country_ID.Contains(x.ID.ToString()) select new ViewModels.Country { ID = x.ID, Name = x.Name }).ToList(),
-                                Year = a.Year,
-                                Publisher = a.Publisher,
-                                CategoryID = c.ID,
-                                Category = c.Name,
-                                GeoTheme = d.Name,
-                                Keywords = a.Keyword,
-                                Description = a.Description,
-                                Thumbnail = a.Thumbnail,
-                                Attachment = a.Attachment,
-                                Source = a.Datasource,
-                            }).ToList();
+            var allCountriesForMatch = db.countries.Where(x => x.Deleted == 0).ToList();
+
+            // _3RProMARList's criteria (CategoryID == 4 || Is3rpromar) is a subset of
+            // DocumentList's broader criteria, so fetch the union of both once, build
+            // each Document (including the country match) exactly once, then derive
+            // both lists by filtering the shared in-memory set — instead of hitting
+            // the database and rebuilding the same documents twice.
+            var rawDocuments = (from a in db.documents
+                                join c in db.documentcategories on a.Documentcategory_ID equals c.ID
+                                join d in db.geothemes on a.Geotheme_ID equals d.ID
+                                where a.Deleted == 0 &&
+                                      (a.Documentcategory_ID == 4
+                                       || a.Publisher.Contains("RRC.AP")
+                                       || a.Publisher.Contains("ERIA")
+                                       || a.Publisher.Contains("NIVA")
+                                       || a.Publisher.Contains("GIZ")
+                                       || a.IsPublications == true
+                                       || a.Is3rpromar == true)
+                                orderby a.Year descending
+                                select new
+                                {
+                                    a.ID,
+                                    a.Title,
+                                    a.Country_ID,
+                                    a.Year,
+                                    a.Publisher,
+                                    CategoryID = c.ID,
+                                    Category = c.Name,
+                                    GeoTheme = d.Name,
+                                    a.Keyword,
+                                    a.Description,
+                                    a.Thumbnail,
+                                    a.Attachment,
+                                    a.Datasource,
+                                    a.IsPublications,
+                                    a.Is3rpromar,
+                                }).ToList(); // materialized here — everything after this runs in memory, so Split() is fine
+
+            var allDocuments = rawDocuments.Select(a => new
+            {
+                Raw = a,
+                Document = new Document
+                {
+                    ID = a.ID,
+                    Title = a.Title,
+                    Country = allCountriesForMatch
+                        .Where(x => !string.IsNullOrEmpty(a.Country_ID) &&
+                                    a.Country_ID.Split(',')
+                                        .Contains(x.ID.ToString()))
+                        .Select(x => new ViewModels.Country { ID = x.ID, Name = x.Name })
+                        .ToList(),
+                    Year = a.Year,
+                    Publisher = a.Publisher,
+                    CategoryID = a.CategoryID,
+                    Category = a.Category,
+                    GeoTheme = a.GeoTheme,
+                    Keywords = a.Keyword,
+                    Description = a.Description,
+                    Thumbnail = a.Thumbnail,
+                    Attachment = a.Attachment,
+                    Source = a.Datasource,
+                }
+            }).ToList();
+
+            DocumentList = allDocuments
+                .Where(x => x.Raw.CategoryID == 4
+                         || x.Raw.Publisher.Contains("RRC.AP")
+                         || x.Raw.Publisher.Contains("ERIA")
+                         || x.Raw.Publisher.Contains("NIVA")
+                         || x.Raw.Publisher.Contains("GIZ")
+                         || x.Raw.IsPublications == true)
+                .Select(x => x.Document)
+                .ToList();
 
             ExpertList = (from a in db.expertrosters
                           where a.Deleted == 0
@@ -101,28 +153,10 @@ namespace KnowWaste.Models
                                   Source = a.Sources,
                               }).ToList();
 
-            _3RProMARList = (from a in db.documents
-                            join b in db.countries on a.Country_ID equals b.ID.ToString()
-                            join c in db.documentcategories on a.Documentcategory_ID equals c.ID
-                            join d in db.geothemes on a.Geotheme_ID equals d.ID
-                            where (a.Documentcategory_ID == 4 || a.Is3rpromar == true) && a.Deleted == 0 && b.Deleted == 0
-                            orderby a.Year descending
-                            select new Document
-                            {
-                                ID = a.ID,
-                                Title = a.Title,
-                                Country = (from x in db.countries where a.Country_ID.Contains(x.ID.ToString()) select new ViewModels.Country { ID = x.ID, Name = x.Name }).ToList(),
-                                Year = a.Year,
-                                Publisher = a.Publisher,
-                                CategoryID = c.ID,
-                                Category = c.Name,
-                                GeoTheme = d.Name,
-                                Keywords = a.Keyword,
-                                Description = a.Description,
-                                Thumbnail = a.Thumbnail,
-                                Attachment = a.Attachment,
-                                Source = a.Datasource,
-                            }).ToList();
+            _3RProMARList = allDocuments
+                .Where(x => x.Raw.CategoryID == 4 || x.Raw.Is3rpromar == true)
+                .Select(x => x.Document)
+                .ToList();
         }
     }
 }

@@ -1,20 +1,56 @@
 ﻿@model KnowWaste.Models.WasteData
+<!---add-->
+@{
+    var policies = Model.PolicyList
+        .OrderBy(x => x.Country)
+        .ThenByDescending(x => x.Year)
+        .ThenBy(x => x.Legal)
+        .ToList();
+}
+<!----->
+@*
+        @foreach (ViewModels.Policy item in Model.PolicyList)
 
-@foreach (ViewModels.Policy item in Model.PolicyList)
-{
-    if (Model.PolicyList.IndexOf(item) != 0)
-    {
-        <hr class="mt-0" />
-    }
+        {
+            if (Model.PolicyList.IndexOf(item) != 0)
+            {
+    <hr class="mt-0" />
+            }
     <div class="accordion-item custom-accordion-item">
         <button class="accordion-button bg-white @(Model.PolicyList.IndexOf(item) == 0 ? "" : "collapsed") px-0 d-block py-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@(Model.PolicyList.IndexOf(item) + 1)" aria-expanded="@(Model.PolicyList.IndexOf(item) == 0 ? "true" : "false")" aria-controls="collapse_@(Model.PolicyList.IndexOf(item) + 1)">
             <h5 class="accordion-header ">
                 <strong>@item.Legal</strong>
             </h5>
-            <div class="text-muted">@item.Country</div>
+            <div class="text-muted">@item.Couif (Model.PolicyList.IndexOf(item) != 0)ntry</div>
             <div class="text-muted">@item.Year</div>
         </button>
         <div id="collapse_@(Model.PolicyList.IndexOf(item) + 1)" class="accordion-collapse collapse @(Model.PolicyList.IndexOf(item) == 0 ? "show" : "")">
+            <div class="accordion-body bg-white px-0 text-muted">
+                @Html.Raw(item.Description)
+            </div>
+        </div>
+    </div>
+        }
+*@
+
+@foreach (ViewModels.Policy item in policies)
+
+{
+    if (policies.IndexOf(item) != 0)
+    {
+        <hr class="mt-0" />
+    }
+    <div class="accordion-item custom-accordion-item">
+        <div>
+            <button class="accordion-button bg-white @(policies.IndexOf(item) == 0 ? "" : "collapsed") px-0 d-block py-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@(policies.IndexOf(item) + 1)" aria-expanded="@(policies.IndexOf(item) == 0 ? "true" : "false")" aria-controls="collapse_@(policies.IndexOf(item) + 1)">
+                <h5 class="accordion-header ">
+                    <strong>@item.Legal</strong>
+                </h5>
+                <div class="text-muted">@item.Country</div>
+                <div class="text-muted">@item.Year</div>
+            </button>
+        </div>
+        <div id="collapse_@(policies.IndexOf(item) + 1)" class="accordion-collapse collapse @(policies.IndexOf(item) == 0 ? "show" : "")">
             <div class="accordion-body bg-white px-0 text-muted">
                 @Html.Raw(item.Description)
             </div>

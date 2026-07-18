@@ -31,6 +31,14 @@
         <div class="pb-4">
             <p class="text-muted text-start">Key data and indicators on solid waste and plastic waste are presented to support understanding of waste generation, composition, and management trends across the region.</p>
         </div>
+        <!---add -->
+        @using (Html.BeginForm("Index", "WasteData", FormMethod.Get, new { id = "filterForm" }))
+        {
+            <input type="hidden" id="formSubregionID" name="subregionID" />
+            <input type="hidden" id="formCountryID" name="countryID" />
+            <input type="hidden" id="formYear" name="year" />
+        }
+        <!----->
         <div class="d-flex flex-wrap">
             <div class="d-flex align-items-center pb-5 me-4">
                 <p class="m-0 pe-3">Sub region</p>
@@ -62,7 +70,7 @@
                 </select>
             </div>
         </div>
-        @if(Model.PopulationList.Count == 1)
+        @if (Model.PopulationList.Count == 1)
         {
             <div class="kpi-wrapper" hidden>
                 <div class="country-title">
@@ -179,7 +187,7 @@
             <div class="justify-content-between align-item-center">
                 <h4 class="text-blue">Waste Data</h4>
                 <p class="fw-bold">
-                    (Unit: Thousand T/Year)
+                    (Unit: Tonnes/Year)
                 </p>
             </div>
 
@@ -207,9 +215,24 @@
         var chart1;
         var chart2;
         var chart3;
-        const isMobile = navigator.userAgentData.mobile || window.orientation > -1; //resolves true/false
+        //const isMobile = navigator.userAgentData.mobile || window.orientation > -1; //resolves true/false
+        const isMobile = window.matchMedia("(max-width: 768px)").matches; //firefox
 
         $(document).ready(function () {
+            // Clean the query string off the address bar after a filtered load,
+            // so a later hard refresh (F5) re-requests the plain URL and gets defaults.
+            if (window.location.search) {
+                history.replaceState(null, '', window.location.pathname);
+            }
+
+            // Force dropdowns to match the server-rendered model, overriding any
+            // value the browser tried to auto-restore from before a refresh.
+            $("#subregionSelect").val('@Model.SubRegionID');
+            $("#countrySelect").val('@Model.CountryID');
+            $("#yearSelect").val('@Model.Year');
+            $("#chart2TypeSelect").prop('selectedIndex', 0);
+            $("#chart3TypeSelect").prop('selectedIndex', 0);
+
             subregionID = $("#subregionSelect").val();
             countryID = $("#countrySelect").val();
             year = $("#yearSelect").val();
@@ -239,12 +262,18 @@
             }
         });
 
+        /*
         $("#subregionSelect").change(function () { refresh(); });
 
         $("#countrySelect").change(function () { refresh(); });
 
         $("#yearSelect").change(function () { refresh(); });
+        */
+        $("#subregionSelect").change(function () { refresh("subregion"); });
 
+        $("#countrySelect").change(function () { refresh("country"); });
+
+        $("#yearSelect").change(function () { refresh("year"); });
         $("#chart1TypeSelect").change(function () {
             chart1.destroy();
             refreshWasteDataChart1();
@@ -262,16 +291,38 @@
             refreshWasteDataChart3();
         });
 
-        function refresh() {
+        //function refresh() {
+        function refresh(changed) {
             subregionID = $("#subregionSelect").val();
             countryID = $("#countrySelect").val();
             year = $("#yearSelect").val();
 
-            $.cookie("CountryID", countryID, { expires: 7, path: '/' });
-            $.cookie("SubRegionID", subregionID, { expires: 7, path: '/' });
-            $.cookie("Year", year, { expires: 7, path: '/' });
+            if (changed == "subregion") {
+                countryID = 0;
+                year = 0;
 
-            location.reload();
+                $("#countrySelect").val(0);
+                $("#yearSelect").val(0);
+
+                // Reset Graph 2 & 3
+                $("#chart2TypeSelect").prop("selectedIndex", 0);
+                $("#chart3TypeSelect").prop("selectedIndex", 0);
+            }
+            else if (changed == "country") {
+                year = 0;
+
+                $("#yearSelect").val(0);
+
+                // Reset Graph 2 & 3
+                $("#chart2TypeSelect").prop("selectedIndex", 0);
+                $("#chart3TypeSelect").prop("selectedIndex", 0);
+            }
+
+            $("#formSubregionID").val(subregionID);
+            $("#formCountryID").val(countryID);
+            $("#formYear").val(year);
+
+            $("#filterForm").submit();
         }
 
         function renderPolicyDataTable(country, year) {
@@ -367,7 +418,7 @@
                             series: series,
                             chart: {
                                 type: 'bar',
-                                height: 400,
+                                height: 450,
                                 toolbar: {
                                     show: true
                                 },
@@ -382,7 +433,7 @@
                                     borderRadius: 2
                                 },
                             },
-                            dataLabels: {
+                            @*dataLabels: {
                                 formatter: function (val) {
                                     return numFormatter(val);//.toLocaleString('en-US')
                                 },
@@ -390,6 +441,10 @@
                                     fontSize: "10px",
                                     colors: ['#000000']
                                 }
+                            },
+                            *@
+                            dataLabels: {
+                                enabled: false
                             },
                             stroke: {
                                 show: true,
@@ -439,6 +494,7 @@
                             fill: {
                                 opacity: 1
                             },
+                            @*
                             tooltip: {
                                 enabled: true,
                                 y: {
@@ -447,11 +503,32 @@
                                     }
                                 }
                             },
+                                *@
+                            tooltip: {
+                                enabled: true,
+                                followCursor: true,
+                                intersect: false,
+                                shared: true,
+
+                                y: {
+                                    formatter: function (val) {
+
+                                        if (val == null || val === 0) {
+                                            return "No Data";
+                                        }
+
+                                        // return numFormatter(val) + " Tons";
+                                        return val.toLocaleString('en-US') + " Tons";
+                                    }
+                                }
+                            },
                             noData: {
                                 text: 'No Data'
                             },
                             legend: {
-                                position: isMobile ? 'bottom' : 'right',
+                                position: 'bottom',
+                                horizontalAlign: 'center',
+                                fontSize: '11px'
                             },
                         };
 
@@ -563,7 +640,7 @@
                             series: series,
                             chart: {
                                 type: 'bar',
-                                height: 400,
+                                height: 450,
                                 toolbar: {
                                     show: true
                                 },
@@ -578,6 +655,7 @@
                                     borderRadius: 2
                                 },
                             },
+                            @*
                             dataLabels: {
                                 formatter: function (val) {
                                     return numFormatter(val);//.toLocaleString('en-US')
@@ -586,6 +664,10 @@
                                     fontSize: "10px",
                                     colors: ['#000000']
                                 }
+                            },
+                                *@
+                            dataLabels: {
+                                enabled: false
                             },
                             stroke: {
                                 show: true,
@@ -604,9 +686,9 @@
                                         fontWeight: 400,
                                     }
                                 },
-                                title: {
-                                    text: category
-                                }
+                                //title: {
+                                 //   text: category
+                               // }
                             },
                             yaxis: {
                                 logarithmic: false,
@@ -635,6 +717,7 @@
                             fill: {
                                 opacity: 1
                             },
+                            @*
                             tooltip: {
                                 enabled: true,
                                 y: {
@@ -643,11 +726,31 @@
                                     }
                                 }
                             },
+                                *@
+                            tooltip: {
+                                enabled: true,
+                                followCursor: true,
+                                intersect: false,
+                                shared: true,
+                                y: {
+                                    formatter: function (val) {
+
+                                        if (val == null || val === 0) {
+                                            return "No Data";
+                                        }
+
+                                        // return numFormatter(val) + " Tons";
+                                        return val.toLocaleString('en-US') + " Tons";
+                                    }
+                                }
+                            },
                             noData: {
                                 text: 'No Data'
                             },
                             legend: {
-                                position: isMobile ? 'bottom' : 'right',
+                                position: 'bottom',
+                                horizontalAlign: 'center',
+                                fontSize: '11px'
                             },
                         };
 
@@ -691,6 +794,8 @@
                     var count = 0;
                     var graphData = data;
                     if (graphData.length > 0) {
+
+                        @*
                         if (graphData[0].hasOwnProperty(type)) {
                             for (var ctr = 0; ctr < graphData.length; ctr++) {
                                 series[ctr] = {
@@ -699,14 +804,38 @@
                                 }
                             }
                         }
+                            *@
 
+
+                        if (graphData[0].hasOwnProperty(type)) {
+                            for (var ctr = 0; ctr < graphData.length; ctr++) {
+
+                                series.push({
+                                    name: graphData[ctr]["WasteCategory"],
+                                    data: [graphData[ctr][type]],
+                                });
+
+                            }
+                        }
                         console.log(series);
+                        var chartColors = [
+                            "#1f77b4", // Municipal Waste //add
+                            "#2ca02c", // Construction & Demolition a
+                            "#ff7f0e", // Industrial
+                            "#d62728", // Agricultural
+                            "#9467bd", // E-Waste
+                            "#17becf", // Healthcare
+                            "#bcbd22", // Plastic
+                            "#8c564b"  // Mining
+                        ];
 
                         var options = {
                             series: series,
+                            colors: chartColors, //added
+
                             chart: {
                                 type: 'bar',
-                                height: 400,
+                                height: 450,
                                 toolbar: {
                                     show: true
                                 },
@@ -721,6 +850,7 @@
                                     borderRadius: 2
                                 },
                             },
+                            @*
                             dataLabels: {
                                 formatter: function (val) {
                                     return numFormatter(val);//.toLocaleString('en-US')
@@ -729,6 +859,10 @@
                                     fontSize: "10px",
                                     colors: ['#000000']
                                 }
+                            },
+                                *@
+                            dataLabels: {
+                                enabled: false
                             },
                             stroke: {
                                 show: true,
@@ -742,14 +876,14 @@
                                     minWidth: 0,
                                     maxWidth: 160,
                                     style: {
-                                        fontSize: '12px',
+                                        fontSize: '11px',
                                         fontFamily: 'Roboto Condensed, sans-serif',
                                         fontWeight: 400,
                                     }
                                 },
-                                title: {
-                                    text: type
-                                }
+                                //title: {
+                                 //   text: type
+                               // }
                             },
                             yaxis: {
                                 logarithmic: false,
@@ -778,6 +912,7 @@
                             fill: {
                                 opacity: 1
                             },
+                            @*
                             tooltip: {
                                 enabled: true,
                                 y: {
@@ -786,11 +921,32 @@
                                     }
                                 }
                             },
+                                *@
+                            tooltip: {
+                                enabled: true,
+                                followCursor: true,
+                                intersect: false,
+                                shared: true,
+
+                                y: {
+                                    formatter: function (val) {
+
+                                        if (val == null || val === 0) {
+                                            return "No Data";
+                                        }
+
+                                        //return numFormatter(val) + " Tons";
+                                        return val.toLocaleString('en-US') + " Tons";
+                                    }
+                                }
+                            },
                             noData: {
                                 text: 'No Data'
                             },
                             legend: {
-                                position: isMobile ? 'bottom' : 'right',
+                                position: 'bottom',
+                                horizontalAlign: 'center',
+                                fontSize: '11px'
                             },
                         };
 

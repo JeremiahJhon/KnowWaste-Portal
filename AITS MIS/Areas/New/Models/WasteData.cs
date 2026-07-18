@@ -88,7 +88,8 @@ namespace KnowWaste.Models
 
             PopulationList = db.countrypopulations
                 .Where(p => p.Deleted == 0 && countriesFilter.Contains(p.Country_ID.ToString()))
-                .Select(p => new ViewModels.PopulationData { 
+                .Select(p => new ViewModels.PopulationData
+                {
                     ID = p.ID,
                     Year = p.Year ?? 0,
                     CountryID = p.Country_ID ?? 0,
@@ -101,31 +102,32 @@ namespace KnowWaste.Models
                 }).ToList();
 
             PolicyList = (
-                 from a in db.countrypolicies
-                 join b in db.countries
-                     on a.Country_ID equals b.ID.ToString()
+                    from a in db.countrypolicies
+                    join b in db.countries
+                        on a.Country_ID equals b.ID.ToString()
 
-                 join c in db.countrypolicy_area
-                     on a.Area_ID equals c.ID into policyAreas
-                 from c in policyAreas.DefaultIfEmpty()
+                    join c in db.countrypolicy_area
+                        on a.Area_ID equals c.ID into policyAreas
+                    from c in policyAreas.DefaultIfEmpty()
 
-                 where a.Deleted == 0
-                 orderby a.Year descending
-                 select new ViewModels.Policy
-                 {
-                     ID = a.ID,
-                     Legal = a.Legal,
-                     CountryID = b.ID,
-                     Country = b.Name,
+                    where a.Deleted == 0
+                          && countriesFilter.Contains(a.Country_ID)
 
-                     PolicyAreaID = c != null ? c.ID : 0,
-                     PolicyArea = c != null ? c.Name : "",
+                    orderby a.Year descending
 
-                     Year = a.Year,
-                     Description = a.Description,
-                     Source = a.Link
-                 }
-             ).ToList();
+                    select new ViewModels.Policy
+                    {
+                        ID = a.ID,
+                        Legal = a.Legal,
+                        CountryID = b.ID,
+                        Country = b.Name,
+                        PolicyAreaID = c != null ? c.ID : 0,
+                        PolicyArea = c != null ? c.Name : "",
+                        Year = a.Year,
+                        Description = a.Description,
+                        Source = a.Link
+                    }
+                ).ToList();
 
             Countries = DataList
                         .GroupBy(a => new { a.CountryID, a.Country })
@@ -145,9 +147,10 @@ namespace KnowWaste.Models
 
             SubRegions = (from a in db.subregions
                           where a.Deleted == 0 && a.Region_id == "3"
-                          select new ViewModels.SubRegion { 
-                            ID = a.ID,
-                            Name = a.Name,
+                          select new ViewModels.SubRegion
+                          {
+                              ID = a.ID,
+                              Name = a.Name,
                           }).Distinct().ToList();
 
             if (CountryID > 0)
@@ -163,7 +166,7 @@ namespace KnowWaste.Models
             {
                 DataList = DataList.Where(p => p.Year == Year).ToList();
                 PopulationList = PopulationList.Where(p => p.Year == Year).ToList();
-                PolicyList = PolicyList.Where(p => p.Year == Year.ToString()).ToList();
+                //PolicyList = PolicyList.Where(p => p.Year == Year.ToString()).ToList();
             }
         }
     }
@@ -185,17 +188,18 @@ namespace ViewModels
     }
     public class WasteData
     {
+        public string Country { get; set; }
         public string WasteCategory { get; set; }
         public int Year { get; set; }
-        public decimal Generated { get; set; }
-        public decimal Hazardous { get; set; }
-        public decimal Collected { get; set; }
-        public decimal Recycled { get; set; }
-        public decimal Recovered { get; set; }
-        public decimal Disposal { get; set; }
-        public decimal Treatment { get; set; }
-        public decimal Reuse { get; set; }
-        public decimal Sludge { get; set; }
+        public decimal? Generated { get; set; }
+        public decimal? Hazardous { get; set; }
+        public decimal? Collected { get; set; }
+        public decimal? Recycled { get; set; }
+        public decimal? Recovered { get; set; }
+        public decimal? Disposal { get; set; }
+        public decimal? Treatment { get; set; }
+        public decimal? Reuse { get; set; }
+        public decimal? Sludge { get; set; }
         public string Ref { get; set; }
     }
 }

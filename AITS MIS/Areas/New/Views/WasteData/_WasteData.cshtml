@@ -1,21 +1,29 @@
 ﻿@model KnowWaste.Models.WasteData
-@{ 
+@{
     var data = Model.DataList
-    .GroupBy(x => new { x.WasteTypeID, x.WasteType, x.Year })
+   .GroupBy(x => new
+   {
+       x.CountryID,
+       x.Country,
+       x.WasteTypeID,
+       x.WasteType,
+       x.Year
+   })
     .Select(g => new ViewModels.WasteData
     {
+        Country = g.Key.Country, //add
         WasteCategory = g.Key.WasteType,
 
         Year = g.Key.Year,
-        Generated = g.Sum(x => x.TotalGenerated ?? 0),
-        Hazardous = g.Sum(x => x.Hazardous ?? 0),
-        Collected = g.Sum(x => x.TotalCollected ?? 0),
-        Recycled = g.Sum(x => x.Recycled ?? 0),
-        Recovered = g.Sum(x => x.Recovered ?? 0),
-        Disposal = g.Sum(x => x.Disposal ?? 0),
-        Treatment = g.Sum(x => x.Treatment ?? 0),
-        Reuse = g.Sum(x => x.Reuse ?? 0),
-        Sludge = g.Sum(x => x.Sludge ?? 0),
+        Generated = g.All(x => x.TotalGenerated == null) ? (decimal?)null : g.Sum(x => x.TotalGenerated ?? 0),
+        Hazardous = g.All(x => x.Hazardous == null) ? (decimal?)null : g.Sum(x => x.Hazardous ?? 0),
+        Collected = g.All(x => x.TotalCollected == null) ? (decimal?)null : g.Sum(x => x.TotalCollected ?? 0),
+        Recycled = g.All(x => x.Recycled == null) ? (decimal?)null : g.Sum(x => x.Recycled ?? 0),
+        Recovered = g.All(x => x.Recovered == null) ? (decimal?)null : g.Sum(x => x.Recovered ?? 0),
+        Disposal = g.All(x => x.Disposal == null) ? (decimal?)null : g.Sum(x => x.Disposal ?? 0),
+        Treatment = g.All(x => x.Treatment == null) ? (decimal?)null : g.Sum(x => x.Treatment ?? 0),
+        Reuse = g.All(x => x.Reuse == null) ? (decimal?)null : g.Sum(x => x.Reuse ?? 0),
+        Sludge = g.All(x => x.Sludge == null) ? (decimal?)null : g.Sum(x => x.Sludge ?? 0),
 
         Ref = string.Join(", ",
             g.Select(x => x.Reference)
@@ -23,7 +31,10 @@
              .Distinct()
         )
     })
-    .ToList();
+    .OrderBy(x => x.Country)
+        .ThenBy(x => x.WasteCategory)
+        .ThenByDescending(x => x.Year)
+        .ToList();
 
 
 }
@@ -31,6 +42,10 @@
 <table class="table" id="WasteDataTable">
     <thead>
         <tr>
+            @if (Model.CountryID == 0)
+            {
+                <th>Country</th>
+            }
             <th scope="col">Waste Category</th>
             <th scope="col">Year</th>
             <th scope="col" class="text-end">Generated</th>
@@ -50,17 +65,21 @@
         {
             <tr>
                 <!-- <th scope="row">1</th> -->
+                @if (Model.CountryID == 0)
+                {
+                    <td>@item.Country</td>
+                }
                 <td>@item.WasteCategory</td>
                 <td>@item.Year</td>
-                <td align="right">@item.Generated.ToString("#,##0.#0")</td>
-                <td align="right">@item.Hazardous.ToString("#,##0.#0")</td>
-                <td align="right">@item.Collected.ToString("#,##0.#0")</td>
-                <td align="right">@item.Recycled.ToString("#,##0.#0")</td>
-                <td align="right">@item.Recovered.ToString("#,##0.#0")</td>
-                <td align="right">@item.Disposal.ToString("#,##0.#0")</td>
-                <td align="right">@item.Treatment.ToString("#,##0.#0")</td>
-                <td align="right">@item.Reuse.ToString("#,##0.#0")</td>
-                <td align="right">@item.Sludge.ToString("#,##0.#0")</td>
+                <td align="right">@(item.Generated.HasValue ? item.Generated.Value.ToString("#,##0.#0") : "-")</td>
+                <td align="right">@(item.Hazardous.HasValue ? item.Hazardous.Value.ToString("#,##0.#0") : "-")</td>
+                <td align="right">@(item.Collected.HasValue ? item.Collected.Value.ToString("#,##0.#0") : "-")</td>
+                <td align="right">@(item.Recycled.HasValue ? item.Recycled.Value.ToString("#,##0.#0") : "-")</td>
+                <td align="right">@(item.Recovered.HasValue ? item.Recovered.Value.ToString("#,##0.#0") : "-")</td>
+                <td align="right">@(item.Disposal.HasValue ? item.Disposal.Value.ToString("#,##0.#0") : "-")</td>
+                <td align="right">@(item.Treatment.HasValue ? item.Treatment.Value.ToString("#,##0.#0") : "-")</td>
+                <td align="right">@(item.Reuse.HasValue ? item.Reuse.Value.ToString("#,##0.#0") : "-")</td>
+                <td align="right">@(item.Sludge.HasValue ? item.Sludge.Value.ToString("#,##0.#0") : "-")</td>
                 <td>
                     @if (!String.IsNullOrWhiteSpace(item.Ref))
                     {
