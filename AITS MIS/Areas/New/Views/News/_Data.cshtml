@@ -34,8 +34,13 @@ else
                     <div class="blog-card-meta meta">
                         <div class="meta-item">
                             <i class="bi bi-calendar3 meta-icon"></i>
-                            <span>@Convert.ToDateTime(item.Date.Trim().Split('-')[0]).ToString("MMMM d, yyyy") - @Convert.ToDateTime(item.Date.Trim().Split('-')[1]).ToString("MMMM d, yyyy")</span>
-                        </div>
+                            @if (!String.IsNullOrWhiteSpace(item.Date))
+                            {
+                                <span>
+                                    @Convert.ToDateTime(item.Date.Trim().Split('-')[0]).ToString("MMMM d, yyyy") - @Convert.ToDateTime(item.Date.Trim().Split('-')[1]).ToString("MMMM d, yyyy")
+                                </span>
+                            }
+                            </div>
                         <div class="meta-item">
                             <i class="bi bi-geo-alt meta-icon"></i>
                             <span>@item.Country</span>
