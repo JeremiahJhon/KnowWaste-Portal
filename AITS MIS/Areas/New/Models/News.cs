@@ -43,7 +43,9 @@ namespace KnowWaste.Models
             {
                 NewsList = (from a in db.news
                             join b in db.countries on a.Country_ID equals b.ID
-                            where a.Deleted == 0 && b.Deleted == 0 && a.ID == ID
+                            where a.Deleted == 0
+                                  && b.Deleted == 0
+                                  && a.ID == ID
                             select new ViewModels.News
                             {
                                 ID = a.ID,
@@ -51,28 +53,37 @@ namespace KnowWaste.Models
                                 Country = b.Name,
                                 Photo = a.Photo,
                                 Description = a.Description,
-                                Date = a.StartDate
+                                Date = a.StartDate,
                             }).ToList();
 
-                EventsList = (from a in db.upcomingevents
-                              join b in db.countries on a.Country_ID equals b.ID
-                              where a.Deleted == 0 &&
-                                      b.Deleted == 0 //&&
-                                                     //a.Datestart <= DateTime.Now &&
-                                                     //a.Dateend >= DateTime.Now
-                                    && a.ID == ID
-                              select new ViewModels.Event
-                              {
-                                  ID = a.ID,
-                                  Title = a.Title,
-                                  StartDate = a.StartDate,
-                                  EndDate = a.EndDate,
-                                  Country = b.Name,
-                                  Thumbnail = a.Thumbnail,
-                                  Description = a.Description,
-                                  Detail = a.Detail,
-                                  Location = a.Location
-                              }).ToList();
+                EventsList = db.upcomingevents
+                           .Where(a => a.Deleted == 0 && a.ID == ID)
+                           .Join(db.countries.Where(c => c.Deleted == 0),
+                               a => a.Country_ID,
+                               c => c.ID,
+                               (a, c) => new { a, c })
+                           .AsEnumerable() // switch to in-memory processing (because of Split)
+                           .Where(x =>
+                           {
+                               var dates = x.a.StartDate.Split('-');
+                               var start = DateTime.Parse(dates[0].Trim());
+                               var end = DateTime.Parse(dates[1].Trim());
+                               return start <= DateTime.Now && end >= DateTime.Now;
+                           })
+                           .Select(x => new ViewModels.Event
+                           {
+                               ID = x.a.ID,
+                               Title = x.a.Title,
+                               StartDate = x.a.StartDate,
+                               EndDate = x.a.EndDate,
+                               Country = x.c.Name,
+                               Thumbnail = x.a.Thumbnail,
+                               Description = x.a.Description,
+                               Detail = x.a.Detail,
+                               Location = x.a.Location
+                           })
+                           .OrderByDescending(p => p.StartDate)
+                           .ToList();
             }
             else
             {
@@ -86,7 +97,7 @@ namespace KnowWaste.Models
                                 Country = b.Name,
                                 Photo = a.Photo,
                                 Description = a.Description,
-                                Date = a.StartDate
+                                Date = a.StartDate,
                             }).ToList();
 
                 EventsList = db.upcomingevents
@@ -115,8 +126,32 @@ namespace KnowWaste.Models
                                 Detail = x.a.Detail,
                                 Location = x.a.Location
                             })
+                            .OrderByDescending(p => p.StartDate)
                             .ToList();
             }
+
+            foreach (var news in NewsList)
+            {
+                if (string.IsNullOrWhiteSpace(news.Date))
+                {
+                    continue;
+                }
+
+                var dates = news.Date.Split(
+                    new[] { " - " },
+                    StringSplitOptions.None
+                );
+
+                DateTime parsedDate;
+
+                if (dates.Length > 0 &&
+                    DateTime.TryParse(dates[0].Trim(), out parsedDate))
+                {
+                    news.StartDate = parsedDate;
+                }
+            }
+
+            NewsList = NewsList.OrderByDescending(p => p.StartDate).ToList();
 
             if (NewsList.Count == 1)
             {
@@ -170,6 +205,7 @@ namespace ViewModels
         public string Description { get; set; }
         public string Photo { get; set; }
         public string Date { get; set; }
+        public DateTime? StartDate { get; set; }
         public List<News> RelatedNews { get; set; }
     }
 }
